@@ -40,34 +40,43 @@ function scramble(el: HTMLElement) {
   }, SCRAMBLE_MS);
 }
 
-function lockFirstChapterImage(reduced: boolean) {
+/**
+ * Zdejmuje blokadę z pierwszego rozdziału.
+ *
+ * Blokada jest nałożona już w kodzie strony (opacity 0 + data-intro-lock),
+ * a nie dokładana skryptem — inaczej przeglądarka zdążyłaby narysować zdjęcie
+ * przy 0.22, zanim skrypt je ukryje, i widać było mignięcie.
+ * Tutaj tylko puszczamy je we właściwym momencie: po tekście intro.
+ */
+function releaseFirstChapterImage(reduced: boolean) {
   const chapter = document.querySelector<HTMLElement>('[data-chapter]');
-  const img = chapter?.querySelector<HTMLElement>('[data-cine-img]');
-  if (!chapter || !img || reduced) return;
+  const img = chapter?.querySelector<HTMLElement>('[data-cine-img][data-intro-lock]');
+  if (!chapter || !img) return;
 
-  img.dataset.introLock = '1';
-  img.style.transition = 'opacity 0.9s cubic-bezier(0.16,1,0.3,1)';
-  img.style.opacity = '0';
-
-  // ODSTĘPSTWO OD ORYGINAŁU (prośba właściciela, 2026-08-10):
-  // wielki numer rozdziału ma wchodzić razem ze zdjęciem. W oryginale był
-  // widoczny od początku i wyprzedzał tekst intro.
   const num = chapter.querySelector<HTMLElement>('[data-cine-num]');
-  if (num) {
-    num.style.transition = 'opacity 0.9s cubic-bezier(0.16,1,0.3,1)';
-    num.style.opacity = '0';
-  }
-
-  window.setTimeout(() => {
+  const reveal = () => {
     const r = chapter.getBoundingClientRect();
     const winH = window.innerHeight;
     const q = Math.max(0, Math.min(1, (winH - r.top) / (winH * 0.9)));
     img.style.opacity = (0.3 + 0.7 * Math.min(1, q * 1.25)).toFixed(3);
     if (num) num.style.opacity = '1';
-    window.setTimeout(() => {
-      delete img.dataset.introLock;
-    }, IMG_UNLOCK_MS);
-  }, IMG_DELAY_MS);
+    window.setTimeout(() => img.removeAttribute('data-intro-lock'), IMG_UNLOCK_MS);
+  };
+
+  // przy ograniczonych animacjach pokazujemy od razu, bez czekania i przejść
+  if (reduced) {
+    img.removeAttribute('data-intro-lock');
+    img.style.opacity = '0.22';
+    if (num) num.style.opacity = '1';
+    return;
+  }
+
+  img.style.transition = 'opacity 0.9s cubic-bezier(0.16,1,0.3,1)';
+  // ODSTĘPSTWO OD ORYGINAŁU (prośba właściciela, 2026-08-10): numer rozdziału
+  // wchodzi razem ze zdjęciem; w oryginale był widoczny od początku.
+  if (num) num.style.transition = 'opacity 0.9s cubic-bezier(0.16,1,0.3,1)';
+
+  window.setTimeout(reveal, IMG_DELAY_MS);
 }
 
 function init() {
@@ -88,7 +97,7 @@ function init() {
       else scramble(eyebrow);
     }
 
-    lockFirstChapterImage(reduced);
+    releaseFirstChapterImage(reduced);
   };
 
   if ('IntersectionObserver' in window) {
@@ -104,6 +113,15 @@ function init() {
       { threshold: 0.35 }
     );
     io.observe(hero);
+
+    // Zabezpieczenie: gdyby ktoś wszedł od razu w środek strony i sekcja intro
+    // nigdy nie weszła w widok, zdjęcie zostałoby zablokowane na niewidocznym.
+    window.setTimeout(() => {
+      if (!hero.dataset.wrPlayed) {
+        play();
+        io.disconnect();
+      }
+    }, 4000);
   } else {
     play();
   }

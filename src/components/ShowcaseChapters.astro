@@ -41,20 +41,41 @@ const variant = (p: string, size: 'sm' | 'lg') =>
   src(p).replace(/\.(webp|jpe?g|png)$/i, `.${size}.webp`);
 ---
 
+{/* Bez JavaScriptu blokada intro nigdy by nie zeszła i pierwsze zdjęcie
+    zostałoby niewidoczne — przywracamy je wtedy od razu. */}
+<noscript>
+  <style>
+    [data-cine-img][data-intro-lock] {
+      opacity: 0.22 !important;
+    }
+    [data-cine-num] {
+      opacity: 1 !important;
+    }
+  </style>
+</noscript>
+
 {
-  chapters.map((ch) => (
+  chapters.map((ch, ci) => (
     <section data-chapter={ch.id} style="border-top: 1px solid #161616;">
       <div
         data-cine
         style="position: relative; height: 82vh; min-height: 520px; overflow: hidden; background: #050505;"
       >
         <div style="position: absolute; inset: 0;">
+          {/*
+            Pierwszy rozdział startuje NIEWIDOCZNY już w kodzie (opacity 0
+            + data-intro-lock). Bez tego przeglądarka zdążyła narysować zdjęcie
+            przy 0.22, zanim skrypt je ukrył — na ułamek sekundy błyskało
+            i znikało przed animacją intro. Blokadę zdejmuje wr.ts po tekście.
+            Pozostałe rozdziały są niżej, więc sterują się samym przewijaniem.
+          */}
           <img
             data-cine-img
+            data-intro-lock={ci === 0 ? '1' : undefined}
             decoding="async"
             src={variant(ch.hero, 'lg')}
             alt={`${ch.t} — STOLMAR`}
-            style="position: absolute; left: 0; top: -16%; width: 100%; height: 132%; object-fit: cover; opacity: 0.22; filter: grayscale(1) brightness(0.72); will-change: transform, opacity;"
+            style={`position: absolute; left: 0; top: -16%; width: 100%; height: 132%; object-fit: cover; opacity: ${ci === 0 ? '0' : '0.22'}; filter: grayscale(1) brightness(0.72); will-change: transform, opacity;`}
           />
           <div
             aria-hidden="true"
@@ -63,7 +84,7 @@ const variant = (p: string, size: 'sm' | 'lg') =>
           <span
             data-cine-num
             aria-hidden="true"
-            style="position: absolute; right: 40px; top: 6%; font-weight: 900; font-size: clamp(120px, 20vw, 320px); line-height: 0.8; color: rgba(255,255,255,0.04); letter-spacing: -0.04em; pointer-events: none;"
+            style={`position: absolute; right: 40px; top: 6%; font-weight: 900; font-size: clamp(120px, 20vw, 320px); line-height: 0.8; color: rgba(255,255,255,0.04); letter-spacing: -0.04em; pointer-events: none;${ci === 0 ? ' opacity: 0;' : ''}`}
           >
             {ch.n}
           </span>
