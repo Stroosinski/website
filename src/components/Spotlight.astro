@@ -1,0 +1,64 @@
+---
+/**
+ * Sekcja domykająca stronę główną — oryginał, linie 380-393.
+ *
+ * Efekt "latarki": drugie słowo jest prawie niewidoczne (biel 2%), a jego żółta
+ * kopia leży na wierzchu z maską radialną odsuniętą poza ekran. Ruch kursora
+ * przesuwa maskę, więc kolor odsłania się tylko wokół wskaźnika.
+ * Na telefonie original.css wyłącza maskę i podkreślenie (sekcja @media 860px).
+ */
+import { useTranslations, pathFor, type Locale } from '@/i18n';
+import Button from './Button.astro';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const bigWord =
+  'font-weight: 900; text-transform: uppercase; font-size: clamp(30px, 7vw, 172px); line-height: 1.1; letter-spacing: -0.03em;';
+---
+
+<section
+  style="padding: 90px 40px 130px; text-align: center; position: relative; overflow: hidden; border-top: 1px solid #161616;"
+>
+  <div
+    style="margin-top: 0; display: flex; justify-content: center; align-items: center; flex-wrap: nowrap; gap: clamp(8px, 1.8vw, 28px);"
+  >
+    <span style={`${bigWord} color: #FFFFFF; white-space: nowrap;`}>{t('cr.word1')}</span>
+    <span
+      data-spot-wrap
+      style={`position: relative; display: inline-block; cursor: none; ${bigWord} white-space: nowrap;`}
+    >
+      <span
+        data-spot-underline
+        style="position: absolute; left: 0; right: 0; bottom: calc(0.2em - 1.5px); height: 1.5px; background: #FFFFFF;"
+      ></span>
+      <span data-spot-dim style="color: rgba(255,255,255,0.02);">{t('cr.word2')}</span>
+      <span
+        data-spot-word
+        style="position: absolute; top: 0; left: 0; color: #EFD32B; pointer-events: none; -webkit-mask-image: radial-gradient(circle 180px at center, black, black 10%, transparent 100%); mask-image: radial-gradient(circle 180px at center, black, black 10%, transparent 100%); -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-size: 360px 360px; mask-size: 360px 360px; -webkit-mask-position: -9999px -9999px; mask-position: -9999px -9999px;"
+        >{t('cr.word2')}</span
+      >
+    </span>
+  </div>
+
+  <p
+    data-reveal
+    style="margin: 48px auto 0; max-width: 520px; font-weight: 300; font-size: 16px; line-height: 1.8; color: #9A988F;"
+  >
+    <span>{t('cr.sub1')}</span> <span style="color: #EFD32B;">{t('cr.subHero')}</span><span
+      >{t('cr.sub2')}</span
+    > <span style="color: #EFD32B;">{t('cr.subStage')}</span><span>{t('cr.sub3')}</span>
+    <span style="color: #EFD32B;">{t('cr.subTogether')}</span><span>{t('cr.sub4')}</span>
+  </p>
+
+  <div data-reveal style="margin-top: 52px; display: flex; justify-content: center;">
+    <Button href={pathFor('contact', lang)} variant="accent" size="lg">{t('nav.cta')}</Button>
+  </div>
+</section>
+
+<script>
+  import '@/scripts/spotlight';
+</script>

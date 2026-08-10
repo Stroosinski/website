@@ -1,4 +1,14 @@
 ---
+/**
+ * Stopka przeniesiona 1:1 z oryginału (linie 736-772).
+ * Przyciski social używają tej samej klasy .stlm-soc co przełącznik języka —
+ * 44x44 px, radius 7px, żółte wypełnienie wjeżdżające od dołu przy najechaniu.
+ * Style .stlm-soc są w original.css, więc nie definiujemy ich ponownie.
+ *
+ * Uwaga: link do polityki prywatności ma świadomie zachowaną plakietkę TODO
+ * z oryginału — strona jeszcze nie istnieje, a jest wymagana przy zbieraniu
+ * danych z formularza (RODO). Zdejmiemy ją, gdy podstrona powstanie.
+ */
 import { useTranslations, pathFor, type Locale } from '@/i18n';
 
 interface Props {
@@ -6,117 +16,127 @@ interface Props {
 }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-const year = new Date().getFullYear();
+
+const colHead =
+  'font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #7E7E7A;';
+const navLink =
+  'font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #C9C7C1; text-decoration: none;';
 ---
 
-<footer class="ftr">
-  <div class="ftr-top">
-    <div class="ftr-brand">
-      <img src="/assets/logo-mark-white.png" alt="" width="40" height="40" aria-hidden="true" />
-      <p class="ftr-tag">{t('footer.tag')}</p>
+<footer style="border-top: 1px solid #161616;">
+  <div
+    style="max-width: 1360px; margin: 0 auto; padding: 72px 40px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; align-items: start;"
+  >
+    <div style="display: flex; flex-direction: column; gap: 18px;">
+      <img
+        src="/assets/logo-full.png"
+        alt="STOLMAR"
+        style="height: 24px; filter: invert(1); align-self: flex-start;"
+      />
+      <span style="font-size: 13px; font-weight: 300; color: #7E7E7A;">{t('footer.tag')}</span>
+      <span style="font-size: 12px; color: #3A3A3A;">FSC&reg; C219631</span>
     </div>
 
-    <nav class="ftr-col" aria-label={t('footer.nav')}>
-      <h2 class="ftr-h">{t('footer.nav')}</h2>
-      <a href={pathFor('work', lang)}>{t('footer.work')}</a>
-      <a href={pathFor('studio', lang)}>{t('footer.studio')}</a>
-      <a href={pathFor('contact', lang)}>{t('footer.contact')}</a>
+    <div style="display: flex; flex-direction: column; gap: 14px;">
+      <div style={colHead}>Social</div>
+      <div style="display: flex; gap: 14px;">
+        <a
+          class="stlm-soc"
+          href="https://www.instagram.com/stolmar_manufabryka/"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Stolmar na Instagramie"
+        >
+          <span class="stlm-soc-fill" aria-hidden="true"></span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
+            ><path
+              d="M12 2c2.72 0 3.06.01 4.12.06 1.06.05 1.79.22 2.43.47.66.26 1.21.6 1.76 1.15.5.5.9 1.1 1.15 1.76.25.64.42 1.37.47 2.43.05 1.06.06 1.4.06 4.12s-.01 3.06-.06 4.12c-.05 1.06-.22 1.79-.47 2.43a4.9 4.9 0 0 1-1.15 1.76 4.9 4.9 0 0 1-1.76 1.15c-.64.25-1.37.42-2.43.47-1.06.05-1.4.06-4.12.06s-3.06-.01-4.12-.06c-1.06-.05-1.79-.22-2.43-.47a4.9 4.9 0 0 1-1.76-1.15 4.9 4.9 0 0 1-1.15-1.76c-.25-.64-.42-1.37-.47-2.43C2.01 15.06 2 14.72 2 12s.01-3.06.06-4.12c.05-1.06.22-1.79.47-2.43.26-.66.6-1.21 1.15-1.76a4.9 4.9 0 0 1 1.76-1.15c.64-.25 1.37-.42 2.43-.47C8.94 2.01 9.28 2 12 2Zm0 1.8c-2.67 0-2.99.01-4.04.06-.87.04-1.34.18-1.65.3-.42.16-.71.35-1.02.66-.31.31-.5.6-.66 1.02-.12.31-.26.78-.3 1.65-.05 1.05-.06 1.37-.06 4.04s.01 2.99.06 4.04c.04.87.18 1.34.3 1.65.16.42.35.71.66 1.02.31.31.6.5 1.02.66.31.12.78.26 1.65.3 1.05.05 1.37.06 4.04.06s2.99-.01 4.04-.06c.87-.04 1.34-.18 1.65-.3.42-.16.71-.35 1.02-.66.31-.31.5-.6.66-1.02.12-.31.26-.78.3-1.65.05-1.05.06-1.37.06-4.04s-.01-2.99-.06-4.04c-.04-.87-.18-1.34-.3-1.65a2.7 2.7 0 0 0-.66-1.02 2.7 2.7 0 0 0-1.02-.66c-.31-.12-.78-.26-1.65-.3-1.05-.05-1.37-.06-4.04-.06Zm0 3.5a4.7 4.7 0 1 1 0 9.4 4.7 4.7 0 0 1 0-9.4Zm0 1.8a2.9 2.9 0 1 0 0 5.8 2.9 2.9 0 0 0 0-5.8Zm5.9-1.98a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0Z"
+            ></path></svg
+          >
+        </a>
+        <a
+          class="stlm-soc"
+          href="https://www.linkedin.com/company/stolmar-displays"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Stolmar na LinkedIn"
+        >
+          <span class="stlm-soc-fill" aria-hidden="true"></span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
+            ><path
+              d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.64h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.34c0-1.27-.02-2.9-1.77-2.9-1.78 0-2.05 1.39-2.05 2.82V21h-4V9Z"
+            ></path></svg
+          >
+        </a>
+      </div>
+    </div>
+
+    <nav
+      aria-label={lang === 'pl' ? 'Mapa strony' : 'Sitemap'}
+      style="display: flex; flex-direction: column; gap: 14px;"
+    >
+      <div style={colHead}>{t('footer.nav')}</div>
+      <a href={pathFor('work', lang)} class="stlm-fnav" style={navLink}>{t('footer.work')}</a>
+      <a href={pathFor('studio', lang)} class="stlm-fnav" style={navLink}>{t('footer.studio')}</a>
+      <a href={pathFor('contact', lang)} class="stlm-fnav" style={navLink}>{t('footer.contact')}</a>
+      <a
+        href={lang === 'pl' ? '/polityka-prywatnosci/' : '/en/privacy-policy/'}
+        class="stlm-fmuted"
+        style="display: inline-flex; align-items: center; gap: 8px; margin-top: 6px; font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #4A4A4A; text-decoration: none;"
+      >
+        <span>{t('footer.privacy')}</span>
+        <span
+          aria-hidden="true"
+          style="font-size: 9px; letter-spacing: 0.1em; color: #0A0A0A; background: #EFD32B; padding: 2px 5px; border-radius: 2px;"
+          >TODO</span
+        >
+      </a>
+      <button
+        type="button"
+        data-cookie-reopen
+        class="stlm-fmuted"
+        style="text-align: left; font-family: inherit; background: none; border: 0; padding: 0; cursor: pointer; font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #4A4A4A;"
+        >{t('footer.cookies')}</button
+      >
     </nav>
 
-    <div class="ftr-col">
-      <h2 class="ftr-h">{t('footer.reach')}</h2>
-      <a href="mailto:info@stolmar.co">info@stolmar.co</a>
-      <a href="tel:+48505999275">+48 505 999 275</a>
-      <address class="ftr-addr">
-        STOLMAR Marian Czajkowski Sp. k.<br />
-        Hodowlana 7<br />
-        84-230 Rumia
-      </address>
+    <div style="display: flex; flex-direction: column; gap: 14px;">
+      <div style={colHead}>{t('footer.reach')}</div>
+      <span style="font-size: 12px; color: #7E7E7A;"
+        >&copy; 2026 STOLMAR Marian Czajkowski Sp. k.</span
+      >
+      <span style="font-size: 12px; color: #3A3A3A;"
+        >Hodowlana 7, Rumia 84-230, Poland &middot; info@stolmar.co &middot; <br />NIP PL5851483828</span
+      >
+      <span style="font-size: 12px; color: #3A3A3A;">{t('footer.rights')}</span>
     </div>
-
-    <div class="ftr-col">
-      <h2 class="ftr-h">Social</h2>
-      <a href="https://www.instagram.com/stolmar_manufabryka/" rel="noopener me">Instagram</a>
-      <a href="https://www.linkedin.com/company/stolmar-displays" rel="noopener me">LinkedIn</a>
-    </div>
-  </div>
-
-  <div class="ftr-bottom">
-    <span>&copy; {year} STOLMAR. {t('footer.rights')}</span>
   </div>
 </footer>
 
-<style>
-  .ftr {
-    border-top: 1px solid #1f1f1f;
-    padding: 72px 40px 32px;
-    background: #0a0a0a;
-  }
-  .ftr-top {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 48px;
-    max-width: 1360px;
-    margin: 0 auto;
-  }
-  .ftr-brand img {
-    display: block;
-    opacity: 0.9;
-  }
-  .ftr-tag {
-    margin: 20px 0 0;
-    max-width: 30ch;
-    font-weight: 300;
-    font-size: 15px;
-    line-height: 1.7;
-    color: #c9c7c1;
-  }
-  .ftr-col {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .ftr-h {
-    margin: 0 0 4px;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--signal-yellow, #efd32b);
-  }
-  .ftr-col a {
-    font-size: 14px;
-    font-weight: 300;
-    color: #c9c7c1;
-    text-decoration: none;
-    transition: color 200ms cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .ftr-col a:hover {
-    color: #f4f2ec;
-  }
-  .ftr-addr {
-    font-style: normal;
-    font-size: 14px;
-    font-weight: 300;
-    line-height: 1.7;
-    color: #7e7e7a;
-  }
-  .ftr-bottom {
-    max-width: 1360px;
-    margin: 56px auto 0;
-    padding-top: 24px;
-    border-top: 1px solid #1f1f1f;
-    font-size: 12px;
-    color: #7e7e7a;
-  }
+<button
+  data-totop
+  type="button"
+  aria-label={lang === 'pl' ? 'Do góry' : 'Back to top'}
+  title={lang === 'pl' ? 'Do góry' : 'Back to top'}
+  style="position: fixed; right: 28px; bottom: 28px; z-index: 60; width: 46px; height: 46px; display: flex; align-items: center; justify-content: center; background: #EFD32B; color: #0A0A0A; border: 0; cursor: pointer; opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity 0.42s cubic-bezier(0.16,1,0.3,1), transform 0.42s cubic-bezier(0.16,1,0.3,1); box-shadow: 0 2px 18px rgba(0,0,0,0.4);"
+>
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true">
+    <path d="M12 19V5"></path><path d="M5 12l7-7 7 7"></path>
+  </svg>
+</button>
 
-  @media (max-width: 860px) {
-    .ftr {
-      padding: 48px 20px 24px;
-    }
-    .ftr-top {
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-    }
+<style is:global>
+  .stlm-fnav:hover {
+    color: #ffffff !important;
+  }
+  .stlm-fmuted:hover {
+    color: #7e7e7a !important;
+  }
+  [data-totop]:hover {
+    background: #e5c400 !important;
   }
 </style>
+
+<script>
+  import '@/scripts/totop';
+</script>
