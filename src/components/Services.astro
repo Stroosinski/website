@@ -1,0 +1,177 @@
+---
+/**
+ * Trzy dyscypliny: kampanie POS, przestrzenie retail, scenografia.
+ * Każda z listą konkretnych usług — to treść, po której klienci realnie szukają.
+ */
+import { useTranslations, type Locale } from '@/i18n';
+import en from '@/content/site.en.json';
+import pl from '@/content/site.pl.json';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+type Service = { n: string; t: string; d: string; items: string[]; photo: string };
+const services = (lang === 'pl' ? pl : en).services as Service[];
+
+// ścieżki w danych są względne — na stronie muszą być od korzenia
+const toSrc = (p: string) => (p.startsWith('/') ? p : `/${p}`);
+---
+
+<section class="svc">
+  <p class="svc-eyebrow">{t('cap.eye')}</p>
+
+  <div class="svc-list">
+    {
+      services.map((s) => (
+        <article class="svc-card" data-hgroup data-hborder="1">
+          <div class="svc-media">
+            <img
+              data-h-img
+              data-off="0.4"
+              data-on="0.72"
+              src={toSrc(s.photo)}
+              alt={s.t}
+              loading="lazy"
+              decoding="async"
+            />
+            <span aria-hidden="true" class="svc-scrim" />
+            <span class="svc-num">{s.n}</span>
+          </div>
+          <div class="svc-body">
+            <h2 class="svc-title">{s.t}</h2>
+            <p class="svc-desc">{s.d}</p>
+            <ul class="svc-items">
+              {s.items.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .svc {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 40px 110px;
+  }
+  .svc-eyebrow {
+    margin: 0 0 40px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--signal-yellow, #efd32b);
+  }
+  .svc-list {
+    display: grid;
+    gap: 20px;
+  }
+  .svc-card {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: 40px;
+    align-items: center;
+    border: 1px solid #222;
+    padding: 0;
+    overflow: hidden;
+    transition: border-color 0.42s ease;
+  }
+  .svc-media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+  .svc-media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.4;
+    transform: scale(1.06);
+    transition:
+      opacity 0.72s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.72s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .svc-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(10, 10, 10, 0.55), rgba(10, 10, 10, 0.9));
+  }
+  .svc-num {
+    position: absolute;
+    left: 24px;
+    top: 20px;
+    font-weight: 900;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    color: var(--signal-yellow, #efd32b);
+  }
+  .svc-body {
+    padding: 40px 40px 40px 0;
+  }
+  .svc-title {
+    margin: 0 0 18px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: clamp(22px, 2.2vw, 32px);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+  .svc-desc {
+    margin: 0 0 24px;
+    max-width: 62ch;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #9a988f;
+  }
+  .svc-items {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 24px;
+  }
+  .svc-items li {
+    position: relative;
+    padding-left: 18px;
+    font-size: 14px;
+    font-weight: 300;
+    color: #c9c7c1;
+  }
+  .svc-items li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 8px;
+    height: 1px;
+    background: var(--signal-yellow, #efd32b);
+  }
+
+  @media (max-width: 860px) {
+    .svc {
+      padding: 0 20px 56px;
+    }
+    .svc-card {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    .svc-body {
+      padding: 28px 20px 32px;
+    }
+    .svc-items {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

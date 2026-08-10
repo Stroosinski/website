@@ -1,0 +1,82 @@
+---
+/**
+ * Dane kontaktowe — jawne w treści, nie tylko w formularzu.
+ * Adres i telefon w kodzie to element lokalnego SEO: Google zestawia je
+ * z danymi strukturalnymi i wizytówką firmy.
+ */
+import type { Locale } from '@/i18n';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+
+const labels =
+  lang === 'pl'
+    ? { write: 'Napisz', call: 'Zadzwoń', visit: 'Odwiedź', hours: 'Pon.–pt. 8:00–16:00' }
+    : { write: 'Write', call: 'Call', visit: 'Visit', hours: 'Mon–Fri 8:00–16:00' };
+---
+
+<aside class="cd">
+  <div class="cd-block">
+    <h2 class="cd-h">{labels.write}</h2>
+    <a class="cd-lg" href="mailto:info@stolmar.co">info@stolmar.co</a>
+  </div>
+
+  <div class="cd-block">
+    <h2 class="cd-h">{labels.call}</h2>
+    <a class="cd-lg" href="tel:+48505999275">+48 505 999 275</a>
+    <p class="cd-note">{labels.hours}</p>
+  </div>
+
+  <div class="cd-block">
+    <h2 class="cd-h">{labels.visit}</h2>
+    <address class="cd-addr">
+      STOLMAR Marian Czajkowski Sp. k.<br />
+      Hodowlana 7<br />
+      84-230 Rumia<br />
+      {lang === 'pl' ? 'Polska' : 'Poland'}
+    </address>
+  </div>
+</aside>
+
+<style>
+  .cd {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  .cd-h {
+    margin: 0 0 12px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--signal-yellow, #efd32b);
+  }
+  .cd-lg {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 300;
+    color: #f4f2ec;
+    text-decoration: none;
+    border-bottom: 1px solid #3a3a3a;
+    padding-bottom: 3px;
+    transition: border-color 200ms ease;
+  }
+  .cd-lg:hover {
+    border-bottom-color: var(--signal-yellow, #efd32b);
+  }
+  .cd-note {
+    margin: 12px 0 0;
+    font-size: 13px;
+    color: #7e7e7a;
+  }
+  .cd-addr {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #c9c7c1;
+  }
+</style>

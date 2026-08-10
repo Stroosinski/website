@@ -1,6 +1,8 @@
 ---
 import Page from '@/layouts/Page.astro';
 import PageIntro from '@/components/PageIntro.astro';
+import Services from '@/components/Services.astro';
+import InHouse from '@/components/InHouse.astro';
 import { useTranslations } from '@/i18n';
 const t = useTranslations('pl');
 ---
@@ -11,4 +13,10 @@ const t = useTranslations('pl');
     title={`${t('studio.h1a')} ${t('studio.h1b')}`}
     lead={t('studio.stand')}
   />
+  <Services lang="pl" />
+  <InHouse lang="pl" />
 </Page>
+
+<script>
+  import '@/scripts/veil';
+</script>

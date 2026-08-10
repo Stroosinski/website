@@ -1,0 +1,222 @@
+---
+/**
+ * Formularz zapytania ofertowego.
+ *
+ * UWAGA: w wersji z Claude Design formularz nic nie wysyłał — pokazywał komunikat
+ * "Odezwiemy się" i kasował dane. Tutaj formularz jest zbudowany poprawnie
+ * (etykiety, walidacja, dostępność), ale docelowy adres wysyłki jest do ustalenia
+ * (funkcja serwerowa Vercel + usługa e-mail albo zewnętrzny serwis formularzy).
+ * Do czasu podpięcia NIE udajemy sukcesu — przycisk prowadzi do wysyłki e-mailem.
+ */
+import { useTranslations, type Locale } from '@/i18n';
+import en from '@/content/site.en.json';
+import pl from '@/content/site.pl.json';
+
+interface Props {
+  lang: Locale;
+  /** docelowy endpoint; gdy pusty, formularz działa przez klienta pocztowego */
+  action?: string;
+}
+const { lang, action = '' } = Astro.props;
+const t = useTranslations(lang);
+
+type Form = {
+  name: string; namePh: string; company: string; companyPh: string;
+  email: string; emailPh: string; brief: string; briefPh: string;
+  files: string; filesCta: string; filesHint: string; btn: string;
+  topicLabel: string; topics: string[];
+};
+const f = (lang === 'pl' ? pl : en).form as Form;
+const wired = action.length > 0;
+const required = lang === 'pl' ? 'wymagane' : 'required';
+---
+
+<form
+  class="cf"
+  method={wired ? 'POST' : undefined}
+  action={wired ? action : `mailto:info@stolmar.co`}
+  enctype={wired ? 'multipart/form-data' : 'text/plain'}
+>
+  <fieldset class="cf-topics">
+    <legend class="cf-legend">{f.topicLabel}</legend>
+    <div class="cf-chips">
+      {
+        f.topics.map((topic, i) => (
+          <label class="cf-chip">
+            <input type="radio" name="topic" value={topic} checked={i === 0} />
+            <span>{topic}</span>
+          </label>
+        ))
+      }
+    </div>
+  </fieldset>
+
+  <div class="cf-row">
+    <label class="cf-field">
+      <span class="cf-label">{f.name}</span>
+      <input type="text" name="name" placeholder={f.namePh} required autocomplete="name" />
+    </label>
+    <label class="cf-field">
+      <span class="cf-label">{f.company}</span>
+      <input type="text" name="company" placeholder={f.companyPh} autocomplete="organization" />
+    </label>
+  </div>
+
+  <label class="cf-field">
+    <span class="cf-label">{f.email} <em class="cf-req">({required})</em></span>
+    <input type="email" name="email" placeholder={f.emailPh} required autocomplete="email" />
+  </label>
+
+  <label class="cf-field">
+    <span class="cf-label">{f.brief}</span>
+    <textarea name="brief" rows="5" placeholder={f.briefPh}></textarea>
+  </label>
+
+  {
+    wired && (
+      <label class="cf-field">
+        <span class="cf-label">{f.files}</span>
+        <input type="file" name="files" multiple />
+        <small class="cf-hint">{f.filesHint}</small>
+      </label>
+    )
+  }
+
+  <button type="submit" class="cf-btn">{f.btn}</button>
+</form>
+
+<style>
+  .cf {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .cf-topics {
+    border: 0;
+    padding: 0;
+    margin: 0;
+  }
+  .cf-legend {
+    padding: 0;
+    margin-bottom: 14px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--signal-yellow, #efd32b);
+  }
+  .cf-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .cf-chip input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  .cf-chip span {
+    display: inline-block;
+    padding: 9px 16px;
+    border: 1px solid #3a3a3a;
+    border-radius: 999px;
+    font-size: 12px;
+    color: #c9c7c1;
+    cursor: pointer;
+    transition:
+      border-color 200ms ease,
+      color 200ms ease,
+      background-color 200ms ease;
+  }
+  .cf-chip input:checked + span {
+    border-color: var(--signal-yellow, #efd32b);
+    color: #0a0a0a;
+    background: var(--signal-yellow, #efd32b);
+  }
+  .cf-chip input:focus-visible + span {
+    outline: 2px solid #efd32b;
+    outline-offset: 2px;
+  }
+
+  .cf-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .cf-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .cf-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #7e7e7a;
+  }
+  .cf-req {
+    font-style: normal;
+    text-transform: none;
+    letter-spacing: 0.04em;
+    color: #5a5a57;
+  }
+  .cf input[type='text'],
+  .cf input[type='email'],
+  .cf textarea,
+  .cf input[type='file'] {
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 300;
+    color: #f4f2ec;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #3a3a3a;
+    padding: 10px 0;
+    transition: border-color 200ms ease;
+  }
+  .cf input::placeholder,
+  .cf textarea::placeholder {
+    color: #5a5a57;
+  }
+  .cf input:focus,
+  .cf textarea:focus {
+    outline: none;
+    border-bottom-color: var(--signal-yellow, #efd32b);
+  }
+  .cf textarea {
+    resize: vertical;
+  }
+  .cf-hint {
+    font-size: 12px;
+    color: #5a5a57;
+  }
+  .cf-btn {
+    margin-top: 4px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #0a0a0a;
+    background: var(--signal-yellow, #efd32b);
+    border: 0;
+    border-radius: 2px;
+    padding: 16px 28px;
+    cursor: pointer;
+    transition: background-color 200ms ease;
+  }
+  .cf-btn:hover {
+    background: #d9be18;
+  }
+  .cf-btn:active {
+    transform: translateY(1px);
+  }
+
+  @media (max-width: 860px) {
+    .cf-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

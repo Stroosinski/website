@@ -1,10 +1,35 @@
 ---
 import Page from '@/layouts/Page.astro';
 import PageIntro from '@/components/PageIntro.astro';
+import ContactForm from '@/components/ContactForm.astro';
+import ContactDetails from '@/components/ContactDetails.astro';
 import { useTranslations } from '@/i18n';
 const t = useTranslations('pl');
 ---
 
 <Page lang="pl" route="contact">
   <PageIntro eyebrow={t('contact.eyebrow')} title={t('contact.h1')} lead={t('contact.body')} />
+  <section class="ct">
+    <ContactForm lang="pl" />
+    <ContactDetails lang="pl" />
+  </section>
 </Page>
+
+<style>
+  .ct {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 40px 120px;
+    display: grid;
+    grid-template-columns: 7fr 4fr;
+    gap: 80px;
+    align-items: start;
+  }
+  @media (max-width: 860px) {
+    .ct {
+      grid-template-columns: 1fr;
+      padding: 0 20px 64px;
+      gap: 56px;
+    }
+  }
+</style>

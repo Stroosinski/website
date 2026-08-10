@@ -1,0 +1,125 @@
+---
+/**
+ * "W jednej pracowni" — osiem możliwości produkcyjnych pod jednym dachem.
+ * Konkretne technologie (CNC, druk 3D, lakiernia) to mocne, wyszukiwalne hasła.
+ */
+import { useTranslations, type Locale } from '@/i18n';
+import en from '@/content/site.en.json';
+import pl from '@/content/site.pl.json';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+type Item = { n: string; t: string; d: string };
+const items = (lang === 'pl' ? pl : en).inhouse as Item[];
+const heading = lang === 'pl' ? 'W jednej pracowni' : 'In one workshop';
+---
+
+<section class="ih">
+  <div class="ih-head">
+    <h2 class="ih-h">{heading}</h2>
+    <p class="ih-note">{t('studio.stand')}</p>
+  </div>
+
+  <ul class="ih-grid">
+    {
+      items.map((item) => (
+        <li class="ih-cell">
+          <span class="ih-n">{item.n}</span>
+          <h3 class="ih-t">{item.t}</h3>
+          <p class="ih-d">{item.d}</p>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .ih {
+    border-top: 1px solid #161616;
+    background: linear-gradient(to bottom, #0a0a0a, #0d0d0d);
+  }
+  .ih-head {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 110px 40px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: end;
+  }
+  .ih-h {
+    margin: 0;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: clamp(30px, 3.2vw, 46px);
+    letter-spacing: -0.02em;
+  }
+  .ih-note {
+    margin: 0;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #9a988f;
+  }
+  .ih-grid {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 40px 110px;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    background: #1f1f1f;
+    border: 1px solid #1f1f1f;
+  }
+  .ih-cell {
+    background: #0a0a0a;
+    padding: 32px 24px 36px;
+  }
+  .ih-n {
+    display: block;
+    margin-bottom: 16px;
+    font-weight: 900;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    color: var(--signal-yellow, #efd32b);
+  }
+  .ih-t {
+    margin: 0 0 12px;
+    font-weight: 700;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: #f4f2ec;
+    line-height: 1.3;
+  }
+  .ih-d {
+    margin: 0;
+    font-weight: 300;
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: #7e7e7a;
+  }
+
+  @media (max-width: 1100px) {
+    .ih-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 860px) {
+    .ih-head {
+      grid-template-columns: 1fr;
+      padding: 64px 20px 32px;
+      gap: 20px;
+    }
+    .ih-grid {
+      grid-template-columns: 1fr;
+      padding: 0 20px 64px;
+    }
+  }
+</style>
