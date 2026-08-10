@@ -25,8 +25,10 @@ const t = useTranslations(lang);
     <h1 class="hero-title">{t('hero.h1')}</h1>
     <p class="hero-standfirst">{t('hero.standfirst')}</p>
     <div class="hero-actions">
-      <Button href={pathFor('work', lang)} variant="accent">{t('hero.cta1')}</Button>
-      <Button href={pathFor('studio', lang)} variant="secondary">{t('hero.cta2')}</Button>
+      <Button href={pathFor('work', lang)} variant="accent" size="lg">{t('hero.cta1')}</Button>
+      <Button href={pathFor('studio', lang)} variant="secondary" size="lg" onDark>
+        {t('hero.cta2')}
+      </Button>
     </div>
   </div>
 

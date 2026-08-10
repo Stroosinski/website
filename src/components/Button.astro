@@ -1,83 +1,145 @@
 ---
 /**
- * Przycisk wg design systemu STOLMAR.
- * Kanciasty (radius 2px), bez cienia, bez skalowania w hover — "machined, not soft".
- * Wciśnięcie = przesunięcie o 1px w dół, nigdy odbicie.
+ * Przycisk 1:1 z design systemu STOLMAR (components/core/Button.jsx).
+ * Wartości przepisane z _ds_bundle.js — stałe wysokości 34/44/54 px,
+ * odstęp liter 0.08em, kanciasty (--radius-sm), wciśnięcie = 1px w dół.
+ * Wariant `secondary` jest zaprojektowany na jasne tło; na ciemnym oryginał
+ * nadpisywał go bielą i ramką #3A3A3A (secondaryBtnProps) — stąd `on-dark`.
  */
 interface Props {
   href: string;
-  variant?: 'accent' | 'secondary' | 'primary';
-  size?: 'sm' | 'lg';
+  variant?: 'primary' | 'accent' | 'secondary' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  onDark?: boolean;
+  fullWidth?: boolean;
   class?: string;
 }
 
-const { href, variant = 'accent', size = 'lg', class: className = '' } = Astro.props;
+const {
+  href,
+  variant = 'primary',
+  size = 'md',
+  onDark = false,
+  fullWidth = false,
+  class: className = '',
+} = Astro.props;
 ---
 
-<a href={href} class:list={['stlm-btn', `is-${variant}`, `is-${size}`, className]}>
+<a
+  href={href}
+  class:list={[
+    'ds-btn',
+    `v-${variant}`,
+    `s-${size}`,
+    { 'on-dark': onDark, 'is-full': fullWidth },
+    className,
+  ]}
+>
   <slot />
 </a>
 
 <style>
-  .stlm-btn {
+  .ds-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-family: inherit;
+    font-family: var(--font-sans, 'Roboto', sans-serif);
     font-weight: 500;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
+    line-height: 1;
     text-decoration: none;
-    border-radius: 2px;
+    white-space: nowrap;
+    user-select: none;
     border: 1px solid transparent;
+    border-radius: var(--radius-sm, 2px);
     cursor: pointer;
     transition:
-      background-color 200ms cubic-bezier(0.16, 1, 0.3, 1),
-      color 200ms cubic-bezier(0.16, 1, 0.3, 1),
-      border-color 200ms cubic-bezier(0.16, 1, 0.3, 1);
+      background var(--dur-fast, 120ms) var(--ease-standard, cubic-bezier(0.16, 1, 0.3, 1)),
+      color var(--dur-fast, 120ms) var(--ease-standard, cubic-bezier(0.16, 1, 0.3, 1)),
+      border-color var(--dur-fast, 120ms) var(--ease-standard, cubic-bezier(0.16, 1, 0.3, 1)),
+      transform var(--dur-fast, 120ms) var(--ease-standard, cubic-bezier(0.16, 1, 0.3, 1));
   }
-  .stlm-btn:active {
+  .ds-btn:active {
     transform: translateY(1px);
   }
-  .stlm-btn:focus-visible {
-    outline: 2px solid #efd32b;
+  .ds-btn:focus-visible {
+    outline: 2px solid var(--signal-yellow, #efd32b);
     outline-offset: 2px;
   }
+  .is-full {
+    display: flex;
+    width: 100%;
+  }
 
-  .is-sm {
+  /* rozmiary — wysokości i padding wprost z design systemu */
+  .s-sm {
+    height: 34px;
+    padding: 0 14px;
     font-size: 11px;
-    padding: 9px 18px;
+    gap: 8px;
   }
-  .is-lg {
+  .s-md {
+    height: 44px;
+    padding: 0 20px;
     font-size: 12px;
-    padding: 15px 28px;
+    gap: 10px;
+  }
+  .s-lg {
+    height: 54px;
+    padding: 0 28px;
+    font-size: 13px;
+    gap: 12px;
   }
 
-  .is-accent {
-    background: #efd32b;
-    color: #0a0a0a;
+  /* warianty */
+  .v-primary {
+    background: var(--ink-900, #0a0a0a);
+    color: var(--paper-000, #fff);
   }
-  .is-accent:hover {
-    background: #d9be18;
+  .v-primary:hover {
+    background: var(--ink-700, #1f1f1f);
   }
 
-  .is-secondary {
+  .v-accent {
+    background: var(--signal-yellow, #efd32b);
+    color: var(--ink-900, #0a0a0a);
+  }
+  .v-accent:hover {
+    background: var(--signal-yellow-deep, #d9be18);
+  }
+
+  .v-secondary {
     background: transparent;
-    color: #f4f2ec;
+    color: var(--ink-900, #0a0a0a);
+    border-color: var(--ink-900, #0a0a0a);
+  }
+  .v-secondary:hover {
+    background: var(--ink-900, #0a0a0a);
+    color: var(--paper-000, #fff);
+  }
+  /* nadpisanie na ciemnym tle (oryginalne secondaryBtnProps) */
+  .v-secondary.on-dark {
+    color: #fff;
     border-color: #3a3a3a;
   }
-  .is-secondary:hover {
-    background: #f4f2ec;
-    color: #0a0a0a;
-    border-color: #f4f2ec;
+  .v-secondary.on-dark:hover {
+    background: #fff;
+    color: var(--ink-900, #0a0a0a);
+    border-color: #fff;
   }
 
-  .is-primary {
-    background: #0a0a0a;
-    color: #f4f2ec;
-    border-color: #3a3a3a;
+  .v-ghost {
+    background: transparent;
+    color: var(--ink-900, #0a0a0a);
   }
-  .is-primary:hover {
-    background: #1f1f1f;
+  .v-ghost:hover {
+    background: rgba(10, 10, 10, 0.06);
+  }
+  .v-ghost.on-dark {
+    color: #f4f2ec;
+  }
+  .v-ghost.on-dark:hover {
+    background: rgba(255, 255, 255, 0.08);
   }
 </style>
