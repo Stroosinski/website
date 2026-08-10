@@ -1,5 +1,11 @@
 ---
-/** Layout strony: nagłówek + treść + stopka + dane strukturalne. */
+/**
+ * Layout strony: kontener .site + nagłówek + treść + stopka + dane strukturalne.
+ *
+ * Kontener .site i jego style pochodzą wprost z oryginału (linia 109) — reguły
+ * mobilne w original.css są do niego przypięte (`.site section[style*="..."]`),
+ * więc nie wolno go pominąć ani zamienić na klasę.
+ */
 import Base from './Base.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
@@ -18,9 +24,14 @@ const fullSchema = route === 'home' || route === 'contact';
 
 <Base title={title} description={description} lang={lang} route={route}>
   <Schema slot="head" lang={lang} full={fullSchema} />
-  <Header lang={lang} current={route} />
-  <main>
-    <slot />
-  </main>
-  <Footer lang={lang} />
+  <div
+    class="site"
+    style="min-height: 100vh; background: #0A0A0A; color: #C9C7C1; font-family: 'Roboto', sans-serif; overflow-x: hidden;"
+  >
+    <Header lang={lang} current={route} />
+    <main>
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </div>
 </Base>

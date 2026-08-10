@@ -1,11 +1,20 @@
 ---
 /**
- * Górny pasek nawigacji.
- * W oryginale pozycje menu były przyciskami przełączającymi widok w JS — tutaj są
- * zwykłymi linkami do osobnych adresów, dzięki czemu wyszukiwarki mogą je przejść.
+ * Nagłówek przeniesiony 1:1 z oryginału (STOLMAR Site.dc.html, linie 113-148).
+ *
+ * WAŻNE: style są wpisane w kod (inline) celowo — reguły mobilne w
+ * original.css dopasowują się po treści atrybutu style, np.
+ *   .site section[style*="padding: 150px 40px"]
+ * Zamiana ich na klasy CSS rozwala układ mobilny. Nie refaktoryzować.
+ *
+ * Klasy .stlm-dnav / .stlm-dright / .stlm-burger / [data-mmenu] są punktami
+ * zaczepienia dla przełączania desktop <-> mobile przy 860 px.
+ *
+ * Jedyne zmiany wobec oryginału: przyciski nawigacji zamienione na linki
+ * (osobne adresy zamiast przełączania widoku w JS) i przełącznik języka
+ * prowadzący do drugiej wersji językowej.
  */
 import { useTranslations, pathFor, altPath, type Locale, type RouteKey } from '@/i18n';
-import Button from './Button.astro';
 
 interface Props {
   lang: Locale;
@@ -14,120 +23,179 @@ interface Props {
 const { lang, current } = Astro.props;
 const t = useTranslations(lang);
 
-const nav: { key: RouteKey; label: string }[] = [
+const navItems: { key: RouteKey; label: string }[] = [
   { key: 'work', label: t('nav.work') },
   { key: 'studio', label: t('nav.studio') },
   { key: 'contact', label: t('nav.contact') },
 ];
 
 const other: Locale = lang === 'pl' ? 'en' : 'pl';
+const navLinkStyle =
+  'font-family: inherit; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #7E7E7A; background: none; border: 0; border-bottom: 2px solid transparent; cursor: pointer; padding: 6px 0 5px; text-decoration: none;';
+const mNavStyle =
+  'font-family: inherit; text-align: right; font-size: 22px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.01em; color: #FFFFFF; background: none; border: 0; border-bottom: 1px solid #1C1C1C; cursor: pointer; padding: 20px 0; text-decoration: none; display: block;';
 ---
 
-<header class="hdr">
-  <a href={pathFor('home', lang)} class="hdr-logo" aria-label="STOLMAR">
-    <img src="/assets/logo-full.png" alt="STOLMAR" width="132" height="20" />
-  </a>
-
-  <nav class="hdr-nav" aria-label={lang === 'pl' ? 'Nawigacja główna' : 'Main navigation'}>
-    {
-      nav.map((item) => (
-        <a
-          href={pathFor(item.key, lang)}
-          class:list={['hdr-link', { 'is-active': current === item.key }]}
-          aria-current={current === item.key ? 'page' : undefined}
-        >
-          {item.label}
-        </a>
-      ))
-    }
-  </nav>
-
-  <div class="hdr-right">
+<header
+  style="position: fixed; top: 0; left: 0; right: 0; z-index: 70; background: rgba(10,10,10,0.5); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid #222222;"
+>
+  <div
+    style="position: relative; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 0 40px; height: 72px; max-width: 1440px; margin: 0 auto;"
+  >
     <a
-      href={altPath(current, lang)}
-      class="hdr-lang"
-      lang={other}
-      hreflang={other}
-      aria-label={lang === 'pl' ? 'Switch to English' : 'Przełącz na polski'}
+      href={pathFor('home', lang)}
+      style="background: none; border: 0; padding: 0; cursor: pointer; display: flex; align-items: center; gap: 12px;"
     >
-      {other.toUpperCase()}
+      <img
+        src="/assets/logo-mark.png"
+        alt=""
+        aria-hidden="true"
+        style="height: 34px; width: auto; filter: invert(1); display: block;"
+      />
+      <img
+        src="/assets/logo-full.png"
+        alt="STOLMAR"
+        style="height: 24px; width: auto; filter: invert(1); display: block;"
+      />
     </a>
-    <Button href={pathFor('contact', lang)} variant="accent" size="sm">{t('nav.cta')}</Button>
+
+    <nav
+      class="stlm-dnav"
+      style="position: absolute; left: 50%; top: 0; height: 100%; transform: translateX(-50%); display: flex; gap: 34px; align-items: center;"
+      aria-label={lang === 'pl' ? 'Nawigacja główna' : 'Main navigation'}
+    >
+      {
+        navItems.map((item) => (
+          <a
+            data-nav={item.key}
+            href={pathFor(item.key, lang)}
+            style={
+              current === item.key
+                ? navLinkStyle.replace('color: #7E7E7A', 'color: #F4F2EC').replace(
+                    'border-bottom: 2px solid transparent',
+                    'border-bottom: 2px solid #EFD32B'
+                  )
+                : navLinkStyle
+            }
+            aria-current={current === item.key ? 'page' : undefined}
+          >
+            <span>{item.label}</span>
+          </a>
+        ))
+      }
+    </nav>
+
+    <div style="display: flex; align-items: center; gap: 18px;">
+      <div class="stlm-dright" style="display: flex; align-items: center; gap: 18px;">
+        <a href={pathFor('contact', lang)} class="stlm-hdr-cta"><span>{t('nav.cta')}</span></a>
+      </div>
+
+      <div class="stlm-langtoggle" style="display: flex; align-items: center;">
+        <a
+          class="stlm-soc"
+          href={altPath(current, lang)}
+          lang={other}
+          hreflang={other}
+          aria-label={lang === 'pl' ? 'Switch to English' : 'Przełącz na polski'}
+          style="font-family: inherit; cursor: pointer; text-decoration: none;"
+        >
+          <span class="stlm-soc-fill" aria-hidden="true"></span>
+          <span
+            class="stlm-soc-label"
+            style="font-size: 11px; font-weight: 700; letter-spacing: 0.06em; color: rgba(245,245,240,0.72);"
+            >{other.toUpperCase()}</span
+          >
+        </a>
+      </div>
+
+      <button
+        class="stlm-burger"
+        data-burger
+        type="button"
+        aria-label="Menu"
+        aria-expanded="false"
+        aria-controls="stlm-mmenu"
+        style="background: none; border: 0; cursor: pointer; padding: 10px; color: #FFFFFF; align-items: center; justify-content: center;"
+      >
+        <svg
+          data-burger-icon
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="square"
+          aria-hidden="true"
+        >
+          <path d="M3 6h18"></path><path d="M3 12h18"></path><path d="M3 18h18"></path>
+        </svg>
+      </button>
+    </div>
   </div>
 </header>
 
-<style>
-  .hdr {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    height: 72px;
-    display: flex;
-    align-items: center;
-    gap: 32px;
-    padding: 0 40px;
-    background: rgba(10, 10, 10, 0.72);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid #1f1f1f;
+<div
+  data-mmenu
+  id="stlm-mmenu"
+  style="position: fixed; top: 72px; left: 0; right: 0; z-index: 69; flex-direction: column; background: rgba(10,10,10,0.97); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid #222222; padding: 22px 40px 32px;"
+>
+  {
+    navItems.map((item) => (
+      <a data-nav={item.key} href={pathFor(item.key, lang)} style={mNavStyle}>
+        <span>{item.label}</span>
+      </a>
+    ))
   }
-  .hdr-logo {
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-  }
-  .hdr-logo img {
-    height: 20px;
-    width: auto;
-    display: block;
-  }
-  .hdr-nav {
-    display: flex;
-    gap: 28px;
-    margin-left: auto;
-  }
-  .hdr-link {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: #7e7e7a;
-    text-decoration: none;
-    padding: 6px 0 5px;
-    border-bottom: 2px solid transparent;
-    transition: color 200ms cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .hdr-link:hover {
-    color: #f4f2ec;
-  }
-  .hdr-link.is-active {
-    color: #f4f2ec;
-    border-bottom-color: var(--signal-yellow, #efd32b);
-  }
-  .hdr-right {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  .hdr-lang {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    color: #7e7e7a;
-    text-decoration: none;
-    padding: 6px 4px;
-    transition: color 200ms cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .hdr-lang:hover {
-    color: var(--signal-yellow, #efd32b);
-  }
+  <div
+    style="display: flex; align-items: center; justify-content: flex-end; gap: 18px; margin-top: 26px;"
+  >
+    <a href={pathFor('contact', lang)} class="stlm-hdr-cta is-md"><span>{t('nav.cta')}</span></a>
+  </div>
+</div>
 
-  @media (max-width: 860px) {
-    .hdr {
-      padding: 0 20px;
-      gap: 16px;
-    }
-    .hdr-nav {
-      display: none;
-    }
+<div data-hdrspacer style="height: 72px;"></div>
+
+<style is:global>
+  /* Przycisk CTA w nagłówku — wartości wprost z design systemu (Button, accent). */
+  .stlm-hdr-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 34px;
+    padding: 0 14px;
+    gap: 8px;
+    font-family: var(--font-sans, 'Roboto', sans-serif);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1;
+    white-space: nowrap;
+    text-decoration: none;
+    color: var(--ink-900, #0a0a0a);
+    background: var(--signal-yellow, #efd32b);
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm, 2px);
+    transition: background 120ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .stlm-hdr-cta.is-md {
+    height: 44px;
+    padding: 0 20px;
+    font-size: 12px;
+    gap: 10px;
+  }
+  .stlm-hdr-cta:hover {
+    background: var(--signal-yellow-deep, #d9be18);
+  }
+  .stlm-hdr-cta:active {
+    transform: translateY(1px);
+  }
+  .stlm-dnav a:hover {
+    color: #f4f2ec !important;
   }
 </style>
+
+<script>
+  import '@/scripts/menu';
+</script>

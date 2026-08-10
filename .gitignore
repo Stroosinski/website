@@ -22,3 +22,6 @@ _source/img/
 # eksporty z Claude Design (ciężkie archiwa — trzymane lokalnie, nie w repo)
 *.zip
 STOLMAR Site.html
+
+# lokalny wzorzec do porownan wygladu (20 MB, nie idzie do repo)
+public/_orig/
