@@ -1,0 +1,359 @@
+[
+  {
+    "id": "pos",
+    "n": "01",
+    "short": "POS",
+    "label": "01 / POS",
+    "t": "POS Campaigns & Visual Merchandising",
+    "punch": "Windows and shop fittings. Seasonal. At scale.",
+    "d": "POS campaigns rolled out across hundreds of locations at once - from concept through prototype to a synchronised install in flagship windows.",
+    "specs": [
+      {
+        "k": "Scale",
+        "v": "500+ locations"
+      },
+      {
+        "k": "Cycle",
+        "v": "Seasonal"
+      },
+      {
+        "k": "Format",
+        "v": "Window / In-store"
+      }
+    ],
+    "hero": "assets/imgc/pos-hero-medicine.jpg",
+    "frames": [
+      {
+        "img": "assets/img/pos/fashionstarter-1.webp",
+        "title": "Fashion Starter",
+        "loc": "Trójmiasto",
+        "imgs": [
+          "assets/img/pos/fashionstarter-1.webp",
+          "assets/img/pos/fashionstarter-2.webp",
+          "assets/img/pos/fashionstarter-3.webp",
+          "assets/img/pos/fashionstarter-4.webp"
+        ],
+        "count": "4 shots"
+      },
+      {
+        "img": "assets/img/pos/medperm-2.webp",
+        "title": "Medicine Permanent Display",
+        "loc": "Medicine",
+        "imgs": [
+          "assets/img/pos/medperm-1.webp",
+          "assets/img/pos/medperm-2.webp",
+          "assets/img/pos/medperm-3.webp",
+          "assets/img/pos/medperm-4.webp",
+          "assets/img/pos/medperm-5.webp",
+          "assets/img/pos/medperm-6.webp",
+          "assets/img/pos/medperm-7.webp",
+          "assets/img/pos/medperm-8.webp"
+        ],
+        "count": "8 shots"
+      },
+      {
+        "img": "assets/img/pos/medspring-2.webp",
+        "title": "Medicine Spring Campaign",
+        "loc": "Medicine",
+        "imgs": [
+          "assets/img/pos/medspring-1.webp",
+          "assets/img/pos/medspring-2.webp",
+          "assets/img/pos/medspring-3.webp",
+          "assets/img/pos/medspring-4.webp",
+          "assets/img/pos/medspring-5.webp",
+          "assets/img/pos/medspring-6.webp",
+          "assets/img/pos/medspring-7.webp"
+        ],
+        "count": "7 shots"
+      },
+      {
+        "img": "assets/img/pos/popup-1.webp",
+        "title": "Pop-Up Store",
+        "loc": "Bańska Bystrzyca",
+        "imgs": [
+          "assets/img/pos/popup-1.webp",
+          "assets/img/pos/popup-2.webp",
+          "assets/img/pos/popup-3.webp",
+          "assets/img/pos/popup-4.webp",
+          "assets/img/pos/popup-5.webp",
+          "assets/img/pos/popup-6.webp",
+          "assets/img/pos/popup-7.webp"
+        ],
+        "count": "7 shots"
+      },
+      {
+        "img": "assets/img/pos/brodka-0.jpg",
+        "title": "RE x BRODKA",
+        "loc": "Warszawa",
+        "imgs": [
+          "assets/img/pos/brodka-1.webp",
+          "assets/img/pos/brodka-2.webp",
+          "assets/img/pos/brodka-3.webp",
+          "assets/img/pos/brodka-4.webp",
+          "assets/img/pos/brodka-5.webp",
+          "assets/img/pos/brodka-6.webp",
+          "assets/img/pos/brodka-7.webp",
+          "assets/img/pos/brodka-8.webp",
+          "assets/img/pos/brodka-0.jpg"
+        ],
+        "count": "9 shots"
+      },
+      {
+        "img": "assets/img/pos/zieta-6.webp",
+        "title": "RE x Zięta",
+        "loc": "Warszawa",
+        "imgs": [
+          "assets/img/pos/zieta-1.webp",
+          "assets/img/pos/zieta-2.webp",
+          "assets/img/pos/zieta-3.webp",
+          "assets/img/pos/zieta-4.webp",
+          "assets/img/pos/zieta-5.webp",
+          "assets/img/pos/zieta-6.webp",
+          "assets/img/pos/zieta-7.webp",
+          "assets/img/pos/zieta-8.webp",
+          "assets/img/pos/zieta-9.webp"
+        ],
+        "count": "9 shots"
+      },
+      {
+        "img": "assets/img/pos/resspring-0.webp",
+        "title": "Reserved Spring Campaign",
+        "loc": "Reserved",
+        "imgs": [
+          "assets/img/pos/resspring-1.webp",
+          "assets/img/pos/resspring-2.webp",
+          "assets/img/pos/resspring-3.webp",
+          "assets/img/pos/resspring-4.webp",
+          "assets/img/pos/resspring-5.webp",
+          "assets/img/pos/resspring-6.webp",
+          "assets/img/pos/resspring-7.webp",
+          "assets/img/pos/resspring-8.webp",
+          "assets/img/pos/resspring-9.webp",
+          "assets/img/pos/resspring-0.webp"
+        ],
+        "count": "10 shots"
+      },
+      {
+        "img": "assets/img/pos/tumi-2.webp",
+        "title": "Tumi Display",
+        "loc": "Roermond",
+        "imgs": [
+          "assets/img/pos/tumi-1.webp",
+          "assets/img/pos/tumi-2.webp",
+          "assets/img/pos/tumi-3.webp",
+          "assets/img/pos/tumi-4.webp",
+          "assets/img/pos/tumi-5.webp"
+        ],
+        "count": "5 shots"
+      }
+    ]
+  },
+  {
+    "id": "retail",
+    "n": "02",
+    "short": "Exhibition",
+    "label": "02 / EXHIBITION",
+    "t": "Exhibitions & Retail Spaces",
+    "punch": "Concept → prototype → production → install.",
+    "d": "End-to-end retail environments and exhibition booths for premium brands. Everything under one roof: design, workshop, logistics, install crew.",
+    "specs": [
+      {
+        "k": "Client",
+        "v": "Premium / Luxury"
+      },
+      {
+        "k": "Scope",
+        "v": "End-to-end"
+      },
+      {
+        "k": "Workshop",
+        "v": "In-house"
+      }
+    ],
+    "hero": "assets/imgc/retail-exhibition-hero.jpg",
+    "frames": [
+      {
+        "img": "assets/img/events/house-1.webp",
+        "title": "House Store",
+        "loc": "Bańska Bystrzyca",
+        "imgs": [
+          "assets/img/events/house-1.webp",
+          "assets/img/events/house-2.webp",
+          "assets/img/events/house-3.webp",
+          "assets/img/events/house-4.webp",
+          "assets/img/events/house-5.webp",
+          "assets/img/events/house-6.webp"
+        ],
+        "count": "6 shots"
+      },
+      {
+        "img": "assets/img/events/manuba-1.webp",
+        "title": "Manuba Booth",
+        "loc": "Gdynia",
+        "imgs": [
+          "assets/img/events/manuba-1.webp",
+          "assets/img/events/manuba-2.webp",
+          "assets/img/events/manuba-4.webp",
+          "assets/img/events/manuba-5.webp"
+        ],
+        "count": "4 shots"
+      },
+      {
+        "img": "assets/img/events/revogue-1.webp",
+        "title": "Reserved x Vogue",
+        "loc": "Londyn",
+        "imgs": [
+          "assets/img/events/revogue-1.webp",
+          "assets/img/events/revogue-2.webp",
+          "assets/img/events/revogue-3.webp",
+          "assets/img/events/revogue-4.webp"
+        ],
+        "count": "4 shots"
+      },
+      {
+        "img": "assets/img/events/sliwka-1.webp",
+        "title": "Śliwka Exhibition",
+        "loc": "Warszawa",
+        "imgs": [
+          "assets/img/events/sliwka-1.webp",
+          "assets/img/events/sliwka-2.webp",
+          "assets/img/events/sliwka-3.webp",
+          "assets/img/events/sliwka-4.webp",
+          "assets/img/events/sliwka-5.webp",
+          "assets/img/events/sliwka-6.webp"
+        ],
+        "count": "6 shots"
+      },
+      {
+        "img": "assets/img/events/tallinder-1.webp",
+        "title": "Tallinder Event",
+        "loc": "Sopot",
+        "imgs": [
+          "assets/img/events/tallinder-1.webp",
+          "assets/img/events/tallinder-2.webp",
+          "assets/img/events/tallinder-3.webp",
+          "assets/img/events/tallinder-4.webp",
+          "assets/img/events/tallinder-5.webp"
+        ],
+        "count": "5 shots"
+      },
+      {
+        "img": "assets/img/events/drost-1.webp",
+        "title": "Drost Collection Exhibition",
+        "loc": "Museum",
+        "imgs": [
+          "assets/img/events/drost-1.webp",
+          "assets/img/events/drost-2.webp",
+          "assets/img/events/drost-3.webp",
+          "assets/img/events/drost-4.webp",
+          "assets/img/events/drost-5.webp",
+          "assets/img/events/drost-6.webp",
+          "assets/img/events/drost-7.webp",
+          "assets/img/events/drost-8.webp",
+          "assets/img/events/drost-91.webp",
+          "assets/img/events/drost-92.webp"
+        ],
+        "count": "10 shots"
+      }
+    ]
+  },
+  {
+    "id": "events",
+    "n": "03",
+    "short": "Events",
+    "label": "03 / EVENTS",
+    "t": "Brand Experiences & Events",
+    "punch": "Scenography + technology. No material compromises.",
+    "d": "Event builds combining unconventional materials and technologies: 3D print, CNC milling, precision joinery. Scenography that plays a role.",
+    "specs": [
+      {
+        "k": "Tech",
+        "v": "3D print · CNC"
+      },
+      {
+        "k": "Material",
+        "v": "Wood · Metal · Resin"
+      },
+      {
+        "k": "Format",
+        "v": "Immersive"
+      }
+    ],
+    "hero": "assets/imgc/brand-exp.jpg",
+    "frames": [
+      {
+        "img": "assets/img/events/liverpool-1.webp",
+        "title": "Liverpool Stage Set",
+        "loc": "Liverpool",
+        "imgs": [
+          "assets/img/events/liverpool-1.webp",
+          "assets/img/events/liverpool-2.webp",
+          "assets/img/events/liverpool-3.webp",
+          "assets/img/events/liverpool-4.webp",
+          "assets/img/events/liverpool-5.webp",
+          "assets/img/events/liverpool-6.webp",
+          "assets/img/events/liverpool-7.webp"
+        ],
+        "count": "7 shots"
+      },
+      {
+        "img": "assets/img/events/photoshoot-1.webp",
+        "title": "Photoshoot Scenography",
+        "loc": "Studio",
+        "imgs": [
+          "assets/img/events/photoshoot-1.webp",
+          "assets/img/events/photoshoot-2.webp",
+          "assets/img/events/photoshoot-3.webp",
+          "assets/img/events/photoshoot-4.webp",
+          "assets/img/events/photoshoot-5.webp",
+          "assets/img/events/photoshoot-6.webp"
+        ],
+        "count": "6 shots"
+      },
+      {
+        "img": "assets/img/events/press-1.webp",
+        "title": "Press Event",
+        "loc": "Warsaw",
+        "imgs": [
+          "assets/img/events/press-1.webp",
+          "assets/img/events/press-2.webp",
+          "assets/img/events/press-3.webp",
+          "assets/img/events/press-4.webp",
+          "assets/img/events/press-5.webp",
+          "assets/img/events/press-6.webp"
+        ],
+        "count": "6 shots"
+      },
+      {
+        "img": "assets/img/events/promo-1.webp",
+        "title": "Promo Video Scenography",
+        "loc": "Studio",
+        "imgs": [
+          "assets/img/events/promo-1.webp",
+          "assets/img/events/promo-2.webp",
+          "assets/img/events/promo-3.webp",
+          "assets/img/events/promo-4.webp",
+          "assets/img/events/promo-5.webp",
+          "assets/img/events/promo-6.webp",
+          "assets/img/events/promo-7.webp",
+          "assets/img/events/promo-8.webp",
+          "assets/img/events/promo-9.webp"
+        ],
+        "count": "9 shots"
+      },
+      {
+        "img": "assets/img/events/stairs-3.webp",
+        "title": "Stairs Scenography",
+        "loc": "Studio",
+        "imgs": [
+          "assets/img/events/stairs-1.webp",
+          "assets/img/events/stairs-2.webp",
+          "assets/img/events/stairs-3.webp",
+          "assets/img/events/stairs-4.webp",
+          "assets/img/events/stairs-5.webp"
+        ],
+        "count": "5 shots"
+      }
+    ]
+  }
+]
