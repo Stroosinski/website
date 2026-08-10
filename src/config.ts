@@ -9,6 +9,13 @@
 export const FORM_ENDPOINT =
   import.meta.env.PUBLIC_FORM_ENDPOINT || 'https://formspree.io/f/mjybynvv';
 
+/**
+ * Prezentacja wysyłana w odpowiedzi na formularz.
+ * Podmiana na nowszą wersję = skopiowanie pliku pod tę samą nazwę,
+ * bez ruszania kodu. Osoby, które dostały link wcześniej, pobiorą nową wersję.
+ */
+export const DECK_FILE = '/files/STOLMAR-overview.pdf';
+
 export const CONTACT = {
   email: 'info@stolmar.co',
   phone: '+48 505 999 275',
