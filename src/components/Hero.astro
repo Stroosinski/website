@@ -65,7 +65,7 @@ const t = useTranslations(lang);
     >
       {t('hero.standfirst')}
     </p>
-    <div data-reveal style="display: flex; gap: 14px; margin-top: 44px;">
+    <div data-reveal data-hero-actions style="display: flex; gap: 14px; margin-top: 44px;">
       <Button href={pathFor('work', lang)} variant="accent" size="lg">{t('hero.cta1')}</Button>
       <Button href={pathFor('studio', lang)} variant="secondary" size="lg" onDark>
         {t('hero.cta2')}

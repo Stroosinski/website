@@ -7,6 +7,9 @@ import '@/styles/ds.css';
 // Globalne style przeniesione 1:1 z projektu Claude Design — w tym cały układ
 // mobilny (punkty łamania 860/900/700 px) i obsługa prefers-reduced-motion.
 import '@/styles/original.css';
+// Świadome odstępstwa od oryginału, zamówione przez właściciela — trzymane
+// osobno, żeby original.css pozostał wiernym odwzorowaniem projektu.
+import '@/styles/overrides.css';
 import { pathFor, type Locale, type RouteKey } from '@/i18n';
 
 export interface Props {
