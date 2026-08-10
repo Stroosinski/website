@@ -5,12 +5,13 @@ import ContactForm from '@/components/ContactForm.astro';
 import ContactDetails from '@/components/ContactDetails.astro';
 import { useTranslations } from '@/i18n';
 const t = useTranslations('en');
+const formEndpoint = import.meta.env.PUBLIC_FORM_ENDPOINT ?? '';
 ---
 
 <Page lang="en" route="contact">
   <PageIntro eyebrow={t('contact.eyebrow')} title={t('contact.h1')} lead={t('contact.body')} />
   <section class="ct">
-    <ContactForm lang="en" />
+    <ContactForm lang="en" action={formEndpoint} />
     <ContactDetails lang="en" />
   </section>
 </Page>
