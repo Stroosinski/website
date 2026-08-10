@@ -1,6 +1,7 @@
 ---
 import Page from '@/layouts/Page.astro';
 import PageIntro from '@/components/PageIntro.astro';
+import ProjectGrid from '@/components/ProjectGrid.astro';
 import { useTranslations } from '@/i18n';
 const t = useTranslations('en');
 ---
@@ -12,4 +13,9 @@ const t = useTranslations('en');
     lead={t('work.lead')}
     note={t('work.note')}
   />
+  <ProjectGrid lang="en" />
 </Page>
+
+<script>
+  import '@/scripts/veil';
+</script>
