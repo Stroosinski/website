@@ -25,3 +25,6 @@ STOLMAR Site.html
 
 # lokalny wzorzec do porownan wygladu (20 MB, nie idzie do repo)
 public/_orig/
+
+# nagrania ekranu do porownan (ciezkie, lokalne)
+*.mp4

@@ -3,21 +3,42 @@ import Page from '@/layouts/Page.astro';
 import ShowcaseIntro from '@/components/ShowcaseIntro.astro';
 import ShowcaseChapters from '@/components/ShowcaseChapters.astro';
 import ShowcaseCta from '@/components/ShowcaseCta.astro';
-import Lightbox from '@/components/Lightbox.astro';
+import LightboxIsland from '@/components/LightboxIsland.jsx';
 ---
 
 <Page lang="en" route="work">
   <div data-screen-label="Work - Cinematic" style="position: relative; isolation: isolate;">
+    <!-- Tło z animowaną siatką kropek (oryginał, linie 399-401). -->
+    <div
+      aria-hidden="true"
+      style="position: fixed; inset: 0; z-index: -1; opacity: 0.1; pointer-events: none;"
+    >
+      <dot-matrix
+        frequency="2"
+        speed="4"
+        cellsize="10"
+        gamma="5"
+        chars="X"
+        c0="#FFFFFF"
+        c1="#EFD32B"
+        c2="#000000"
+        style="width: 100%; height: 100%;"></dot-matrix>
+    </div>
+
     <ShowcaseIntro lang="en" />
     <ShowcaseChapters lang="en" />
     <ShowcaseCta lang="en" />
   </div>
-  <Lightbox lang="en" />
+
+  <LightboxIsland client:idle />
 </Page>
+
+<script src="/js/dot-matrix.js" is:inline defer></script>
 
 <script>
   import '@/scripts/veil';
   import '@/scripts/reveal';
   import '@/scripts/wr';
   import '@/scripts/cine';
+  import '@/scripts/lightbox';
 </script>
