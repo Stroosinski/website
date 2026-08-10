@@ -1,0 +1,31 @@
+---
+/** Żółta sekcja domykająca Showcase — oryginał, linie 507-515. */
+import { useTranslations, pathFor, type Locale } from '@/i18n';
+import Button from './Button.astro';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section style="background: var(--signal-yellow); padding: 100px 40px;">
+  <div
+    style="max-width: 1360px; margin: 0 auto; display: flex; align-items: flex-end; justify-content: space-between; gap: 48px; flex-wrap: wrap; row-gap: 36px;"
+  >
+    <div data-reveal style="max-width: 660px;">
+      <div
+        style="font-size: 11px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: #0A0A0A; margin-bottom: 20px;"
+      >
+        {t('work.ctaEyebrow')}
+      </div>
+      <h2
+        style="margin: 0; font-weight: 900; text-transform: uppercase; color: #0A0A0A; font-size: clamp(32px, 4.2vw, 64px); line-height: 0.98; letter-spacing: -0.02em;"
+      >
+        {t('work.ctaH1')}
+      </h2>
+    </div>
+    <Button href={pathFor('contact', lang)} variant="primary" size="lg">{t('work.ndaBtn')}</Button>
+  </div>
+</section>

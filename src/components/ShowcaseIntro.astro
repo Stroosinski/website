@@ -1,0 +1,51 @@
+---
+/**
+ * Intro strony Showcase — wariant "Classic" (oryginał, linie 429-437).
+ * workIntro domyślnie = "Classic", więc parallax tunnel jest nieaktywny.
+ *
+ * Animacja steruje się z original.css przez [data-wr].is-visible:
+ *  - żółty pasek przejeżdża po nagłówku (stlm-wr-bar),
+ *  - H1 wjeżdża od dołu z translateY(110%) (stlm-wr-h1),
+ *  - lead pojawia się z opóźnieniem 1s (stlm-wr-sub).
+ * Klasę is-visible dokłada skrypt, gdy sekcja wejdzie w widok.
+ */
+import { useTranslations, type Locale } from '@/i18n';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section
+  data-wr
+  style="max-width: 1360px; margin: 0 auto; padding: 96px 40px 40px; min-height: 52vh; display: flex; flex-direction: column; justify-content: center; box-sizing: border-box;"
+>
+  <div
+    data-wr-eyebrow
+    style="font-size: 11px; font-weight: 500; letter-spacing: 0.34em; text-transform: uppercase; color: var(--signal-yellow); margin-bottom: 28px; min-height: 1.2em;"
+  >
+    {t('work.eyebrow')}
+  </div>
+  <div style="position: relative; overflow: hidden; width: fit-content; margin-bottom: 24px;">
+    <h1
+      data-wr-h1
+      style="margin: 0; font-weight: 900; text-transform: uppercase; color: #FFFFFF; font-size: clamp(44px, 7vw, 108px); line-height: 0.95; letter-spacing: -0.005em; word-spacing: 0.02em; transform: translateY(110%);"
+    >
+      {t('work.h1')}
+    </h1>
+    <div
+      data-wr-bar
+      aria-hidden="true"
+      style="position: absolute; inset: 0; background: var(--signal-yellow); transform: translateX(-101%);"
+    >
+    </div>
+  </div>
+  <p
+    data-wr-sub
+    style="margin: 0; max-width: 620px; font-size: 17px; font-weight: 300; line-height: 1.7; color: #9A988F; opacity: 0;"
+  >
+    {t('work.lead')}
+  </p>
+</section>

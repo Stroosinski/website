@@ -1,21 +1,23 @@
 ---
 import Page from '@/layouts/Page.astro';
-import PageIntro from '@/components/PageIntro.astro';
-import ProjectGrid from '@/components/ProjectGrid.astro';
-import { useTranslations } from '@/i18n';
-const t = useTranslations('pl');
+import ShowcaseIntro from '@/components/ShowcaseIntro.astro';
+import ShowcaseChapters from '@/components/ShowcaseChapters.astro';
+import ShowcaseCta from '@/components/ShowcaseCta.astro';
+import Lightbox from '@/components/Lightbox.astro';
 ---
 
 <Page lang="pl" route="work">
-  <PageIntro
-    eyebrow={t('work.eyebrow')}
-    title={t('work.h1')}
-    lead={t('work.lead')}
-    note={t('work.note')}
-  />
-  <ProjectGrid lang="pl" />
+  <div data-screen-label="Work - Cinematic" style="position: relative; isolation: isolate;">
+    <ShowcaseIntro lang="pl" />
+    <ShowcaseChapters lang="pl" />
+    <ShowcaseCta lang="pl" />
+  </div>
+  <Lightbox lang="pl" />
 </Page>
 
 <script>
   import '@/scripts/veil';
+  import '@/scripts/reveal';
+  import '@/scripts/wr';
+  import '@/scripts/cine';
 </script>
