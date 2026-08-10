@@ -1,0 +1,73 @@
+---
+/** Pasek liczb: lata w produkcji, miasta, jedna pracownia. */
+import type { Locale } from '@/i18n';
+import en from '@/content/site.en.json';
+import pl from '@/content/site.pl.json';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const stats = (lang === 'pl' ? pl : en).stats as { k: string; v: string }[];
+---
+
+<section class="stats">
+  <dl class="stats-grid">
+    {
+      stats.map((s) => (
+        <div class="stats-cell">
+          <dt class="stats-k">{s.k}</dt>
+          <dd class="stats-v">{s.v}</dd>
+        </div>
+      ))
+    }
+  </dl>
+</section>
+
+<style>
+  .stats {
+    border-top: 1px solid #161616;
+    border-bottom: 1px solid #161616;
+  }
+  .stats-grid {
+    max-width: 1360px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .stats-cell {
+    padding: 40px;
+    border-left: 1px solid #161616;
+  }
+  .stats-k {
+    font-weight: 900;
+    font-size: 56px;
+    line-height: 1;
+    color: #fff;
+    letter-spacing: -0.02em;
+  }
+  .stats-v {
+    margin: 12px 0 0;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #7e7e7a;
+  }
+
+  @media (max-width: 860px) {
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+    .stats-cell {
+      padding: 28px 20px;
+      border-left: 0;
+      border-top: 1px solid #161616;
+    }
+    .stats-cell:first-child {
+      border-top: 0;
+    }
+    .stats-k {
+      font-size: 40px;
+    }
+  }
+</style>

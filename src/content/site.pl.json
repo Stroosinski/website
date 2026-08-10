@@ -1,0 +1,228 @@
+{
+  "stats": [
+    {
+      "k": "30+",
+      "v": "Lat w produkcji"
+    },
+    {
+      "k": "9",
+      "v": "Miast z montażami w ostatnim sezonie"
+    },
+    {
+      "k": "1",
+      "v": "Pracownia - od koncepcji po montaż"
+    }
+  ],
+  "filters": {
+    "All": "Wszystkie",
+    "Production": "Produkcja",
+    "Prototype": "Prototyp",
+    "Assembly": "Montaż"
+  },
+  "projects": [
+    {
+      "eyebrow": "Witryna · 2025",
+      "title": "Kampania jubileuszowa",
+      "materials": [
+        "frezowanie CNC",
+        "druk lateksowy",
+        "mechanizm obrotowy"
+      ],
+      "tag": "Prototype",
+      "tagLabel": "Prototyp",
+      "year": "2025",
+      "image": "assets/imgc/medicine.jpg"
+    },
+    {
+      "eyebrow": "Event · 2026",
+      "title": "Dekoracja eventowa",
+      "materials": [
+        "druk 3D",
+        "metaliczny wysoki połysk"
+      ],
+      "tag": "Production",
+      "tagLabel": "Produkcja",
+      "year": "2026",
+      "image": "assets/imgc/event.jpg"
+    },
+    {
+      "eyebrow": "Instore · 2026",
+      "title": "Retail Furniture",
+      "materials": [
+        "fornir dębowy",
+        "lity dąb",
+        "skóra",
+        "ukryta stal"
+      ],
+      "tag": "Production",
+      "tagLabel": "Produkcja",
+      "year": "2026",
+      "image": "assets/imgc/showroom.jpg"
+    },
+    {
+      "eyebrow": "Witryna · Q4 2025",
+      "title": "Dekoracja witryn",
+      "materials": [
+        "druk UV na MDF",
+        "druk 3D",
+        "malowane ręcznie"
+      ],
+      "tag": "Assembly",
+      "tagLabel": "Montaż",
+      "year": "2025",
+      "image": "assets/imgc/london-ribbons.jpg"
+    },
+    {
+      "eyebrow": "Cały świat · 2024",
+      "title": "100-lecie marki",
+      "materials": [
+        "repliki piór 15–260 cm",
+        "druk 3D",
+        "wysoki połysk"
+      ],
+      "tag": "Production",
+      "tagLabel": "Produkcja",
+      "year": "2024",
+      "image": "assets/imgc/vogue.jpg"
+    },
+    {
+      "eyebrow": "Ściana · 2025",
+      "title": "Logo z mchu",
+      "materials": [
+        "mech stabilizowany",
+        "rama stalowa",
+        "oświetlenie"
+      ],
+      "tag": "Production",
+      "tagLabel": "Produkcja",
+      "year": "2025",
+      "image": "assets/imgc/leaves.jpg"
+    },
+    {
+      "eyebrow": "Prototyp · 2025",
+      "title": "Miniatury zwierząt",
+      "materials": [
+        "żywica 3D",
+        "malowane ręcznie"
+      ],
+      "tag": "Prototype",
+      "tagLabel": "Prototyp",
+      "year": "2025",
+      "image": "assets/imgc/exhibition.jpg"
+    },
+    {
+      "eyebrow": "Instore · 2024",
+      "title": "Dekoracje świąteczne",
+      "materials": [
+        "tkanina",
+        "malowane HDF",
+        "filc",
+        "flok"
+      ],
+      "tag": "Production",
+      "tagLabel": "Produkcja",
+      "year": "2024",
+      "image": "assets/imgc/copper-cages.jpg"
+    }
+  ],
+  "services": [
+    {
+      "n": "01",
+      "t": "Kampanie POS i visual merchandising",
+      "d": "Sezonowe witryny, strefy wejścia i kampanie instore wdrażane jednocześnie w setkach sklepów - projektowane, produkowane i montowane przez jeden zespół, w jednym standardzie.",
+      "items": [
+        "Witryny sklepowe i strefy wejścia",
+        "Sezonowe kampanie VM",
+        "Pop-upy w sklepach",
+        "Ekspozytory POS"
+      ],
+      "photo": "assets/imgc/medicine.jpg"
+    },
+    {
+      "n": "02",
+      "t": "Przestrzenie retail i ekspozycje",
+      "d": "Samodzielne pop-up store'y, stoiska wystawiennicze i przestrzenie retail na wymiar - od prototypu po montaż, w jednym mieście lub w dwunastu.",
+      "items": [
+        "Samodzielne pop-up store'y",
+        "Stoiska wystawiennicze i targowe",
+        "Meble i wyposażenie na wymiar",
+        "Ekspozycje muzealne i kulturalne"
+      ],
+      "photo": "assets/imgc/stand.jpg"
+    },
+    {
+      "n": "03",
+      "t": "Scenografia i eventy",
+      "d": "Scenografie, rekwizyty i tymczasowe przestrzenie marki - budowane na sztywną datę, zwykle z materiałów i technologii, których większość warsztatów nie łączy.",
+      "items": [
+        "Projekt i budowa scenografii",
+        "Scenografia filmowa i fotograficzna",
+        "Rekwizyty eventowe",
+        "Tymczasowe przestrzenie marki"
+      ],
+      "photo": "assets/imgc/event.jpg"
+    }
+  ],
+  "inhouse": [
+    {
+      "n": "01",
+      "t": "Projektowanie",
+      "d": "Design koncepcyjny i przemysłowy - od briefu po specyfikacje gotowe do produkcji."
+    },
+    {
+      "n": "02",
+      "t": "Rozwój techniczny",
+      "d": "Prototypownia i modelarnia; materiał i metoda rozstrzygane in-house."
+    },
+    {
+      "n": "03",
+      "t": "Drewno, metal i tworzywa",
+      "d": "Frezowanie CNC, stolarka konstrukcyjna, cięcie laserowe, spawanie, malowanie proszkowe, obróbka akrylu/PVC/PC."
+    },
+    {
+      "n": "04",
+      "t": "Druk lateksowy HP",
+      "d": "Wielkoformatowy, odporny na UV, na bazie wody."
+    },
+    {
+      "n": "05",
+      "t": "Druk 3D (FDM/SLA)",
+      "d": "Od prototypów po elementy produkcyjne w finalnym wykończeniu."
+    },
+    {
+      "n": "06",
+      "t": "Bezpyłowa lakiernia",
+      "d": "Lakierowanie i specjalistyczne wykończenia powierzchni."
+    },
+    {
+      "n": "07",
+      "t": "Rękodzieło i mixed media",
+      "d": "Papier mâché, techniki tekstylne i rzeźbiarskie."
+    },
+    {
+      "n": "08",
+      "t": "Montaże",
+      "d": "Od pojedynczej instalacji po globalną kampanię witryn."
+    }
+  ],
+  "form": {
+    "name": "Imię i nazwisko",
+    "namePh": "Twoje imię",
+    "company": "Firma",
+    "companyPh": "Marka / agencja",
+    "email": "E-mail",
+    "emailPh": "ty@studio.com",
+    "brief": "Brief",
+    "briefPh": "Zakres, termin i orientacyjny budżet?",
+    "files": "Załączniki",
+    "filesCta": "Wybierz",
+    "filesHint": "Dowolny format pliku · szkice, rzuty, brandbook, referencje",
+    "btn": "Wyślij →",
+    "topicLabel": "Co budujemy?",
+    "topics": [
+      "POS i visual merchandising",
+      "Przestrzenie retail i wystawy",
+      "Doświadczenia marki i eventy"
+    ]
+  }
+}

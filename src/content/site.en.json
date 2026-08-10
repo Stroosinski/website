@@ -1,0 +1,228 @@
+{
+  "stats": [
+    {
+      "k": "30+",
+      "v": "Years in production"
+    },
+    {
+      "k": "10",
+      "v": "Capitals, last season"
+    },
+    {
+      "k": "1",
+      "v": "Workshop, from concept to installation"
+    }
+  ],
+  "filters": {
+    "All": "All",
+    "Production": "Production",
+    "Prototype": "Prototype",
+    "Assembly": "Assembly"
+  },
+  "projects": [
+    {
+      "eyebrow": "Window · 2025",
+      "title": "Anniversary Campaign",
+      "materials": [
+        "CNC-milled",
+        "latex print",
+        "rotating mechanism"
+      ],
+      "tag": "Prototype",
+      "tagLabel": "Prototype",
+      "year": "2025",
+      "image": "assets/imgc/medicine.jpg"
+    },
+    {
+      "eyebrow": "Event · 2026",
+      "title": "Event Decoration",
+      "materials": [
+        "3D printed",
+        "high-gloss metallic"
+      ],
+      "tag": "Production",
+      "tagLabel": "Production",
+      "year": "2026",
+      "image": "assets/imgc/event.jpg"
+    },
+    {
+      "eyebrow": "Instore · 2026",
+      "title": "Retail Furniture",
+      "materials": [
+        "oak veneer",
+        "solid oak",
+        "leather",
+        "hidden steel"
+      ],
+      "tag": "Production",
+      "tagLabel": "Production",
+      "year": "2026",
+      "image": "assets/imgc/showroom.jpg"
+    },
+    {
+      "eyebrow": "Window · Q4 2025",
+      "title": "Window Decoration",
+      "materials": [
+        "UV print on MDF",
+        "3D printed",
+        "hand-painted"
+      ],
+      "tag": "Assembly",
+      "tagLabel": "Assembly",
+      "year": "2025",
+      "image": "assets/imgc/london-ribbons.jpg"
+    },
+    {
+      "eyebrow": "Worldwide · 2024",
+      "title": "100 Years Celebration",
+      "materials": [
+        "pen replicas 15–260cm",
+        "3D print",
+        "high-gloss"
+      ],
+      "tag": "Production",
+      "tagLabel": "Production",
+      "year": "2024",
+      "image": "assets/imgc/vogue.jpg"
+    },
+    {
+      "eyebrow": "Wall · 2025",
+      "title": "Moss Logo",
+      "materials": [
+        "stabilized moss",
+        "metal frame",
+        "integrated lighting"
+      ],
+      "tag": "Production",
+      "tagLabel": "Production",
+      "year": "2025",
+      "image": "assets/imgc/leaves.jpg"
+    },
+    {
+      "eyebrow": "Prototype · 2025",
+      "title": "Miniature Animals",
+      "materials": [
+        "3D resin",
+        "hand-painted"
+      ],
+      "tag": "Prototype",
+      "tagLabel": "Prototype",
+      "year": "2025",
+      "image": "assets/imgc/exhibition.jpg"
+    },
+    {
+      "eyebrow": "Instore · 2024",
+      "title": "Holiday Decorations",
+      "materials": [
+        "fabric",
+        "painted HDF",
+        "felt",
+        "flock"
+      ],
+      "tag": "Production",
+      "tagLabel": "Production",
+      "year": "2024",
+      "image": "assets/imgc/copper-cages.jpg"
+    }
+  ],
+  "services": [
+    {
+      "n": "01",
+      "t": "POS Campaigns & Visual Merchandising",
+      "d": "Seasonal windows, entrance zones and in-store campaigns rolled out across hundreds of stores at once - designed, produced and installed by one team, to one standard.",
+      "items": [
+        "Window displays & entrance zones",
+        "Seasonal VM campaigns",
+        "In-store pop-ups",
+        "POS displays"
+      ],
+      "photo": "assets/imgc/medicine.jpg"
+    },
+    {
+      "n": "02",
+      "t": "Retail Spaces & Exhibitions",
+      "d": "Standalone pop-up stores, exhibition builds and bespoke retail environments - from prototype to installation, in one city or in twelve.",
+      "items": [
+        "Standalone pop-up stores",
+        "Exhibition & trade fair stands",
+        "Custom furniture & shop fittings",
+        "Museum & cultural exhibitions"
+      ],
+      "photo": "assets/imgc/stand.jpg"
+    },
+    {
+      "n": "03",
+      "t": "Scenography & Events",
+      "d": "Sets, props and temporary brand spaces - built to a fixed date, usually from materials and technologies most workshops keep apart.",
+      "items": [
+        "Set design & build",
+        "Film & photo sets",
+        "Event props",
+        "Temporary brand spaces"
+      ],
+      "photo": "assets/imgc/event.jpg"
+    }
+  ],
+  "inhouse": [
+    {
+      "n": "01",
+      "t": "Design",
+      "d": "Conceptual & industrial design, from brief to engineering-ready specs."
+    },
+    {
+      "n": "02",
+      "t": "Technical development",
+      "d": "Prototyping, model shop, material and method resolved in-house."
+    },
+    {
+      "n": "03",
+      "t": "Wood, metal & plastics",
+      "d": "CNC routing, structural carpentry, laser cutting, welding, powder coating, acrylic/PVC/PC processing."
+    },
+    {
+      "n": "04",
+      "t": "HP latex printing",
+      "d": "Large-format, UV-resistant, water-based ink."
+    },
+    {
+      "n": "05",
+      "t": "3D printing (FDM/SLA)",
+      "d": "Prototyping through final-finish production elements."
+    },
+    {
+      "n": "06",
+      "t": "Dust-free paint shop",
+      "d": "Lacquering, varnishing and specialty surface finishes."
+    },
+    {
+      "n": "07",
+      "t": "Handcraft & mixed media",
+      "d": "Paper mâché, textile and sculptural techniques."
+    },
+    {
+      "n": "08",
+      "t": "Installations",
+      "d": "From a single installation to a global window-display campaign."
+    }
+  ],
+  "form": {
+    "name": "Name",
+    "namePh": "Your name",
+    "company": "Company",
+    "companyPh": "Maison / agency",
+    "email": "Email",
+    "emailPh": "you@studio.com",
+    "brief": "Brief",
+    "briefPh": "Scope, timeline, and rough budget?",
+    "files": "Attachments",
+    "filesCta": "Browse",
+    "filesHint": "Any file type · sketches, floor plans, brand guidelines, references",
+    "btn": "Send →",
+    "topicLabel": "What are we building?",
+    "topics": [
+      "POS & Visual Merchandising",
+      "Retail Spaces & Exhibitions",
+      "Brand Experiences & Events"
+    ]
+  }
+}

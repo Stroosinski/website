@@ -1,8 +1,18 @@
 ---
 import Page from '@/layouts/Page.astro';
 import Hero from '@/components/Hero.astro';
+import Philosophy from '@/components/Philosophy.astro';
+import Stats from '@/components/Stats.astro';
+import Archive from '@/components/Archive.astro';
 ---
 
 <Page lang="en" route="home">
   <Hero lang="en" />
+  <Philosophy lang="en" />
+  <Stats lang="en" />
+  <Archive lang="en" />
 </Page>
+
+<script>
+  import '@/scripts/veil';
+</script>
