@@ -9,16 +9,32 @@
  * Do czasu podpięcia NIE udajemy sukcesu — przycisk prowadzi do wysyłki e-mailem.
  */
 import { useTranslations, type Locale } from '@/i18n';
+import { FORM_ENDPOINT } from '@/config';
 import en from '@/content/site.en.json';
 import pl from '@/content/site.pl.json';
 
 interface Props {
   lang: Locale;
-  /** docelowy endpoint; gdy pusty, formularz działa przez klienta pocztowego */
+  /** docelowy endpoint; domyślnie z konfiguracji */
   action?: string;
 }
-const { lang, action = '' } = Astro.props;
+const { lang, action = FORM_ENDPOINT } = Astro.props;
 const t = useTranslations(lang);
+
+const ui =
+  lang === 'pl'
+    ? {
+        sending: 'Wysyłanie...',
+        error: 'Nie udało się wysłać. Spróbuj ponownie lub napisz na info@stolmar.co.',
+        offline: 'Brak połączenia. Sprawdź internet i spróbuj ponownie.',
+        subject: 'Zapytanie ze strony stolmar.co',
+      }
+    : {
+        sending: 'Sending...',
+        error: 'Could not send. Please try again or write to info@stolmar.co.',
+        offline: 'No connection. Check your internet and try again.',
+        subject: 'Enquiry from stolmar.co',
+      };
 
 type Form = {
   name: string; namePh: string; company: string; companyPh: string;
@@ -31,12 +47,27 @@ const wired = action.length > 0;
 const required = lang === 'pl' ? 'wymagane' : 'required';
 ---
 
+<!-- Komunikat sukcesu — te same teksty co w oryginale (contact.sent*). -->
+<div data-form-sent hidden class="cf-sent">
+  <span class="cf-sent-badge">{t('contact.sentBadge')}</span>
+  <p class="cf-sent-title">{t('contact.sentTitle')}</p>
+  <p class="cf-sent-body">{t('contact.sentBody')}</p>
+</div>
+
 <form
   class="cf"
-  method={wired ? 'POST' : undefined}
-  action={wired ? action : `mailto:info@stolmar.co`}
+  data-contact-form
+  method="POST"
+  action={wired ? action : 'mailto:info@stolmar.co'}
   enctype={wired ? 'multipart/form-data' : 'text/plain'}
+  data-sending-label={ui.sending}
+  data-error-label={ui.error}
+  data-offline-label={ui.offline}
 >
+  <!-- pułapka na roboty: ludzie tego nie wypełnią, boty tak -->
+  <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="cf-gotcha" />
+  <input type="hidden" name="_subject" value={ui.subject} />
+  <input type="hidden" name="lang" value={lang} />
   <fieldset class="cf-topics">
     <legend class="cf-legend">{f.topicLabel}</legend>
     <div class="cf-chips">
@@ -82,8 +113,14 @@ const required = lang === 'pl' ? 'wymagane' : 'required';
     )
   }
 
+  <p data-form-error hidden class="cf-err" role="alert"></p>
+
   <button type="submit" class="cf-btn">{f.btn}</button>
 </form>
+
+<script>
+  import '@/scripts/form';
+</script>
 
 <style>
   .cf {
@@ -212,6 +249,65 @@ const required = lang === 'pl' ? 'wymagane' : 'required';
   }
   .cf-btn:active {
     transform: translateY(1px);
+  }
+  .cf-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  /* pułapka na roboty — niewidoczna, ale nie display:none (boty to wykrywają) */
+  .cf-gotcha {
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+
+  .cf-err {
+    margin: 0;
+    padding: 12px 14px;
+    border-left: 2px solid #efd32b;
+    background: rgba(239, 211, 43, 0.06);
+    font-size: 14px;
+    font-weight: 300;
+    color: #f4f2ec;
+  }
+
+  /* komunikat sukcesu — wartości z oryginału (linie 708-714) */
+  .cf-sent {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    align-items: flex-start;
+  }
+  .cf-sent[hidden] {
+    display: none;
+  }
+  .cf-sent-badge {
+    align-self: flex-start;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #0a0a0a;
+    background: var(--signal-yellow, #efd32b);
+    padding: 7px 12px;
+  }
+  .cf-sent-title {
+    margin: 0;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 30px;
+    color: #fff;
+    letter-spacing: -0.01em;
+  }
+  .cf-sent-body {
+    margin: 0;
+    color: #c9c7c1;
+    font-weight: 300;
+    max-width: 340px;
+    line-height: 1.7;
   }
 
   @media (max-width: 860px) {
