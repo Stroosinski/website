@@ -1,0 +1,88 @@
+---
+/**
+ * Bazowy layout — jeden <head> dla całej strony.
+ * Tu żyje cała warstwa SEO/GEO: meta, canonical, hreflang, Open Graph, JSON-LD.
+ * Każda podstrona podaje własny title/description/lang.
+ */
+export interface Props {
+  title: string;
+  description: string;
+  /** 'pl' lub 'en' */
+  lang?: 'pl' | 'en';
+  /** ścieżka bez domeny, np. "/" albo "/en/" — do canonical i hreflang */
+  path?: string;
+  /** obraz do social share (Open Graph), ścieżka względna */
+  ogImage?: string;
+  /** wyłącz indeksowanie (np. na czas przedpremiery) */
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  lang = 'pl',
+  path = '/',
+  ogImage = '/assets/logo-full.png',
+  noindex = false,
+} = Astro.props;
+
+const site = Astro.site ?? new URL('https://stolmar.co');
+const canonical = new URL(path, site).href;
+const ogImageUrl = new URL(ogImage, site).href;
+
+// Odpowiedniki językowe tej samej strony (hreflang).
+// Konwencja: PL = ścieżka bazowa, EN = ta sama ścieżka z prefiksem /en.
+const plPath = path.replace(/^\/en(\/|$)/, '/');
+const enPath = plPath === '/' ? '/en/' : `/en${plPath}`;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- Wersje językowe -->
+    <link rel="alternate" hreflang="pl" href={new URL(plPath, site).href} />
+    <link rel="alternate" hreflang="en" href={new URL(enPath, site).href} />
+    <link rel="alternate" hreflang="x-default" href={new URL(plPath, site).href} />
+
+    <!-- Open Graph / social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="STOLMAR" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:locale" content={lang === 'pl' ? 'pl_PL' : 'en_US'} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/logo-mark.png" />
+
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    background: #0a0a0a;
+    overflow-x: hidden;
+  }
+  ::selection {
+    background: #efd32b;
+    color: #0a0a0a;
+  }
+</style>

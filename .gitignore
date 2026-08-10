@@ -1,0 +1,24 @@
+# build / deps
+node_modules/
+dist/
+.astro/
+.vercel/
+
+# env / secrets
+.env
+.env.*
+!.env.example
+
+# system
+.DS_Store
+Thumbs.db
+
+# surowe źródła z Claude Design (ciężkie, robocze — nie idą na produkcję)
+_source/uploads/
+_source/scratch/
+_source/screenshots/
+_source/img/
+
+# eksporty z Claude Design (ciężkie archiwa — trzymane lokalnie, nie w repo)
+*.zip
+STOLMAR Site.html

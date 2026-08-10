@@ -1,0 +1,1913 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/stolmar-design-system-e129fc0d-b477-4148-8b07-6eac02244b87/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/stolmar-design-system-e129fc0d-b477-4148-8b07-6eac02244b87/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/stolmar-design-system-e129fc0d-b477-4148-8b07-6eac02244b87/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/stolmar-design-system-e129fc0d-b477-4148-8b07-6eac02244b87/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/stolmar-design-system-e129fc0d-b477-4148-8b07-6eac02244b87/styles.css">
+  <script src="_ds/stolmar-design-system-e129fc0d-b477-4148-8b07-6eac02244b87/_ds_bundle.js"></script>
+  <style>
+    html, body { margin: 0; padding: 0; background: #0A0A0A; overflow-x: hidden; }
+    ::selection { background: #EFD32B; color: #0A0A0A; }
+    @keyframes stlm-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @keyframes stlm-marquee-rev { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+    @keyframes stlm-cue { 0% { top: -45%; } 100% { top: 110%; } }
+    @keyframes twBlink { 0%, 50% { opacity: 1; } 50.01%, 100% { opacity: 0; } }
+    @keyframes stlm-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-18px); } }
+    body.stlm-lb-on header, body.stlm-lb-on [data-mmenu] { opacity: 0 !important; pointer-events: none !important; transition: opacity 0.28s ease; }
+    body.stlm-lb-on { position: fixed !important; left: 0; right: 0; width: 100%; overflow: hidden !important; }
+    @keyframes stlm-lb-fade-in { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes stlm-lb-fade-out { from { opacity: 1; } to { opacity: 0; } }
+    @keyframes stlm-lb-pop-in { from { opacity: 0; transform: scale(0.82); } to { opacity: 1; transform: scale(1); } }
+    @keyframes stlm-lb-pop-out { from { opacity: 1; transform: scale(1); } to { opacity: 0; transform: scale(0.9); } }
+    @keyframes stlm-lb-img1 { from { opacity: 0.2; transform: scale(1.06); } to { opacity: 1; transform: scale(1); } }
+    @keyframes stlm-lb-img2 { from { opacity: 0.2; transform: scale(1.06); } to { opacity: 1; transform: scale(1); } }
+    @media (prefers-reduced-motion: reduce) { img[style*="stlm-lb-img"] { animation: none !important; } }
+    @media (prefers-reduced-motion: reduce) { .stlm-lb-overlay, .stlm-lb-panel { animation: none !important; } }
+    @keyframes stlm-wr-bar { 0% { transform: translateX(-101%); } 45% { transform: translateX(0); } 55% { transform: translateX(0); } 100% { transform: translateX(101%); } }
+    @keyframes stlm-wr-h1 { to { transform: translateY(0); } }
+    @keyframes stlm-wr-sub { to { opacity: 1; } }
+    [data-wr].is-visible [data-wr-bar] { animation: stlm-wr-bar 1.1s cubic-bezier(0.6, 0, 0.3, 1) forwards; }
+    [data-wr].is-visible [data-wr-h1] { animation: stlm-wr-h1 0.9s cubic-bezier(0.2, 1, 0.25, 1) 0.45s forwards; }
+    [data-wr].is-visible [data-wr-sub] { animation: stlm-wr-sub 0.8s ease 1s forwards; }
+    @media (prefers-reduced-motion: reduce) {
+      [data-wr] [data-wr-h1] { transform: none !important; }
+      [data-wr] [data-wr-sub] { opacity: 1 !important; }
+      [data-wr] [data-wr-bar] { display: none !important; }
+      [data-wr].is-visible [data-wr-h1], [data-wr].is-visible [data-wr-sub], [data-wr].is-visible [data-wr-bar] { animation: none !important; }
+    }
+    .stlm-float1 { animation: stlm-float 12s ease-in-out infinite; }
+    .stlm-float2 { animation: stlm-float 15s ease-in-out infinite reverse; }
+    .stlm-float3 { animation: stlm-float 18s ease-in-out infinite; }
+    @media (max-width: 860px) {
+      .stlm-cinegrid { grid-template-columns: 1fr 1fr !important; }
+      .stlm-cinemeta { grid-template-columns: 1fr !important; gap: 28px !important; }
+      .stlm-collage { height: auto !important; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .stlm-ctile { position: relative !important; width: auto !important; top: auto !important; left: auto !important; aspect-ratio: 1 / 1 !important; animation: none !important; }
+    }
+    @media (prefers-reduced-motion: reduce) { .stlm-float1, .stlm-float2, .stlm-float3 { animation: none !important; } }
+    .stlm-soc { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid rgba(245,245,240,0.22); border-radius: 7px; background: #0B0B0A; overflow: hidden; }
+    .stlm-soc .stlm-soc-fill { position: absolute; inset: 0; background: #EFD32B; transform: scaleY(0); transform-origin: bottom; transition: transform 200ms cubic-bezier(.23,1,.32,1); }
+    .stlm-soc svg { position: relative; z-index: 1; color: rgba(245,245,240,0.72); transition: color 150ms ease 40ms, transform 200ms cubic-bezier(.34,1.56,.64,1); }
+    .stlm-soc:hover .stlm-soc-fill { transform: scaleY(1); }
+    .stlm-soc:hover svg { color: #0B0B0A; transform: scale(1.08); }
+    .stlm-soc-label { position: relative; z-index: 1; transition: color 150ms ease 40ms; }
+    .stlm-soc:hover .stlm-soc-label { color: #0B0B0A; }
+    @media (prefers-reduced-motion: reduce) { .stlm-soc .stlm-soc-fill, .stlm-soc svg { transition: none !important; } }
+    .stlm-burger { display: none; }
+    [data-mmenu] { display: none; }
+    @media (max-width: 860px) {
+      .stlm-dnav { display: none !important; }
+      .stlm-dright { display: none !important; }
+      .stlm-burger { display: flex !important; }
+      .site [style*="grid-template-columns"]:not(.stlm-mosaic) { grid-template-columns: 1fr !important; }
+      .site .stlm-bento { height: auto !important; grid-template-rows: none !important; }
+      .site .stlm-bento > div { grid-row: auto !important; min-height: 280px; }
+      .stlm-mosaic { grid-template-columns: repeat(2, 1fr) !important; grid-auto-rows: 140px !important; }
+      .stlm-mosaic > div { grid-column: span 1 !important; grid-row: span 1 !important; }
+      [data-screen-label="Home - Horizon"] > section:not([data-hero-section]), [data-screen-label="Home - Stage"] > section:not([data-hero-section]) {
+        height: auto !important; min-height: calc(100svh - 72px) !important; padding-top: 96px; padding-bottom: 56px; box-sizing: border-box;
+      }
+      [data-screen-label="Studio"] > section:first-of-type { min-height: calc(100svh - 72px) !important; padding-top: 96px !important; padding-bottom: 56px !important; }
+      [data-hero-index], [data-hero-cue] { display: none !important; }
+      .stlm-langtoggle .stlm-soc-fill { display: none !important; }
+      .stlm-langtoggle .stlm-soc:hover .stlm-soc-label { color: inherit !important; }
+      [data-screen-label="Home - Horizon"] veil-shader { opacity: 0.2; }
+      .stlm-field-flip > div:first-child { order: 2; }
+      .stlm-field-flip > div:last-child { order: 1; }
+      .site section[style*="padding: 150px 40px"], .site section[style*="padding: 170px 40px 150px"] { padding: 64px 24px !important; }
+      .site section[style*="padding: 150px 40px 110px"], .site section[style*="padding: 140px 40px 110px"], .site section[style*="padding: 130px 40px 110px"] { padding: 64px 24px 56px !important; }
+      .site div[style*="padding: 150px 40px"] { padding: 56px 24px !important; }
+      .site section[style*="padding: 96px 40px"] { padding: 56px 24px 48px !important; }
+    }
+    @media (min-width: 861px) { [data-mmenu] { display: none !important; } }
+    @media (max-width: 860px) {
+      [data-spot-underline] { display: none !important; }
+      [data-spot-word] { -webkit-mask-image: none !important; mask-image: none !important; position: static !important; }
+      [data-spot-dim] { display: none !important; }
+      [data-cursor-glow] { display: none !important; }
+    }
+      @media (max-width: 900px) {
+        [data-hero-section] { height: calc(var(--stlm-vh, 100dvh) + 72px) !important; min-height: calc(var(--stlm-vh, 100dvh) + 72px) !important; }
+      }
+      @media (max-width: 700px) {
+        [data-hero-scrim] { background: linear-gradient(to bottom, rgba(10,10,10,0.12) 0%, rgba(10,10,10,0) 46%, rgba(10,10,10,0.86) 100%) !important; }
+        [data-hero-shader] { position: fixed !important; inset: 0 !important; height: 100svh !important; z-index: 0 !important; }
+        [data-hero-shader] silk-drape, [data-hero-shader] canvas { width: 100% !important; height: 100% !important; }
+      }
+  </style>
+</helmet>
+
+<div class="site" style="min-height: 100vh; background: #0A0A0A; color: #C9C7C1; font-family: 'Roboto', sans-serif; overflow-x: hidden;">
+
+  
+
+  <header style="position: fixed; top: 0; left: 0; right: 0; z-index: 70; background: rgba(10,10,10,0.5); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid #222222;">
+    <div style="position: relative; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 0 40px; height: 72px; max-width: 1440px; margin: 0 auto;">
+      <button onClick="{{ goHome }}" style="background: none; border: 0; padding: 0; cursor: pointer; display: flex; align-items: center; gap: 12px;">
+        <img src="assets/logo-mark.png" alt="" aria-hidden="true" style="height: 34px; width: auto; filter: invert(1); display: block;">
+        <img src="assets/logo-full.png" alt="STOLMAR" style="height: 24px; width: auto; filter: invert(1); display: block;">
+      </button>
+      <nav class="stlm-dnav" style="position: absolute; left: 50%; top: 0; height: 100%; transform: translateX(-50%); display: flex; gap: 34px; align-items: center;">
+        <button data-nav="work" onClick="{{ goWork }}" style="font-family: inherit; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #7E7E7A; background: none; border: 0; border-bottom: 2px solid transparent; cursor: pointer; padding: 6px 0 5px;"><span data-i18n="nav.work">Showcase</span></button>
+        <button data-nav="studio" onClick="{{ goStudio }}" style="font-family: inherit; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #7E7E7A; background: none; border: 0; border-bottom: 2px solid transparent; cursor: pointer; padding: 6px 0 5px;"><span data-i18n="nav.studio">Capabilities</span></button>
+        <button data-nav="contact" onClick="{{ goContact }}" style="font-family: inherit; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #7E7E7A; background: none; border: 0; border-bottom: 2px solid transparent; cursor: pointer; padding: 6px 0 5px;"><span data-i18n="nav.contact">Contact</span></button>
+      </nav>
+      <div style="display: flex; align-items: center; gap: 18px;">
+        <div class="stlm-dright" style="display: flex; align-items: center; gap: 18px;">
+          <x-import component-from-global-scope="STOLMARDesignSystem_e129fc.Button" variant="accent" size="sm" on-click="{{ goContact }}" hint-size="150px,32px"><span data-i18n="nav.cta">Start the project</span></x-import>
+        </div>
+        <div class="stlm-langtoggle" style="display: flex; align-items: center;">
+          <button class="stlm-soc" data-lang-toggle="" onClick="{{ toggleLang }}" aria-label="Switch language" style="font-family: inherit; cursor: pointer;">
+            <span class="stlm-soc-fill" aria-hidden="true"></span>
+            <span class="stlm-soc-label" data-lang-toggle-label="" style="font-size: 11px; font-weight: 700; letter-spacing: 0.06em; color: rgba(245,245,240,0.72);">PL</span>
+          </button>
+        </div>
+        <button class="stlm-burger" data-burger="" onClick="{{ toggleMenu }}" aria-label="Menu" style="background: none; border: 0; cursor: pointer; padding: 10px; color: #FFFFFF; align-items: center; justify-content: center;">
+          <svg data-burger-icon="" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true"><path d="M3 6h18"></path><path d="M3 12h18"></path><path d="M3 18h18"></path></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div data-mmenu="" style="position: fixed; top: 72px; left: 0; right: 0; z-index: 69; flex-direction: column; background: rgba(10,10,10,0.97); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid #222222; padding: 22px 40px 32px;">
+    <button data-nav="work" onClick="{{ goWork }}" style="font-family: inherit; text-align: right; font-size: 22px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.01em; color: #FFFFFF; background: none; border: 0; border-bottom: 1px solid #1C1C1C; cursor: pointer; padding: 20px 0;"><span data-i18n="nav.work">Showcase</span></button>
+    <button data-nav="studio" onClick="{{ goStudio }}" style="font-family: inherit; text-align: right; font-size: 22px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.01em; color: #FFFFFF; background: none; border: 0; border-bottom: 1px solid #1C1C1C; cursor: pointer; padding: 20px 0;"><span data-i18n="nav.studio">Capabilities</span></button>
+    <button data-nav="contact" onClick="{{ goContact }}" style="font-family: inherit; text-align: right; font-size: 22px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.01em; color: #FFFFFF; background: none; border: 0; border-bottom: 1px solid #1C1C1C; cursor: pointer; padding: 20px 0;"><span data-i18n="nav.contact">Contact</span></button>
+    <div style="display: flex; align-items: center; justify-content: flex-end; gap: 18px; margin-top: 26px;">
+      <x-import component-from-global-scope="STOLMARDesignSystem_e129fc.Button" variant="accent" size="md" on-click="{{ goContact }}" hint-size="180px,40px"><span data-i18n="nav.cta">Start the project</span></x-import>
+    </div>
+  </div>
+  <div data-hdrspacer="" style="height: 72px;"></div>
+
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+    <div data-screen-label="Home" style="position: relative; isolation: isolate;">
+      <sc-if value="{{ isHorizon }}" hint-placeholder-val="{{ true }}">
+        <div data-screen-label="Home - Horizon">
+          <section data-hero-section="" style="position: relative; height: calc(100vh + 72px); margin-top: -72px; min-height: 620px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #050505;">
+            <sc-if value="{{ heroBackgroundSilk }}" hint-placeholder-val="{{ false }}">
+              <div aria-hidden="true" data-hero-shader-layer="" style="position: absolute; inset: 0; z-index: 0; pointer-events: none; background: #050505;">
+                <x-import component-from-global-scope="silk-drape" from="./silk-drape.js" intensity="{{ shaderIntensity }}" speed="0.22" hint-size="100%,100%" style="position: absolute; inset: 0; width: 100%; height: 100%;"></x-import>
+              </div>
+            </sc-if>
+            <sc-if value="{{ heroBackgroundOrb }}" hint-placeholder-val="{{ false }}">
+              <x-import component="Orb" from="./Orb.jsx" size="80vh" archetype="nebula" background="#0A0A0A" speed="14" spin="35" lens-amount="59" dc-props="{{ orbPalette }}" hint-size="100%,100%" style="position: absolute; left: 50%; top: 50%; opacity: 0.2; transform: translate(-50%, -50%) scale(3);"></x-import>
+            </sc-if>
+            <sc-if value="{{ heroBackgroundGrain }}" hint-placeholder-val="{{ false }}">
+              <x-import component-from-global-scope="grain-bloom" from="./grain-bloom.js" intensity="{{ shaderIntensity }}" speed="0.3" hint-size="100%,100%" style="position: absolute; inset: 0;"></x-import>
+            </sc-if>
+            <sc-if value="{{ heroBackgroundAsh }}" hint-placeholder-val="{{ false }}">
+              <x-import component-from-global-scope="ash-drift" from="./ash-drift.js" intensity="{{ shaderIntensity }}" speed="0.3" hint-size="100%,100%" style="position: absolute; inset: 0;"></x-import>
+            </sc-if>
+            <sc-if value="{{ heroBackgroundVeil }}" hint-placeholder-val="{{ true }}">
+              <x-import component-from-global-scope="veil-shader" from="./veil-shader.js" intensity="{{ shaderIntensity }}" hint-size="100%,100%" style="position: absolute; inset: 0;"></x-import>
+            </sc-if>
+            <div aria-hidden="true" data-hero-scrim="" style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0) 38%, rgba(10,10,10,0.92) 97%); pointer-events: none;"></div>
+            <div style="position: relative; z-index: 2; text-align: center; padding: 0 40px; display: flex; flex-direction: column; align-items: center; max-width: 1360px;">
+              <div data-reveal="" data-i18n="hero.eyebrow" style="font-size: 11px; font-weight: 500; letter-spacing: 0.34em; text-transform: uppercase; color: var(--signal-yellow); margin-bottom: 32px;">Design · Production · Installation</div>
+              <h1 data-i18n="hero.h1" style="margin: 0; font-weight: 900; text-transform: uppercase; color: #FFFFFF; font-size: clamp(54px, 8.4vw, 142px); line-height: 0.94; letter-spacing: -0.02em; text-wrap: balance;">Built to be seen</h1>
+              <p data-reveal="" data-i18n="hero.standfirst" style="margin: 36px 0 0; max-width: 580px; font-weight: 300; font-size: 19px; line-height: 1.7; color: #C9C7C1;">In STOLMAR, we combine creativity with production versatility - one workshop, from concept to installation.</p>
+              <div data-reveal="" style="display: flex; gap: 14px; margin-top: 44px;">
+                <x-import component-from-global-scope="STOLMARDesignSystem_e129fc.Button" variant="accent" size="lg" on-click="{{ goWork }}" hint-size="190px,48px"><span data-i18n="hero.cta1">Glimpse the work</span></x-import>
+                <x-import component-from-global-scope="STOLMARDesignSystem_e129fc.Button" variant="secondary" size="lg" on-click="{{ goStudio }}" dc-props="{{ secondaryBtnProps }}" hint-size="140px,48px"><span data-i18n="hero.cta2">The studio</span></x-import>
+              </div>
+            </div>
+            <div data-hero-index="" style="position: absolute; left: 40px; bottom: 28px; z-index: 2; display: flex; flex-direction: column; gap: 10px;">
+              <span data-i18n="hero.index" style="font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal-yellow);">01 - Intro</span>
+              <span aria-hidden="true" style="display: block; width: 64px; height: 1px; background: var(--signal-yellow);"></span>
+            </div>
+            <div aria-hidden="true" data-hero-cue="" style="position: absolute; right: 40px; bottom: 28px; z-index: 2;">
+              <span style="display: block; width: 1px; height: 46px; background: #3A3A3A; position: relative; overflow: hidden;">
+                <span style="position: absolute; left: 0; top: -45%; width: 100%; height: 42%; background: var(--signal-yellow); animation: stlm-cue 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;"></span>
+              </span>
+            </div>
+          </section>
+
+          <section style="border-top: 1px solid #161616; background: linear-gradient(to bottom, #0A0A0A, #0D0D0D);">
+            <div style="max-width: 1360px; margin: 0 auto; padding: 150px 40px; display: grid; grid-template-columns: 5fr 1fr 6fr; gap: 32px; align-items: end;">
+              <div style="padding-bottom: 24px;">
+                <div data-reveal="" data-i18n="phil.eyebrow" style="font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #7E7E7A; margin-bottom: 26px;">Philosophy<br></div>
+                <h2 data-reveal="" data-i18n="phil.h2" style="margin: 0 0 30px; font-weight: 900; text-transform: uppercase; color: #FFFFFF; font-size: clamp(34px, 3.6vw, 54px); line-height: 1.02; letter-spacing: -0.02em;">A measured glimpse.</h2>
+                <p data-reveal="" data-i18n="phil.body" style="margin: 0; max-width: 400px; font-weight: 300; font-size: 16px; line-height: 1.8; color: #9A988F;">Thirty years of window displays, stands, scenography and custom furnishing - the kind that make people stop and look. Built to carry a brand's best moment on the floor.</p>
+              </div>
+              <div></div>
+              <div data-reveal="" data-hgroup="" data-hborder="1" style="position: relative; aspect-ratio: 4 / 5; max-height: 640px; border: 1px solid #222222; overflow: hidden; transition: border-color 0.42s ease;">
+                <img data-h-img="" data-off="0.55" data-on="0.85" src="assets/imgc/measured-glimpse.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.55; transform: scale(1.06); transition: opacity 0.72s cubic-bezier(0.16, 1, 0.3, 1), transform 0.72s cubic-bezier(0.16, 1, 0.3, 1);">
+                <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.05) 45%);"></div>
+              </div>
+            </div>
+          </section>
+
+          <section style="border-top: 1px solid #161616; border-bottom: 1px solid #161616;">
+            <div style="max-width: 1360px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr);">
+              <sc-for list="{{ stats }}" as="s" hint-placeholder-count="3">
+                <div style="padding: 40px; border-left: 1px solid #161616;">
+                  <div style="font-weight: 900; font-size: 56px; line-height: 1; color: #FFFFFF; letter-spacing: -0.02em;">{{ s.k }}</div>
+                  <div style="margin-top: 12px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #7E7E7A;">{{ s.v }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </section><section style="max-width: 1360px; margin: 0 auto; padding: 150px 40px 110px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; gap: 24px;">
+              <div>
+                <div data-reveal="" data-i18n="arch.eyebrow" style="font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal-yellow); margin-bottom: 18px;">Archive</div>
+                <h3 data-reveal="" data-i18n="arch.h3" style="margin: 0; font-weight: 900; text-transform: uppercase; color: #FFFFFF; font-size: clamp(32px, 3.4vw, 50px); letter-spacing: -0.02em;">Select artifacts</h3>
+              </div>
+              <button onClick="{{ goWork }}" style="font-family: inherit; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #C9C7C1; background: none; border: 0; border-bottom: 1px solid #3A3A3A; padding: 0 0 6px; cursor: pointer;" style-hover="color: #EFD32B; border-bottom-color: #EFD32B;"><span data-i18n="arch.link">View the index →</span></button>
+            </div>
+            <div class="stlm-bento" style="display: grid; grid-template-columns: 8fr 4fr; grid-template-rows: 1fr 1fr; gap: 20px; height: min(74vh, 720px);">
+              <div data-hgroup="" data-hborder="1" onClick="{{ goWork }}" style="grid-row: 1 / span 2; position: relative; border: 1px solid #222222; overflow: hidden; cursor: pointer; transition: border-color 0.42s ease;">
+                <img data-h-img="" data-off="0.45" data-on="0.75" src="assets/imgc/select-hero.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.45; transform: scale(1.06); transition: opacity 0.72s cubic-bezier(0.16, 1, 0.3, 1), transform 0.72s cubic-bezier(0.16, 1, 0.3, 1);">
+                <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.05) 55%);"></div>
+                <div style="position: absolute; left: 40px; right: 40px; bottom: 36px;">
+                  <span data-rd="" style="position: relative; display: inline-block;">
+                    <span data-rd-text="" data-dim="0.14" data-i18n="bento.a.title" style="display: inline-block; font-weight: 900; text-transform: uppercase; color: #FFFFFF; font-size: clamp(30px, 3.4vw, 52px); line-height: 1; letter-spacing: -0.01em; opacity: 0.14; transition: opacity 0.42s cubic-bezier(0.16, 1, 0.3, 1);">DISPLAY "WEAR MEDICINE"</span>
+                    <span data-rd-bar="" aria-hidden="true" style="position: absolute; left: -3px; right: -3px; top: 6%; height: 88%; background: #222222; transform: scaleX(1); transform-origin: right; transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);"></span>
+                  </span>
+                  <div data-i18n="bento.a.meta" style="margin-top: 14px; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal-yellow);">Window display campaign</div>
+                </div>
+              </div>
+              <div data-hgroup="" data-hborder="1" onClick="{{ goWork }}" style="position: relative; border: 1px solid #222222; overflow: hidden; cursor: pointer; transition: border-color 0.42s ease;">
+                <img data-h-img="" data-off="0.35" data-on="0.7" src="assets/img/pos/popup-1.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.35; transform: scale(1.06); transition: opacity 0.72s cubic-bezier(0.16, 1, 0.3, 1), transform 0.72s cubic-bezier(0.16, 1, 0.3, 1);">
+                <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.1) 60%);"></div>
+                <div style="position: absolute; left: 28px; right: 28px; bottom: 26px;">
+                  <span data-rd="" style="position: relative; display: inline-block;">
+                    <span data-rd-text="" data-dim="0.16" data-i18n="bento.b.title" style="display: inline-block; font-weight: 900; text-transform: uppercase; color: #FFFFFF; font-size: 24px; line-height: 1; opacity: 0.16; transition: opacity 0.42s cubic-bezier(0.16, 1, 0.3, 1);">RESERVED</span>
+                    <span data-rd-bar="" aria-hidden="true" style="position: absolute; left: -2px; right: -2px; top: 4%; height: 92%; background: #2A2A2A; transform: scaleX(1); transform-origin: right; transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);"></span>
+                  </span>
+                  <div data-i18n="bento.b.meta" style="margin-top: 10px; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #7E7E7A;">Pop-up store</div>
+                </div>
+              </div>
+              <div data-hgroup="" data-hborder="1" onClick="{{ goWork }}" style="position: relative; border: 1px solid #222222; overflow: hidden; cursor: pointer; transition: border-color 0.42s ease;">
+                <img data-h-img="" data-off="0.35" data-on="0.7" src="assets/imgc/house-store.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.35; transform: scale(1.06); transition: opacity 0.72s cubic-bezier(0.16, 1, 0.3, 1), transform 0.72s cubic-bezier(0.16, 1, 0.3, 1);">
+                <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.1) 60%);"></div>
+                <div style="position: absolute; left: 28px; right: 28px; bottom: 26px;">
+                  <span data-rd="" style="position: relative; display: inline-block;">
+                    <span data-rd-text="" data-dim="0.16" data-i18n="bento.c.title" style="display: inline-block; font-weight: 900; text-transform: uppercase; color: #FFFFFF; font-size: 24px; line-height: 1; opacity: 0.16; transition: opacity 0.42s cubic-bezier(0.16, 1, 0.3, 1);">"House" store</span>
+                    <span data-rd-bar="" aria-hidden="true" style="position: absolute; left: -2px; right: -2px; top: 4%; height: 92%; background: #2A2A2A; transform: scaleX(1); transform-origin: right; transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);"></span>
+                  </span>
+                  <div data-i18n="bento.c.meta" style="margin-top: 10px; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #7E7E7A;">Retail space</div>
+                </div>
+              </div>
+            </div>
+          <div ref="{{ spotRef }}" data-cursor-glow="" aria-hidden="true" style="position: fixed; left: -152px; top: -28px; width: 520px; height: 520px; margin-left: -260px; margin-top: -260px; border-radius: 50%; background: radial-gradient(circle, rgba(239,211,43,0.07) 0%, rgba(10,10,10,0) 65%); pointer-events: none; z-index: 60; mix-blend-mode: plus-lighter; opacity: 0; transition: opacity 0.42s ease"></div></section>
+
+          
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isStage }}" hint-placeholder-val="{{ false }}">
+        <div data-screen-label="Home - Stage">
+          <section style="position: relative; height: calc(100vh - 72px); min-height: 620px; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; background: #050505;">
+            <x-import component-from-global-scope="veil-shader" from="./veil-shader.js" intensity="{{ shaderIntensityDim }}" hint-size="100%,100%" style="position: absolute; inset: 0; opacity: 0.7;"></x-import>
+            <img data-parallax="0.1" src="assets/logo-mark-white.png" alt="" aria-hidden="true" style="position: absolute; right: -110px; top: 40px; width: 540px; opacity: 0.08; pointer-events: none;">
+            <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0.1) 45%, rgba(10,10,10,0.94) 100%); pointer-events: none;"></div>
+            <div style="position: relative; z-index: 2; padding: 0 40px 64px; max-width: 1440px; width: 100%; margin: 0 auto; box-sizing: border-box;">
+              <div data-reveal="" data-i18n="hero.eyebrow" style="font-size: 11px; font-weight: 500; letter-spacing: 0.34em; text-transform: uppercase; color: var(--signal-yellow); margin-bottom: 28px;">Design · Production · Installation</div>
+              <h1 style="margin: 0; font-weight: 900; text-transform: uppercase; color: #FFFFFF; font-size: clamp(60px, 9.6vw, 158px); line-height: 0.92; letter-spacing: -0.025em;">
+                <span data-i18n="stage.l1" style="display: block;">Built to be</span>
+                <span data-i18n="stage.l2" style="display: block; -webkit-text-stroke: 2px #FFFFFF; color: transparent;">seen.</span>
+              </h1>
+              <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; margin-top: 40px; flex-wrap: wrap;">
+                <p data-reveal="" data-i18n="hero.standfirst" style="margin: 0; max-width: 480px; font-weight: 300; font-size: 18px; line-height: 1.7; color: #C9C7C1;">In STOLMAR, we combine creativity with production versatility - one workshop, from concept to installation.</p>
+                <div data-reveal="" style="display: flex; gap: 14px;">
+                  <x-import component-from-global-scope="STOLMARDesignSystem_e129fc.Button" variant="accent" size="lg" on-click="{{ goWork }}" hint-size="190px,48px"><span data-i18n="hero.cta1">Glimpse the work</span></x-import>
+                  <x-import component-from-global-scope="STOLMARDesignSystem_e129fc.Button" variant="secondary" size="lg" on-click="{{ goStudio }}" dc-props="{{ secondaryBtnProps }}" hint-size="140px,48px"><span data-i18n="hero.cta2">The studio</span></x-import>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section style="border-top: 1px solid #161616; border-bottom: 1px solid #161616;">
+            <div style="max-width: 1360px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr);">
+              <sc-for list="{{ stats }}" as="s" hint-placeholder-count="3">
+                <div style="padding: 40px; border-left: 1px solid #161616;">
+                  <div style="font-weight: 900; font-size: 56px; line-height: 1; color: #FFFFFF; letter-spacing: -0.02em;">{{ s.k }}</div>
+                  <div style="margin-top: 12px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #7E7E7A;">{{ s.v }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </section>
+
+          <section style="max-width: 1360px; margin: 0 auto; padding: 140px 40px 110px;">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 36px; gap: 24px;">
+              <h2 data-reveal="" data-i18n="stage.h2" style="margin: 0; font-weight: 900; text-transform: uppercase; font-size: clamp(26px, 2.6vw, 38px); color: #FFFFFF; letter-spacing: -0.01em;">A frame from each</h2>
+              <span data-i18n="stage.note" style="font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #7E7E7A;">Selected frames · 2015–2026</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+              <sc-for list="{{ teaser }}" as="p" hint-placeholder-count="4">
+                <x-import component-from-global-scope="STOLMARDesignSystem_e129fc.ProjectTile" eyebrow="{{ p.eyebrow }}" title="{{ p.title }}" materials="{{ p.materials }}" image-src="{{ p.image }}" mark-src="assets/logo-mark.svg" ratio="3 / 4" on-click="{{ goWork }}" hint-size="100%,400px"></x-import>
+              </sc-for>
+            </div>
+          </section>
+
+          <section style="border-top: 1px solid #161616; padding: 150px 40px; text-align: center;">
+            <p style="margin: 0 auto; max-width: 880px; font-weight: 900; text-transform: uppercase; font-size: clamp(28px, 3.4vw, 50px); line-height: 1.14; letter-spacing: -0.015em;">
+              <span data-i18n="statement.a" style="color: #FFFFFF;">One frame carries the room. </span>
+              <span data-i18n="statement.b" style="color: #3A3A3A;">The rest is best seen in person.</span>
+            </p>
+          </section>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isArchiveV }}" hint-placeholder-val="{{ false }}">
+        <div data-screen-label="Home - Archive">
+          <section style="display: grid; grid-template-columns: 7fr 5fr; min-height: calc(100vh - 72px); border-bottom: 1px solid #161616;">
+            <div style="padding: 88px 40px 64px; display: flex; flex-direction: column; justify-content: center;">
+              <div data-reveal="" data-i18n="archv.eyebrow" style="font-size: 11px; font-weight: 500; letter-spacing: 0.34em; text-transform: uppercase; color: var(--signal-yellow); margin-bottom: 48px;">The manifest</div>
+              <div style="display: flex; flex-direction: column;">
+                <button data-hgroup="" onClick="{{ goWork }}" style="display: flex; align-items: baseline; gap: 28px; background: none; border: 0; border-top: 1px solid #161616; padding: 26px 0; cursor: pointer; text-align: left; font-family: inherit;">
+                  <span data-h-num="" style="font-size: 12px; font-weight: 500; letter-spacing: 0.14em; color: #3A3A3A; transition: color 0.42s ease;">01</span>
+                  <span data-h-txt="" data-c="#4A4A4A" data-i18n="archv.i1" style="font-weight: 900; text-transform: uppercase; font-size: clamp(32px, 4vw, 60px); line-height: 1; letter-spacing: -0.02em; color: #4A4A4A; transition: color 0.42s ease, transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);">Window displays</span>
+                </button>
+                <button data-hgroup="" onClick="{{ goWork }}" style="display: flex; align-items: baseline; gap: 28px; background: none; border: 0; border-top: 1px solid #161616; padding: 26px 0; cursor: pointer; text-align: left; font-family: inherit;">
+                  <span data-h-num="" style="font-size: 12px; font-weight: 500; letter-spacing: 0.14em; color: #3A3A3A; transition: color 0.42s ease;">02</span>
+                  <span data-h-txt="" data-c="#4A4A4A" data-i18n="archv.i2" style="font-weight: 900; text-transform: uppercase; font-size: clamp(32px, 4vw, 60px); line-height: 1; letter-spacing: -0.02em; color: #4A4A4A; transition: color 0.42s ease, transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);">Pop-up stores</span>
+                </button>
+                <button data-hgroup="" onClick="{{ goWork }}" style="display: flex; align-items: baseline; gap: 28px; background: none; border: 0; border-top: 1px solid #161616; padding: 26px 0; cursor: pointer; text-align: left; font-family: inherit;">
+                  <span data-h-num="" style="font-size: 12px; font-weight: 500; letter-spacing: 0.14em; color: #3A3A3A; transition: color 0.42s ease;">03</span>
+                  <span data-h-txt="" data-c="#4A4A4A" data-i18n="archv.i3" style="font-weight: 900; text-transform: uppercase; font-size: clamp(32px, 4vw, 60px); line-height: 1; letter-spacing: -0.02em; color: #4A4A4A; transition: color 0.42s ease, transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);">Exhibitions</span>
+                </button>
+                <button data-hgroup="" onClick="{{ goWork }}" style="display: flex; align-items: baseline; gap: 28px; background: none; border: 0; border-top: 1px solid #161616; padding: 26px 0; cursor: pointer; text-align: left; font-family: inherit;">
+                  <span data-h-num="" style="font-size: 12px; font-weight: 500; letter-spacing: 0.14em; color: #3A3A3A; transition: color 0.42s ease;">04</span>
+                  <span data-h-txt="" data-c="#4A4A4A" data-i18n="archv.i4" style="font-weight: 900; text-transform: uppercase; font-size: clamp(32px, 4vw, 60px); line-height: 1; letter-spacing: -0.02em; color: #4A4A4A; transition: color 0.42s ease, transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);">Event scenography</span>
+                </button>
+                <button data-hgroup="" onClick="{{ goWork }}" style="display: flex; align-items: baseline; gap: 28px; background: none; border: 0; border-top: 1px solid #161616; border-bottom: 1px solid #161616; padding: 26px 0; cursor: pointer; text-align: left; font-family: inherit;">
+                  <span data-h-num="" style="font-size: 12px; font-weight: 500; letter-spacing: 0.14em; color: #3A3A3A; transition: color 0.42s ease;">05</span>
+                  <span data-h-txt="" data-c="#4A4A4A" data-i18n="archv.i5" style="font-weight: 900; text-transform: uppercase; font-size: clamp(32px, 4vw, 60px); line-height: 1; letter-spacing: -0.02em; color: #4A4A4A; transition: color 0.42s ease, transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);">Prototypes</span>
+                </button>
+              </div>
+              <p data-reveal="" data-i18n="hero.standfirst" style="margin: 44px 0 0; max-width: 480px; font-weight: 300; font-size: 16px; line-height: 1.7; color: #7E7E7A;">In STOLMAR, we combine creativity with production versatility - one workshop, from concept to installation.</p>
+            </div>
+            <div style="position: relative; border-left: 1px solid #161616; overflow: hidden; background: #050505;">
+              <x-import component-from-global-scope="veil-shader" from="./veil-shader.js" intensity="{{ shaderIntensity }}" hint-size="100%,100%" style="position: absolute; inset: 0;"></x-import>
+              <div style="position: absolute; left: 28px; top: 28px; border: 1px solid rgba(255,255,255,0.14); padding: 10px 16px; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.5); background: rgba(10,10,10,0.4);" data-i18n="cr.chip">Availability: Winter windows · Q1 2027</div>
+              <div data-i18n="archv.cap" style="position: absolute; left: 28px; bottom: 24px; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.4);">One frame, live</div>
+            </div>
+          </section>
+
+          <section style="max-width: 1360px; margin: 0 auto; padding: 130px 40px 110px;">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 40px; gap: 24px;">
+              <div data-reveal="" data-i18n="archv.idx" style="font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal-yellow);">Index 2015–2026</div>
+              <span data-i18n="work.note" style="font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #7E7E7A;">Selected frames · the rest, in person</span>
+            </div>
+            <div style="display: flex; flex-direction: column;">
+              <sc-for list="{{ indexRows }}" as="p" hint-placeholder-count="8">
+                <div data-hgroup="" onClick="{{ goWork }}" style="display: grid; grid-template-columns: 64px 1.3fr 1.2fr 130px 70px; gap: 20px; align-items: center; border-top: 1px solid #161616; padding: 24px 8px; cursor: pointer;">
+                  <span style="font-size: 12px; font-weight: 500; letter-spacing: 0.14em; color: var(--signal-yellow);">{{ p.n }}</span>
+                  <span data-rd="" style="position: relative; display: inline-block; justify-self: start;">
+                    <span data-rd-text="" data-dim="0.2" style="display: inline-block; font-weight: 900; text-transform: uppercase; font-size: 22px; line-height: 1.1; letter-spacing: -0.01em; color: #FFFFFF; opacity: 0.2; transition: opacity 0.42s cubic-bezier(0.16, 1, 0.3, 1);">{{ p.title }}</span>
+                    <span data-rd-bar="" aria-hidden="true" style="position: absolute; left: -2px; right: -2px; top: 8%; height: 84%; background: #222222; transform: scaleX(1); transform-origin: right; transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);"></span>
+                  </span>
+                  <span style="font-size: 13px; font-weight: 300; color: #7E7E7A;">{{ p.mats }}</span>
+                  <span style="justify-self: start; font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #C9C7C1; border: 1px solid #3A3A3A; border-radius: 999px; padding: 5px 12px;">{{ p.tagLabel }}</span>
+                  <span style="font-size: 12px; color: #7E7E7A; justify-self: end;">{{ p.year }}</span>
+                </div>
+              </sc-for>
+              <div style="border-top: 1px solid #161616;"></div>
+            </div>
+          </section>
+        </div>
+      </sc-if>
+
+      <section style="padding: 90px 40px 130px; text-align: center; position: relative; overflow: hidden; border-top: 1px solid #161616;">
+        <div style="margin-top: 0; display: flex; justify-content: center; align-items: center; flex-wrap: nowrap; gap: clamp(8px, 1.8vw, 28px);">
+          <span data-i18n="cr.word1" style="font-weight: 900; text-transform: uppercase; font-size: clamp(30px, 7vw, 172px); line-height: 1.1; letter-spacing: -0.03em; color: #FFFFFF; white-space: nowrap;">Make it</span>
+          <span ref="{{ spotWrapRef }}" onPointerMove="{{ onSpotMove }}" onPointerLeave="{{ onSpotLeave }}" style="position: relative; display: inline-block; cursor: none; font-weight: 900; text-transform: uppercase; font-size: clamp(30px, 7vw, 172px); line-height: 1.1; letter-spacing: -0.03em; white-space: nowrap;">
+            <span data-spot-underline="" style="position: absolute; left: 0; right: 0; bottom: calc(0.2em - 1.5px); height: 1.5px; background: #FFFFFF;"></span>
+            <span data-i18n="cr.word2" data-spot-dim="" style="color: rgba(255,255,255,0.02);">SEEN</span>
+            <span data-i18n="cr.word2" data-spot-word="" ref="{{ spotOverlayRef }}" style="position: absolute; top: 0; left: 0; color: #EFD32B; pointer-events: none; -webkit-mask-image: radial-gradient(circle 180px at center, black, black 10%, transparent 100%); mask-image: radial-gradient(circle 180px at center, black, black 10%, transparent 100%); -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-size: 360px 360px; mask-size: 360px 360px; -webkit-mask-position: -9999px -9999px; mask-position: -9999px -9999px;">SEEN</span>
+          </span>
+        </div>
+        <p data-reveal="" style="margin: 48px auto 0; max-width: 520px; font-weight: 300; font-size: 16px; line-height: 1.8; color: #9A988F;"><span data-i18n="cr.sub1">Your story is the</span> <span data-i18n="cr.subHero" style="color: #EFD32B;">hero</span><span data-i18n="cr.sub2">. We build the</span> <span data-i18n="cr.subStage" style="color: #EFD32B;">stage</span><span data-i18n="cr.sub3">. Let's do it</span> <span data-i18n="cr.subTogether" style="color: #EFD32B;">together</span><span data-i18n="cr.sub4">.</span></p>
+        <div data-reveal="" style="margin-top: 52px; display: flex; justify-content: center;">
+          <x-import component-from-global-scope="STOLMARDesignSystem_e129fc.Button" variant="accent" size="lg" on-click="{{ goContact }}" hint-size="200px,48px"><span data-i18n="nav.cta">Start the project</span></x-import>
+        </div>
+      </section>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isWorkCinema }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Work - Cinematic" style="position: relative; isolation: isolate;">
+      <div aria-hidden="true" style="position: fixed; inset: 0; z-index: -1; opacity: 0.1; pointer-events: none;">
+        <x-import component-from-global-scope="dot-matrix" from="./dot-matrix.js" frequency="2" speed="4" cellsize="10" gamma="5" chars="X" c0="#FFFFFF" c1="#EFD32B" c2="#000000" hint-size="100%,100%" style="width: 100%; height: 100%;"></x-import>
+      </div>
+      <sc-if value="{{ workIntroTunnel }}" hint-placeholder-val="{{ false }}">
+        <div data-wtunnel="" style="position: relative; height: 300vh; background: #050505;">
+          <div style="position: sticky; top: 72px; height: calc(100vh - 72px); overflow: hidden;">
+            <img data-wt="-0.55" src="assets/imgc/london-ribbons.jpg" alt="" decoding="async" style="position: absolute; left: 4%; top: 8%; width: clamp(140px, 17vw, 300px); aspect-ratio: 4 / 5; object-fit: cover; border: 1px solid #222222; filter: grayscale(1) brightness(0.72); will-change: transform, opacity;">
+            <img data-wt="0.85" src="assets/imgc/umbrellas.jpg" alt="" decoding="async" style="position: absolute; right: 6%; top: 4%; width: clamp(160px, 20vw, 360px); aspect-ratio: 4 / 3; object-fit: cover; border: 1px solid #222222; filter: grayscale(1) brightness(0.72); will-change: transform, opacity;">
+            <img data-wt="-1.1" src="assets/imgc/showroom.jpg" alt="" decoding="async" style="position: absolute; left: 12%; bottom: 6%; width: clamp(170px, 22vw, 400px); aspect-ratio: 16 / 10; object-fit: cover; border: 1px solid #222222; filter: grayscale(1) brightness(0.72); will-change: transform, opacity;">
+            <img data-wt="1.35" src="assets/imgc/event.jpg" alt="" decoding="async" style="position: absolute; right: 10%; bottom: 10%; width: clamp(150px, 18vw, 330px); aspect-ratio: 4 / 5; object-fit: cover; border: 1px solid #222222; filter: grayscale(1) brightness(0.72); will-change: transform, opacity;">
+            <img data-wt="0.4" src="assets/imgc/vogue.jpg" alt="" decoding="async" style="position: absolute; left: 33%; top: 2%; width: clamp(120px, 13vw, 240px); aspect-ratio: 1 / 1; object-fit: cover; border: 1px solid #222222; filter: grayscale(1) brightness(0.72); will-change: transform, opacity;">
+            <img data-wt="-0.8" src="assets/imgc/copper-cages.jpg" alt="" decoding="async" style="position: absolute; right: 30%; bottom: 2%; width: clamp(120px, 14vw, 260px); aspect-ratio: 3 / 4; object-fit: cover; border: 1px solid #222222; filter: grayscale(1) brightness(0.72); will-change: transform, opacity;">
+            <div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(5,5,5,0) 30%, rgba(5,5,5,0.88) 82%); pointer-events: none;"></div>
+            <div data-wt-core="" style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 24px; will-change: transform, opacity;">
+              <div data-i18n="work.eyebrow" style="font-size: 11px; font-weight: 500; letter-spacing: 0.34em; text-transform: uppercase; color: var(--signal-yellow); margin-bottom: 26px;">STOLMAR’s archive</div>
+              <h1 data-i18n="work.h1" style="margin: 0; font-weight: 900; text-transform: uppercase; color: #FFFFFF; font-size: clamp(52px, 9.4vw, 160px); line-height: 0.92; letter-spacing: -0.005em; word-spacing: 0.02em;">The reveal.</h1>
+              <p data-i18n="work.lead" style="margin: 30px 0 0; max-width: 560px; font-size: 17px; font-weight: 300; line-height: 1.7; color: #C9C7C1;">Every project starts covered. Some stay that way for good. These didn't.</p>
+              <div data-wt-rule="" style="width: 200px; height: 2px; background: var(--signal-yellow); margin-top: 40px; transform: scaleX(0); transform-origin: center;"></div>
+              <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 36px; justify-content: center;">
+                <sc-for list="{{ cinema }}" as="ch" hint-placeholder-count="3">
+                  <button onClick="{{ ch.jump }}" style="font-family: inherit; cursor: pointer; display: inline-flex; align-items: baseline; gap: 10px; background: rgba(10,10,10,0.55); border: 1px solid #222222; padding: 11px 16px; transition: border-color 0.2s ease;" style-hover="border-color: rgba(239,211,43,0.55);">
+                    <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: var(--signal-yellow);">{{ ch.n }}</span>
+                    <span style="font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #C9C7C1;">{{ ch.short }}</span>
+                  </button>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ workIntroClassic }}" hint-placeholder-val="{{ true }}">
+      <section data-wr="" style="max-width: 1360px; margin: 0 auto; padding: 96px 40px 40px; min-height: 52vh; display: flex; flex-direction: column; justify-content: center; box-sizing: border-box;">
+        <div data-wr-eyebrow="" data-i18n="work.eyebrow" style="font-size: 11px; font-weight: 500; letter-spacing: 0.34em; text-transform: uppercase; color: var(--signal-yellow); margin-bottom: 28px; min-height: 1.2em;">STOLMAR’s archive</div>
+        <div style="position: relative; overflow: hidden; width: fit-content; margin-bottom: 24px;">
+          <h1 data-wr-h1="" data-i18n="work.h1" style="margin: 0; font-weight: 900; text-transform: uppercase; color: #FFFFFF; font-size: clamp(44px, 7vw, 108px); line-height: 0.95; letter-spacing: -0.005em; word-spacing: 0.02em; transform: translateY(110%);">The reveal.</h1>
+          <div data-wr-bar="" aria-hidden="true" style="position: absolute; inset: 0; background: var(--signal-yellow); transform: translateX(-101%);"></div>
+        </div>
+        <p data-wr-sub="" data-i18n="work.lead" style="margin: 0; max-width: 620px; font-size: 17px; font-weight: 300; line-height: 1.7; color: #9A988F; opacity: 0;">Every project starts covered. Some stay that way for good. These didn't.</p>
+              </section>
+      </sc-if>
+      <sc-for list="{{ cinema }}" as="ch" hint-placeholder-count="3">
+        <section data-chapter="{{ ch.id }}" style="border-top: 1px solid #161616;">
+          <div data-cine="" style="position: relative; height: 82vh; min-height: 520px; overflow: hidden; background: #050505;">
+            <div style="position: absolute; inset: 0;">
+              <img data-cine-img="" decoding="async" data-src="{{ ch.hero }}" alt="" style="position: absolute; left: 0; top: -16%; width: 100%; height: 132%; object-fit: cover; opacity: 0.22; filter: grayscale(1) brightness(0.72); will-change: transform, opacity;">
+              <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,5,5,0.3) 0%, rgba(5,5,5,0) 34%, rgba(5,5,5,0.9) 100%);"></div>
+              <span aria-hidden="true" style="position: absolute; right: 40px; top: 6%; font-weight: 900; font-size: clamp(120px, 20vw, 320px); line-height: 0.8; color: rgba(255,255,255,0.04); letter-spacing: -0.04em; pointer-events: none;">{{ ch.n }}</span>
+              <div data-cine-cap="" style="position: absolute; left: 0; right: 0; bottom: 0; padding: 0 40px 52px; opacity: 0; transform: translateY(40px); will-change: opacity, transform;">
+                <div style="max-width: 1360px; margin: 0 auto;">
+                  <div data-cine-rule="" style="width: 180px; height: 2px; background: var(--signal-yellow); transform: scaleX(0); transform-origin: left; margin-bottom: 24px;"></div>
+                  <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--signal-yellow); margin-bottom: 16px;">{{ ch.label }}</div>
+                  <h2 style="margin: 0 0 16px; font-weight: 900; text-transform: uppercase; color: #FFFFFF; font-size: clamp(30px, 4.6vw, 68px); line-height: 0.98; letter-spacing: -0.02em; max-width: 900px;">{{ ch.t }}</h2>
+                  <sc-if value="{{ showCopy }}" hint-placeholder-val="{{ false }}">
+                    <p style="margin: 0; font-size: clamp(16px, 1.6vw, 20px); font-weight: 400; line-height: 1.5; color: #FFFFFF; max-width: 640px;">{{ ch.punch }}</p>
+                  </sc-if>
+                </div>
+              </div>
+            </div>
+          </div>
+          <sc-if value="{{ showCopy }}" hint-placeholder-val="{{ false }}">
+            <div style="max-width: 1360px; margin: 0 auto; padding: 52px 40px 8px;">
+              <div class="stlm-cinemeta" style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: start;">
+                <p data-reveal="" style="margin: 0; font-size: 16px; font-weight: 300; line-height: 1.75; color: #9A988F; max-width: 560px;">{{ ch.d }}</p>
+                <div data-reveal="" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+                  <sc-for list="{{ ch.specs }}" as="sp" hint-placeholder-count="3">
+                    <div style="border-top: 2px solid var(--signal-yellow); padding-top: 12px;">
+                      <div style="font-size: 10px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: #7E7E7A; margin-bottom: 8px;">{{ sp.k }}</div>
+                      <div style="font-size: 15px; font-weight: 700; color: #FFFFFF; letter-spacing: -0.01em; line-height: 1.2;">{{ sp.v }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+          <div class="stlm-cinegrid" style="max-width: 1360px; margin: 0 auto; padding: 40px 40px 88px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+            <sc-for list="{{ ch.frames }}" as="fr" hint-placeholder-count="4">
+              <div data-hgroup="" data-hborder="1" data-reveal="" onClick="{{ fr.open }}" style="border: 1px solid #222222; background: #0E0E0E; transition: border-color 0.42s ease; cursor: pointer;">
+                <div style="position: relative; aspect-ratio: 4 / 3; overflow: hidden;">
+                  <img data-h-img="" data-gray="" decoding="async" data-off="0.45" data-on="0.92" data-src="{{ fr.img }}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.45; filter: grayscale(1) brightness(0.95); transform: scale(1.06); transition: opacity 0.72s cubic-bezier(0.16,1,0.3,1), filter 0.72s cubic-bezier(0.16,1,0.3,1), transform 0.72s cubic-bezier(0.16,1,0.3,1);">
+                </div>
+                <sc-if value="{{ showCopy }}" hint-placeholder-val="{{ false }}">
+                  <div style="padding: 13px 15px; border-top: 1px solid #222222;">
+                    <div style="font-size: 12px; font-weight: 700; color: #FFFFFF; letter-spacing: -0.01em; margin-bottom: 3px;">{{ fr.title }}</div>
+                    <div style="font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--signal-yellow);">{{ fr.loc }}</div>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </section>
+      </sc-for>
+      <sc-if value="{{ lbOpen }}" hint-placeholder-val="{{ false }}">
+        <div class="stlm-lb-overlay" onClick="{{ lbClose }}" style="position: fixed; inset: 0; z-index: 200; background: rgba(5,5,5,0.975); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); display: flex; align-items: center; justify-content: center; padding: 0; animation: {{ lbOverlayAnim }} 0.32s cubic-bezier(0.16,1,0.3,1) both;">
+          <div class="stlm-lb-panel" onClick="{{ lbStop }}" style="position: relative; width: 100vw; height: 100vh; background: transparent; display: flex; flex-direction: column; animation: {{ lbPanelAnim }} 0.56s cubic-bezier(0.16,1,0.3,1) both;">
+            <div style="position: relative; flex: 1; min-height: 0; overflow: hidden; background: transparent;">
+              <x-import component="Coverflow" from="./Coverflow.jsx" slides="{{ lbSlideSrcs }}" start="{{ 0 }}" hint-size="100%,100%"></x-import>
+            </div>
+            <div style="flex: 0 0 auto; min-height: 92px; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 22px clamp(24px, 4vw, 56px) 30px;">
+              <div>
+                <div style="font-size: 14px; font-weight: 700; color: #FFFFFF; letter-spacing: -0.01em; margin-bottom: 4px;">{{ lbTitle }}</div>
+                <div style="font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--signal-yellow);">{{ lbLoc }}</div>
+              </div>
+
+            </div>
+            <button onClick="{{ lbClose }}" aria-label="Close" style="position: absolute; right: clamp(16px, 3vw, 34px); top: clamp(16px, 3vw, 34px); width: 44px; height: 44px; z-index: 3; display: flex; align-items: center; justify-content: center; font-size: 18px; font-family: inherit; color: #0A0A0A; background: var(--signal-yellow); border: 0; cursor: pointer;">✕</button>
+          </div>
+        </div>
+      </sc-if>
+      <section style="background: var(--signal-yellow); padding: 100px 40px;">
+        <div style="max-width: 1360px; margin: 0 auto; display: flex; align-items: flex-end; justify-content: space-between; gap: 48px; flex-wrap: wrap; row-gap: 36px;">
+          <div data-reveal="" style="max-width: 660px;">
+            <div data-i18n="work.ctaEyebrow" style="font-size: 11px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: #0A0A0A; margin-bottom: 20px;">It was just a glimpse</div>
+            <h2 data-i18n="work.ctaH1" style="margin: 0; font-weight: 900; text-transform: uppercase; color: #0A0A0A; font-size: clamp(32px, 4.2vw, 64px); line-height: 0.98; letter-spacing: -0.02em;">We build what gets seen</h2>
+          </div>
+          <x-import component-from-global-scope="STOLMARDesignSystem_e129fc.Button" variant="primary" size="lg" on-click="{{ goContact }}" hint-size="200px,54px"><span data-i18n="work.ndaBtn">See what's possible</span></x-import>
+        </div>
+      </section>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isWorkIndex }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Work" style="position: relative; isolation: isolate;">
+      <div aria-hidden="true" style="position: fixed; inset: 0; z-index: -1; opacity: 0.1; pointer-events: none;">
+        <x-import component-from-global-scope="dot-matrix" from="./dot-matrix.js" frequency="2" speed="4" cellsize="10" gamma="5" chars="X" c0="#FFFFFF" c1="#EFD32B" c2="#000000" hint-size="100%,100%" style="width: 100%; height: 100%;"></x-import>
+      </div>
+      <section style="max-width: 1360px; margin: 0 auto; padding: 96px 40px 0;">
+        <div data-reveal="" data-i18n="work.eyebrow" style="font-size: 11px; font-weight: 500; letter-spacing: 0.34em; text-transform: uppercase; color: var(--signal-yellow); margin-bottom: 26px;">The index</div>
+        <div data-reveal="" style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap;">
+          <h1 data-i18n="work.h1" style="margin: 0; font-weight: 900; text-transform: uppercase; color: #FFFFFF; font-size: clamp(44px, 6.4vw, 96px); line-height: 0.94; letter-spacing: -0.02em;">Selected frames.</h1>
+          <span data-i18n="work.note" style="font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #7E7E7A; padding-bottom: 10px;">Selected frames · the rest, in person</span>
+        </div>
+        <div data-reveal="" style="display: flex; gap: 10px; margin-top: 48px; flex-wrap: wrap;">
+          <sc-for list="{{ filters }}" as="f" hint-placeholder-count="4">
+            <button onClick="{{ f.pick }}" style="{{ f.style }}">{{ f.label }}</button>
+          </sc-for>
+        </div>
+      </section>
+      <section style="max-width: 1360px; margin: 0 auto; padding: 40px 40px 96px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;">
+          <sc-for list="{{ shownProjects }}" as="p" hint-placeholder-count="8">
+            <x-import component-from-global-scope="STOLMARDesignSystem_e129fc.ProjectTile" eyebrow="{{ p.eyebrow }}" title="{{ p.title }}" materials="{{ p.materials }}" image-src="{{ p.image }}" mark-src="assets/logo-mark.svg" ratio="3 / 4" hint-size="100%,400px"></x-import>
+          </sc-for>
+        </div>
+      </section>
+      <section style="background: var(--signal-yellow); padding: 100px 40px;">
+        <div style="max-width: 1360px; margin: 0 auto; display: flex; align-items: flex-end; justify-content: space-between; gap: 48px; flex-wrap: wrap; row-gap: 36px;">
+          <div data-reveal="" style="max-width: 660px;">
+            <div data-i18n="work.ctaEyebrow" style="font-size: 11px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: #0A0A0A; margin-bottom: 22px;">It was just a glimpse</div>
+            <h2 data-i18n="work.ctaH1" style="margin: 0 0 20px; font-weight: 900; text-transform: uppercase; color: #0A0A0A; font-size: clamp(32px, 4.2vw, 64px); line-height: 0.98; letter-spacing: -0.02em;">Materials, finishes, samples - up close.</h2>
+            
+          </div>
+          <x-import component-from-global-scope="STOLMARDesignSystem_e129fc.Button" variant="primary" size="lg" on-click="{{ goContact }}" hint-size="200px,54px"><span data-i18n="work.ndaBtn">See what's possible</span></x-import>
+        </div>
+      </section>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isStudio }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Studio" style="position: relative; isolation: isolate;">
+      <div aria-hidden="true" style="position: fixed; inset: 0; z-index: -1; opacity: 0.1; pointer-events: none;">
+        <x-import component-from-global-scope="dot-matrix" from="./dot-matrix.js" frequency="2" speed="4" cellsize="10" gamma="5" chars="X" c0="#FFFFFF" c1="#EFD32B" c2="#000000" hint-size="100%,100%" style="width: 100%; height: 100%;"></x-import>
+      </div>
+      <section style="max-width: 1360px; margin: 0 auto; padding: 96px 40px 80px; min-height: calc(100vh - 72px); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; position: relative;">
+        <div data-i18n="studio.eyebrow" style="font-size: 11px; font-weight: 500; letter-spacing: 0.34em; text-transform: uppercase; color: var(--signal-yellow); margin-bottom: 26px;">What we do</div>
+        <h1 data-tw="" style="margin: 0; font-weight: 900; text-transform: uppercase; font-size: clamp(44px, 6.4vw, 96px); line-height: 0.94; letter-spacing: -0.02em;">
+          <span data-tw-line="" data-i18n="studio.h1a" style="display: block; color: #FFFFFF; min-height: 0.94em;">Three disciplines.</span>
+          <span data-tw-cycle="" data-i18n="studio.h1b" style="display: block; color: #3A3A3A; min-height: 0.94em;">One workshop.</span>
+        </h1>
+        <p data-reveal="" data-i18n="studio.stand" style="margin: 34px 0 0; max-width: 620px; font-weight: 300; font-size: 18px; line-height: 1.7; color: #C9C7C1;">One partner from concept to installation - from a single window display to global retail rollouts.</p>
+        <div aria-hidden="true" data-hero-cue="" style="position: absolute; right: 40px; bottom: 28px; z-index: 2;">
+          <span style="display: block; width: 1px; height: 46px; background: #3A3A3A; position: relative; overflow: hidden;">
+            <span style="position: absolute; left: 0; top: -45%; width: 100%; height: 42%; background: var(--signal-yellow); animation: stlm-cue 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;"></span>
+          </span>
+        </div>
+      </section>
+
+      <section style="border-top: 1px solid #161616; border-bottom: 1px solid #161616;">
+        <div style="max-width: 1360px; margin: 0 auto; padding: 0 40px;">
+          <div data-reveal="" style="display: flex; align-items: baseline; justify-content: space-between; gap: 24px; padding: 52px 0 8px;">
+            <div data-i18n="cap.eye" style="font-size: 11px; font-weight: 500; letter-spacing: 0.34em; text-transform: uppercase; color: var(--signal-yellow);">Fields of expertise</div>
+          </div>
+
+          <!-- 01 -->
+          <div style="display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: clamp(32px, 5vw, 86px); align-items: center; padding: clamp(58px, 7vw, 96px) 0;">
+            <div data-reveal="" data-slide="left">
+              <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--signal-yellow); margin-bottom: 24px;">FIELD / 01</div>
+              <h3 data-i18n="cap.c1t" style="margin: 0; font-weight: 900; text-transform: uppercase; color: #FFFFFF; font-size: clamp(34px, 4vw, 62px); line-height: 1.04; letter-spacing: -0.02em;">POS Campaigns &amp; Visual Merchandising</h3>
+              <p data-i18n="cap.c1d" style="margin: 26px 0 0; max-width: 520px; font-weight: 300; font-size: 17px; line-height: 1.75; color: #9A988F;">Seasonal windows, entrance zones and in-store campaigns rolled out across hundreds of stores at once - designed, produced and installed by one team, to one standard.</p>
+              <div style="margin-top: 30px; display: flex; flex-direction: column; gap: 12px;">
+                <div style="display: flex; align-items: center; gap: 12px; font-size: 14px; color: #C9C7C1;"><span aria-hidden="true" style="width: 16px; height: 2px; background: var(--signal-yellow); flex-shrink: 0;"></span><span data-i18n="cap.c1a">Window displays &amp; entrance zones</span></div>
+                <div style="display: flex; align-items: center; gap: 12px; font-size: 14px; color: #C9C7C1;"><span aria-hidden="true" style="width: 16px; height: 2px; background: var(--signal-yellow); flex-shrink: 0;"></span><span data-i18n="cap.c1b">Seasonal VM campaigns</span></div>
+                <div style="display: flex; align-items: center; gap: 12px; font-size: 14px; color: #C9C7C1;"><span aria-hidden="true" style="width: 16px; height: 2px; background: var(--signal-yellow); flex-shrink: 0;"></span><span data-i18n="cap.c1c">In-store pop-ups</span></div>
+                <div style="display: flex; align-items: center; gap: 12px; font-size: 14px; color: #C9C7C1;"><span aria-hidden="true" style="width: 16px; height: 2px; background: var(--signal-yellow); flex-shrink: 0;"></span><span data-i18n="cap.c1e">POS displays</span></div>
+              </div>
+            </div>
+            <div data-reveal="" data-slide="right">
+              <div data-hgroup="" data-hborder="1" style="position: relative; aspect-ratio: 4 / 3; overflow: hidden; border: 1px solid #222222; transition: border-color 0.42s ease;">
+                <img data-h-img="" data-off="0.75" data-on="0.92" src="assets/imgc/field-01-pos.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.75; transform: scale(1.06); transition: opacity 0.72s cubic-bezier(0.16, 1, 0.3, 1), transform 0.72s cubic-bezier(0.16, 1, 0.3, 1);">
+                <div aria-hidden="true" style="position: absolute; inset: 0; box-shadow: inset 0 0 62px 12px rgba(0,0,0,0.62);"></div>
+                <img src="assets/logo-mark-white.png" aria-hidden="true" style="position: absolute; right: 14px; top: 14px; width: clamp(30px, 3vw, 46px); opacity: 0.09;">
+                
+              </div>
+              </div>
+          </div>
+
+          <!-- 02 -->
+          <div class="stlm-field-flip" style="display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: clamp(32px, 5vw, 86px); align-items: center; padding: clamp(58px, 7vw, 96px) 0; border-top: 1px solid #161616;">
+            <div data-reveal="" data-slide="left">
+              <div data-hgroup="" data-hborder="1" style="position: relative; aspect-ratio: 4 / 3; overflow: hidden; border: 1px solid #222222; transition: border-color 0.42s ease;">
+                <img data-h-img="" data-off="0.75" data-on="0.92" src="assets/imgc/retail-exhibitions.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.75; transform: scale(1.06); transition: opacity 0.72s cubic-bezier(0.16, 1, 0.3, 1), transform 0.72s cubic-bezier(0.16, 1, 0.3, 1);">
+                <div aria-hidden="true" style="position: absolute; inset: 0; box-shadow: inset 0 0 62px 12px rgba(0,0,0,0.62);"></div>
+                <img src="assets/logo-mark-white.png" aria-hidden="true" style="position: absolute; right: 14px; top: 14px; width: clamp(30px, 3vw, 46px); opacity: 0.09;">
+                
+              </div>
+              </div>
+            <div data-reveal="" data-slide="right">
+              <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--signal-yellow); margin-bottom: 24px;">FIELD / 02</div>
+              <h3 data-i18n="cap.c2t" style="margin: 0; font-weight: 900; text-transform: uppercase; color: #FFFFFF; font-size: clamp(34px, 4vw, 62px); line-height: 1.04; letter-spacing: -0.02em;">Retail Spaces &amp; Exhibitions</h3>
+              <p data-i18n="cap.c2d" style="margin: 26px 0 0; max-width: 520px; font-weight: 300; font-size: 17px; line-height: 1.75; color: #9A988F;">Standalone pop-up stores, exhibition builds and bespoke retail environments - from prototype to installation, in one city or in twelve.</p>
+              <div style="margin-top: 30px; display: flex; flex-direction: column; gap: 12px;">
+                <div style="display: flex; align-items: center; gap: 12px; font-size: 14px; color: #C9C7C1;"><span aria-hidden="true" style="width: 16px; height: 2px; background: var(--signal-yellow); flex-shrink: 0;"></span><span data-i18n="cap.c2a">Standalone pop-up stores</span></div>
+                <div style="display: flex; align-items: center; gap: 12px; font-size: 14px; color: #C9C7C1;"><span aria-hidden="true" style="width: 16px; height: 2px; background: var(--signal-yellow); flex-shrink: 0;"></span><span data-i18n="cap.c2b">Exhibition &amp; trade fair stands</span></div>
+                <div style="display: flex; align-items: center; gap: 12px; font-size: 14px; color: #C9C7C1;"><span aria-hidden="true" style="width: 16px; height: 2px; background: var(--signal-yellow); flex-shrink: 0;"></span><span data-i18n="cap.c2c">Custom furniture &amp; shop fittings</span></div>
+                <div style="display: flex; align-items: center; gap: 12px; font-size: 14px; color: #C9C7C1;"><span aria-hidden="true" style="width: 16px; height: 2px; background: var(--signal-yellow); flex-shrink: 0;"></span><span data-i18n="cap.c2e">Museum &amp; cultural exhibitions</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 03 -->
+          <div style="display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: clamp(32px, 5vw, 86px); align-items: center; padding: clamp(58px, 7vw, 96px) 0; border-top: 1px solid #161616;">
+            <div data-reveal="" data-slide="left">
+              <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--signal-yellow); margin-bottom: 24px;">FIELD / 03</div>
+              <h3 data-i18n="cap.c3t" style="margin: 0; font-weight: 900; text-transform: uppercase; color: #FFFFFF; font-size: clamp(34px, 4vw, 62px); line-height: 1.04; letter-spacing: -0.02em;">Scenography &amp; Events</h3>
+              <p data-i18n="cap.c3d" style="margin: 26px 0 0; max-width: 520px; font-weight: 300; font-size: 17px; line-height: 1.75; color: #9A988F;">Sets, props and temporary brand spaces - built to a fixed date, usually from materials and technologies most workshops keep apart.</p>
+              <div style="margin-top: 30px; display: flex; flex-direction: column; gap: 12px;">
+                <div style="display: flex; align-items: center; gap: 12px; font-size: 14px; color: #C9C7C1;"><span aria-hidden="true" style="width: 16px; height: 2px; background: var(--signal-yellow); flex-shrink: 0;"></span><span data-i18n="cap.c3a">Set design &amp; build</span></div>
+                <div style="display: flex; align-items: center; gap: 12px; font-size: 14px; color: #C9C7C1;"><span aria-hidden="true" style="width: 16px; height: 2px; background: var(--signal-yellow); flex-shrink: 0;"></span><span data-i18n="cap.c3b">Film &amp; photo sets</span></div>
+                <div style="display: flex; align-items: center; gap: 12px; font-size: 14px; color: #C9C7C1;"><span aria-hidden="true" style="width: 16px; height: 2px; background: var(--signal-yellow); flex-shrink: 0;"></span><span data-i18n="cap.c3c">Event props</span></div>
+                <div style="display: flex; align-items: center; gap: 12px; font-size: 14px; color: #C9C7C1;"><span aria-hidden="true" style="width: 16px; height: 2px; background: var(--signal-yellow); flex-shrink: 0;"></span><span data-i18n="cap.c3e">Temporary brand spaces</span></div>
+              </div>
+            </div>
+            <div data-reveal="" data-slide="right">
+              <div data-hgroup="" data-hborder="1" style="position: relative; aspect-ratio: 4 / 3; overflow: hidden; border: 1px solid #222222; transition: border-color 0.42s ease;">
+                <img data-h-img="" ref="{{ expRef }}" data-off="0.75" data-on="0.92" src="assets/imgc/events-hero.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.75; transform: scale(1.06); transition: opacity 0.72s cubic-bezier(0.16, 1, 0.3, 1), transform 0.72s cubic-bezier(0.16, 1, 0.3, 1);">
+                <div aria-hidden="true" style="position: absolute; inset: 0; box-shadow: inset 0 0 62px 12px rgba(0,0,0,0.62);"></div>
+                <img src="assets/logo-mark-white.png" aria-hidden="true" style="position: absolute; right: 14px; top: 14px; width: clamp(30px, 3vw, 46px); opacity: 0.09;">
+                
+              </div>
+              </div>
+          </div>
+        </div>
+      </section>
+
+      <section style="border-top: 1px solid #161616;">
+        <div style="max-width: 1360px; margin: 0 auto; padding: clamp(64px, 8vw, 110px) 40px clamp(56px, 7vw, 96px);">
+          <div style="margin-bottom: 14px;">
+            <div data-i18n="prod.eye" style="font-size: 11px; font-weight: 500; letter-spacing: 0.34em; text-transform: uppercase; color: var(--signal-yellow);">Production</div>
+          </div>
+          <h2 data-i18n="prod.h" style="margin: 0; font-weight: 900; text-transform: uppercase; color: #FFFFFF; font-size: clamp(34px, 5vw, 72px); line-height: 0.98; letter-spacing: -0.02em; max-width: 760px;">The weight of precision.</h2>
+
+          <div style="position: relative; margin-top: clamp(48px, 6vw, 80px); margin-bottom: clamp(16px, 96px - 6vw, 56px); height: clamp(360px, 44vw, 560px); width: 100%;">
+            <x-import component-from-global-scope="ProdCoverflow" from="./ProdCoverflow.jsx" hint-size="100%,100%"></x-import>
+          </div>
+        </div>
+      </section>
+
+      <section style="border-top: 1px solid #161616; padding: clamp(56px, 6vw, 90px) 40px;">
+        <div style="max-width: 1360px; margin: 0 auto; border: 1px solid #222222; background: var(--surface-stage-raised); display: grid; grid-template-columns: 1.1fr 0.9fr;">
+          <div data-reveal="" style="padding: clamp(48px, 5vw, 64px); border-bottom: 1px solid #222222;">
+            <div data-i18n="deck.eyebrow" style="font-size: 11px; font-weight: 500; letter-spacing: 0.34em; text-transform: uppercase; color: var(--signal-yellow); margin-bottom: 22px;">Ready to share</div>
+            <h2 data-i18n="deck.h1" style="margin: 0 0 20px; font-weight: 900; text-transform: uppercase; color: #FFFFFF; font-size: clamp(30px, 3.6vw, 48px); line-height: 1.02; letter-spacing: -0.02em;">Stolmar capabilities deck</h2>
+            <p data-i18n="deck.body" style="margin: 0 0 28px; font-size: 16px; font-weight: 300; line-height: 1.75; color: #9A988F; max-width: 460px;">One PDF you can drop straight into your next brief. Leave your email, we'll send the download link.</p>
+            
+          </div>
+          <div style="padding: clamp(48px, 5vw, 64px); border-left: 1px solid #222222; display: flex; flex-direction: column; justify-content: center;">
+            <sc-if value="{{ lookbookSent }}" hint-placeholder-val="{{ false }}">
+              <div data-reveal="">
+                <span data-i18n="deck.sentBadge" style="display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #0A0A0A; background: var(--signal-yellow); padding: 7px 12px; margin-bottom: 18px;">Sent</span>
+                <div data-i18n="deck.sentTitle" style="font-weight: 900; text-transform: uppercase; font-size: 26px; color: #FFFFFF; letter-spacing: -0.01em; margin-bottom: 10px;">Check your inbox.</div>
+                <p data-i18n="deck.sentBody" style="margin: 0; color: #C9C7C1; font-weight: 300; max-width: 340px; line-height: 1.7;">The link to the presentation is on its way.</p>
+              </div>
+            </sc-if>
+            <sc-if value="{{ lookbookNotSent }}" hint-placeholder-val="{{ true }}">
+              <form onSubmit="{{ submitLookbook }}" data-reveal="" style="display: flex; flex-direction: column; gap: 20px;">
+                <x-import component-from-global-scope="STOLMARDesignSystem_e129fc.Input" label="{{ f.email }}" type="email" placeholder="{{ f.emailPh }}" on-dark="{{ true }}" value="{{ lookbookEmail }}" on-change="{{ onLookbookEmail }}" hint-size="100%,64px"></x-import>
+                <x-import component-from-global-scope="STOLMARDesignSystem_e129fc.Button" variant="accent" size="lg" full-width="{{ true }}" on-click="{{ submitLookbook }}" hint-size="100%,54px"><span data-i18n="deck.cta">Send me the deck</span></x-import>
+                <span data-i18n="deck.hint" style="font-size: 11px; color: #7E7E7A; text-align: center; letter-spacing: 0.02em;">One email with the link. No spam.</span>
+              </form>
+            </sc-if>
+          </div>
+        </div>
+      </section>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Contact" style="display: grid; grid-template-columns: 1.1fr 0.9fr; min-height: calc(100vh - 72px); position: relative; overflow: hidden;">
+      <img src="assets/logo-mark-white.png" aria-hidden="true" style="position: absolute; left: -160px; bottom: -160px; width: 640px; opacity: 0.06; pointer-events: none; z-index: 0;">
+      <section style="padding: 96px 40px 80px; border-right: 1px solid #161616; position: relative; z-index: 1;">
+        <div data-reveal="" data-i18n="contact.eyebrow" style="font-size: 11px; font-weight: 500; letter-spacing: 0.34em; text-transform: uppercase; color: var(--signal-yellow); margin-bottom: 26px;">START THE PROJECT</div>
+        <h1 data-i18n="contact.h1" style="margin: 0; font-weight: 900; text-transform: uppercase; color: #FFFFFF; font-size: clamp(38px, 4.6vw, 70px); line-height: 0.98; letter-spacing: -0.005em; word-spacing: 0.02em; font-kerning: normal; text-rendering: optimizeLegibility; max-width: 560px;">Do you have an idea? Let's talk how to build it.</h1>
+        <p data-reveal="" data-i18n="contact.body" style="margin: 30px 0 0; max-width: 420px; font-weight: 300; font-size: 16px; line-height: 1.7; color: #C9C7C1;">Send us the scope and we'll come back with a tailored estimate.</p>
+        <div data-reveal="" style="margin-top: 56px; display: flex; flex-direction: column; gap: 14px;">
+          <a href="mailto:info@stolmar.co" style="color: #FFFFFF; font-weight: 700; font-size: 22px; text-decoration: none; letter-spacing: -0.01em;" style-hover="color: #EFD32B;">info@stolmar.co</a>
+          <span style="color: #C9C7C1; font-size: 14px;">+48 505 999 275</span>
+          <span style="color: #7E7E7A; font-size: 13px; line-height: 1.6;">STOLMAR Marian Czajkowski Sp. k.<br>Hodowlana 7, Rumia 84-230, Poland</span>
+        </div>
+      </section>
+      <section style="padding: 96px 40px 80px; background: #161616; position: relative; z-index: 1;">
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+          <div style="height: 100%; display: flex; flex-direction: column; justify-content: center; gap: 18px;">
+            <span data-i18n="contact.sentBadge" style="align-self: flex-start; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #0A0A0A; background: var(--signal-yellow); padding: 7px 12px;">Received</span>
+            <div data-i18n="contact.sentTitle" style="font-weight: 900; text-transform: uppercase; font-size: 30px; color: #FFFFFF; letter-spacing: -0.01em;">We'll be in touch.</div>
+            <p data-i18n="contact.sentBody" style="margin: 0; color: #C9C7C1; font-weight: 300; max-width: 340px; line-height: 1.7;">Expect a reply within two working days with an estimate and next steps.</p>
+          </div>
+        </sc-if>
+        <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ submitForm }}" data-reveal="" style="display: flex; flex-direction: column; gap: 28px;">
+            <x-import component-from-global-scope="STOLMARDesignSystem_e129fc.Input" label="{{ f.name }}" placeholder="{{ f.namePh }}" on-dark="{{ true }}" hint-size="100%,64px"></x-import>
+            <x-import component-from-global-scope="STOLMARDesignSystem_e129fc.Input" label="{{ f.email }}" type="email" placeholder="{{ f.emailPh }}" on-dark="{{ true }}" hint-size="100%,64px"></x-import>
+            <x-import component-from-global-scope="STOLMARDesignSystem_e129fc.Input" label="{{ f.brief }}" placeholder="{{ f.briefPh }}" on-dark="{{ true }}" multiline="{{ true }}" rows="3" hint-size="100%,96px"></x-import>
+            <div style="display: flex; flex-direction: column; gap: 4px;">
+              <label for="stlm-files" style="font-family: inherit; font-weight: 500; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #7E7E7A;">{{ f.files }}</label>
+              <label for="stlm-files" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; box-sizing: border-box; border-bottom: 1px solid #3A3A3A; padding: 10px 0; cursor: pointer;">
+                <span style="font-size: 15px; color: #C9C7C1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ filesSummary }}</span>
+                <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--signal-yellow); flex-shrink: 0;">{{ f.filesCta }}</span>
+              </label>
+              <input id="stlm-files" type="file" multiple="{{ true }}" onChange="{{ onFilesChange }}" style="display: none;">
+              <span style="font-size: 11px; color: #7E7E7A; letter-spacing: 0.02em;">{{ f.filesHint }}</span>
+            </div>
+            <x-import component-from-global-scope="STOLMARDesignSystem_e129fc.Button" variant="accent" size="lg" full-width="{{ true }}" on-click="{{ submitForm }}" hint-size="100%,48px"><span>{{ f.btn }}</span></x-import>
+          </form>
+        </sc-if>
+      </section>
+    </div>
+  </sc-if>
+
+  <footer style="border-top: 1px solid #161616;">
+    <div style="max-width: 1360px; margin: 0 auto; padding: 72px 40px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; align-items: start;">
+      <div style="display: flex; flex-direction: column; gap: 18px;">
+        <img src="assets/logo-full.png" alt="STOLMAR" style="height: 24px; filter: invert(1); align-self: flex-start;">
+        <span data-i18n="footer.tag" style="font-size: 13px; font-weight: 300; color: #7E7E7A;">One workshop. Concept to install.</span>
+        <span style="font-size: 12px; color: #3A3A3A;">FSC® C219631</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <div style="font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #7E7E7A;">Social</div>
+        <div style="display: flex; gap: 14px;">
+          <a class="stlm-soc" href="https://www.instagram.com/stolmar_manufabryka/" target="_blank" rel="noreferrer" aria-label="Stolmar na Instagramie">
+            <span class="stlm-soc-fill" aria-hidden="true"></span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c2.72 0 3.06.01 4.12.06 1.06.05 1.79.22 2.43.47.66.26 1.21.6 1.76 1.15.5.5.9 1.1 1.15 1.76.25.64.42 1.37.47 2.43.05 1.06.06 1.4.06 4.12s-.01 3.06-.06 4.12c-.05 1.06-.22 1.79-.47 2.43a4.9 4.9 0 0 1-1.15 1.76 4.9 4.9 0 0 1-1.76 1.15c-.64.25-1.37.42-2.43.47-1.06.05-1.4.06-4.12.06s-3.06-.01-4.12-.06c-1.06-.05-1.79-.22-2.43-.47a4.9 4.9 0 0 1-1.76-1.15 4.9 4.9 0 0 1-1.15-1.76c-.25-.64-.42-1.37-.47-2.43C2.01 15.06 2 14.72 2 12s.01-3.06.06-4.12c.05-1.06.22-1.79.47-2.43.26-.66.6-1.21 1.15-1.76a4.9 4.9 0 0 1 1.76-1.15c.64-.25 1.37-.42 2.43-.47C8.94 2.01 9.28 2 12 2Zm0 1.8c-2.67 0-2.99.01-4.04.06-.87.04-1.34.18-1.65.3-.42.16-.71.35-1.02.66-.31.31-.5.6-.66 1.02-.12.31-.26.78-.3 1.65-.05 1.05-.06 1.37-.06 4.04s.01 2.99.06 4.04c.04.87.18 1.34.3 1.65.16.42.35.71.66 1.02.31.31.6.5 1.02.66.31.12.78.26 1.65.3 1.05.05 1.37.06 4.04.06s2.99-.01 4.04-.06c.87-.04 1.34-.18 1.65-.3.42-.16.71-.35 1.02-.66.31-.31.5-.6.66-1.02.12-.31.26-.78.3-1.65.05-1.05.06-1.37.06-4.04s-.01-2.99-.06-4.04c-.04-.87-.18-1.34-.3-1.65a2.7 2.7 0 0 0-.66-1.02 2.7 2.7 0 0 0-1.02-.66c-.31-.12-.78-.26-1.65-.3-1.05-.05-1.37-.06-4.04-.06Zm0 3.5a4.7 4.7 0 1 1 0 9.4 4.7 4.7 0 0 1 0-9.4Zm0 1.8a2.9 2.9 0 1 0 0 5.8 2.9 2.9 0 0 0 0-5.8Zm5.9-1.98a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0Z"></path></svg>
+          </a>
+          <a class="stlm-soc" href="https://www.linkedin.com/company/stolmar-displays" target="_blank" rel="noreferrer" aria-label="Stolmar na LinkedIn">
+            <span class="stlm-soc-fill" aria-hidden="true"></span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.64h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.34c0-1.27-.02-2.9-1.77-2.9-1.78 0-2.05 1.39-2.05 2.82V21h-4V9Z"></path></svg>
+          </a>
+        </div>
+      </div>
+      <nav aria-label="Mapa strony" style="display: flex; flex-direction: column; gap: 14px;">
+        <div data-i18n="footer.nav" style="font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #7E7E7A;">Sitemap</div>
+        <a href="#/realizacje" data-i18n="footer.work" style="font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #C9C7C1; text-decoration: none;" style-hover="color: #FFFFFF;">Showcase</a>
+        <a href="#/mozliwosci" data-i18n="footer.studio" style="font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #C9C7C1; text-decoration: none;" style-hover="color: #FFFFFF;">Capabilities</a>
+        <a href="#/kontakt" data-i18n="footer.contact" style="font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #C9C7C1; text-decoration: none;" style-hover="color: #FFFFFF;">Contact</a>
+        <!-- TODO: strona Polityki prywatności nie istnieje jeszcze - wymagana prawnie (RODO) przy zbieraniu danych z formularza kontaktowego. Utworzyć podstronę #/polityka-prywatnosci i podpiąć pod ten link. -->
+        <a href="#/polityka-prywatnosci" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 6px; font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #4A4A4A; text-decoration: none;" style-hover="color: #7E7E7A;"><span data-i18n="footer.privacy">Privacy policy</span><span aria-hidden="true" style="font-size: 9px; letter-spacing: 0.1em; color: #0A0A0A; background: #EFD32B; padding: 2px 5px; border-radius: 2px;">TODO</span></a>
+        <button onClick="{{ cookieReopen }}" data-i18n="footer.cookies" style="text-align: left; font-family: inherit; background: none; border: 0; padding: 0; cursor: pointer; font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #4A4A4A;" style-hover="color: #7E7E7A;">Cookie settings</button>
+      </nav>
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <div data-i18n="footer.reach" style="font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #7E7E7A;">Contact</div>
+        <span style="font-size: 12px; color: #7E7E7A;">© 2026 STOLMAR Marian Czajkowski Sp. k.</span>
+        <span style="font-size: 12px; color: #3A3A3A;">Hodowlana 7, Rumia 84-230, Poland · info@stolmar.co · <br>NIP PL5851483828</span>
+        <span data-i18n="footer.rights" style="font-size: 12px; color: #3A3A3A;">All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <sc-if value="{{ consentOpen }}" hint-placeholder-val="{{ false }}">
+    <div role="dialog" aria-label="Cookies" style="position: fixed; left: 0; right: 0; bottom: 0; z-index: 80; background: rgba(10,10,10,0.95); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-top: 1px solid #222222; box-shadow: 0 -18px 40px rgba(0,0,0,0.5);">
+      <div aria-hidden="true" style="height: 2px; width: 120px; background: #EFD32B;"></div>
+      <div style="max-width: 1360px; margin: 0 auto; padding: 28px 40px;">
+
+        <sc-if value="{{ consentCompact }}" hint-placeholder-val="{{ true }}">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;">
+            <div style="max-width: 620px;">
+              <div data-i18n="cookie.title" style="font-weight: 900; text-transform: uppercase; font-size: 16px; letter-spacing: -0.01em; color: #FFFFFF; margin-bottom: 8px;">We use cookies</div>
+              <p style="margin: 0; font-size: 13px; font-weight: 300; line-height: 1.6; color: #9A988F;"><span data-i18n="cookie.body">We use cookies for analytics (Google Analytics) and marketing (Meta Pixel). You decide what to allow - necessary cookies are always on.</span> <a href="#/polityka-prywatnosci" data-i18n="cookie.more" style="color: #C9C7C1; text-decoration: underline; text-underline-offset: 3px;">Privacy policy</a></p>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+              <button onClick="{{ cookieOpenPanel }}" data-i18n="cookie.settings" style="font-family: inherit; background: none; border: 0; padding: 13px 12px; cursor: pointer; font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #7E7E7A;" style-hover="color: #FFFFFF;">Settings</button>
+              <button onClick="{{ cookieReject }}" data-i18n="cookie.reject" style="font-family: inherit; background: transparent; border: 1px solid #3A3A3A; padding: 13px 22px; cursor: pointer; font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #FFFFFF;" style-hover="border-color: #FFFFFF;">Reject</button>
+              <button onClick="{{ cookieAccept }}" data-i18n="cookie.accept" style="font-family: inherit; background: #EFD32B; border: 0; padding: 14px 24px; cursor: pointer; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #0A0A0A;" style-hover="background: #E5C400;">Accept all</button>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ consentPanel }}" hint-placeholder-val="{{ false }}">
+          <div style="display: flex; flex-direction: column; gap: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 24px; flex-wrap: wrap;">
+              <div data-i18n="cookie.settingsTitle" style="font-weight: 900; text-transform: uppercase; font-size: 20px; letter-spacing: -0.01em; color: #FFFFFF;">Cookie settings</div>
+              <a href="#/polityka-prywatnosci" data-i18n="cookie.more" style="font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #7E7E7A; text-decoration: none;" style-hover="color: #FFFFFF;">Privacy policy</a>
+            </div>
+            <div style="display: flex; flex-direction: column;">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 18px 0; border-top: 1px solid #161616;">
+                <div style="max-width: 760px;">
+                  <div data-i18n="cookie.necessary" style="font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #FFFFFF;">Necessary</div>
+                  <div data-i18n="cookie.necessaryDesc" style="margin-top: 6px; font-size: 13px; font-weight: 300; line-height: 1.6; color: #7E7E7A;">Required for the site to function. Always active.</div>
+                </div>
+                <span data-i18n="cookie.always" style="font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #EFD32B; white-space: nowrap;">Always on</span>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 18px 0; border-top: 1px solid #161616;">
+                <div style="max-width: 760px;">
+                  <div data-i18n="cookie.analytics" style="font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #FFFFFF;">Analytics</div>
+                  <div data-i18n="cookie.analyticsDesc" style="margin-top: 6px; font-size: 13px; font-weight: 300; line-height: 1.6; color: #7E7E7A;">Google Analytics - anonymous statistics on how the site is used.</div>
+                </div>
+                <button onClick="{{ cookieToggleA }}" role="switch" aria-label="Analytics" style="{{ anaTrack }}"><span aria-hidden="true" style="{{ anaKnob }}"></span></button>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 18px 0; border-top: 1px solid #161616; border-bottom: 1px solid #161616;">
+                <div style="max-width: 760px;">
+                  <div data-i18n="cookie.marketing" style="font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #FFFFFF;">Marketing</div>
+                  <div data-i18n="cookie.marketingDesc" style="margin-top: 6px; font-size: 13px; font-weight: 300; line-height: 1.6; color: #7E7E7A;">Meta Pixel - measuring ad campaigns and reach.</div>
+                </div>
+                <button onClick="{{ cookieToggleM }}" role="switch" aria-label="Marketing" style="{{ mktTrack }}"><span aria-hidden="true" style="{{ mktKnob }}"></span></button>
+              </div>
+            </div>
+            <div style="display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap;">
+              <button onClick="{{ cookieSave }}" data-i18n="cookie.save" style="font-family: inherit; background: transparent; border: 1px solid #3A3A3A; padding: 13px 22px; cursor: pointer; font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #FFFFFF;" style-hover="border-color: #FFFFFF;">Save choice</button>
+              <button onClick="{{ cookieAccept }}" data-i18n="cookie.accept" style="font-family: inherit; background: #EFD32B; border: 0; padding: 14px 24px; cursor: pointer; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #0A0A0A;" style-hover="background: #E5C400;">Accept all</button>
+            </div>
+          </div>
+        </sc-if>
+
+      </div>
+    </div>
+  </sc-if>
+
+  <button data-totop="" onClick="{{ scrollTop }}" aria-label="Back to top" title="Back to top" style="position: fixed; right: 28px; bottom: 28px; z-index: 60; width: 46px; height: 46px; display: flex; align-items: center; justify-content: center; background: #EFD32B; color: #0A0A0A; border: 0; cursor: pointer; opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity 0.42s cubic-bezier(0.16,1,0.3,1), transform 0.42s cubic-bezier(0.16,1,0.3,1); box-shadow: 0 2px 18px rgba(0,0,0,0.4);" style-hover="background: #E5C400;">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M12 19V5"></path><path d="M5 12l7-7 7 7"></path></svg>
+  </button>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = (() => {
+    // Synchroniczny odczyt zapisanej zgody - dzięki temu pasek cookie pojawia się
+    // od razu przy pierwszym renderze strony, jeśli decyzja nie została jeszcze podjęta.
+    let stored = null;
+    try { stored = JSON.parse(localStorage.getItem("stlm-cookie-consent") || "null"); } catch (e) {}
+    const decided = !!(stored && stored.v);
+    return { page: "home", lang: null, filter: "All", sent: false, menuOpen: false, topic: 0, files: [],
+      lookbookSent: false, lookbookEmail: "",
+      lbOpen: false, lbClosing: false, lbImgs: [], lbIdx: 0, lbTitle: "", lbLoc: "",
+      cookieDecided: decided, cookiePanel: false,
+      cookieAnalytics: decided ? !!stored.analytics : false,
+      cookieMarketing: decided ? !!stored.marketing : false };
+  })();
+
+  // ---------- cookie consent ----------
+  static COOKIE_KEY = "stlm-cookie-consent";
+  // TODO: wpisz prawdziwe identyfikatory po uruchomieniu tagów
+  static GA_ID = "G-XXXXXXXXXX";        // Google Analytics 4 – Measurement ID
+  static PIXEL_ID = "0000000000";        // Meta (Facebook) Pixel ID
+
+  _saveConsent(analytics, marketing) {
+    const prefs = { necessary: true, analytics: !!analytics, marketing: !!marketing, ts: Date.now(), v: 1 };
+    try { localStorage.setItem(Component.COOKIE_KEY, JSON.stringify(prefs)); } catch (e) {}
+    this.setState({ cookieDecided: true, cookiePanel: false, cookieAnalytics: prefs.analytics, cookieMarketing: prefs.marketing });
+    this._applyConsent(prefs);
+  }
+  _applyConsent(prefs) {
+    if (prefs.analytics) this._loadGA();
+    if (prefs.marketing) this._loadPixel();
+    // Uwaga: cofnięcie zgody zapisuje wybór, ale już wczytane tagi znikają dopiero po przeładowaniu strony.
+  }
+  _loadGA() {
+    const id = Component.GA_ID;
+    if (this._gaLoaded) return;
+    this._gaLoaded = true;
+    if (!id || id.indexOf("XXXX") !== -1) return; // placeholder – nic nie ładujemy
+    const s = document.createElement("script");
+    s.async = true; s.src = "https://www.googletagmanager.com/gtag/js?id=" + id;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag; gtag("js", new Date()); gtag("config", id, { anonymize_ip: true });
+  }
+  _loadPixel() {
+    const id = Component.PIXEL_ID;
+    if (this._pxLoaded) return;
+    this._pxLoaded = true;
+    if (!id || /^0+$/.test(id)) return; // placeholder – nic nie ładujemy
+    !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = "2.0"; n.queue = [];
+      t = b.createElement(e); t.async = !0; t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+    }(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+    window.fbq("init", id); window.fbq("track", "PageView");
+  }
+
+  // ---------- content ----------
+  static IMG = {
+    medicine: "assets/imgc/medicine.jpg", event: "assets/imgc/event.jpg",
+    showroom: "assets/imgc/showroom.jpg", london: "assets/imgc/london-ribbons.jpg",
+    vogue: "assets/imgc/vogue.jpg", leaves: "assets/imgc/leaves.jpg",
+    exhibition: "assets/imgc/exhibition.jpg", copper: "assets/imgc/copper-cages.jpg"
+  };
+
+  getLang() {
+    if (this.state.lang) return this.state.lang;
+    try {
+      const nav = ((navigator.languages && navigator.languages[0]) || navigator.language || "en").toLowerCase();
+      return nav.startsWith("pl") ? "pl" : "en";
+    } catch (e) { return "en"; }
+  }
+
+  data() {
+    const I = Component.IMG;
+    const en = {
+      stats: [
+        { k: "30+", v: "Years in production" },
+        { k: "10", v: "Capitals, last season" },
+        { k: "1", v: "Workshop, from concept to installation" }
+      ],
+      filters: { All: "All", Production: "Production", Prototype: "Prototype", Assembly: "Assembly" },
+      projects: [
+        { eyebrow: "Window · 2025", title: "Anniversary Campaign", materials: ["CNC-milled", "latex print", "rotating mechanism"], tag: "Prototype", tagLabel: "Prototype", year: "2025", image: I.medicine },
+        { eyebrow: "Event · 2026", title: "Event Decoration", materials: ["3D printed", "high-gloss metallic"], tag: "Production", tagLabel: "Production", year: "2026", image: I.event },
+        { eyebrow: "Instore · 2026", title: "Retail Furniture", materials: ["oak veneer", "solid oak", "leather", "hidden steel"], tag: "Production", tagLabel: "Production", year: "2026", image: I.showroom },
+        { eyebrow: "Window · Q4 2025", title: "Window Decoration", materials: ["UV print on MDF", "3D printed", "hand-painted"], tag: "Assembly", tagLabel: "Assembly", year: "2025", image: I.london },
+        { eyebrow: "Worldwide · 2024", title: "100 Years Celebration", materials: ["pen replicas 15–260cm", "3D print", "high-gloss"], tag: "Production", tagLabel: "Production", year: "2024", image: I.vogue },
+        { eyebrow: "Wall · 2025", title: "Moss Logo", materials: ["stabilized moss", "metal frame", "integrated lighting"], tag: "Production", tagLabel: "Production", year: "2025", image: I.leaves },
+        { eyebrow: "Prototype · 2025", title: "Miniature Animals", materials: ["3D resin", "hand-painted"], tag: "Prototype", tagLabel: "Prototype", year: "2025", image: I.exhibition },
+        { eyebrow: "Instore · 2024", title: "Holiday Decorations", materials: ["fabric", "painted HDF", "felt", "flock"], tag: "Production", tagLabel: "Production", year: "2024", image: I.copper }
+      ],
+      services: [
+        { n: "01", t: "POS Campaigns & Visual Merchandising", d: "Seasonal windows, entrance zones and in-store campaigns rolled out across hundreds of stores at once - designed, produced and installed by one team, to one standard.", items: ["Window displays & entrance zones", "Seasonal VM campaigns", "In-store pop-ups", "POS displays"], photo: I.medicine },
+        { n: "02", t: "Retail Spaces & Exhibitions", d: "Standalone pop-up stores, exhibition builds and bespoke retail environments - from prototype to installation, in one city or in twelve.", items: ["Standalone pop-up stores", "Exhibition & trade fair stands", "Custom furniture & shop fittings", "Museum & cultural exhibitions"], photo: "assets/imgc/stand.jpg" },
+        { n: "03", t: "Scenography & Events", d: "Sets, props and temporary brand spaces - built to a fixed date, usually from materials and technologies most workshops keep apart.", items: ["Set design & build", "Film & photo sets", "Event props", "Temporary brand spaces"], photo: I.event }
+      ],
+      inhouse: [
+        { n: "01", t: "Design", d: "Conceptual & industrial design, from brief to engineering-ready specs." },
+        { n: "02", t: "Technical development", d: "Prototyping, model shop, material and method resolved in-house." },
+        { n: "03", t: "Wood, metal & plastics", d: "CNC routing, structural carpentry, laser cutting, welding, powder coating, acrylic/PVC/PC processing." },
+        { n: "04", t: "HP latex printing", d: "Large-format, UV-resistant, water-based ink." },
+        { n: "05", t: "3D printing (FDM/SLA)", d: "Prototyping through final-finish production elements." },
+        { n: "06", t: "Dust-free paint shop", d: "Lacquering, varnishing and specialty surface finishes." },
+        { n: "07", t: "Handcraft & mixed media", d: "Paper mâché, textile and sculptural techniques." },
+        { n: "08", t: "Installations", d: "From a single installation to a global window-display campaign." }
+      ],
+      form: { name: "Name", namePh: "Your name", company: "Company", companyPh: "Maison / agency", email: "Email", emailPh: "you@studio.com", brief: "Brief", briefPh: "Scope, timeline, and rough budget?", files: "Attachments", filesCta: "Browse", filesHint: "Any file type · sketches, floor plans, brand guidelines, references", btn: "Send →", topicLabel: "What are we building?", topics: ["POS & Visual Merchandising", "Retail Spaces & Exhibitions", "Brand Experiences & Events"] }
+    };
+    const pl = {
+      stats: [
+        { k: "30+", v: "Lat w produkcji" },
+        { k: "9", v: "Miast z montażami w ostatnim sezonie" },
+        { k: "1", v: "Pracownia - od koncepcji po montaż" }
+      ],
+      filters: { All: "Wszystkie", Production: "Produkcja", Prototype: "Prototyp", Assembly: "Montaż" },
+      projects: [
+        { eyebrow: "Witryna · 2025", title: "Kampania jubileuszowa", materials: ["frezowanie CNC", "druk lateksowy", "mechanizm obrotowy"], tag: "Prototype", tagLabel: "Prototyp", year: "2025", image: I.medicine },
+        { eyebrow: "Event · 2026", title: "Dekoracja eventowa", materials: ["druk 3D", "metaliczny wysoki połysk"], tag: "Production", tagLabel: "Produkcja", year: "2026", image: I.event },
+        { eyebrow: "Instore · 2026", title: "Retail Furniture", materials: ["fornir dębowy", "lity dąb", "skóra", "ukryta stal"], tag: "Production", tagLabel: "Produkcja", year: "2026", image: I.showroom },
+        { eyebrow: "Witryna · Q4 2025", title: "Dekoracja witryn", materials: ["druk UV na MDF", "druk 3D", "malowane ręcznie"], tag: "Assembly", tagLabel: "Montaż", year: "2025", image: I.london },
+        { eyebrow: "Cały świat · 2024", title: "100-lecie marki", materials: ["repliki piór 15–260 cm", "druk 3D", "wysoki połysk"], tag: "Production", tagLabel: "Produkcja", year: "2024", image: I.vogue },
+        { eyebrow: "Ściana · 2025", title: "Logo z mchu", materials: ["mech stabilizowany", "rama stalowa", "oświetlenie"], tag: "Production", tagLabel: "Produkcja", year: "2025", image: I.leaves },
+        { eyebrow: "Prototyp · 2025", title: "Miniatury zwierząt", materials: ["żywica 3D", "malowane ręcznie"], tag: "Prototype", tagLabel: "Prototyp", year: "2025", image: I.exhibition },
+        { eyebrow: "Instore · 2024", title: "Dekoracje świąteczne", materials: ["tkanina", "malowane HDF", "filc", "flok"], tag: "Production", tagLabel: "Produkcja", year: "2024", image: I.copper }
+      ],
+      services: [
+        { n: "01", t: "Kampanie POS i visual merchandising", d: "Sezonowe witryny, strefy wejścia i kampanie instore wdrażane jednocześnie w setkach sklepów - projektowane, produkowane i montowane przez jeden zespół, w jednym standardzie.", items: ["Witryny sklepowe i strefy wejścia", "Sezonowe kampanie VM", "Pop-upy w sklepach", "Ekspozytory POS"], photo: I.medicine },
+        { n: "02", t: "Przestrzenie retail i ekspozycje", d: "Samodzielne pop-up store'y, stoiska wystawiennicze i przestrzenie retail na wymiar - od prototypu po montaż, w jednym mieście lub w dwunastu.", items: ["Samodzielne pop-up store'y", "Stoiska wystawiennicze i targowe", "Meble i wyposażenie na wymiar", "Ekspozycje muzealne i kulturalne"], photo: "assets/imgc/stand.jpg" },
+        { n: "03", t: "Scenografia i eventy", d: "Scenografie, rekwizyty i tymczasowe przestrzenie marki - budowane na sztywną datę, zwykle z materiałów i technologii, których większość warsztatów nie łączy.", items: ["Projekt i budowa scenografii", "Scenografia filmowa i fotograficzna", "Rekwizyty eventowe", "Tymczasowe przestrzenie marki"], photo: I.event }
+      ],
+      inhouse: [
+        { n: "01", t: "Projektowanie", d: "Design koncepcyjny i przemysłowy - od briefu po specyfikacje gotowe do produkcji." },
+        { n: "02", t: "Rozwój techniczny", d: "Prototypownia i modelarnia; materiał i metoda rozstrzygane in-house." },
+        { n: "03", t: "Drewno, metal i tworzywa", d: "Frezowanie CNC, stolarka konstrukcyjna, cięcie laserowe, spawanie, malowanie proszkowe, obróbka akrylu/PVC/PC." },
+        { n: "04", t: "Druk lateksowy HP", d: "Wielkoformatowy, odporny na UV, na bazie wody." },
+        { n: "05", t: "Druk 3D (FDM/SLA)", d: "Od prototypów po elementy produkcyjne w finalnym wykończeniu." },
+        { n: "06", t: "Bezpyłowa lakiernia", d: "Lakierowanie i specjalistyczne wykończenia powierzchni." },
+        { n: "07", t: "Rękodzieło i mixed media", d: "Papier mâché, techniki tekstylne i rzeźbiarskie." },
+        { n: "08", t: "Montaże", d: "Od pojedynczej instalacji po globalną kampanię witryn." }
+      ],
+      form: { name: "Imię i nazwisko", namePh: "Twoje imię", company: "Firma", companyPh: "Marka / agencja", email: "E-mail", emailPh: "ty@studio.com", brief: "Brief", briefPh: "Zakres, termin i orientacyjny budżet?", files: "Załączniki", filesCta: "Wybierz", filesHint: "Dowolny format pliku · szkice, rzuty, brandbook, referencje", btn: "Wyślij →", topicLabel: "Co budujemy?", topics: ["POS i visual merchandising", "Przestrzenie retail i wystawy", "Doświadczenia marki i eventy"] }
+    };
+    return this.getLang() === "pl" ? pl : en;
+  }
+
+  static ROUTES = { home: "#/", work: "#/realizacje", studio: "#/mozliwosci", contact: "#/kontakt" };
+  static pageFromHash() {
+    const h = window.location.hash || "#/";
+    const R = Component.ROUTES;
+    for (const k in R) if (R[k] === h) return k;
+    return "home";
+  }
+
+  static PL_DICT = {
+    "nav.home": "Start", "nav.work": "Realizacje", "nav.studio": "Możliwości", "nav.contact": "Kontakt", "nav.cta": "Rozpocznij projekt",
+    "hero.eyebrow": "Projekt · Produkcja · Montaż",
+    "hero.h1": "Budujemy wrażenia",
+    "hero.standfirst": "Łączymy kreatywność z wszechstronnością produkcji - jedna pracownia, od koncepcji po instalację.",
+    "hero.cta1": "Zobacz realizacje", "hero.cta2": "Pracownia", "hero.index": "01 - Intro",
+    "phil.eyebrow": "Filozofia", "phil.h2": "Wyważony kadr.",
+    "phil.body": "Trzydzieści lat witryn, stoisk, scenografii i mebli na wymiar - takich, przy których nie da się przejść obojętnie. Tworzonych, by uwypuklić to, co musi zostać zauważone.",
+    "phil.cap": "Referencja 012 - jeden kadr",
+    "arch.eyebrow": "Archiwum", "arch.h3": "Wybrane artefakty", "arch.link": "Zobacz indeks →",
+    "bento.a.title": "Wystawa \"Wear Medicine\"", "bento.a.meta": "Kampania witrynowa",
+    "bento.b.title": "RESERVED", "bento.b.meta": "Pop-up store",
+    "bento.c.title": "\"House\" store", "bento.c.meta": "Retail space",
+    "stage.l1": "Stworzone, by", "stage.l2": "być widziane.",
+    "stage.h2": "Kadr z każdej realizacji", "stage.note": "Wybrane kadry · 2015–2026",
+    "statement.a": "Jeden kadr niesie całe wnętrze. ", "statement.b": "Resztę najlepiej zobaczyć na żywo.",
+    "archv.eyebrow": "Manifest", "archv.i1": "Witryny sklepowe", "archv.i2": "Sklepy pop-up", "archv.i3": "Wystawy", "archv.i4": "Scenografia eventowa", "archv.i5": "Prototypy",
+    "archv.cap": "Jeden kadr, na żywo", "archv.idx": "Indeks 2015–2026",
+    "cr.chip": "Twój partner w visual merchandisingu i scenografii",
+    "cr.word1": "PRZYCIĄGAJĄCE", "cr.word2": "UWAGĘ",
+    "cr.marquee": "Twój Partner VM \u00b7 Twój Partner Scenograficzny \u00b7 Twój Partner Projektowy \u00b7 Twój Partner Produkcyjny \u00b7 ",
+    "cr.sub1": "Twoja historia jest", "cr.subHero": "bohaterem", "cr.sub2": ". My budujemy", "cr.subStage": "scenę", "cr.sub3": ". Zróbmy to", "cr.subTogether": "razem", "cr.sub4": ".",
+    "cr.sub": "Twoja historia gra główną rolę. My budujemy scenę - od witryn sklepowych po scenografię eventową.",
+    "work.eyebrow": "Archiwum STOLMAR", "work.h1": "Odsłonięte", "work.note": "Wybrane kadry · reszta na żywo",
+    "work.lead": "Każdy projekt zaczyna zakryty. Część zostaje taka na zawsze. Te - nie.",
+    "work.gallery": "Galeria ↗",
+    "work.nda": "Daj znać, co masz na myśli.", "work.ndaBtn": "Sprawdź możliwości",
+    "work.ctaEyebrow": "To był tylko fragment", "work.ctaH1": "Budujemy to, co widać",
+    "studio.eyebrow": "Czym się zajmujemy", "studio.h1a": "Trzy dyscypliny.", "studio.h1b": "Jedna pracownia.",
+    "studio.stand": "Projektujemy, produkujemy i montujemy pod jednym dachem - od pojedynczej witryny po globalne rollouty retailowe.",
+    "cap.eye": "Obszary specjalizacji", "cap.note": "Kadr z każdej dyscypliny",
+    "cap.c1t": "Kampanie POS i visual merchandising", "cap.c1d": "Sezonowe witryny, strefy wejścia i kampanie instore wdrażane jednocześnie w setkach sklepów - projektowane, produkowane i montowane przez jeden zespół, w jednym standardzie.",
+    "cap.c1a": "Witryny sklepowe i strefy wejścia", "cap.c1b": "Sezonowe kampanie VM", "cap.c1c": "Pop-upy w sklepach", "cap.c1e": "Ekspozytory POS",
+    "cap.c2t": "Przestrzenie retail i ekspozycje", "cap.c2d": "Samodzielne pop-up store'y, stoiska wystawiennicze i przestrzenie retail na wymiar - od prototypu po montaż, w jednym mieście lub w dwunastu.",
+    "cap.c2a": "Samodzielne pop-up store'y", "cap.c2b": "Stoiska wystawiennicze i targowe", "cap.c2c": "Meble i wyposażenie na wymiar", "cap.c2e": "Ekspozycje muzealne i kulturalne",
+    "cap.c3t": "Scenografia i eventy", "cap.c3d": "Scenografie, rekwizyty i tymczasowe przestrzenie marki - budowane na sztywną datę, zwykle z materiałów i technologii, których większość warsztatów nie łączy.",
+    "cap.c3a": "Projekt i budowa scenografii", "cap.c3b": "Scenografia filmowa i fotograficzna", "cap.c3c": "Rekwizyty eventowe", "cap.c3e": "Tymczasowe przestrzenie marki",
+    "studio.inhouse": "W jednej pracowni", "studio.hall": "Hala - tu powstaje wszystko",
+    "studio.cities": "Obecni na całym świecie",
+    "work.scroll": "Przewijaj - kadry odsłaniają się po drodze ↓",
+    "deck.eyebrow": "Do udostępnienia", "deck.h1": "Prezentacja możliwości STOLMAR",
+    "deck.body": "Jeden PDF, który możesz od razu dołączyć do kolejnego briefu. Zostaw e-mail, a wyślemy link do pobrania.",
+    "deck.tag1": "28 stron", "deck.tag2": "PDF gotowy do druku", "deck.tag3": "Fotografia studyjna", "deck.tag4": "Notatki o procesie",
+    "deck.cta": "Wyślij mi prezentację",
+    "deck.hint": "Jeden e-mail z linkiem. Bez spamu.",
+    "deck.sentBadge": "Wysłano", "deck.sentTitle": "Sprawdź skrzynkę.", "deck.sentBody": "Link do prezentacji jest już w drodze.",
+    "prod.eye": "Archiwum · Produkcja", "prod.note": "Najedź, aby unieść zasłonę",
+    "prod.h": "Ciężar precyzji.",
+    "contact.eyebrow": "Zapytaj o wycenę", "contact.h1": "Masz pomysł? Porozmawiajmy, jak go zbudować.",
+    "contact.body": "Prześlij nam zakres, a wrócimy z dopasowaną wyceną.",
+    "contact.sentBadge": "Otrzymano", "contact.sentTitle": "Odezwiemy się.",
+    "contact.sentBody": "Odpowiedź z wyceną i kolejnymi krokami w ciągu dwóch dni roboczych.",
+    "footer.tag": "Jedna pracownia. Od koncepcji po montaż.", "footer.rights": "Wszelkie prawa zastrzeżone.",
+    "footer.nav": "Nawigacja", "footer.work": "Realizacje", "footer.studio": "Możliwości", "footer.contact": "Kontakt", "footer.privacy": "Polityka prywatności", "footer.cookies": "Ustawienia cookie",
+    "footer.reach": "Kontakt", "footer.legal": "Informacje prawne",
+    "cookie.title": "Używamy plików cookie", "cookie.settingsTitle": "Ustawienia cookie",
+    "cookie.body": "Używamy plików cookie do analityki (Google Analytics) i marketingu (Meta Pixel). Ty decydujesz, na co się zgadzasz - pliki niezbędne są zawsze aktywne.",
+    "cookie.more": "Polityka prywatności",
+    "cookie.settings": "Ustawienia", "cookie.reject": "Odrzuć", "cookie.accept": "Akceptuj wszystko", "cookie.save": "Zapisz wybór", "cookie.always": "Zawsze aktywne",
+    "cookie.necessary": "Niezbędne", "cookie.necessaryDesc": "Wymagane do działania strony. Zawsze aktywne.",
+    "cookie.analytics": "Analityczne", "cookie.analyticsDesc": "Google Analytics - anonimowe statystyki korzystania ze strony.",
+    "cookie.marketing": "Marketingowe", "cookie.marketingDesc": "Meta Pixel - pomiar kampanii reklamowych i zasięgu."
+  };
+
+  // ---------- render ----------
+  renderVals() {
+    const D = this.data();
+    const lang = this.getLang();
+    const page = this.state.page;
+    const variant = this.props.variant ?? "horizon";
+    const filter = this.state.filter;
+
+    if (!this.spotWrapRef) this.spotWrapRef = React.createRef();
+    if (!this.spotOverlayRef) this.spotOverlayRef = React.createRef();
+    if (!this.onSpotMove) {
+      this.onSpotMove = (e) => {
+        const wrap = this.spotWrapRef.current, overlay = this.spotOverlayRef.current;
+        if (!wrap || !overlay) return;
+        const rect = wrap.getBoundingClientRect();
+        const x = Math.round(e.clientX - rect.left - 180);
+        const y = Math.round(e.clientY - rect.top - 180);
+        overlay.style.maskPosition = `${x}px ${y}px`;
+        overlay.style.webkitMaskPosition = `${x}px ${y}px`;
+      };
+      this.onSpotLeave = () => {
+        const overlay = this.spotOverlayRef.current;
+        if (!overlay) return;
+        overlay.style.maskPosition = "-9999px -9999px";
+        overlay.style.webkitMaskPosition = "-9999px -9999px";
+      };
+    }
+
+    const filterKeys = ["All", "Production", "Prototype", "Assembly"];
+    const base = {
+      fontFamily: "inherit", fontSize: 11, fontWeight: 600, letterSpacing: "0.14em",
+      textTransform: "uppercase", padding: "9px 18px", borderRadius: 999, cursor: "pointer",
+      transition: "all 0.2s ease", background: "transparent",
+      border: "1px solid #3A3A3A", color: "#7E7E7A"
+    };
+    const filters = filterKeys.map((k) => ({
+      label: D.filters[k],
+      pick: () => this.setState({ filter: k }),
+      style: k === filter
+        ? { ...base, background: "var(--signal-yellow)", border: "1px solid var(--signal-yellow)", color: "#0A0A0A" }
+        : base
+    }));
+
+    const topicBase = {
+      fontFamily: "inherit", fontSize: 12, fontWeight: 500, letterSpacing: "0.01em",
+      padding: "11px 16px", borderRadius: 2, cursor: "pointer",
+      transition: "all 0.2s ease", background: "transparent",
+      border: "1px solid #3A3A3A", color: "#9A988F", textAlign: "left"
+    };
+    const topics = (D.form.topics || []).map((label, i) => ({
+      label,
+      pick: () => this.setState({ topic: i }),
+      style: i === this.state.topic
+        ? { ...topicBase, background: "rgba(239,211,43,0.10)", border: "1px solid var(--signal-yellow)", color: "#FFFFFF" }
+        : topicBase
+    }));
+
+    const shownProjects = filter === "All" ? D.projects : D.projects.filter((p) => p.tag === filter);
+    const indexRows = D.projects.map((p, i) => ({
+      ...p, n: String(i + 1).padStart(2, "0"), mats: p.materials.join(" · ")
+    }));
+
+    const go = (page) => () => {
+      const h = Component.ROUTES[page] || "#/";
+      if ((window.location.hash || "#/") === h) {
+        this.setState({ page, sent: false, menuOpen: false });
+        window.scrollTo({ top: 0 });
+        if (document.body) document.body.scrollTop = 0;
+        if (document.documentElement) document.documentElement.scrollTop = 0;
+        const site = document.querySelector(".site");
+        if (site) site.scrollTop = 0;
+      } else {
+        window.location.hash = h; // hashchange listener updates state
+      }
+    };
+
+    if (!this.spotRef) this.spotRef = React.createRef();
+    if (!this.expRef) this.expRef = React.createRef();
+
+    const sw = (on) => ({
+      track: { width: "42px", height: "24px", borderRadius: "999px", border: "1px solid " + (on ? "#EFD32B" : "#3A3A3A"), background: on ? "rgba(239,211,43,0.22)" : "transparent", position: "relative", cursor: "pointer", flexShrink: 0, transition: "border-color 0.2s ease, background 0.2s ease", padding: 0 },
+      knob: { position: "absolute", top: "2px", left: "2px", width: "18px", height: "18px", borderRadius: "50%", background: on ? "#EFD32B" : "#7E7E7A", transform: on ? "translateX(18px)" : "translateX(0)", transition: "transform 0.2s ease, background 0.2s ease" }
+    });
+    const anaSw = sw(this.state.cookieAnalytics);
+    const mktSw = sw(this.state.cookieMarketing);
+
+    return {
+      spotWrapRef: this.spotWrapRef, spotOverlayRef: this.spotOverlayRef,
+      onSpotMove: this.onSpotMove, onSpotLeave: this.onSpotLeave,
+      // cookie consent
+      consentOpen: !this.state.cookieDecided,
+      consentPanel: this.state.cookiePanel,
+      consentCompact: !this.state.cookiePanel,
+      anaTrack: anaSw.track, anaKnob: anaSw.knob, mktTrack: mktSw.track, mktKnob: mktSw.knob,
+      cookieAccept: () => this._saveConsent(true, true),
+      cookieReject: () => this._saveConsent(false, false),
+      cookieSave: () => this._saveConsent(this.state.cookieAnalytics, this.state.cookieMarketing),
+      cookieOpenPanel: () => this.setState({ cookiePanel: true }),
+      cookieToggleA: () => this.setState((s) => ({ cookieAnalytics: !s.cookieAnalytics })),
+      cookieToggleM: () => this.setState((s) => ({ cookieMarketing: !s.cookieMarketing })),
+      cookieReopen: () => this.setState({ cookieDecided: false, cookiePanel: true }),
+      // routing
+      isHome: page === "home", isWork: page === "work", isStudio: page === "studio", isContact: page === "contact",
+      isWorkCinema: page === "work" && (this.props.workLayout ?? "Cinematic scroll") === "Cinematic scroll",
+      heroBackgroundOrb: ("Silk drape") === "Cosmic Orb",
+      heroBackgroundGrain: ("Silk drape") === "Grain bloom",
+      heroBackgroundSilk: ("Silk drape") === "Silk drape",
+      heroBackgroundAsh: ("Silk drape") === "Ash drift",
+      heroBackgroundVeil: !["Cosmic Orb", "Grain bloom", "Silk drape", "Ash drift"].includes("Silk drape"),
+      orbPalette: { palette: { anchor: "#000000", colorA: "#EFD32B", colorB: "#EAF100", colorC: "#D6B460" } },
+      workIntroTunnel: (this.props.workIntro ?? "Classic") === "Parallax tunnel",
+      workIntroClassic: (this.props.workIntro ?? "Classic") !== "Parallax tunnel",
+      showCopy: (this.props.showcaseCopy ?? "Minimal - photos lead") === "Full - with copy",
+      isWorkIndex: page === "work" && (this.props.workLayout ?? "Cinematic scroll") !== "Cinematic scroll",
+      cinema: (() => {
+        const pl = lang === "pl";
+        const heroes = ["assets/imgc/reserved-leaves-web.jpg", "assets/imgc/retail-exhibition-hero.jpg",
+          (this.props.brandExpImg === "Blue lights (option B)") ? "assets/imgc/brand-exp-blue.jpg" : "assets/imgc/brand-exp.jpg"];
+        const posHero = "assets/imgc/pos-hero-medicine.jpg";
+        const jump = (id) => () => {
+          const el = document.querySelector('[data-chapter="' + id + '"]');
+          if (!el) return;
+          const y = el.getBoundingClientRect().top + (window.pageYOffset || window.scrollY || 0) - 72;
+          window.scrollTo({ top: y, behavior: "smooth" });
+        };
+        const data = pl ? [
+          { id: "pos", n: "01", short: "POS", label: "01 / POS", t: "POS Campaigns & Visual Merchandising",
+            punch: "Witryny i wyposażenie sklepowe. Sezonowo. W skali.",
+            d: "Kampanie POS wdrażane jednocześnie w setkach lokalizacji - od koncepcji przez prototyp aż po zsynchronizowany rollout w oknach flagowych sklepów.",
+            specs: [{ k: "Skala", v: "500+ lokalizacji" }, { k: "Cykl", v: "Sezonowy" }, { k: "Format", v: "Window / In-store" }],
+            hero: posHero, frames: [
+              { img: "assets/img/pos/fashionstarter-1.webp", title: "Fashion Starter", loc: "Trójmiasto", imgs: ["assets/img/pos/fashionstarter-1.webp","assets/img/pos/fashionstarter-2.webp","assets/img/pos/fashionstarter-3.webp","assets/img/pos/fashionstarter-4.webp"] },
+              { img: "assets/img/pos/medperm-2.webp", title: "Medicine - ekspozycja stała", loc: "Medicine", imgs: ["assets/img/pos/medperm-1.webp","assets/img/pos/medperm-2.webp","assets/img/pos/medperm-3.webp","assets/img/pos/medperm-4.webp","assets/img/pos/medperm-5.webp","assets/img/pos/medperm-6.webp","assets/img/pos/medperm-7.webp","assets/img/pos/medperm-8.webp"] },
+              { img: "assets/img/pos/medspring-2.webp", title: "Medicine - kampania wiosenna", loc: "Medicine", imgs: ["assets/img/pos/medspring-1.webp","assets/img/pos/medspring-2.webp","assets/img/pos/medspring-3.webp","assets/img/pos/medspring-4.webp","assets/img/pos/medspring-5.webp","assets/img/pos/medspring-6.webp","assets/img/pos/medspring-7.webp"] },
+              { img: "assets/img/pos/popup-1.webp", title: "Pop-Up Store", loc: "Bańska Bystrzyca", imgs: ["assets/img/pos/popup-1.webp","assets/img/pos/popup-2.webp","assets/img/pos/popup-3.webp","assets/img/pos/popup-4.webp","assets/img/pos/popup-5.webp","assets/img/pos/popup-6.webp","assets/img/pos/popup-7.webp"] },
+              { img: "assets/img/pos/brodka-0.jpg", title: "RE x BRODKA", loc: "Warszawa", imgs: ["assets/img/pos/brodka-1.webp","assets/img/pos/brodka-2.webp","assets/img/pos/brodka-3.webp","assets/img/pos/brodka-4.webp","assets/img/pos/brodka-5.webp","assets/img/pos/brodka-6.webp","assets/img/pos/brodka-7.webp","assets/img/pos/brodka-8.webp","assets/img/pos/brodka-0.jpg"] },
+              { img: "assets/img/pos/zieta-6.webp", title: "RE x Zięta", loc: "Warszawa", imgs: ["assets/img/pos/zieta-1.webp","assets/img/pos/zieta-2.webp","assets/img/pos/zieta-3.webp","assets/img/pos/zieta-4.webp","assets/img/pos/zieta-5.webp","assets/img/pos/zieta-6.webp","assets/img/pos/zieta-7.webp","assets/img/pos/zieta-8.webp","assets/img/pos/zieta-9.webp"] },
+              { img: "assets/img/pos/resspring-0.webp", title: "Reserved - kampania wiosenna", loc: "Reserved", imgs: ["assets/img/pos/resspring-1.webp","assets/img/pos/resspring-2.webp","assets/img/pos/resspring-3.webp","assets/img/pos/resspring-4.webp","assets/img/pos/resspring-5.webp","assets/img/pos/resspring-6.webp","assets/img/pos/resspring-7.webp","assets/img/pos/resspring-8.webp","assets/img/pos/resspring-9.webp","assets/img/pos/resspring-0.webp"] },
+              { img: "assets/img/pos/tumi-2.webp", title: "Ekspozycja Tumi", loc: "Roermond", imgs: ["assets/img/pos/tumi-1.webp","assets/img/pos/tumi-2.webp","assets/img/pos/tumi-3.webp","assets/img/pos/tumi-4.webp","assets/img/pos/tumi-5.webp"] }
+            ] },
+          { id: "retail", n: "02", short: "Exhibition", label: "02 / EXHIBITION", t: "Exhibitions & Retail Spaces",
+            punch: "Koncept → prototyp → produkcja → montaż.",
+            d: "Kompleksowa realizacja przestrzeni retail i stoisk wystawienniczych dla marek premium. Wszystko pod jednym dachem: projekt, warsztat, logistyka, ekipa montażowa.",
+            specs: [{ k: "Klient", v: "Premium / Luxury" }, { k: "Zakres", v: "End-to-end" }, { k: "Warsztat", v: "In-house" }],
+            hero: heroes[1], frames: [
+              { img: "assets/img/events/house-1.webp", title: "House Store", loc: "Bańska Bystrzyca", imgs: ["assets/img/events/house-1.webp","assets/img/events/house-2.webp","assets/img/events/house-3.webp","assets/img/events/house-4.webp","assets/img/events/house-5.webp","assets/img/events/house-6.webp"] },
+              { img: "assets/img/events/manuba-1.webp", title: "Stoisko Manuba", loc: "Gdynia", imgs: ["assets/img/events/manuba-1.webp","assets/img/events/manuba-2.webp","assets/img/events/manuba-4.webp","assets/img/events/manuba-5.webp"] },
+              { img: "assets/img/events/revogue-1.webp", title: "Reserved x Vogue", loc: "Londyn", imgs: ["assets/img/events/revogue-1.webp","assets/img/events/revogue-2.webp","assets/img/events/revogue-3.webp","assets/img/events/revogue-4.webp"] },
+              { img: "assets/img/events/sliwka-1.webp", title: "Wystawa Śliwka", loc: "Warszawa", imgs: ["assets/img/events/sliwka-1.webp","assets/img/events/sliwka-2.webp","assets/img/events/sliwka-3.webp","assets/img/events/sliwka-4.webp","assets/img/events/sliwka-5.webp","assets/img/events/sliwka-6.webp"] },
+              { img: "assets/img/events/tallinder-1.webp", title: "Tallinder Event", loc: "Sopot", imgs: ["assets/img/events/tallinder-1.webp","assets/img/events/tallinder-2.webp","assets/img/events/tallinder-3.webp","assets/img/events/tallinder-4.webp","assets/img/events/tallinder-5.webp"] },
+              { img: "assets/img/events/drost-1.webp", title: "Wystawa Kolekcji Drosta", loc: "Muzeum", imgs: ["assets/img/events/drost-1.webp","assets/img/events/drost-2.webp","assets/img/events/drost-3.webp","assets/img/events/drost-4.webp","assets/img/events/drost-5.webp","assets/img/events/drost-6.webp","assets/img/events/drost-7.webp","assets/img/events/drost-8.webp","assets/img/events/drost-91.webp","assets/img/events/drost-92.webp"] }
+            ] },
+          { id: "events", n: "03", short: "Events", label: "03 / EVENTS", t: "Brand Experiences & Events",
+            punch: "Scenografia + technologia. Bez kompromisów materiałowych.",
+            d: "Realizacje eventowe łączące niekonwencjonalne materiały i technologie: druk 3D, obróbka CNC, stolarka precyzyjna. Scenografie, które grają rolę.",
+            specs: [{ k: "Tech", v: "3D print · CNC" }, { k: "Materiał", v: "Drewno · Metal · Żywica" }, { k: "Format", v: "Immersive" }],
+            hero: heroes[2], frames: [
+              { img: "assets/img/events/liverpool-1.webp", title: "Liverpool Stage Set", loc: "Liverpool", imgs: ["assets/img/events/liverpool-1.webp","assets/img/events/liverpool-2.webp","assets/img/events/liverpool-3.webp","assets/img/events/liverpool-4.webp","assets/img/events/liverpool-5.webp","assets/img/events/liverpool-6.webp","assets/img/events/liverpool-7.webp"] },
+              { img: "assets/img/events/photoshoot-1.webp", title: "Sesja fotograficzna", loc: "Studio", imgs: ["assets/img/events/photoshoot-1.webp","assets/img/events/photoshoot-2.webp","assets/img/events/photoshoot-3.webp","assets/img/events/photoshoot-4.webp","assets/img/events/photoshoot-5.webp","assets/img/events/photoshoot-6.webp"] },
+              { img: "assets/img/events/press-1.webp", title: "Wydarzenie prasowe", loc: "Warszawa", imgs: ["assets/img/events/press-1.webp","assets/img/events/press-2.webp","assets/img/events/press-3.webp","assets/img/events/press-4.webp","assets/img/events/press-5.webp","assets/img/events/press-6.webp"] },
+              { img: "assets/img/events/promo-1.webp", title: "Scenografia do filmu promocyjnego", loc: "Studio", imgs: ["assets/img/events/promo-1.webp","assets/img/events/promo-2.webp","assets/img/events/promo-3.webp","assets/img/events/promo-4.webp","assets/img/events/promo-5.webp","assets/img/events/promo-6.webp","assets/img/events/promo-7.webp","assets/img/events/promo-8.webp","assets/img/events/promo-9.webp"] },
+              { img: "assets/img/events/stairs-3.webp", title: "Scenografia - schody", loc: "Studio", imgs: ["assets/img/events/stairs-1.webp","assets/img/events/stairs-2.webp","assets/img/events/stairs-3.webp","assets/img/events/stairs-4.webp","assets/img/events/stairs-5.webp"] }
+            ] }
+        ] : [
+          { id: "pos", n: "01", short: "POS", label: "01 / POS", t: "POS Campaigns & Visual Merchandising",
+            punch: "Windows and shop fittings. Seasonal. At scale.",
+            d: "POS campaigns rolled out across hundreds of locations at once - from concept through prototype to a synchronised install in flagship windows.",
+            specs: [{ k: "Scale", v: "500+ locations" }, { k: "Cycle", v: "Seasonal" }, { k: "Format", v: "Window / In-store" }],
+            hero: posHero, frames: [
+              { img: "assets/img/pos/fashionstarter-1.webp", title: "Fashion Starter", loc: "Trójmiasto", imgs: ["assets/img/pos/fashionstarter-1.webp","assets/img/pos/fashionstarter-2.webp","assets/img/pos/fashionstarter-3.webp","assets/img/pos/fashionstarter-4.webp"] },
+              { img: "assets/img/pos/medperm-2.webp", title: "Medicine Permanent Display", loc: "Medicine", imgs: ["assets/img/pos/medperm-1.webp","assets/img/pos/medperm-2.webp","assets/img/pos/medperm-3.webp","assets/img/pos/medperm-4.webp","assets/img/pos/medperm-5.webp","assets/img/pos/medperm-6.webp","assets/img/pos/medperm-7.webp","assets/img/pos/medperm-8.webp"] },
+              { img: "assets/img/pos/medspring-2.webp", title: "Medicine Spring Campaign", loc: "Medicine", imgs: ["assets/img/pos/medspring-1.webp","assets/img/pos/medspring-2.webp","assets/img/pos/medspring-3.webp","assets/img/pos/medspring-4.webp","assets/img/pos/medspring-5.webp","assets/img/pos/medspring-6.webp","assets/img/pos/medspring-7.webp"] },
+              { img: "assets/img/pos/popup-1.webp", title: "Pop-Up Store", loc: "Bańska Bystrzyca", imgs: ["assets/img/pos/popup-1.webp","assets/img/pos/popup-2.webp","assets/img/pos/popup-3.webp","assets/img/pos/popup-4.webp","assets/img/pos/popup-5.webp","assets/img/pos/popup-6.webp","assets/img/pos/popup-7.webp"] },
+              { img: "assets/img/pos/brodka-0.jpg", title: "RE x BRODKA", loc: "Warszawa", imgs: ["assets/img/pos/brodka-1.webp","assets/img/pos/brodka-2.webp","assets/img/pos/brodka-3.webp","assets/img/pos/brodka-4.webp","assets/img/pos/brodka-5.webp","assets/img/pos/brodka-6.webp","assets/img/pos/brodka-7.webp","assets/img/pos/brodka-8.webp","assets/img/pos/brodka-0.jpg"] },
+              { img: "assets/img/pos/zieta-6.webp", title: "RE x Zięta", loc: "Warszawa", imgs: ["assets/img/pos/zieta-1.webp","assets/img/pos/zieta-2.webp","assets/img/pos/zieta-3.webp","assets/img/pos/zieta-4.webp","assets/img/pos/zieta-5.webp","assets/img/pos/zieta-6.webp","assets/img/pos/zieta-7.webp","assets/img/pos/zieta-8.webp","assets/img/pos/zieta-9.webp"] },
+              { img: "assets/img/pos/resspring-0.webp", title: "Reserved Spring Campaign", loc: "Reserved", imgs: ["assets/img/pos/resspring-1.webp","assets/img/pos/resspring-2.webp","assets/img/pos/resspring-3.webp","assets/img/pos/resspring-4.webp","assets/img/pos/resspring-5.webp","assets/img/pos/resspring-6.webp","assets/img/pos/resspring-7.webp","assets/img/pos/resspring-8.webp","assets/img/pos/resspring-9.webp","assets/img/pos/resspring-0.webp"] },
+              { img: "assets/img/pos/tumi-2.webp", title: "Tumi Display", loc: "Roermond", imgs: ["assets/img/pos/tumi-1.webp","assets/img/pos/tumi-2.webp","assets/img/pos/tumi-3.webp","assets/img/pos/tumi-4.webp","assets/img/pos/tumi-5.webp"] }
+            ] },
+          { id: "retail", n: "02", short: "Exhibition", label: "02 / EXHIBITION", t: "Exhibitions & Retail Spaces",
+            punch: "Concept → prototype → production → install.",
+            d: "End-to-end retail environments and exhibition booths for premium brands. Everything under one roof: design, workshop, logistics, install crew.",
+            specs: [{ k: "Client", v: "Premium / Luxury" }, { k: "Scope", v: "End-to-end" }, { k: "Workshop", v: "In-house" }],
+            hero: heroes[1], frames: [
+              { img: "assets/img/events/house-1.webp", title: "House Store", loc: "Bańska Bystrzyca", imgs: ["assets/img/events/house-1.webp","assets/img/events/house-2.webp","assets/img/events/house-3.webp","assets/img/events/house-4.webp","assets/img/events/house-5.webp","assets/img/events/house-6.webp"] },
+              { img: "assets/img/events/manuba-1.webp", title: "Manuba Booth", loc: "Gdynia", imgs: ["assets/img/events/manuba-1.webp","assets/img/events/manuba-2.webp","assets/img/events/manuba-4.webp","assets/img/events/manuba-5.webp"] },
+              { img: "assets/img/events/revogue-1.webp", title: "Reserved x Vogue", loc: "Londyn", imgs: ["assets/img/events/revogue-1.webp","assets/img/events/revogue-2.webp","assets/img/events/revogue-3.webp","assets/img/events/revogue-4.webp"] },
+              { img: "assets/img/events/sliwka-1.webp", title: "Śliwka Exhibition", loc: "Warszawa", imgs: ["assets/img/events/sliwka-1.webp","assets/img/events/sliwka-2.webp","assets/img/events/sliwka-3.webp","assets/img/events/sliwka-4.webp","assets/img/events/sliwka-5.webp","assets/img/events/sliwka-6.webp"] },
+              { img: "assets/img/events/tallinder-1.webp", title: "Tallinder Event", loc: "Sopot", imgs: ["assets/img/events/tallinder-1.webp","assets/img/events/tallinder-2.webp","assets/img/events/tallinder-3.webp","assets/img/events/tallinder-4.webp","assets/img/events/tallinder-5.webp"] },
+              { img: "assets/img/events/drost-1.webp", title: "Drost Collection Exhibition", loc: "Museum", imgs: ["assets/img/events/drost-1.webp","assets/img/events/drost-2.webp","assets/img/events/drost-3.webp","assets/img/events/drost-4.webp","assets/img/events/drost-5.webp","assets/img/events/drost-6.webp","assets/img/events/drost-7.webp","assets/img/events/drost-8.webp","assets/img/events/drost-91.webp","assets/img/events/drost-92.webp"] }
+            ] },
+          { id: "events", n: "03", short: "Events", label: "03 / EVENTS", t: "Brand Experiences & Events",
+            punch: "Scenography + technology. No material compromises.",
+            d: "Event builds combining unconventional materials and technologies: 3D print, CNC milling, precision joinery. Scenography that plays a role.",
+            specs: [{ k: "Tech", v: "3D print · CNC" }, { k: "Material", v: "Wood · Metal · Resin" }, { k: "Format", v: "Immersive" }],
+            hero: heroes[2], frames: [
+              { img: "assets/img/events/liverpool-1.webp", title: "Liverpool Stage Set", loc: "Liverpool", imgs: ["assets/img/events/liverpool-1.webp","assets/img/events/liverpool-2.webp","assets/img/events/liverpool-3.webp","assets/img/events/liverpool-4.webp","assets/img/events/liverpool-5.webp","assets/img/events/liverpool-6.webp","assets/img/events/liverpool-7.webp"] },
+              { img: "assets/img/events/photoshoot-1.webp", title: "Photoshoot Scenography", loc: "Studio", imgs: ["assets/img/events/photoshoot-1.webp","assets/img/events/photoshoot-2.webp","assets/img/events/photoshoot-3.webp","assets/img/events/photoshoot-4.webp","assets/img/events/photoshoot-5.webp","assets/img/events/photoshoot-6.webp"] },
+              { img: "assets/img/events/press-1.webp", title: "Press Event", loc: "Warsaw", imgs: ["assets/img/events/press-1.webp","assets/img/events/press-2.webp","assets/img/events/press-3.webp","assets/img/events/press-4.webp","assets/img/events/press-5.webp","assets/img/events/press-6.webp"] },
+              { img: "assets/img/events/promo-1.webp", title: "Promo Video Scenography", loc: "Studio", imgs: ["assets/img/events/promo-1.webp","assets/img/events/promo-2.webp","assets/img/events/promo-3.webp","assets/img/events/promo-4.webp","assets/img/events/promo-5.webp","assets/img/events/promo-6.webp","assets/img/events/promo-7.webp","assets/img/events/promo-8.webp","assets/img/events/promo-9.webp"] },
+              { img: "assets/img/events/stairs-3.webp", title: "Stairs Scenography", loc: "Studio", imgs: ["assets/img/events/stairs-1.webp","assets/img/events/stairs-2.webp","assets/img/events/stairs-3.webp","assets/img/events/stairs-4.webp","assets/img/events/stairs-5.webp"] }
+            ] }
+        ];
+        let g = 0;
+        const coll = (i) => "assets/imgc/coll2-" + String((i % 24) + 1).padStart(2, "0") + ".jpg";
+        return data.map((c) => Object.assign({}, c, {
+          jump: jump(c.id),
+          frames: c.frames.map((fr) => {
+            const imgs = fr.imgs || [fr.img, coll(g * 3), coll(g * 3 + 1), coll(g * 3 + 2)];
+            if (!fr.imgs) g++;
+            return Object.assign({}, fr, {
+              imgs: imgs, count: imgs.length + (lang === "pl" ? " zdjęć" : " shots"),
+              open: () => { clearTimeout(this._lbT); this._lbLock(); this.setState({ lbOpen: true, lbClosing: false, lbImgs: imgs, lbIdx: 0, lbTitle: fr.title, lbLoc: fr.loc }); }
+            });
+          })
+        }));
+      })(),
+      isHorizon: page === "home" && variant === "horizon",
+      isStage: page === "home" && variant === "stage",
+      isArchiveV: page === "home" && variant === "archive",
+      goHome: go("home"), goWork: go("work"), goStudio: go("studio"), goContact: go("contact"),
+      toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })),
+      setEn: () => this.setState({ lang: "en" }),
+      setPl: () => this.setState({ lang: "pl" }),
+      toggleLang: () => this.setState({ lang: this.getLang() === "pl" ? "en" : "pl" }),
+      // content
+      stats: (() => {
+        let ms = this.props.midStat ?? "1000+ · Materials & finishes";
+        if (lang === "pl") {
+          const t = {
+            "1000+ · Materials & finishes": "1000+ · Materiałów i wykończeń",
+            "10 · Capitals, last season": "10 · Stolic w ostatnim sezonie",
+            "12 · Cities, one season": "12 · Miast w jednym sezonie",
+            "3 · Countries, one crew": "3 · Kraje, jedna ekipa",
+            "48h · Average on-site install": "48h · Średni montaż na miejscu"
+          };
+          ms = t[ms] || ms;
+        }
+        const p = ms.split(" · ");
+        return D.stats.map((s, i) => i === 1 ? { k: p[0], v: p.slice(1).join(" · ") || s.v } : s);
+      })(),
+      filters, shownProjects, indexRows, topics,
+      teaser: D.projects.slice(0, 4),
+      services: D.services, inhouse: D.inhouse, f: D.form,
+      // form
+      sent: this.state.sent, notSent: !this.state.sent,
+      submitForm: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ sent: true, files: [] }); },
+      lbOpen: this.state.lbOpen,
+      lbCur: (this.state.lbImgs[this.state.lbIdx] || this.state.lbImgs[0] || ""),
+      lbSlideSrcs: this.state.lbImgs,
+      lbTitle: this.state.lbTitle, lbLoc: this.state.lbLoc,
+      lbCounter: (this.state.lbIdx + 1) + " / " + (this.state.lbImgs.length || 1),
+      lbImgAnim: (this.state.lbIdx % 2 === 0) ? "stlm-lb-img1" : "stlm-lb-img2",
+      lbImgs: this.state.lbImgs.map((src, i) => ({
+        src: src, op: i === this.state.lbIdx ? "1" : "0", scale: i === this.state.lbIdx ? "1" : "1.05",
+        dot: i === this.state.lbIdx ? "#EFD32B" : "rgba(255,255,255,0.3)",
+        go: (e) => { if (e && e.stopPropagation) e.stopPropagation(); this.setState({ lbIdx: i }); this._lbShow(i); }
+      })),
+      lbOverlayAnim: this.state.lbClosing ? "stlm-lb-fade-out" : "stlm-lb-fade-in",
+      lbPanelAnim: this.state.lbClosing ? "stlm-lb-pop-out" : "stlm-lb-pop-in",
+      lbClose: () => {
+        if (this.state.lbClosing) return;
+        this.setState({ lbClosing: true });
+        clearTimeout(this._lbT);
+        this._lbT = setTimeout(() => { this._lbUnlock(); this.setState({ lbOpen: false, lbClosing: false }); }, 360);
+      },
+      lbStop: (e) => { if (e && e.stopPropagation) e.stopPropagation(); },
+      lbNext: (e) => { if (e && e.stopPropagation) e.stopPropagation(); const n = this.state.lbImgs.length || 1; const ni = (this.state.lbIdx + 1) % n; this.setState({ lbIdx: ni }); this._lbShow(ni); },
+      lbPrev: (e) => { if (e && e.stopPropagation) e.stopPropagation(); const n = this.state.lbImgs.length || 1; const pi = (this.state.lbIdx - 1 + n) % n; this.setState({ lbIdx: pi }); this._lbShow(pi); },
+      lookbookSent: this.state.lookbookSent, lookbookNotSent: !this.state.lookbookSent, lookbookEmail: this.state.lookbookEmail,
+      onLookbookEmail: (e) => { this.setState({ lookbookEmail: (e && e.target && e.target.value) || "" }); },
+      submitLookbook: (e) => { if (e && e.preventDefault) e.preventDefault(); if (!this.state.lookbookEmail) return; this.setState({ lookbookSent: true }); },
+      onFilesChange: (e) => { this.setState({ files: Array.from((e && e.target && e.target.files) || []) }); },
+      filesSummary: (() => {
+        const n = this.state.files.length;
+        if (!n) return lang === "pl" ? "Brak wybranych plików" : "No files selected";
+        if (n === 1) return this.state.files[0].name;
+        return (lang === "pl" ? n + " plików wybranych" : n + " files selected") + " - " + this.state.files.map((f) => f.name).join(", ");
+      })(),
+      // misc
+      spotRef: this.spotRef,
+      expRef: this.expRef,
+      shaderIntensity: this.props.shaderIntensity ?? 0.7,
+      shaderIntensityDim: (this.props.shaderIntensity ?? 0.7) * 0.6,
+      secondaryBtnProps: { style: { color: "#FFFFFF", borderColor: "#3A3A3A" } },
+      scrollTop: () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        const se = document.scrollingElement || document.documentElement;
+        if (se) se.scrollTo({ top: 0, behavior: "smooth" });
+        if (document.body) document.body.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    };
+  }
+
+  // ---------- lifecycle ----------
+  _lbLock() {
+    this._lbScrollY = window.scrollY || window.pageYOffset || 0;
+    document.body.style.top = -this._lbScrollY + "px";
+    document.body.classList.add("stlm-lb-on");
+  }
+  _lbUnlock() {
+    document.body.classList.remove("stlm-lb-on");
+    document.body.style.top = "";
+    window.scrollTo(0, this._lbScrollY || 0);
+  }
+  componentDidMount() {
+    const doc = document;
+    this._lbEsc = (e) => {
+      if (e.key !== "Escape" || !this.state.lbOpen || this.state.lbClosing) return;
+      this.setState({ lbClosing: true });
+      clearTimeout(this._lbT);
+      this._lbT = setTimeout(() => { this._lbUnlock(); this.setState({ lbOpen: false, lbClosing: false }); }, 360);
+    };
+    window.addEventListener("keydown", this._lbEsc);
+
+    this._setVh = () => {
+      const vv = window.visualViewport;
+      const h = vv ? vv.height : (window.innerHeight || 0);
+      if (h > 0) doc.documentElement.style.setProperty("--stlm-vh", h + "px");
+    };
+    this._setVh();
+    window.addEventListener("resize", this._setVh);
+    window.addEventListener("orientationchange", this._setVh);
+    if (window.visualViewport) window.visualViewport.addEventListener("resize", this._setVh);
+
+    this._over = (e) => {
+      if (!e.target || !e.target.closest) return;
+      const g = e.target.closest("[data-hgroup]");
+      const from = e.relatedTarget && e.relatedTarget.closest ? e.relatedTarget.closest("[data-hgroup]") : null;
+      if (g && g !== from) this._hg(g, true);
+    };
+    this._out = (e) => {
+      if (!e.target || !e.target.closest) return;
+      const g = e.target.closest("[data-hgroup]");
+      const to = e.relatedTarget && e.relatedTarget.closest ? e.relatedTarget.closest("[data-hgroup]") : null;
+      if (g && g !== to) this._hg(g, false);
+    };
+    doc.addEventListener("mouseover", this._over);
+    doc.addEventListener("mouseout", this._out);
+
+    // touch devices have no hover - on mobile, skip the tap-to-peek interaction entirely:
+    // reveal images are shown in their "on" state permanently (see _syncMobileReveal).
+    this._touchHg = null;
+    this._touchTap = (e) => {
+      if (window.innerWidth <= 860) return;
+      const g = e.target && e.target.closest ? e.target.closest("[data-hgroup]") : null;
+      if (this._touchHg && this._touchHg !== g) this._hg(this._touchHg, false);
+      if (g) { this._hg(g, g !== this._touchHg ? true : false); this._touchHg = (g !== this._touchHg) ? g : null; }
+      else { this._touchHg = null; }
+    };
+    doc.addEventListener("touchstart", this._touchTap, { passive: true });
+    this._resize = () => this._syncMobileReveal();
+    window.addEventListener("resize", this._resize, { passive: true });
+
+    this._move = (e) => {
+      const el = this.spotRef && this.spotRef.current;
+      if (!el) return;
+      if ((this.props.spotlight ?? true) === false) { el.style.opacity = "0"; return; }
+      if (window.innerWidth <= 860 || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) { el.style.opacity = "0"; return; }
+      el.style.transform = "translate3d(" + e.clientX + "px," + e.clientY + "px,0)";
+      el.style.opacity = "1";
+    };
+    this._leave = () => {
+      const el = this.spotRef && this.spotRef.current;
+      if (el) el.style.opacity = "0";
+    };
+    doc.addEventListener("mousemove", this._move, { passive: true });
+    doc.documentElement.addEventListener("mouseleave", this._leave);
+
+    this._scroll = () => { this._parallax(); this._toTop(); };
+    window.addEventListener("scroll", this._scroll, { passive: true });
+    document.addEventListener("scroll", this._scroll, { passive: true, capture: true });
+    if (document.body) document.body.addEventListener("scroll", this._scroll, { passive: true });
+    if (document.documentElement) document.documentElement.addEventListener("scroll", this._scroll, { passive: true });
+
+    this._io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (en.isIntersecting) {
+          en.target.style.opacity = "1";
+          en.target.style.transform = "none";
+          this._io.unobserve(en.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    this._hash = () => {
+      this.setState({ page: Component.pageFromHash(), sent: false, menuOpen: false });
+      window.scrollTo({ top: 0 });
+      if (document.body) document.body.scrollTop = 0;
+      if (document.documentElement) document.documentElement.scrollTop = 0;
+      const site = document.querySelector(".site");
+      if (site) site.scrollTop = 0;
+    };
+    window.addEventListener("hashchange", this._hash);
+    if (window.location.hash) this._hash(); // honor deep link on load
+
+    // cookie consent: read stored decision, otherwise show the banner
+    let stored = null;
+    try { stored = JSON.parse(localStorage.getItem(Component.COOKIE_KEY) || "null"); } catch (e) {}
+    if (stored && stored.v) {
+      this.setState({ cookieDecided: true, cookieAnalytics: !!stored.analytics, cookieMarketing: !!stored.marketing });
+      this._applyConsent(stored);
+    } else {
+      this.setState({ cookieDecided: false });
+    }
+
+    this._typewriter(); // start the timer-driven loop (independent of rAF/visibility)
+    this._sync();
+
+    // Lightbox image crossfade - observe the overlay image's src and animate on change,
+    // independent of React lifecycle (this runtime ignores setState callbacks).
+    this._lbObs = new MutationObserver((muts) => {
+      for (const m of muts) {
+        if (m.type === "attributes" && m.target && m.target.tagName === "IMG" &&
+            m.target.closest && m.target.closest(".stlm-lb-overlay")) {
+          this._lbFadeEl(m.target);
+        } else if (m.type === "childList") {
+          m.addedNodes.forEach((n) => {
+            if (n.nodeType === 1) {
+              const img = (n.matches && n.matches(".stlm-lb-overlay img")) ? n
+                : (n.querySelector && n.querySelector(".stlm-lb-overlay img"));
+              if (img) this._lbApplySrc();
+            }
+          });
+        }
+      }
+    });
+    this._lbObs.observe(document.body, { subtree: true, childList: true, attributes: true, attributeFilter: ["src"] });
+  }
+
+  componentDidUpdate() { this._sync(); }
+
+  _lbApplySrc() {
+    const img = document.querySelector(".stlm-lb-overlay img");
+    if (!img) return;
+    const src = this.state.lbImgs[this.state.lbIdx] || this.state.lbImgs[0];
+    if (src && img.getAttribute("src") !== src) img.setAttribute("src", src);
+  }
+
+  _lbShow(idx, tries) {
+    const img = document.querySelector(".stlm-lb-overlay img");
+    const src = this.state.lbImgs[idx];
+    if (!img || !src) {
+      if ((tries || 0) < 12) requestAnimationFrame(() => this._lbShow(idx, (tries || 0) + 1));
+      return;
+    }
+    if (img.getAttribute("src") !== src) img.setAttribute("src", src);
+    this._lbFadeEl(img);
+  }
+
+  _lbFade() {
+    const img = document.querySelector(".stlm-lb-overlay img");
+    this._lbFadeEl(img);
+  }
+
+  _lbFadeEl(img) {
+    if (!img || !img.animate) return;
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    img.animate(
+      [{ opacity: 0.12, transform: "scale(1.07)" }, { opacity: 1, transform: "scale(1)" }],
+      { duration: 520, easing: "cubic-bezier(0.16,1,0.3,1)" }
+    );
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("keydown", this._lbEsc);
+    window.removeEventListener("resize", this._setVh);
+    window.removeEventListener("orientationchange", this._setVh);
+    if (window.visualViewport) window.visualViewport.removeEventListener("resize", this._setVh);
+    document.removeEventListener("mouseover", this._over);
+    document.removeEventListener("mouseout", this._out);
+    document.removeEventListener("touchstart", this._touchTap);
+    document.removeEventListener("mousemove", this._move);
+    document.documentElement.removeEventListener("mouseleave", this._leave);
+    window.removeEventListener("scroll", this._scroll);
+    document.removeEventListener("scroll", this._scroll, { capture: true });
+    if (document.body) document.body.removeEventListener("scroll", this._scroll);
+    if (document.documentElement) document.documentElement.removeEventListener("scroll", this._scroll);
+    window.removeEventListener("hashchange", this._hash);
+    window.removeEventListener("resize", this._resize);
+    if (this._io) this._io.disconnect();
+    if (this._lbObs) this._lbObs.disconnect();
+    if (this._twInt) clearInterval(this._twInt);
+  }
+
+  // "The reveal" hero: yellow bar sweep + decode eyebrow, plays once when 35% visible
+  _revealHero() {
+    const hero = document.querySelector("[data-wr]");
+    if (!hero || hero.dataset.wrWired) return;
+    hero.dataset.wrWired = "1";
+    const reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const play = () => {
+      if (hero.dataset.wrPlayed) return;
+      hero.dataset.wrPlayed = "1";
+      hero.classList.add("is-visible");
+      const ey = hero.querySelector("[data-wr-eyebrow]");
+      if (!ey) return;
+      const target = (ey.textContent || "").toUpperCase();
+      if (reduced || !target.trim()) { ey.textContent = target; return; }
+      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#/·";
+      let frame = 0;
+      const iv = setInterval(() => {
+        frame++;
+        let out = "";
+        for (let i = 0; i < target.length; i++) {
+          if (i < frame * 2) out += target[i];
+          else if (target[i] === " ") out += " ";
+          else out += chars[Math.floor(Math.random() * chars.length)];
+        }
+        ey.textContent = out;
+        if (frame * 2 >= target.length) { clearInterval(iv); ey.textContent = target; }
+      }, 35);
+      const chapterSec = document.querySelector("[data-chapter]");
+      const cineImg = chapterSec && chapterSec.querySelector("[data-cine-img]");
+      if (cineImg && !reduced) {
+        cineImg.dataset.introLock = "1";
+        cineImg.style.transition = "opacity 0.9s cubic-bezier(0.16,1,0.3,1)";
+        cineImg.style.opacity = "0";
+        window.setTimeout(() => {
+          const r = chapterSec.getBoundingClientRect();
+          const winH = window.innerHeight;
+          const q = Math.max(0, Math.min(1, (winH - r.top) / (winH * 0.9)));
+          cineImg.style.opacity = (0.3 + 0.7 * Math.min(1, q * 1.25)).toFixed(3);
+          window.setTimeout(() => { delete cineImg.dataset.introLock; }, 950);
+        }, 1650);
+      }
+    };
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) { play(); io.disconnect(); } });
+      }, { threshold: 0.35 });
+      io.observe(hero);
+    } else play();
+  }
+
+  _sync() {
+    const run = () => {
+      this._i18n();
+      this._chrome();
+      this._lazyimg();
+      this._reveals();
+      this._revealHero();
+      this._parallax();
+      this._toTop();
+      this._typewriter();
+      this._syncMobileReveal();
+      const ei = this.expRef && this.expRef.current;
+      if (ei && !ei.src.endsWith("assets/imgc/events-hero.jpg")) ei.src = "assets/imgc/events-hero.jpg";
+    };
+    run();
+    requestAnimationFrame(run);
+  }
+
+  // Mobile has no hover, and tap-to-peek is gone by request - reveal images
+  // sit permanently in their "on" (revealed) state on small screens.
+  _syncMobileReveal() {
+    if (window.innerWidth > 860) return;
+    document.querySelectorAll("[data-hgroup]").forEach((g) => this._hg(g, true));
+  }
+
+  _lazyimg() {
+    document.querySelectorAll("img[data-src]").forEach((im) => {
+      const v = im.getAttribute("data-src");
+      if (v && v.indexOf("{{") === -1 && im.getAttribute("src") !== v) im.setAttribute("src", v);
+    });
+  }
+
+  _i18n() {
+    const pl = this.getLang() === "pl";
+    document.querySelectorAll("[data-i18n]").forEach((el) => {
+      if (el.closest("[data-tw]")) return; // typewriter owns its own text
+      const key = el.getAttribute("data-i18n");
+      if (el.dataset.en == null) el.dataset.en = el.textContent;
+      const want = pl ? (Component.PL_DICT[key] || el.dataset.en) : el.dataset.en;
+      if (el.textContent !== want) el.textContent = want;
+    });
+  }
+
+  _chrome() {
+    const page = this.state.page;
+    const mm = document.querySelector("[data-mmenu]");
+    if (mm) mm.style.display = this.state.menuOpen ? "flex" : "none";
+    const bi = document.querySelector("[data-burger-icon]");
+    if (bi) {
+      bi.innerHTML = this.state.menuOpen
+        ? '<path d="M5 5l14 14"></path><path d="M19 5L5 19"></path>'
+        : '<path d="M3 6h18"></path><path d="M3 12h18"></path><path d="M3 18h18"></path>';
+    }
+    document.querySelectorAll("[data-nav]").forEach((b) => {
+      const on = b.getAttribute("data-nav") === page;
+      b.style.color = on ? "#FFFFFF" : "#7E7E7A";
+      b.style.borderBottomColor = on ? "#EFD32B" : "transparent";
+    });
+    const lang = this.getLang();
+    document.querySelectorAll("[data-lang-toggle-label]").forEach((el) => {
+      el.textContent = lang === "pl" ? "EN" : "PL";
+    });
+    const spot = this.spotRef && this.spotRef.current;
+    if (spot && (this.props.spotlight ?? true) === false) spot.style.opacity = "0";
+    const cr = document.querySelector("[data-cr]");
+    if (cr && !cr.dataset.wired) {
+      cr.dataset.wired = "1";
+      cr.addEventListener("mouseenter", () => { cr.style.color = "rgba(255,255,255,0.22)"; });
+      cr.addEventListener("mouseleave", () => { cr.style.color = "rgba(255,255,255,0.05)"; });
+    }
+  }
+
+  _reveals() {
+    const reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.querySelectorAll("[data-reveal]:not([data-rv])").forEach((el) => {
+      el.dataset.rv = "1";
+      if (reduced) return;
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight * 0.75 && r.bottom > 0) return; // already visible - don't animate
+      el.style.opacity = "0";
+      const slide = el.dataset.slide;
+      el.style.transform = slide === "left" ? "translateX(-72px)" : slide === "right" ? "translateX(72px)" : "translateY(26px)";
+      el.style.transition = "opacity 0.72s cubic-bezier(0.16,1,0.3,1), transform 0.72s cubic-bezier(0.16,1,0.3,1)";
+      this._io.observe(el);
+    });
+  }
+
+  _twMakeCaret() {
+    const c = document.createElement("span");
+    c.setAttribute("data-tw-caret", "1");
+    c.setAttribute("aria-hidden", "true");
+    c.style.cssText = "display:inline-block;width:0.055em;height:0.78em;background:#EFD32B;margin-left:0.04em;vertical-align:baseline;animation:twBlink 1.05s steps(1) infinite;";
+    return c;
+  }
+
+  // Re-renders the FULL current string every frame so React reconciliation can't stop it.
+  _twSet(el, str, caretOn) {
+    let tn = el._twText;
+    if (!tn || tn.parentNode !== el) {
+      el.textContent = "";
+      tn = document.createTextNode("");
+      el.appendChild(tn);
+      el._twText = tn;
+      el._twCaret = null;
+    }
+    if (tn.nodeValue !== str) tn.nodeValue = str;
+    let caret = el._twCaret;
+    if (caretOn) {
+      if (!caret || caret.parentNode !== el) {
+        caret = this._twMakeCaret();
+        el.appendChild(caret);
+        el._twCaret = caret;
+      } else if (el.lastChild !== caret) {
+        el.appendChild(caret);
+      }
+    } else if (caret && caret.parentNode === el) {
+      caret.remove();
+      el._twCaret = null;
+    }
+  }
+
+  _typewriter() {
+    if (this._twLoop) return; // start the loop once
+    this._twLoop = true;
+    this._twState = null;
+    this._twInt = setInterval(() => { try { this._twStep(); } catch (e) {} }, 45);
+  }
+
+  _twStep() {
+    const host = document.querySelector("[data-tw]");
+    if (!host) { this._twState = null; return; } // not on the Studio page
+    const l1 = host.querySelector("[data-tw-line]");
+    const l2 = host.querySelector("[data-tw-cycle]");
+    if (!l1 || !l2) return;
+
+    const pl = this.getLang() === "pl";
+    const cyc = pl
+      ? ["Jeden warsztat.", "Każdy materiał.", "Każda technologia.", "Zero granic."]
+      : ["One workshop.", "Every material.", "Every technology.", "Zero limits."];
+
+    if (l1.dataset.en == null && l1.textContent) l1.dataset.en = l1.textContent;
+    const key1 = l1.getAttribute("data-i18n");
+    const line1 = (pl && key1 ? (Component.PL_DICT[key1] || l1.dataset.en) : l1.dataset.en) || "Three disciplines.";
+
+    const reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) { this._twSet(l1, line1, false); this._twSet(l2, cyc[0], false); return; }
+
+    const langKey = pl ? "pl" : "en";
+    let s = this._twState;
+    if (!s || s.lang !== langKey) s = this._twState = { lang: langKey, phase: "typeL1", idx: 0, ci: 0, next: 0 };
+
+    const now = performance.now();
+    const cd = (ch) => ch === " " ? 46 : (/[.,;:!?]/.test(ch) ? 240 : 34 + Math.random() * 66);
+
+    const render = () => {
+      if (s.phase === "typeL1" || s.phase === "holdL1") {
+        this._twSet(l1, line1.slice(0, s.phase === "typeL1" ? s.idx : line1.length), true);
+        this._twSet(l2, "", false);
+      } else {
+        this._twSet(l1, line1, false);
+        const ph = cyc[s.ci % cyc.length];
+        this._twSet(l2, ph.slice(0, s.idx), true);
+      }
+    };
+
+    // advance as many steps as elapsed time allows (robust to timer throttling)
+    let guard = 0;
+    while (now >= s.next && guard++ < 200) {
+      if (s.phase === "typeL1") {
+        if (s.idx < line1.length) { const ch = line1[s.idx]; s.idx++; s.next += cd(ch); }
+        else { s.phase = "holdL1"; s.next += 340; }
+      } else if (s.phase === "holdL1") {
+        s.phase = "type"; s.idx = 0;
+      } else if (s.phase === "type") {
+        const ph = cyc[s.ci % cyc.length];
+        if (s.idx < ph.length) { const ch = ph[s.idx]; s.idx++; s.next += cd(ch); }
+        else { s.phase = "hold"; s.next += 1700; }
+      } else if (s.phase === "hold") {
+        s.phase = "erase";
+      } else if (s.phase === "erase") {
+        if (s.idx > 0) { s.idx--; s.next += 26; }
+        else { s.ci = (s.ci + 1) % cyc.length; s.phase = "type"; s.next += 240; }
+      }
+    }
+    if (s.next < now) s.next = now; // clamp after a long stall
+    render();
+  }
+
+  _toTop() {
+    const btn = document.querySelector("[data-totop]");
+    if (!btn) return;
+    const site = document.querySelector(".site");
+    const scrollY = Math.max(
+      window.scrollY || 0,
+      (document.body && document.body.scrollTop) || 0,
+      (document.documentElement && document.documentElement.scrollTop) || 0,
+      (site && site.scrollTop) || 0
+    );
+    const bannerOpen = !this.state.cookieDecided || this.state.cookiePanel;
+    const on = scrollY > 480 && !bannerOpen;
+    btn.style.opacity = on ? "1" : "0";
+    btn.style.visibility = on ? "visible" : "hidden";
+    btn.style.transform = on ? "translateY(0)" : "translateY(8px)";
+  }
+
+  _parallax() {
+    const tun = document.querySelector("[data-wtunnel]");
+    if (tun) {
+      const reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const r = tun.getBoundingClientRect();
+      const span = Math.max(1, r.height - window.innerHeight);
+      const p = Math.max(0, Math.min(1, -r.top / span));
+      tun.querySelectorAll("[data-wt]").forEach((im) => {
+        const sp = parseFloat(im.getAttribute("data-wt")) || 0;
+        if (reduced) { im.style.transform = "none"; im.style.opacity = "0.8"; return; }
+        const y = (0.5 - p) * sp * window.innerHeight * 1.15;
+        const sc = 1 + p * Math.abs(sp) * 0.55;
+        im.style.transform = "translate3d(0," + y.toFixed(1) + "px,0) scale(" + sc.toFixed(3) + ")";
+        im.style.opacity = (p < 0.82 ? 0.85 : Math.max(0, 0.85 - (p - 0.82) * 4.7)).toFixed(3);
+      });
+      const core = tun.querySelector("[data-wt-core]");
+      if (core) {
+        if (reduced) { core.style.transform = "none"; core.style.opacity = "1"; }
+        else {
+          const csc = 1 + p * 0.22;
+          core.style.transform = "scale(" + csc.toFixed(3) + ")";
+          core.style.opacity = (p < 0.72 ? 1 : Math.max(0, 1 - (p - 0.72) * 3.6)).toFixed(3);
+        }
+      }
+      const rule = tun.querySelector("[data-wt-rule]");
+      if (rule) rule.style.transform = "scaleX(" + Math.min(1, p * 2.2).toFixed(3) + ")";
+    }
+    document.querySelectorAll("[data-parallax]").forEach((el) => {
+      const f = parseFloat(el.getAttribute("data-parallax")) || 0;
+      const r = el.getBoundingClientRect();
+      const off = (r.top + r.height / 2 - window.innerHeight / 2) * f;
+      el.style.translate = "0 " + off.toFixed(1) + "px";
+    });
+    this._cine();
+  }
+
+  _cine() {
+    const winH = window.innerHeight;
+    const reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.querySelectorAll("[data-cine]").forEach((w) => {
+      const r = w.getBoundingClientRect();
+      const q = Math.max(0, Math.min(1, (winH - r.top) / (winH * 0.9)));
+      const img = w.querySelector("[data-cine-img]");
+      if (img) {
+        // parallax: image drifts slower than the page
+        const off = reduced ? 0 : (r.top + r.height / 2 - winH / 2) * -0.14;
+        img.style.transform = "translateY(" + off.toFixed(1) + "px)";
+        if (!img.dataset.introLock) img.style.opacity = (0.3 + 0.7 * Math.min(1, q * 1.25)).toFixed(3);
+      }
+      const cap = w.querySelector("[data-cine-cap]");
+      if (cap) {
+        cap.style.opacity = Math.max(0, (q - 0.2) / 0.8).toFixed(3);
+        cap.style.transform = "translateY(" + (reduced ? 0 : 40 * (1 - q)).toFixed(1) + "px)";
+      }
+      const rule = w.querySelector("[data-cine-rule]");
+      if (rule) rule.style.transform = "scaleX(" + q.toFixed(3) + ")";
+    });
+  }
+
+  _carousel() {
+    document.querySelectorAll("[data-carou]").forEach((el) => {
+      const slides = el.querySelectorAll("[data-carou-slide]");
+      if (!slides.length) return;
+      if (el.dataset.cwired) {
+        if (!el._int && el._show) el._show(parseInt(el.dataset.ci) || 0, false);
+        return;
+      }
+      el.dataset.cwired = "1";
+      el.dataset.ci = "0";
+      const dots = el.querySelectorAll("[data-carou-dot]");
+      const dotsWrap = el.querySelector("[data-carou-dots]");
+      const show = (idx, hover) => {
+        slides.forEach((s, i) => {
+          const active = i === idx;
+          s.style.opacity = active ? (hover ? "1" : "0.5") : "0";
+          s.style.transform = active && hover ? "scale(1.09)" : "scale(1.04)";
+        });
+        dots.forEach((d, i) => { d.style.background = i === idx ? "#EFD32B" : "rgba(255,255,255,0.35)"; });
+        el.dataset.ci = String(idx);
+      };
+      el._show = show;
+      show(0, false);
+      el.addEventListener("pointerenter", () => {
+        if (dotsWrap) dotsWrap.style.opacity = "1";
+        show(parseInt(el.dataset.ci) || 0, true);
+        if (el._int) return;
+        el._int = setInterval(() => {
+          show(((parseInt(el.dataset.ci) || 0) + 1) % slides.length, true);
+        }, 1100);
+      });
+      el.addEventListener("pointerleave", () => {
+        if (el._int) { clearInterval(el._int); el._int = null; }
+        if (dotsWrap) dotsWrap.style.opacity = "0";
+        show(0, false);
+      });
+    });
+  }
+
+  _hg(g, on) {
+    g.querySelectorAll("[data-rd-bar]").forEach((b) => { b.style.transform = on ? "scaleX(0)" : "scaleX(1)"; });
+    g.querySelectorAll("[data-rd-text]").forEach((t) => { t.style.opacity = on ? "1" : (t.dataset.dim || "0.14"); });
+    g.querySelectorAll("[data-h-img]").forEach((im) => {
+      im.style.opacity = on ? (im.dataset.on || "0.85") : (im.dataset.off || "0.5");
+      im.style.transform = on ? "scale(1.01)" : "scale(1.06)";
+      if (im.dataset.gray != null) im.style.filter = on ? "grayscale(0) brightness(1)" : "grayscale(1) brightness(0.78)";
+    });
+    g.querySelectorAll("[data-h-txt]").forEach((t) => {
+      t.style.color = on ? "#FFFFFF" : (t.dataset.c || "#4A4A4A");
+      t.style.transform = on ? "translateX(14px)" : "translateX(0)";
+    });
+    g.querySelectorAll("[data-h-num]").forEach((t) => { t.style.color = on ? "#EFD32B" : "#3A3A3A"; });
+    if (g.dataset.hborder != null) g.style.borderColor = on ? "rgba(239,211,43,0.55)" : "#222222";
+    if (g.classList.contains("stlm-ctile")) g.style.zIndex = on ? "40" : "";
+  }
+}
+</script>
+</body>
+</html>
