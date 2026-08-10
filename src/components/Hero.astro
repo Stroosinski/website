@@ -1,8 +1,17 @@
 ---
 /**
- * Sekcja otwierająca stronę główną (w oryginale: "Home - Horizon").
- * Tło to shader WebGL <veil-shader> — ten sam komponent co w wersji z Claude Design.
- * Treść jest w HTML od razu (nie doklejana JavaScriptem), więc widzą ją wyszukiwarki.
+ * Sekcja otwierająca (oryginał: "Home - Horizon", linie 153-191).
+ *
+ * Style wpisane w kod celowo — reguły mobilne w original.css dopasowują się
+ * po treści atrybutu style oraz po atrybutach data-*. Nie zamieniać na klasy.
+ *
+ * Tło to <silk-drape> ("tafla wody"), speed 0.22, intensity 0.7 — dokładnie jak
+ * w oryginale (heroBackgroundSilk = true). Pozostałe shadery z projektu
+ * (veil-shader, grain-bloom, ash-drift, Orb) są w hero wyłączone.
+ *
+ * Uwaga: opakowanie nosi atrybut data-hero-shader-layer, tak jak w oryginale.
+ * W original.css jest regula dla [data-hero-shader] (bez -layer), ktora w
+ * oryginale rowniez sie nie stosuje — zachowujemy zgodnosc, nie "poprawiamy".
  */
 import { useTranslations, pathFor, type Locale } from '@/i18n';
 import Button from './Button.astro';
@@ -14,17 +23,49 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 ---
 
-<section class="hero">
-  <div aria-hidden="true" class="hero-shader">
-    <veil-shader intensity="0.55"></veil-shader>
+<section
+  data-hero-section
+  style="position: relative; height: calc(100vh + 72px); margin-top: -72px; min-height: 620px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #050505;"
+>
+  <div
+    aria-hidden="true"
+    data-hero-shader-layer
+    style="position: absolute; inset: 0; z-index: 0; pointer-events: none; background: #050505;"
+  >
+    <silk-drape
+      intensity="0.7"
+      speed="0.22"
+      style="position: absolute; inset: 0; width: 100%; height: 100%;"></silk-drape>
   </div>
-  <div aria-hidden="true" class="hero-scrim"></div>
 
-  <div class="hero-content">
-    <p class="hero-eyebrow">{t('hero.eyebrow')}</p>
-    <h1 class="hero-title">{t('hero.h1')}</h1>
-    <p class="hero-standfirst">{t('hero.standfirst')}</p>
-    <div class="hero-actions">
+  <div
+    aria-hidden="true"
+    data-hero-scrim
+    style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0) 38%, rgba(10,10,10,0.92) 97%); pointer-events: none;"
+  >
+  </div>
+
+  <div
+    style="position: relative; z-index: 2; text-align: center; padding: 0 40px; display: flex; flex-direction: column; align-items: center; max-width: 1360px;"
+  >
+    <div
+      data-reveal
+      style="font-size: 11px; font-weight: 500; letter-spacing: 0.34em; text-transform: uppercase; color: var(--signal-yellow); margin-bottom: 32px;"
+    >
+      {t('hero.eyebrow')}
+    </div>
+    <h1
+      style="margin: 0; font-weight: 900; text-transform: uppercase; color: #FFFFFF; font-size: clamp(54px, 8.4vw, 142px); line-height: 0.94; letter-spacing: -0.02em; text-wrap: balance;"
+    >
+      {t('hero.h1')}
+    </h1>
+    <p
+      data-reveal
+      style="margin: 36px 0 0; max-width: 580px; font-weight: 300; font-size: 19px; line-height: 1.7; color: #C9C7C1;"
+    >
+      {t('hero.standfirst')}
+    </p>
+    <div data-reveal style="display: flex; gap: 14px; margin-top: 44px;">
       <Button href={pathFor('work', lang)} variant="accent" size="lg">{t('hero.cta1')}</Button>
       <Button href={pathFor('studio', lang)} variant="secondary" size="lg" onDark>
         {t('hero.cta2')}
@@ -32,157 +73,26 @@ const t = useTranslations(lang);
     </div>
   </div>
 
-  <div class="hero-index">
-    <span>{t('hero.index')}</span>
-    <span aria-hidden="true" class="hero-rule"></span>
+  <div
+    data-hero-index
+    style="position: absolute; left: 40px; bottom: 28px; z-index: 2; display: flex; flex-direction: column; gap: 10px;"
+  >
+    <span
+      style="font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal-yellow);"
+      >{t('hero.index')}</span
+    >
+    <span
+      aria-hidden="true"
+      style="display: block; width: 64px; height: 1px; background: var(--signal-yellow);"></span>
   </div>
 
-  <div aria-hidden="true" class="hero-cue">
-    <span class="hero-cue-track"><span class="hero-cue-dot"></span></span>
+  <div aria-hidden="true" data-hero-cue style="position: absolute; right: 40px; bottom: 28px; z-index: 2;">
+    <span style="display: block; width: 1px; height: 46px; background: #3A3A3A; position: relative; overflow: hidden;">
+      <span
+        style="position: absolute; left: 0; top: -45%; width: 100%; height: 42%; background: var(--signal-yellow); animation: stlm-cue 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;"
+      ></span>
+    </span>
   </div>
 </section>
 
-<script src="/js/veil-shader.js" is:inline defer></script>
-
-<style>
-  .hero {
-    position: relative;
-    height: calc(100vh + 72px);
-    margin-top: -72px;
-    min-height: 620px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #050505;
-  }
-  .hero-shader {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-  }
-  .hero-shader veil-shader {
-    position: absolute;
-    inset: 0;
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-  .hero-scrim {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: linear-gradient(
-      to bottom,
-      rgba(10, 10, 10, 0.3) 0%,
-      rgba(10, 10, 10, 0) 38%,
-      rgba(10, 10, 10, 0.92) 97%
-    );
-  }
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    padding: 0 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 1360px;
-  }
-  .hero-eyebrow {
-    margin: 0 0 32px;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.34em;
-    text-transform: uppercase;
-    color: var(--signal-yellow, #efd32b);
-  }
-  .hero-title {
-    margin: 0;
-    font-weight: 900;
-    text-transform: uppercase;
-    color: #fff;
-    font-size: clamp(54px, 8.4vw, 142px);
-    line-height: 0.94;
-    letter-spacing: -0.02em;
-    text-wrap: balance;
-  }
-  .hero-standfirst {
-    margin: 36px 0 0;
-    max-width: 580px;
-    font-weight: 300;
-    font-size: 19px;
-    line-height: 1.7;
-    color: #c9c7c1;
-  }
-  .hero-actions {
-    display: flex;
-    gap: 14px;
-    margin-top: 44px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .hero-index {
-    position: absolute;
-    left: 40px;
-    bottom: 28px;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--signal-yellow, #efd32b);
-  }
-  .hero-rule {
-    display: block;
-    width: 64px;
-    height: 1px;
-    background: var(--signal-yellow, #efd32b);
-  }
-  .hero-cue {
-    position: absolute;
-    right: 40px;
-    bottom: 28px;
-    z-index: 2;
-  }
-  .hero-cue-track {
-    display: block;
-    width: 1px;
-    height: 46px;
-    background: #3a3a3a;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-cue-dot {
-    position: absolute;
-    left: 0;
-    top: -45%;
-    width: 100%;
-    height: 42%;
-    background: var(--signal-yellow, #efd32b);
-    animation: stlm-cue 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-  }
-  @keyframes stlm-cue {
-    0% {
-      top: -45%;
-    }
-    100% {
-      top: 110%;
-    }
-  }
-
-  /* Na małych ekranach znikają boczne oznaczenia — jak w oryginale */
-  @media (max-width: 860px) {
-    .hero-index,
-    .hero-cue {
-      display: none;
-    }
-    .hero-content {
-      padding: 0 24px;
-    }
-  }
-</style>
+<script src="/js/silk-drape.js" is:inline defer></script>

@@ -1,7 +1,9 @@
 ---
 /**
- * "Wybrane artefakty" — układ bento z trzema kadrami.
- * Tytuły startują zakryte paskiem i odsłaniają się przy najechaniu (zob. veil.ts).
+ * "Wybrane artefakty" — układ bento, oryginał linie 217-260.
+ * Klasa .stlm-bento jest punktem zaczepienia reguł mobilnych (rozkłada kafle
+ * w kolumnę i zdejmuje sztywną wysokość), więc musi zostać.
+ * Tytuły startują zakryte paskiem i odsłaniają się przy najechaniu (veil.ts).
  */
 import { useTranslations, pathFor, type Locale } from '@/i18n';
 
@@ -11,252 +13,196 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 const workHref = pathFor('work', lang);
-
-const tiles = [
-  {
-    id: 'a',
-    href: workHref,
-    src: '/assets/imgc/select-hero.jpg',
-    alt: t('alt.wearMedicine'),
-    title: t('bento.a.title'),
-    meta: t('bento.a.meta'),
-    dim: '0.14',
-    off: '0.45',
-    on: '0.75',
-    big: true,
-  },
-  {
-    id: 'b',
-    href: workHref,
-    src: '/assets/img/pos/popup-1.webp',
-    alt: t('alt.popup'),
-    title: t('bento.b.title'),
-    meta: t('bento.b.meta'),
-    dim: '0.16',
-    off: '0.35',
-    on: '0.7',
-    big: false,
-  },
-  {
-    id: 'c',
-    href: workHref,
-    src: '/assets/imgc/house-store.jpg',
-    alt: t('alt.houseStore'),
-    title: t('bento.c.title'),
-    meta: t('bento.c.meta'),
-    dim: '0.16',
-    off: '0.35',
-    on: '0.7',
-    big: false,
-  },
-];
 ---
 
-<section class="arch">
-  <div class="arch-head">
+<section style="max-width: 1360px; margin: 0 auto; padding: 150px 40px 110px;">
+  <div
+    style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; gap: 24px;"
+  >
     <div>
-      <p class="arch-eyebrow">{t('arch.eyebrow')}</p>
-      <h2 class="arch-h">{t('arch.h3')}</h2>
+      <div
+        data-reveal
+        style="font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal-yellow); margin-bottom: 18px;"
+      >
+        {t('arch.eyebrow')}
+      </div>
+      <h2
+        data-reveal
+        style="margin: 0; font-weight: 900; text-transform: uppercase; color: #FFFFFF; font-size: clamp(32px, 3.4vw, 50px); letter-spacing: -0.02em;"
+      >
+        {t('arch.h3')}
+      </h2>
     </div>
-    <a class="arch-link" href={workHref}>{t('arch.link')}</a>
+    <a
+      href={workHref}
+      class="stlm-arch-link"
+      style="font-family: inherit; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #C9C7C1; background: none; border: 0; border-bottom: 1px solid #3A3A3A; padding: 0 0 6px; cursor: pointer; text-decoration: none;"
+      >{t('arch.link')}</a
+    >
   </div>
 
-  <div class="arch-bento">
-    {
-      tiles.map((tile) => (
-        <a
-          href={tile.href}
-          class:list={['arch-tile', { 'is-big': tile.big }]}
-          data-hgroup
-          data-hborder="1"
+  <div
+    class="stlm-bento"
+    style="display: grid; grid-template-columns: 8fr 4fr; grid-template-rows: 1fr 1fr; gap: 20px; height: min(74vh, 720px);"
+  >
+    <div
+      data-hgroup
+      data-hborder="1"
+      style="grid-row: 1 / span 2; position: relative; border: 1px solid #222222; overflow: hidden; cursor: pointer; transition: border-color 0.42s ease;"
+    >
+      <img
+        data-h-img
+        data-off="0.45"
+        data-on="0.75"
+        src="/assets/imgc/select-hero.jpg"
+        alt={t('alt.wearMedicine')}
+        loading="lazy"
+        decoding="async"
+        style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.45; transform: scale(1.06); transition: opacity 0.72s cubic-bezier(0.16, 1, 0.3, 1), transform 0.72s cubic-bezier(0.16, 1, 0.3, 1);"
+      />
+      <div
+        aria-hidden="true"
+        style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.05) 55%);"
+      >
+      </div>
+      <div style="position: absolute; left: 40px; right: 40px; bottom: 36px;">
+        <span data-rd style="position: relative; display: inline-block;">
+          <a
+            href={workHref}
+            class="stlm-tile-link"
+            data-rd-text
+            data-dim="0.14"
+            style="display: inline-block; font-weight: 900; text-transform: uppercase; color: #FFFFFF; font-size: clamp(30px, 3.4vw, 52px); line-height: 1; letter-spacing: -0.01em; opacity: 0.14; transition: opacity 0.42s cubic-bezier(0.16, 1, 0.3, 1); text-decoration: none;"
+            >{t('bento.a.title')}</a
+          >
+          <span
+            data-rd-bar
+            aria-hidden="true"
+            style="position: absolute; left: -3px; right: -3px; top: 6%; height: 88%; background: #222222; transform: scaleX(1); transform-origin: right; transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);"
+          ></span>
+        </span>
+        <div
+          style="margin-top: 14px; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal-yellow);"
         >
-          <img
-            data-h-img
-            data-off={tile.off}
-            data-on={tile.on}
-            src={tile.src}
-            alt={tile.alt}
-            loading="lazy"
-            decoding="async"
-          />
-          <span aria-hidden="true" class="arch-scrim" />
-          <span class="arch-caption">
-            <span data-rd class="arch-rd">
-              <span data-rd-text data-dim={tile.dim} class="arch-title">
-                {tile.title}
-              </span>
-              <span data-rd-bar aria-hidden="true" class="arch-bar" />
-            </span>
-            <span class="arch-meta">{tile.meta}</span>
-          </span>
-        </a>
-      ))
-    }
+          {t('bento.a.meta')}
+        </div>
+      </div>
+    </div>
+
+    <div
+      data-hgroup
+      data-hborder="1"
+      style="position: relative; border: 1px solid #222222; overflow: hidden; cursor: pointer; transition: border-color 0.42s ease;"
+    >
+      <img
+        data-h-img
+        data-off="0.35"
+        data-on="0.7"
+        src="/assets/img/pos/popup-1.webp"
+        alt={t('alt.popup')}
+        loading="lazy"
+        decoding="async"
+        style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.35; transform: scale(1.06); transition: opacity 0.72s cubic-bezier(0.16, 1, 0.3, 1), transform 0.72s cubic-bezier(0.16, 1, 0.3, 1);"
+      />
+      <div
+        aria-hidden="true"
+        style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.1) 60%);"
+      >
+      </div>
+      <div style="position: absolute; left: 28px; right: 28px; bottom: 26px;">
+        <span data-rd style="position: relative; display: inline-block;">
+          <a
+            href={workHref}
+            class="stlm-tile-link"
+            data-rd-text
+            data-dim="0.16"
+            style="display: inline-block; font-weight: 900; text-transform: uppercase; color: #FFFFFF; font-size: 24px; line-height: 1; opacity: 0.16; transition: opacity 0.42s cubic-bezier(0.16, 1, 0.3, 1); text-decoration: none;"
+            >{t('bento.b.title')}</a
+          >
+          <span
+            data-rd-bar
+            aria-hidden="true"
+            style="position: absolute; left: -2px; right: -2px; top: 4%; height: 92%; background: #2A2A2A; transform: scaleX(1); transform-origin: right; transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);"
+          ></span>
+        </span>
+        <div
+          style="margin-top: 10px; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #7E7E7A;"
+        >
+          {t('bento.b.meta')}
+        </div>
+      </div>
+    </div>
+
+    <div
+      data-hgroup
+      data-hborder="1"
+      style="position: relative; border: 1px solid #222222; overflow: hidden; cursor: pointer; transition: border-color 0.42s ease;"
+    >
+      <img
+        data-h-img
+        data-off="0.35"
+        data-on="0.7"
+        src="/assets/imgc/house-store.jpg"
+        alt={t('alt.houseStore')}
+        loading="lazy"
+        decoding="async"
+        style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.35; transform: scale(1.06); transition: opacity 0.72s cubic-bezier(0.16, 1, 0.3, 1), transform 0.72s cubic-bezier(0.16, 1, 0.3, 1);"
+      />
+      <div
+        aria-hidden="true"
+        style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.1) 60%);"
+      >
+      </div>
+      <div style="position: absolute; left: 28px; right: 28px; bottom: 26px;">
+        <span data-rd style="position: relative; display: inline-block;">
+          <a
+            href={workHref}
+            class="stlm-tile-link"
+            data-rd-text
+            data-dim="0.16"
+            style="display: inline-block; font-weight: 900; text-transform: uppercase; color: #FFFFFF; font-size: 24px; line-height: 1; opacity: 0.16; transition: opacity 0.42s cubic-bezier(0.16, 1, 0.3, 1); text-decoration: none;"
+            >{t('bento.c.title')}</a
+          >
+          <span
+            data-rd-bar
+            aria-hidden="true"
+            style="position: absolute; left: -2px; right: -2px; top: 4%; height: 92%; background: #2A2A2A; transform: scaleX(1); transform-origin: right; transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);"
+          ></span>
+        </span>
+        <div
+          style="margin-top: 10px; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #7E7E7A;"
+        >
+          {t('bento.c.meta')}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    data-cursor-glow
+    aria-hidden="true"
+    style="position: fixed; left: -152px; top: -28px; width: 520px; height: 520px; margin-left: -260px; margin-top: -260px; border-radius: 50%; background: radial-gradient(circle, rgba(239,211,43,0.07) 0%, rgba(10,10,10,0) 65%); pointer-events: none; z-index: 60; mix-blend-mode: plus-lighter; opacity: 0; transition: opacity 0.42s ease;"
+  >
   </div>
 </section>
 
-<style>
-  .arch {
-    max-width: 1360px;
-    margin: 0 auto;
-    padding: 150px 40px 110px;
-  }
-  .arch-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 56px;
-    gap: 24px;
-  }
-  .arch-eyebrow {
-    margin: 0 0 18px;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--signal-yellow, #efd32b);
-  }
-  .arch-h {
-    margin: 0;
-    font-weight: 900;
-    text-transform: uppercase;
-    color: #fff;
-    font-size: clamp(32px, 3.4vw, 50px);
-    letter-spacing: -0.02em;
-  }
-  .arch-link {
-    flex-shrink: 0;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: #c9c7c1;
-    text-decoration: none;
-    border-bottom: 1px solid #3a3a3a;
-    padding: 0 0 6px;
-    transition:
-      color 200ms ease,
-      border-color 200ms ease;
-  }
-  .arch-link:hover {
-    color: var(--signal-yellow, #efd32b);
-    border-bottom-color: var(--signal-yellow, #efd32b);
+<style is:global>
+  .stlm-arch-link:hover {
+    color: #efd32b !important;
+    border-bottom-color: #efd32b !important;
   }
 
-  .arch-bento {
-    display: grid;
-    grid-template-columns: 8fr 4fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 20px;
-    height: min(74vh, 720px);
-  }
-  .arch-tile {
-    position: relative;
-    display: block;
-    border: 1px solid #222;
-    overflow: hidden;
-    text-decoration: none;
-    transition: border-color 0.42s ease;
-  }
-  .arch-tile.is-big {
-    grid-row: 1 / span 2;
-  }
-  .arch-tile img {
+  /* Kafel klikalny w całości — jak w oryginale (tam był onClick na kaflu).
+     Link niesie tytuł realizacji jako tekst, więc wyszukiwarki mają czego się
+     uchwycić, a rozciągnięty ::after łapie kliknięcie na całej powierzchni. */
+  .stlm-tile-link::after {
+    content: '';
     position: absolute;
     inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.45;
-    transform: scale(1.06);
-    transition:
-      opacity 0.72s cubic-bezier(0.16, 1, 0.3, 1),
-      transform 0.72s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 2;
   }
-  .arch-scrim {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(10, 10, 10, 0.92) 0%, rgba(10, 10, 10, 0.05) 55%);
-  }
-  .arch-caption {
-    position: absolute;
-    left: 28px;
-    right: 28px;
-    bottom: 26px;
-  }
-  .is-big .arch-caption {
-    left: 40px;
-    right: 40px;
-    bottom: 36px;
-  }
-  .arch-rd {
-    position: relative;
-    display: inline-block;
-  }
-  .arch-title {
-    display: inline-block;
-    font-weight: 900;
-    text-transform: uppercase;
-    color: #fff;
-    font-size: 24px;
-    line-height: 1;
-    opacity: 0.16;
-    transition: opacity 0.42s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .is-big .arch-title {
-    font-size: clamp(30px, 3.4vw, 52px);
-    letter-spacing: -0.01em;
-    opacity: 0.14;
-  }
-  .arch-bar {
-    position: absolute;
-    left: -2px;
-    right: -2px;
-    top: 4%;
-    height: 92%;
-    background: #2a2a2a;
-    transform: scaleX(1);
-    transform-origin: right;
-    transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .is-big .arch-bar {
-    left: -3px;
-    right: -3px;
-    top: 6%;
-    height: 88%;
-    background: #222;
-  }
-  .arch-meta {
-    display: block;
-    margin-top: 10px;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: #7e7e7a;
-  }
-  .is-big .arch-meta {
-    margin-top: 14px;
-    font-size: 11px;
-    color: var(--signal-yellow, #efd32b);
-  }
-
-  @media (max-width: 860px) {
-    .arch {
-      padding: 72px 20px 56px;
-    }
-    .arch-head {
-      flex-direction: column;
-      align-items: flex-start;
-      margin-bottom: 32px;
-    }
-    .arch-bento {
-      grid-template-columns: 1fr;
-      grid-template-rows: repeat(3, 260px);
-      height: auto;
-    }
-    .arch-tile.is-big {
-      grid-row: auto;
-    }
+  .stlm-tile-link:focus-visible {
+    outline: 2px solid #efd32b;
+    outline-offset: 4px;
   }
 </style>
