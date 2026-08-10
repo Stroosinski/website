@@ -1,35 +1,81 @@
 ---
+/**
+ * Kontakt — układ 1:1 z oryginału (linie 694-734).
+ * Dwie kolumny 1.1fr / 0.9fr, prawa na jaśniejszym tle #161616,
+ * wielki znak marki jako znak wodny w lewym dolnym rogu przy 6% krycia.
+ */
 import Page from '@/layouts/Page.astro';
-import PageIntro from '@/components/PageIntro.astro';
 import ContactForm from '@/components/ContactForm.astro';
-import ContactDetails from '@/components/ContactDetails.astro';
 import { useTranslations } from '@/i18n';
 const t = useTranslations('pl');
 ---
 
 <Page lang="pl" route="contact">
-  <PageIntro eyebrow={t('contact.eyebrow')} title={t('contact.h1')} lead={t('contact.body')} />
-  <section class="ct">
-    <ContactForm lang="pl" />
-    <ContactDetails lang="pl" />
-  </section>
+  <div
+    data-screen-label="Contact"
+    style="display: grid; grid-template-columns: 1.1fr 0.9fr; min-height: calc(100vh - 72px); position: relative; overflow: hidden;"
+  >
+    <img
+      src="/assets/logo-mark-white.png"
+      alt=""
+      aria-hidden="true"
+      style="position: absolute; left: -160px; bottom: -160px; width: 640px; opacity: 0.06; pointer-events: none; z-index: 0;"
+    />
+
+    <section style="padding: 96px 40px 80px; border-right: 1px solid #161616; position: relative; z-index: 1;">
+      <div
+        data-reveal
+        style="font-size: 11px; font-weight: 500; letter-spacing: 0.34em; text-transform: uppercase; color: var(--signal-yellow); margin-bottom: 26px;"
+      >
+        {t('contact.eyebrow')}
+      </div>
+      <h1
+        style="margin: 0; font-weight: 900; text-transform: uppercase; color: #FFFFFF; font-size: clamp(38px, 4.6vw, 70px); line-height: 0.98; letter-spacing: -0.005em; word-spacing: 0.02em; font-kerning: normal; text-rendering: optimizeLegibility; max-width: 560px;"
+      >
+        {t('contact.h1')}
+      </h1>
+      <p
+        data-reveal
+        style="margin: 30px 0 0; max-width: 420px; font-weight: 300; font-size: 16px; line-height: 1.7; color: #C9C7C1;"
+      >
+        {t('contact.body')}
+      </p>
+
+      <div data-reveal style="margin-top: 56px; display: flex; flex-direction: column; gap: 14px;">
+        <a
+          class="stlm-contact-mail"
+          href="mailto:info@stolmar.co"
+          style="color: #FFFFFF; font-weight: 700; font-size: 22px; text-decoration: none; letter-spacing: -0.01em;"
+          >info@stolmar.co</a
+        >
+        <span style="color: #C9C7C1; font-size: 14px;">+48 505 999 275</span>
+        <address style="font-style: normal; color: #7E7E7A; font-size: 13px; line-height: 1.6;">
+          STOLMAR Marian Czajkowski Sp. k.<br />Hodowlana 7, Rumia 84-230, Poland
+        </address>
+      </div>
+    </section>
+
+    <section style="padding: 96px 40px 80px; background: #161616; position: relative; z-index: 1;">
+      <ContactForm lang="pl" />
+    </section>
+  </div>
 </Page>
 
-<style>
-  .ct {
-    max-width: 1360px;
-    margin: 0 auto;
-    padding: 0 40px 120px;
-    display: grid;
-    grid-template-columns: 7fr 4fr;
-    gap: 80px;
-    align-items: start;
+<style is:global>
+  .stlm-contact-mail:hover {
+    color: #efd32b !important;
   }
   @media (max-width: 860px) {
-    .ct {
-      grid-template-columns: 1fr;
-      padding: 0 20px 64px;
-      gap: 56px;
+    [data-screen-label='Contact'] {
+      grid-template-columns: 1fr !important;
+    }
+    [data-screen-label='Contact'] > section {
+      border-right: 0 !important;
+      padding: 64px 24px !important;
     }
   }
 </style>
+
+<script>
+  import '@/scripts/reveal';
+</script>

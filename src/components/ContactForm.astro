@@ -1,12 +1,18 @@
 ---
 /**
- * Formularz zapytania ofertowego.
+ * Formularz kontaktowy — oryginał, linie 707-732.
  *
- * UWAGA: w wersji z Claude Design formularz nic nie wysyłał — pokazywał komunikat
- * "Odezwiemy się" i kasował dane. Tutaj formularz jest zbudowany poprawnie
- * (etykiety, walidacja, dostępność), ale docelowy adres wysyłki jest do ustalenia
- * (funkcja serwerowa Vercel + usługa e-mail albo zewnętrzny serwis formularzy).
- * Do czasu podpięcia NIE udajemy sukcesu — przycisk prowadzi do wysyłki e-mailem.
+ * Pola 1:1 z design systemu (components/forms/Input.jsx, wariant on-dark):
+ * etykieta 11 px / 0.14em / wersaliki / kolor przygaszony, pole bez ramki
+ * z dolną kreską #3A3A3A, 15 px, przy aktywności kreska i etykieta na żółto.
+ * Trzy pola: imię, e-mail, brief — plus załączniki i przycisk pełnej szerokości.
+ *
+ * Wcześniejsza wersja miała kafelki wyboru tematu i pole „Firma" — nie ma ich
+ * w oryginale, zostały usunięte.
+ *
+ * Wysyłka: komunikat sukcesu WYŁĄCZNIE po potwierdzeniu z serwera. W oryginale
+ * formularz zawsze pokazywał sukces i kasował dane, przez co zapytania ofertowe
+ * przepadały (patrz ODSTEPSTWA.md).
  */
 import { useTranslations, type Locale } from '@/i18n';
 import { FORM_ENDPOINT } from '@/config';
@@ -15,11 +21,17 @@ import pl from '@/content/site.pl.json';
 
 interface Props {
   lang: Locale;
-  /** docelowy endpoint; domyślnie z konfiguracji */
   action?: string;
 }
 const { lang, action = FORM_ENDPOINT } = Astro.props;
 const t = useTranslations(lang);
+
+type Form = {
+  name: string; namePh: string; email: string; emailPh: string;
+  brief: string; briefPh: string; files: string; filesCta: string;
+  filesHint: string; btn: string;
+};
+const f = (lang === 'pl' ? pl : en).form as Form;
 
 const ui =
   lang === 'pl'
@@ -28,234 +40,166 @@ const ui =
         error: 'Nie udało się wysłać. Spróbuj ponownie lub napisz na info@stolmar.co.',
         offline: 'Brak połączenia. Sprawdź internet i spróbuj ponownie.',
         subject: 'Zapytanie ze strony stolmar.co',
+        noFiles: 'Brak wybranych plików',
+        someFiles: (n: number) => `${n} plików wybranych`,
       }
     : {
         sending: 'Sending...',
         error: 'Could not send. Please try again or write to info@stolmar.co.',
         offline: 'No connection. Check your internet and try again.',
         subject: 'Enquiry from stolmar.co',
+        noFiles: 'No files selected',
+        someFiles: (n: number) => `${n} files selected`,
       };
 
-type Form = {
-  name: string; namePh: string; company: string; companyPh: string;
-  email: string; emailPh: string; brief: string; briefPh: string;
-  files: string; filesCta: string; filesHint: string; btn: string;
-  topicLabel: string; topics: string[];
-};
-const f = (lang === 'pl' ? pl : en).form as Form;
-const wired = action.length > 0;
-const required = lang === 'pl' ? 'wymagane' : 'required';
+const labelStyle =
+  'font-family: inherit; font-weight: 500; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #7E7E7A; transition: color 200ms cubic-bezier(0.16,1,0.3,1);';
+const fieldWrap = 'display: flex; flex-direction: column; gap: 4px;';
 ---
 
-<!-- Komunikat sukcesu — te same teksty co w oryginale (contact.sent*). -->
-<div data-form-sent hidden class="cf-sent">
-  <span class="cf-sent-badge">{t('contact.sentBadge')}</span>
-  <p class="cf-sent-title">{t('contact.sentTitle')}</p>
-  <p class="cf-sent-body">{t('contact.sentBody')}</p>
+<!-- Komunikat po wysłaniu (oryginał, linie 709-713) -->
+<div
+  data-form-sent
+  hidden
+  style="height: 100%; display: flex; flex-direction: column; justify-content: center; gap: 18px;"
+>
+  <span
+    style="align-self: flex-start; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #0A0A0A; background: var(--signal-yellow); padding: 7px 12px;"
+    >{t('contact.sentBadge')}</span
+  >
+  <div
+    style="font-weight: 900; text-transform: uppercase; font-size: 30px; color: #FFFFFF; letter-spacing: -0.01em;"
+  >
+    {t('contact.sentTitle')}
+  </div>
+  <p style="margin: 0; color: #C9C7C1; font-weight: 300; max-width: 340px; line-height: 1.7;">
+    {t('contact.sentBody')}
+  </p>
 </div>
 
 <form
-  class="cf"
+  class="stlm-cform"
   data-contact-form
+  data-reveal
   method="POST"
-  action={wired ? action : 'mailto:info@stolmar.co'}
-  enctype={wired ? 'multipart/form-data' : 'text/plain'}
+  action={action}
+  enctype="multipart/form-data"
   data-sending-label={ui.sending}
   data-error-label={ui.error}
   data-offline-label={ui.offline}
+  data-no-files={ui.noFiles}
+  data-some-files={ui.someFiles(0).replace('0 ', '')}
+  style="display: flex; flex-direction: column; gap: 28px;"
 >
-  <!-- pułapka na roboty: ludzie tego nie wypełnią, boty tak -->
   <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="cf-gotcha" />
   <input type="hidden" name="_subject" value={ui.subject} />
   <input type="hidden" name="lang" value={lang} />
-  <fieldset class="cf-topics">
-    <legend class="cf-legend">{f.topicLabel}</legend>
-    <div class="cf-chips">
-      {
-        f.topics.map((topic, i) => (
-          <label class="cf-chip">
-            <input type="radio" name="topic" value={topic} checked={i === 0} />
-            <span>{topic}</span>
-          </label>
-        ))
-      }
-    </div>
-  </fieldset>
 
-  <div class="cf-row">
-    <label class="cf-field">
-      <span class="cf-label">{f.name}</span>
-      <input type="text" name="name" placeholder={f.namePh} required autocomplete="name" />
-    </label>
-    <label class="cf-field">
-      <span class="cf-label">{f.company}</span>
-      <input type="text" name="company" placeholder={f.companyPh} autocomplete="organization" />
-    </label>
+  <div style={fieldWrap}>
+    <label for="stlm-name" style={labelStyle}>{f.name}</label>
+    <input id="stlm-name" type="text" name="name" required autocomplete="name" placeholder={f.namePh} />
   </div>
 
-  <label class="cf-field">
-    <span class="cf-label">{f.email} <em class="cf-req">({required})</em></span>
-    <input type="email" name="email" placeholder={f.emailPh} required autocomplete="email" />
-  </label>
+  <div style={fieldWrap}>
+    <label for="stlm-email" style={labelStyle}>{f.email}</label>
+    <input id="stlm-email" type="email" name="email" required autocomplete="email" placeholder={f.emailPh} />
+  </div>
 
-  <label class="cf-field">
-    <span class="cf-label">{f.brief}</span>
-    <textarea name="brief" rows="5" placeholder={f.briefPh}></textarea>
-  </label>
+  <div style={fieldWrap}>
+    <label for="stlm-brief" style={labelStyle}>{f.brief}</label>
+    <textarea id="stlm-brief" name="brief" rows="3" placeholder={f.briefPh}></textarea>
+  </div>
 
-  {
-    wired && (
-      <label class="cf-field">
-        <span class="cf-label">{f.files}</span>
-        <input type="file" name="files" multiple />
-        <small class="cf-hint">{f.filesHint}</small>
-      </label>
-    )
-  }
+  <div style={fieldWrap}>
+    <label for="stlm-files" style={labelStyle}>{f.files}</label>
+    <label
+      for="stlm-files"
+      style="display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; box-sizing: border-box; border-bottom: 1px solid #3A3A3A; padding: 10px 0; cursor: pointer;"
+    >
+      <span
+        data-files-summary
+        style="font-size: 15px; color: #C9C7C1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
+        >{ui.noFiles}</span
+      >
+      <span
+        style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--signal-yellow); flex-shrink: 0;"
+        >{f.filesCta}</span
+      >
+    </label>
+    <input id="stlm-files" type="file" name="files" multiple style="display: none;" />
+    <span style="font-size: 11px; color: #7E7E7A; letter-spacing: 0.02em;">{f.filesHint}</span>
+  </div>
 
-  <p data-form-error hidden class="cf-err" role="alert"></p>
+  <p data-form-error hidden role="alert" class="cf-err"></p>
 
-  <button type="submit" class="cf-btn">{f.btn}</button>
+  <button type="submit" class="stlm-cform-btn">{f.btn}</button>
 </form>
 
-<script>
-  import '@/scripts/form';
-</script>
-
-<style>
-  .cf {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-  }
-  .cf-topics {
-    border: 0;
-    padding: 0;
-    margin: 0;
-  }
-  .cf-legend {
-    padding: 0;
-    margin-bottom: 14px;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--signal-yellow, #efd32b);
-  }
-  .cf-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  .cf-chip input {
-    position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  .cf-chip span {
-    display: inline-block;
-    padding: 9px 16px;
-    border: 1px solid #3a3a3a;
-    border-radius: 999px;
-    font-size: 12px;
-    color: #c9c7c1;
-    cursor: pointer;
-    transition:
-      border-color 200ms ease,
-      color 200ms ease,
-      background-color 200ms ease;
-  }
-  .cf-chip input:checked + span {
-    border-color: var(--signal-yellow, #efd32b);
-    color: #0a0a0a;
-    background: var(--signal-yellow, #efd32b);
-  }
-  .cf-chip input:focus-visible + span {
-    outline: 2px solid #efd32b;
-    outline-offset: 2px;
-  }
-
-  .cf-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-  .cf-field {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .cf-label {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: #7e7e7a;
-  }
-  .cf-req {
-    font-style: normal;
-    text-transform: none;
-    letter-spacing: 0.04em;
-    color: #5a5a57;
-  }
-  .cf input[type='text'],
-  .cf input[type='email'],
-  .cf textarea,
-  .cf input[type='file'] {
-    font-family: inherit;
-    font-size: 15px;
-    font-weight: 300;
-    color: #f4f2ec;
+<style is:global>
+  /* Pola wg design systemu, wariant on-dark. */
+  .stlm-cform input[type='text'],
+  .stlm-cform input[type='email'],
+  .stlm-cform textarea {
+    width: 100%;
+    box-sizing: border-box;
     background: transparent;
-    border: 0;
+    border: none;
     border-bottom: 1px solid #3a3a3a;
+    border-radius: 0;
     padding: 10px 0;
-    transition: border-color 200ms ease;
-  }
-  .cf input::placeholder,
-  .cf textarea::placeholder {
-    color: #5a5a57;
-  }
-  .cf input:focus,
-  .cf textarea:focus {
+    font-family: var(--font-sans, 'Roboto', sans-serif);
+    font-weight: 400;
+    font-size: 15px;
+    color: #f4f2ec;
     outline: none;
-    border-bottom-color: var(--signal-yellow, #efd32b);
+    transition: border-color 200ms cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .cf textarea {
+  .stlm-cform textarea {
     resize: vertical;
   }
-  .cf-hint {
-    font-size: 12px;
+  .stlm-cform input::placeholder,
+  .stlm-cform textarea::placeholder {
     color: #5a5a57;
   }
-  .cf-btn {
-    margin-top: 4px;
-    font-family: inherit;
-    font-size: 12px;
+  .stlm-cform input:focus,
+  .stlm-cform textarea:focus {
+    border-bottom-color: var(--signal-yellow, #efd32b);
+  }
+  /* etykieta rozjaśnia się na żółto przy aktywnym polu — jak w design systemie */
+  .stlm-cform > div:focus-within > label:first-child {
+    color: var(--signal-yellow, #efd32b) !important;
+  }
+
+  .stlm-cform-btn {
+    display: flex;
+    width: 100%;
+    height: 54px;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-sans, 'Roboto', sans-serif);
     font-weight: 500;
-    letter-spacing: 0.18em;
+    font-size: 13px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #0a0a0a;
+    color: var(--ink-900, #0a0a0a);
     background: var(--signal-yellow, #efd32b);
-    border: 0;
-    border-radius: 2px;
-    padding: 16px 28px;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm, 2px);
     cursor: pointer;
-    transition: background-color 200ms ease;
+    transition: background 120ms cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .cf-btn:hover {
-    background: #d9be18;
+  .stlm-cform-btn:hover {
+    background: var(--signal-yellow-deep, #d9be18);
   }
-  .cf-btn:active {
+  .stlm-cform-btn:active {
     transform: translateY(1px);
   }
-  .cf-btn:disabled {
+  .stlm-cform-btn:disabled {
     opacity: 0.4;
     cursor: not-allowed;
   }
 
-  /* pułapka na roboty — niewidoczna, ale nie display:none (boty to wykrywają) */
+  /* pułapka na roboty — niewidoczna, ale nie display:none */
   .cf-gotcha {
     position: absolute !important;
     left: -9999px !important;
@@ -263,7 +207,6 @@ const required = lang === 'pl' ? 'wymagane' : 'required';
     height: 1px;
     opacity: 0;
   }
-
   .cf-err {
     margin: 0;
     padding: 12px 14px;
@@ -273,46 +216,8 @@ const required = lang === 'pl' ? 'wymagane' : 'required';
     font-weight: 300;
     color: #f4f2ec;
   }
-
-  /* komunikat sukcesu — wartości z oryginału (linie 708-714) */
-  .cf-sent {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    align-items: flex-start;
-  }
-  .cf-sent[hidden] {
-    display: none;
-  }
-  .cf-sent-badge {
-    align-self: flex-start;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: #0a0a0a;
-    background: var(--signal-yellow, #efd32b);
-    padding: 7px 12px;
-  }
-  .cf-sent-title {
-    margin: 0;
-    font-weight: 900;
-    text-transform: uppercase;
-    font-size: 30px;
-    color: #fff;
-    letter-spacing: -0.01em;
-  }
-  .cf-sent-body {
-    margin: 0;
-    color: #c9c7c1;
-    font-weight: 300;
-    max-width: 340px;
-    line-height: 1.7;
-  }
-
-  @media (max-width: 860px) {
-    .cf-row {
-      grid-template-columns: 1fr;
-    }
-  }
 </style>
+
+<script>
+  import '@/scripts/form';
+</script>
