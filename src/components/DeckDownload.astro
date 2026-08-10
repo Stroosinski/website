@@ -1,0 +1,108 @@
+---
+/**
+ * Sekcja z prezentacją — oryginał, linie 665-690 (układ i teksty).
+ *
+ * WERSJA TYMCZASOWA (decyzja właściciela 2026-08-10): zamiast formularza
+ * z adresem e-mail jest sam przycisk pobrania. Docelowo wróci formularz,
+ * który wyśle prezentację automatycznie w załączniku (usługa Resend).
+ * Układ pozostaje ten sam, więc zamiana z powrotem to podmiana prawej kolumny.
+ *
+ * Pobrania są zliczane: każde kliknięcie wysyła zdarzenie `deck_download`.
+ * Po podpięciu Google Analytics licznik zacznie się wypełniać sam, bez zmian
+ * w kodzie — zdarzenie czeka w kolejce (dataLayer) także wtedy, gdy Analytics
+ * nie jest jeszcze załadowany.
+ */
+import { useTranslations, type Locale } from '@/i18n';
+import { DECK_FILE } from '@/config';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const ui =
+  lang === 'pl'
+    ? { cta: 'Pobierz prezentację ↓', hint: 'PDF · bez podawania adresu e-mail' }
+    : { cta: 'Download the deck ↓', hint: 'PDF · no email required' };
+---
+
+<section style="border-top: 1px solid #161616; padding: clamp(56px, 6vw, 90px) 40px;">
+  <div
+    class="stlm-deck"
+    style="max-width: 1360px; margin: 0 auto; border: 1px solid #222222; background: var(--surface-stage-raised, #161616); display: grid; grid-template-columns: 1.1fr 0.9fr;"
+  >
+    <div data-reveal style="padding: clamp(48px, 5vw, 64px); border-bottom: 1px solid #222222;">
+      <div
+        style="font-size: 11px; font-weight: 500; letter-spacing: 0.34em; text-transform: uppercase; color: var(--signal-yellow); margin-bottom: 22px;"
+      >
+        {t('deck.eyebrow')}
+      </div>
+      <h2
+        style="margin: 0 0 20px; font-weight: 900; text-transform: uppercase; color: #FFFFFF; font-size: clamp(30px, 3.6vw, 48px); line-height: 1.02; letter-spacing: -0.02em;"
+      >
+        {t('deck.h1')}
+      </h2>
+      <p
+        style="margin: 0; font-size: 16px; font-weight: 300; line-height: 1.75; color: #9A988F; max-width: 460px;"
+      >
+        {t('deck.body')}
+      </p>
+    </div>
+
+    <div
+      style="padding: clamp(48px, 5vw, 64px); border-left: 1px solid #222222; display: flex; flex-direction: column; justify-content: center; gap: 16px;"
+    >
+      <a
+        data-deck-download
+        href={DECK_FILE}
+        download
+        class="stlm-deck-btn"
+        data-lang={lang}>{ui.cta}</a
+      >
+      <span style="font-size: 11px; color: #7E7E7A; text-align: center; letter-spacing: 0.02em;"
+        >{ui.hint}</span
+      >
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .stlm-deck-btn {
+    display: flex;
+    width: 100%;
+    height: 54px;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-sans, 'Roboto', sans-serif);
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ink-900, #0a0a0a);
+    background: var(--signal-yellow, #efd32b);
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm, 2px);
+    cursor: pointer;
+    transition: background 120ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .stlm-deck-btn:hover {
+    background: var(--signal-yellow-deep, #d9be18);
+  }
+  .stlm-deck-btn:active {
+    transform: translateY(1px);
+  }
+  @media (max-width: 860px) {
+    .stlm-deck {
+      grid-template-columns: 1fr !important;
+    }
+    .stlm-deck > div:last-child {
+      border-left: 0 !important;
+    }
+  }
+</style>
+
+<script>
+  import '@/scripts/deck';
+</script>
