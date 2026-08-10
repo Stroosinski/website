@@ -17,7 +17,9 @@ export function useTranslations(locale: Locale) {
   return function t(key: string): string {
     const value = dict[key] ?? dictionaries.en[key];
     if (value === undefined) {
-      if (import.meta.env.DEV) console.warn(`[i18n] brak klucza: "${key}" (${locale})`);
+      // Ostrzegamy ZAWSZE, także przy budowaniu — brakujący klucz wyświetla
+      // na stronie swoją nazwę (np. „studio.inhouse"), co łatwo przeoczyć.
+      console.warn(`[i18n] BRAK KLUCZA: "${key}" (${locale}) — na stronie pojawi się nazwa klucza`);
       return key;
     }
     return value;

@@ -1,7 +1,22 @@
 ---
 /**
- * "W jednej pracowni" — osiem możliwości produkcyjnych pod jednym dachem.
- * Konkretne technologie (CNC, druk 3D, lakiernia) to mocne, wyszukiwalne hasła.
+ * "W jednej pracowni" — osiem możliwości produkcyjnych.
+ *
+ * ODSTĘPSTWO OD ORYGINAŁU: w projekcie dane tych pozycji były przygotowane,
+ * ale sekcji nie wyświetlano. Właściciel poprosił, by została, i o przebudowę
+ * układu (2026-08-10). Poprzednia wersja była siatką ośmiu kafelków.
+ *
+ * Kierunek: indeks warsztatowy, nie karty. Wytyczne marki mówią o „terse
+ * fielded pairs" i treści ułożonej „jak rysunek warsztatowy", więc lista
+ * z cienkimi liniami i wyraźną numeracją jest bliższa marce niż pudełka.
+ *
+ * Interakcja NIE jest wymyślona od nowa — korzysta z zachowań zdefiniowanych
+ * w design systemie (metoda _hg): [data-h-num] zmienia numer na żółty,
+ * [data-h-txt] rozjaśnia tytuł i przesuwa go o 14 px. Dotąd nic ich nie używało.
+ * Do tego żółty znacznik rozsuwany od lewej — powracający motyw marki.
+ *
+ * Opisy są zawsze w kodzie (nie chowamy ich pod hover), tylko przygaszone —
+ * inaczej byłyby niewidoczne dla wyszukiwarek i czytników ekranu.
  */
 import { useTranslations, type Locale } from '@/i18n';
 import en from '@/content/site.en.json';
@@ -15,26 +30,35 @@ const t = useTranslations(lang);
 
 type Item = { n: string; t: string; d: string };
 const items = (lang === 'pl' ? pl : en).inhouse as Item[];
-const heading = lang === 'pl' ? 'W jednej pracowni' : 'In one workshop';
+const heading = t('studio.inhouse');
+const note = lang === 'pl' ? 'Wszystko pod jednym dachem' : 'Everything under one roof';
 ---
 
 <section class="ih">
-  <div class="ih-head">
-    <h2 class="ih-h">{heading}</h2>
-    <p class="ih-note">{t('studio.stand')}</p>
-  </div>
+  <div class="ih-inner">
+    <div class="ih-head">
+      <p class="ih-eyebrow">{note}</p>
+      <h2 class="ih-h">{heading}</h2>
+      <span aria-hidden="true" class="ih-rule"></span>
+    </div>
 
-  <ul class="ih-grid">
-    {
-      items.map((item) => (
-        <li class="ih-cell">
-          <span class="ih-n">{item.n}</span>
-          <h3 class="ih-t">{item.t}</h3>
-          <p class="ih-d">{item.d}</p>
-        </li>
-      ))
-    }
-  </ul>
+    <ol class="ih-list">
+      {
+        items.map((item) => (
+          <li class="ih-row" data-hgroup data-reveal>
+            <span aria-hidden="true" class="ih-marker" />
+            <span class="ih-n" data-h-num>
+              {item.n}
+            </span>
+            <h3 class="ih-t" data-h-txt data-c="#F4F2EC">
+              {item.t}
+            </h3>
+            <p class="ih-d">{item.d}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
 </section>
 
 <style>
@@ -42,84 +66,134 @@ const heading = lang === 'pl' ? 'W jednej pracowni' : 'In one workshop';
     border-top: 1px solid #161616;
     background: linear-gradient(to bottom, #0a0a0a, #0d0d0d);
   }
-  .ih-head {
+  .ih-inner {
     max-width: 1360px;
     margin: 0 auto;
-    padding: 110px 40px 48px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    align-items: end;
+    padding: clamp(64px, 8vw, 110px) 40px clamp(56px, 7vw, 96px);
+  }
+
+  .ih-head {
+    margin-bottom: clamp(40px, 5vw, 64px);
+  }
+  .ih-eyebrow {
+    margin: 0 0 18px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--signal-yellow, #efd32b);
   }
   .ih-h {
-    margin: 0;
+    margin: 0 0 24px;
     font-weight: 900;
     text-transform: uppercase;
     color: #fff;
-    font-size: clamp(30px, 3.2vw, 46px);
+    font-size: clamp(34px, 5vw, 72px);
+    line-height: 0.98;
     letter-spacing: -0.02em;
   }
-  .ih-note {
-    margin: 0;
-    font-weight: 300;
-    font-size: 15px;
-    line-height: 1.8;
-    color: #9a988f;
-  }
-  .ih-grid {
-    max-width: 1360px;
-    margin: 0 auto;
-    padding: 0 40px 110px;
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1px;
-    background: #1f1f1f;
-    border: 1px solid #1f1f1f;
-  }
-  .ih-cell {
-    background: #0a0a0a;
-    padding: 32px 24px 36px;
-  }
-  .ih-n {
+  /* krótki żółty znacznik — powracający motyw marki */
+  .ih-rule {
     display: block;
-    margin-bottom: 16px;
+    width: 120px;
+    height: 2px;
+    background: var(--signal-yellow, #efd32b);
+  }
+
+  .ih-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid #1f1f1f;
+  }
+
+  .ih-row {
+    position: relative;
+    display: grid;
+    grid-template-columns: 72px minmax(0, 5fr) minmax(0, 7fr);
+    align-items: baseline;
+    gap: 0 clamp(20px, 3vw, 48px);
+    padding: clamp(22px, 2.4vw, 32px) 0 clamp(22px, 2.4vw, 32px) 20px;
+    border-bottom: 1px solid #1f1f1f;
+    transition: background-color 420ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .ih-row:hover {
+    background-color: rgba(255, 255, 255, 0.014);
+  }
+
+  /* znacznik rozsuwany od lewej przy najechaniu */
+  .ih-marker {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 2px;
+    height: 0;
+    background: var(--signal-yellow, #efd32b);
+    transform: translateY(-50%);
+    transition: height 420ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .ih-row:hover .ih-marker {
+    height: calc(100% - clamp(22px, 2.4vw, 32px));
+  }
+
+  .ih-n {
     font-weight: 900;
     font-size: 12px;
     letter-spacing: 0.18em;
-    color: var(--signal-yellow, #efd32b);
+    color: #3a3a3a;
+    transition: color 420ms cubic-bezier(0.16, 1, 0.3, 1);
   }
   .ih-t {
-    margin: 0 0 12px;
+    margin: 0;
     font-weight: 700;
-    font-size: 15px;
+    font-size: clamp(15px, 1.5vw, 19px);
     text-transform: uppercase;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.01em;
+    line-height: 1.25;
     color: #f4f2ec;
-    line-height: 1.3;
+    /* przesunięcie i kolor ustawia skrypt zasłony (data-h-txt) */
+    transition:
+      color 420ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
   }
   .ih-d {
     margin: 0;
     font-weight: 300;
-    font-size: 13.5px;
+    font-size: 14.5px;
     line-height: 1.7;
     color: #7e7e7a;
+    transition: color 420ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .ih-row:hover .ih-d {
+    color: #c9c7c1;
   }
 
-  @media (max-width: 1100px) {
-    .ih-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+  @media (max-width: 860px) {
+    .ih-inner {
+      padding: 64px 24px 56px;
+    }
+    .ih-row {
+      grid-template-columns: 44px minmax(0, 1fr);
+      gap: 8px 16px;
+      padding-left: 16px;
+    }
+    /* opis pod tytułem, wyrównany do jego krawędzi */
+    .ih-d {
+      grid-column: 2;
+    }
+    .ih-t {
+      /* na dotyku nie ma hovera — przesunięcie tylko rozjeżdżałoby układ */
+      transform: none !important;
     }
   }
-  @media (max-width: 860px) {
-    .ih-head {
-      grid-template-columns: 1fr;
-      padding: 64px 20px 32px;
-      gap: 20px;
-    }
-    .ih-grid {
-      grid-template-columns: 1fr;
-      padding: 0 20px 64px;
+
+  @media (prefers-reduced-motion: reduce) {
+    .ih-row,
+    .ih-marker,
+    .ih-n,
+    .ih-t,
+    .ih-d {
+      transition: none !important;
     }
   }
 </style>
