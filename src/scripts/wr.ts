@@ -1,34 +1,112 @@
 /**
- * Uruchamia animację intro Showcase.
- * Same klatki są w original.css ([data-wr].is-visible ...), tutaj tylko
- * dokładamy klasę, gdy sekcja wejdzie w widok — dzięki temu pasek, nagłówek
- * i lead odpalają się we właściwej kolejności, a nie od razu przy wczytaniu.
+ * Sekwencja intro strony Showcase — odtworzona 1:1 z oryginału (linie 1541-1588).
+ *
+ * Kolejność zdarzeń ma znaczenie i jest częścią koncepcji "the reveal":
+ *  1. sekcja wchodzi w widok (próg 0.35) → klasa is-visible odpala animacje
+ *     z original.css: żółty pasek przejeżdża po nagłówku, H1 wjeżdża od dołu,
+ *     lead pojawia się z opóźnieniem 1 s,
+ *  2. eyebrow "rozszyfrowuje się" z losowych znaków, po 2 litery co 35 ms,
+ *  3. pierwsze zdjęcie rozdziału jest ZABLOKOWANE na niewidocznym (introLock)
+ *     i wchodzi dopiero po 1650 ms, czyli po tekście — żeby nie wyprzedzało
+ *     napisu. Blokada puszczana jest 950 ms później, oddając zdjęcie
+ *     zwykłemu sterowaniu przewijaniem (cine.ts respektuje introLock).
+ *
+ * Przy prefers-reduced-motion: tekst pokazuje się od razu, bez rozsypki
+ * i bez blokady zdjęcia.
  */
 
-function init() {
-  const targets = document.querySelectorAll<HTMLElement>('[data-wr]');
-  if (!targets.length) return;
+const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#/·';
+const SCRAMBLE_MS = 35;
+const IMG_DELAY_MS = 1650;
+const IMG_UNLOCK_MS = 950;
 
-  const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-  if (reduced) {
-    // original.css przy ograniczonych animacjach i tak zdejmuje ruch,
-    // ale klasa musi paść, żeby tekst nie został ukryty.
-    targets.forEach((el) => el.classList.add('is-visible'));
-    return;
+function scramble(el: HTMLElement) {
+  const target = (el.textContent || '').toUpperCase();
+  if (!target.trim()) return;
+  let frame = 0;
+  const iv = window.setInterval(() => {
+    frame++;
+    let out = '';
+    for (let i = 0; i < target.length; i++) {
+      if (i < frame * 2) out += target[i];
+      else if (target[i] === ' ') out += ' ';
+      else out += CHARS[Math.floor(Math.random() * CHARS.length)];
+    }
+    el.textContent = out;
+    if (frame * 2 >= target.length) {
+      window.clearInterval(iv);
+      el.textContent = target;
+    }
+  }, SCRAMBLE_MS);
+}
+
+function lockFirstChapterImage(reduced: boolean) {
+  const chapter = document.querySelector<HTMLElement>('[data-chapter]');
+  const img = chapter?.querySelector<HTMLElement>('[data-cine-img]');
+  if (!chapter || !img || reduced) return;
+
+  img.dataset.introLock = '1';
+  img.style.transition = 'opacity 0.9s cubic-bezier(0.16,1,0.3,1)';
+  img.style.opacity = '0';
+
+  // ODSTĘPSTWO OD ORYGINAŁU (prośba właściciela, 2026-08-10):
+  // wielki numer rozdziału ma wchodzić razem ze zdjęciem. W oryginale był
+  // widoczny od początku i wyprzedzał tekst intro.
+  const num = chapter.querySelector<HTMLElement>('[data-cine-num]');
+  if (num) {
+    num.style.transition = 'opacity 0.9s cubic-bezier(0.16,1,0.3,1)';
+    num.style.opacity = '0';
   }
 
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((en) => {
-        if (!en.isIntersecting) return;
-        en.target.classList.add('is-visible');
-        io.unobserve(en.target);
-      });
-    },
-    { threshold: 0.25 }
-  );
+  window.setTimeout(() => {
+    const r = chapter.getBoundingClientRect();
+    const winH = window.innerHeight;
+    const q = Math.max(0, Math.min(1, (winH - r.top) / (winH * 0.9)));
+    img.style.opacity = (0.3 + 0.7 * Math.min(1, q * 1.25)).toFixed(3);
+    if (num) num.style.opacity = '1';
+    window.setTimeout(() => {
+      delete img.dataset.introLock;
+    }, IMG_UNLOCK_MS);
+  }, IMG_DELAY_MS);
+}
 
-  targets.forEach((el) => io.observe(el));
+function init() {
+  const hero = document.querySelector<HTMLElement>('[data-wr]');
+  if (!hero || hero.dataset.wrWired) return;
+  hero.dataset.wrWired = '1';
+
+  const reduced = !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+
+  const play = () => {
+    if (hero.dataset.wrPlayed) return;
+    hero.dataset.wrPlayed = '1';
+    hero.classList.add('is-visible');
+
+    const eyebrow = hero.querySelector<HTMLElement>('[data-wr-eyebrow]');
+    if (eyebrow) {
+      if (reduced) eyebrow.textContent = (eyebrow.textContent || '').toUpperCase();
+      else scramble(eyebrow);
+    }
+
+    lockFirstChapterImage(reduced);
+  };
+
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            play();
+            io.disconnect();
+          }
+        });
+      },
+      { threshold: 0.35 }
+    );
+    io.observe(hero);
+  } else {
+    play();
+  }
 }
 
 if (document.readyState === 'loading') {
