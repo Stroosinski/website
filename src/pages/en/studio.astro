@@ -1,22 +1,39 @@
 ---
 import Page from '@/layouts/Page.astro';
-import PageIntro from '@/components/PageIntro.astro';
+import StudioIntro from '@/components/StudioIntro.astro';
 import Services from '@/components/Services.astro';
 import InHouse from '@/components/InHouse.astro';
-import { useTranslations } from '@/i18n';
-const t = useTranslations('en');
 ---
 
 <Page lang="en" route="studio">
-  <PageIntro
-    eyebrow={t('studio.eyebrow')}
-    title={`${t('studio.h1a')} ${t('studio.h1b')}`}
-    lead={t('studio.stand')}
-  />
-  <Services lang="en" />
-  <InHouse lang="en" />
+  <div data-screen-label="Studio" style="position: relative; isolation: isolate;">
+    <!-- Tło z animowaną siatką kropek (oryginał, linie 558-560). -->
+    <div
+      aria-hidden="true"
+      style="position: fixed; inset: 0; z-index: -1; opacity: 0.1; pointer-events: none;"
+    >
+      <dot-matrix
+        frequency="2"
+        speed="4"
+        cellsize="10"
+        gamma="5"
+        chars="X"
+        c0="#FFFFFF"
+        c1="#EFD32B"
+        c2="#000000"
+        style="width: 100%; height: 100%;"></dot-matrix>
+    </div>
+
+    <StudioIntro lang="en" />
+    <Services lang="en" />
+    <InHouse lang="en" />
+  </div>
 </Page>
+
+<script src="/js/dot-matrix.js" is:inline defer></script>
 
 <script>
   import '@/scripts/veil';
+  import '@/scripts/reveal';
+  import '@/scripts/typewriter';
 </script>
