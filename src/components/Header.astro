@@ -1,0 +1,133 @@
+---
+/**
+ * Górny pasek nawigacji.
+ * W oryginale pozycje menu były przyciskami przełączającymi widok w JS — tutaj są
+ * zwykłymi linkami do osobnych adresów, dzięki czemu wyszukiwarki mogą je przejść.
+ */
+import { useTranslations, pathFor, altPath, type Locale, type RouteKey } from '@/i18n';
+import Button from './Button.astro';
+
+interface Props {
+  lang: Locale;
+  current: RouteKey;
+}
+const { lang, current } = Astro.props;
+const t = useTranslations(lang);
+
+const nav: { key: RouteKey; label: string }[] = [
+  { key: 'work', label: t('nav.work') },
+  { key: 'studio', label: t('nav.studio') },
+  { key: 'contact', label: t('nav.contact') },
+];
+
+const other: Locale = lang === 'pl' ? 'en' : 'pl';
+---
+
+<header class="hdr">
+  <a href={pathFor('home', lang)} class="hdr-logo" aria-label="STOLMAR">
+    <img src="/assets/logo-full.png" alt="STOLMAR" width="132" height="20" />
+  </a>
+
+  <nav class="hdr-nav" aria-label={lang === 'pl' ? 'Nawigacja główna' : 'Main navigation'}>
+    {
+      nav.map((item) => (
+        <a
+          href={pathFor(item.key, lang)}
+          class:list={['hdr-link', { 'is-active': current === item.key }]}
+          aria-current={current === item.key ? 'page' : undefined}
+        >
+          {item.label}
+        </a>
+      ))
+    }
+  </nav>
+
+  <div class="hdr-right">
+    <a
+      href={altPath(current, lang)}
+      class="hdr-lang"
+      lang={other}
+      hreflang={other}
+      aria-label={lang === 'pl' ? 'Switch to English' : 'Przełącz na polski'}
+    >
+      {other.toUpperCase()}
+    </a>
+    <Button href={pathFor('contact', lang)} variant="accent" size="sm">{t('nav.cta')}</Button>
+  </div>
+</header>
+
+<style>
+  .hdr {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    padding: 0 40px;
+    background: rgba(10, 10, 10, 0.72);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid #1f1f1f;
+  }
+  .hdr-logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .hdr-logo img {
+    height: 20px;
+    width: auto;
+    display: block;
+  }
+  .hdr-nav {
+    display: flex;
+    gap: 28px;
+    margin-left: auto;
+  }
+  .hdr-link {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #7e7e7a;
+    text-decoration: none;
+    padding: 6px 0 5px;
+    border-bottom: 2px solid transparent;
+    transition: color 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .hdr-link:hover {
+    color: #f4f2ec;
+  }
+  .hdr-link.is-active {
+    color: #f4f2ec;
+    border-bottom-color: var(--signal-yellow, #efd32b);
+  }
+  .hdr-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .hdr-lang {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    color: #7e7e7a;
+    text-decoration: none;
+    padding: 6px 4px;
+    transition: color 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .hdr-lang:hover {
+    color: var(--signal-yellow, #efd32b);
+  }
+
+  @media (max-width: 860px) {
+    .hdr {
+      padding: 0 20px;
+      gap: 16px;
+    }
+    .hdr-nav {
+      display: none;
+    }
+  }
+</style>

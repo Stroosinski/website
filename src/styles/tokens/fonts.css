@@ -1,0 +1,43 @@
+/* STOLMAR — Webfonts. Roboto is the system typeface across all UI and documents.
+   The STOLMAR wordmark itself is a custom logotype shipped as artwork (assets/logo-*.png),
+   not a font — set headlines in Roboto Black/Bold uppercase to echo it.
+
+   Format: WOFF2 (was TTF — 868 KB → 239 KB).
+   Weights limited to those the site actually uses: 300/400/500/700/900.
+   Thin (100) and italic were unused and are not shipped. */
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/fonts/Roboto-Light.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/Roboto-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/Roboto-Medium.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/Roboto-Bold.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('/fonts/Roboto-Black.woff2') format('woff2');
+}

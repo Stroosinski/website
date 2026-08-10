@@ -1,0 +1,122 @@
+---
+import { useTranslations, pathFor, type Locale } from '@/i18n';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const year = new Date().getFullYear();
+---
+
+<footer class="ftr">
+  <div class="ftr-top">
+    <div class="ftr-brand">
+      <img src="/assets/logo-mark-white.png" alt="" width="40" height="40" aria-hidden="true" />
+      <p class="ftr-tag">{t('footer.tag')}</p>
+    </div>
+
+    <nav class="ftr-col" aria-label={t('footer.nav')}>
+      <h2 class="ftr-h">{t('footer.nav')}</h2>
+      <a href={pathFor('work', lang)}>{t('footer.work')}</a>
+      <a href={pathFor('studio', lang)}>{t('footer.studio')}</a>
+      <a href={pathFor('contact', lang)}>{t('footer.contact')}</a>
+    </nav>
+
+    <div class="ftr-col">
+      <h2 class="ftr-h">{t('footer.reach')}</h2>
+      <a href="mailto:info@stolmar.co">info@stolmar.co</a>
+      <a href="tel:+48505999275">+48 505 999 275</a>
+      <address class="ftr-addr">
+        STOLMAR Marian Czajkowski Sp. k.<br />
+        Hodowlana 7<br />
+        84-230 Rumia
+      </address>
+    </div>
+
+    <div class="ftr-col">
+      <h2 class="ftr-h">Social</h2>
+      <a href="https://www.instagram.com/stolmar_manufabryka/" rel="noopener me">Instagram</a>
+      <a href="https://www.linkedin.com/company/stolmar-displays" rel="noopener me">LinkedIn</a>
+    </div>
+  </div>
+
+  <div class="ftr-bottom">
+    <span>&copy; {year} STOLMAR. {t('footer.rights')}</span>
+  </div>
+</footer>
+
+<style>
+  .ftr {
+    border-top: 1px solid #1f1f1f;
+    padding: 72px 40px 32px;
+    background: #0a0a0a;
+  }
+  .ftr-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    max-width: 1360px;
+    margin: 0 auto;
+  }
+  .ftr-brand img {
+    display: block;
+    opacity: 0.9;
+  }
+  .ftr-tag {
+    margin: 20px 0 0;
+    max-width: 30ch;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #c9c7c1;
+  }
+  .ftr-col {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .ftr-h {
+    margin: 0 0 4px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--signal-yellow, #efd32b);
+  }
+  .ftr-col a {
+    font-size: 14px;
+    font-weight: 300;
+    color: #c9c7c1;
+    text-decoration: none;
+    transition: color 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .ftr-col a:hover {
+    color: #f4f2ec;
+  }
+  .ftr-addr {
+    font-style: normal;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: #7e7e7a;
+  }
+  .ftr-bottom {
+    max-width: 1360px;
+    margin: 56px auto 0;
+    padding-top: 24px;
+    border-top: 1px solid #1f1f1f;
+    font-size: 12px;
+    color: #7e7e7a;
+  }
+
+  @media (max-width: 860px) {
+    .ftr {
+      padding: 48px 20px 24px;
+    }
+    .ftr-top {
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+  }
+</style>

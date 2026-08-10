@@ -1,0 +1,63 @@
+---
+/** Nagłówek podstrony: eyebrow + H1 + lead. Jeden H1 na stronę — wymóg SEO. */
+interface Props {
+  eyebrow: string;
+  title: string;
+  lead?: string;
+  note?: string;
+}
+const { eyebrow, title, lead, note } = Astro.props;
+---
+
+<section class="intro">
+  <p class="intro-eyebrow">{eyebrow}</p>
+  <h1 class="intro-title">{title}</h1>
+  {lead && <p class="intro-lead">{lead}</p>}
+  {note && <p class="intro-note">{note}</p>}
+</section>
+
+<style>
+  .intro {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 120px 40px 72px;
+  }
+  .intro-eyebrow {
+    margin: 0 0 24px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--signal-yellow, #efd32b);
+  }
+  .intro-title {
+    margin: 0;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: clamp(40px, 6vw, 96px);
+    line-height: 0.96;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  .intro-lead {
+    margin: 32px 0 0;
+    max-width: 62ch;
+    font-weight: 300;
+    font-size: 19px;
+    line-height: 1.7;
+    color: #c9c7c1;
+  }
+  .intro-note {
+    margin: 20px 0 0;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #7e7e7a;
+  }
+  @media (max-width: 860px) {
+    .intro {
+      padding: 88px 20px 48px;
+    }
+  }
+</style>

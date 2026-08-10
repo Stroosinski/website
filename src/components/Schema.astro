@@ -1,0 +1,99 @@
+---
+/**
+ * Dane strukturalne JSON-LD.
+ * Dzięki nim Google i asystenci AI wiedzą, czym firma się zajmuje, gdzie jest
+ * i jak się skontaktować — to warstwa, na której opiera się GEO i lokalne SEO.
+ * Dane firmowe za wytycznymi marki STOLMAR.
+ */
+import type { Locale } from '@/i18n';
+
+interface Props {
+  lang: Locale;
+  /** dołącz pełny profil firmy (strona główna i kontakt) */
+  full?: boolean;
+}
+
+const { lang, full = false } = Astro.props;
+const site = (Astro.site ?? new URL('https://stolmar.co')).origin;
+
+const description =
+  lang === 'pl'
+    ? 'Producent witryn sklepowych, mebli, stoisk targowych i scenografii dla marek premium. Projekt, prototyp, produkcja i montaż w jednej pracowni.'
+    : 'Producer of shop windows, furniture, exhibition stands and scenography for premium brands. Concept, prototyping, production and on-site assembly in one workshop.';
+
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${site}/#organization`,
+  name: 'STOLMAR',
+  legalName: 'STOLMAR Marian Czajkowski Sp. k.',
+  url: site,
+  logo: `${site}/assets/logo-full.png`,
+  description,
+  foundingDate: '1995',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Hodowlana 7',
+    addressLocality: 'Rumia',
+    postalCode: '84-230',
+    addressCountry: 'PL',
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: '+48505999275',
+    email: 'info@stolmar.co',
+    contactType: 'sales',
+    availableLanguage: ['pl', 'en'],
+  },
+  sameAs: [
+    'https://www.instagram.com/stolmar_manufabryka/',
+    'https://www.linkedin.com/company/stolmar-displays',
+  ],
+};
+
+// LocalBusiness — pod wyszukiwania lokalne ("producent witryn sklepowych Trójmiasto")
+const localBusiness = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': `${site}/#localbusiness`,
+  name: 'STOLMAR',
+  image: `${site}/assets/logo-full.png`,
+  url: site,
+  telephone: '+48505999275',
+  email: 'info@stolmar.co',
+  address: organization.address,
+  areaServed: [
+    { '@type': 'Country', name: 'Poland' },
+    { '@type': 'Country', name: 'Germany' },
+    { '@type': 'Country', name: 'France' },
+    { '@type': 'Country', name: 'Czech Republic' },
+    { '@type': 'Country', name: 'Austria' },
+  ],
+  makesOffer: [
+    'Window displays',
+    'In-store decorations',
+    'Pop-up stores',
+    'Exhibition stands',
+    'Event scenography',
+    'Prototypes',
+  ].map((name) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name } })),
+};
+
+const website = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${site}/#website`,
+  url: site,
+  name: 'STOLMAR',
+  publisher: { '@id': `${site}/#organization` },
+  inLanguage: lang === 'pl' ? 'pl-PL' : 'en-US',
+};
+
+const blocks = full ? [organization, localBusiness, website] : [website];
+---
+
+{
+  blocks.map((block) => (
+    <script type="application/ld+json" set:html={JSON.stringify(block)} />
+  ))
+}

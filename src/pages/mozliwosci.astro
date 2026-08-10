@@ -1,0 +1,14 @@
+---
+import Page from '@/layouts/Page.astro';
+import PageIntro from '@/components/PageIntro.astro';
+import { useTranslations } from '@/i18n';
+const t = useTranslations('pl');
+---
+
+<Page lang="pl" route="studio">
+  <PageIntro
+    eyebrow={t('studio.eyebrow')}
+    title={`${t('studio.h1a')} ${t('studio.h1b')}`}
+    lead={t('studio.stand')}
+  />
+</Page>

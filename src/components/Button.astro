@@ -1,0 +1,83 @@
+---
+/**
+ * Przycisk wg design systemu STOLMAR.
+ * Kanciasty (radius 2px), bez cienia, bez skalowania w hover — "machined, not soft".
+ * Wciśnięcie = przesunięcie o 1px w dół, nigdy odbicie.
+ */
+interface Props {
+  href: string;
+  variant?: 'accent' | 'secondary' | 'primary';
+  size?: 'sm' | 'lg';
+  class?: string;
+}
+
+const { href, variant = 'accent', size = 'lg', class: className = '' } = Astro.props;
+---
+
+<a href={href} class:list={['stlm-btn', `is-${variant}`, `is-${size}`, className]}>
+  <slot />
+</a>
+
+<style>
+  .stlm-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition:
+      background-color 200ms cubic-bezier(0.16, 1, 0.3, 1),
+      color 200ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .stlm-btn:active {
+    transform: translateY(1px);
+  }
+  .stlm-btn:focus-visible {
+    outline: 2px solid #efd32b;
+    outline-offset: 2px;
+  }
+
+  .is-sm {
+    font-size: 11px;
+    padding: 9px 18px;
+  }
+  .is-lg {
+    font-size: 12px;
+    padding: 15px 28px;
+  }
+
+  .is-accent {
+    background: #efd32b;
+    color: #0a0a0a;
+  }
+  .is-accent:hover {
+    background: #d9be18;
+  }
+
+  .is-secondary {
+    background: transparent;
+    color: #f4f2ec;
+    border-color: #3a3a3a;
+  }
+  .is-secondary:hover {
+    background: #f4f2ec;
+    color: #0a0a0a;
+    border-color: #f4f2ec;
+  }
+
+  .is-primary {
+    background: #0a0a0a;
+    color: #f4f2ec;
+    border-color: #3a3a3a;
+  }
+  .is-primary:hover {
+    background: #1f1f1f;
+  }
+</style>

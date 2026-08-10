@@ -2,38 +2,31 @@
 /**
  * Bazowy layout — jeden <head> dla całej strony.
  * Tu żyje cała warstwa SEO/GEO: meta, canonical, hreflang, Open Graph, JSON-LD.
- * Każda podstrona podaje własny title/description/lang.
  */
+import '@/styles/ds.css';
+import { pathFor, type Locale, type RouteKey } from '@/i18n';
+
 export interface Props {
   title: string;
   description: string;
-  /** 'pl' lub 'en' */
-  lang?: 'pl' | 'en';
-  /** ścieżka bez domeny, np. "/" albo "/en/" — do canonical i hreflang */
-  path?: string;
-  /** obraz do social share (Open Graph), ścieżka względna */
+  lang: Locale;
+  /** która to strona — steruje canonical i hreflang */
+  route: RouteKey;
   ogImage?: string;
-  /** wyłącz indeksowanie (np. na czas przedpremiery) */
   noindex?: boolean;
 }
 
-const {
-  title,
-  description,
-  lang = 'pl',
-  path = '/',
-  ogImage = '/assets/logo-full.png',
-  noindex = false,
-} = Astro.props;
+const { title, description, lang, route, ogImage = '/assets/logo-full.png', noindex = false } =
+  Astro.props;
 
 const site = Astro.site ?? new URL('https://stolmar.co');
-const canonical = new URL(path, site).href;
+const canonical = new URL(pathFor(route, lang), site).href;
+const plHref = new URL(pathFor(route, 'pl'), site).href;
+const enHref = new URL(pathFor(route, 'en'), site).href;
 const ogImageUrl = new URL(ogImage, site).href;
 
-// Odpowiedniki językowe tej samej strony (hreflang).
-// Konwencja: PL = ścieżka bazowa, EN = ta sama ścieżka z prefiksem /en.
-const plPath = path.replace(/^\/en(\/|$)/, '/');
-const enPath = plPath === '/' ? '/en/' : `/en${plPath}`;
+// Fonty ładowane z wyprzedzeniem — te dwie wagi niosą pierwszy widok.
+const preloadFonts = ['/fonts/Roboto-Black.woff2', '/fonts/Roboto-Regular.woff2'];
 ---
 
 <!doctype html>
@@ -44,13 +37,18 @@ const enPath = plPath === '/' ? '/en/' : `/en${plPath}`;
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-
     {noindex && <meta name="robots" content="noindex, nofollow" />}
 
+    {
+      preloadFonts.map((href) => (
+        <link rel="preload" href={href} as="font" type="font/woff2" crossorigin />
+      ))
+    }
+
     <!-- Wersje językowe -->
-    <link rel="alternate" hreflang="pl" href={new URL(plPath, site).href} />
-    <link rel="alternate" hreflang="en" href={new URL(enPath, site).href} />
-    <link rel="alternate" hreflang="x-default" href={new URL(plPath, site).href} />
+    <link rel="alternate" hreflang="pl" href={plHref} />
+    <link rel="alternate" hreflang="en" href={enHref} />
+    <link rel="alternate" hreflang="x-default" href={plHref} />
 
     <!-- Open Graph / social -->
     <meta property="og:type" content="website" />
@@ -79,10 +77,22 @@ const enPath = plPath === '/' ? '/en/' : `/en${plPath}`;
     margin: 0;
     padding: 0;
     background: #0a0a0a;
+    color: #f4f2ec;
+    font-family: 'Roboto', system-ui, sans-serif;
     overflow-x: hidden;
   }
   ::selection {
     background: #efd32b;
     color: #0a0a0a;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 </style>

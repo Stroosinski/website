@@ -1,0 +1,186 @@
+---
+/**
+ * Sekcja otwierająca stronę główną (w oryginale: "Home - Horizon").
+ * Tło to shader WebGL <veil-shader> — ten sam komponent co w wersji z Claude Design.
+ * Treść jest w HTML od razu (nie doklejana JavaScriptem), więc widzą ją wyszukiwarki.
+ */
+import { useTranslations, pathFor, type Locale } from '@/i18n';
+import Button from './Button.astro';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class="hero">
+  <div aria-hidden="true" class="hero-shader">
+    <veil-shader intensity="0.55"></veil-shader>
+  </div>
+  <div aria-hidden="true" class="hero-scrim"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">{t('hero.eyebrow')}</p>
+    <h1 class="hero-title">{t('hero.h1')}</h1>
+    <p class="hero-standfirst">{t('hero.standfirst')}</p>
+    <div class="hero-actions">
+      <Button href={pathFor('work', lang)} variant="accent">{t('hero.cta1')}</Button>
+      <Button href={pathFor('studio', lang)} variant="secondary">{t('hero.cta2')}</Button>
+    </div>
+  </div>
+
+  <div class="hero-index">
+    <span>{t('hero.index')}</span>
+    <span aria-hidden="true" class="hero-rule"></span>
+  </div>
+
+  <div aria-hidden="true" class="hero-cue">
+    <span class="hero-cue-track"><span class="hero-cue-dot"></span></span>
+  </div>
+</section>
+
+<script src="/js/veil-shader.js" is:inline defer></script>
+
+<style>
+  .hero {
+    position: relative;
+    height: calc(100vh + 72px);
+    margin-top: -72px;
+    min-height: 620px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #050505;
+  }
+  .hero-shader {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .hero-shader veil-shader {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .hero-scrim {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      rgba(10, 10, 10, 0.3) 0%,
+      rgba(10, 10, 10, 0) 38%,
+      rgba(10, 10, 10, 0.92) 97%
+    );
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1360px;
+  }
+  .hero-eyebrow {
+    margin: 0 0 32px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--signal-yellow, #efd32b);
+  }
+  .hero-title {
+    margin: 0;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: clamp(54px, 8.4vw, 142px);
+    line-height: 0.94;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  .hero-standfirst {
+    margin: 36px 0 0;
+    max-width: 580px;
+    font-weight: 300;
+    font-size: 19px;
+    line-height: 1.7;
+    color: #c9c7c1;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    margin-top: 44px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .hero-index {
+    position: absolute;
+    left: 40px;
+    bottom: 28px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--signal-yellow, #efd32b);
+  }
+  .hero-rule {
+    display: block;
+    width: 64px;
+    height: 1px;
+    background: var(--signal-yellow, #efd32b);
+  }
+  .hero-cue {
+    position: absolute;
+    right: 40px;
+    bottom: 28px;
+    z-index: 2;
+  }
+  .hero-cue-track {
+    display: block;
+    width: 1px;
+    height: 46px;
+    background: #3a3a3a;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-cue-dot {
+    position: absolute;
+    left: 0;
+    top: -45%;
+    width: 100%;
+    height: 42%;
+    background: var(--signal-yellow, #efd32b);
+    animation: stlm-cue 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  }
+  @keyframes stlm-cue {
+    0% {
+      top: -45%;
+    }
+    100% {
+      top: 110%;
+    }
+  }
+
+  /* Na małych ekranach znikają boczne oznaczenia — jak w oryginale */
+  @media (max-width: 860px) {
+    .hero-index,
+    .hero-cue {
+      display: none;
+    }
+    .hero-content {
+      padding: 0 24px;
+    }
+  }
+</style>

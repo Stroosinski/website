@@ -1,0 +1,53 @@
+/* STOLMAR — Color.
+   The brand is monochrome: ink black + paper white, with a single signal yellow (#EFD32B).
+   The refreshed identity leans dark and enigmatic — black is the default stage, white the
+   document surface, yellow used sparingly as a marker (rules, focus, active state, accents).
+   Never introduce a second hue; restraint is the brand. */
+
+:root {
+  /* ---- Base palette (raw values) ---- */
+  --ink-900: #0A0A0A;   /* near-black, the true brand black / dark stage */
+  --ink-800: #161616;   /* raised surface on dark */
+  --ink-700: #222222;   /* hairlines / borders on dark */
+  --ink-600: #3A3A3A;   /* muted dark UI */
+  --ink-500: #6E6E6E;   /* mid grey, secondary text on light */
+  --ink-400: #9A9A9A;   /* disabled / tertiary */
+  --paper-300: #D6D2C8;  /* warm hairline on light */
+  --paper-200: #E7E4DC;  /* warm divider */
+  --paper-100: #F4F2EC;  /* off-white, warm paper surface */
+  --paper-000: #FFFFFF;  /* pure white */
+
+  --signal-yellow: #EFD32B;     /* the STOLMAR yellow — sampled from brand artwork */
+  --signal-yellow-deep: #D8BD10; /* pressed / hover-darken of yellow */
+  --signal-yellow-soft: #5A510E; /* yellow at low light, for dark-mode washes */
+
+  /* ---- Semantic aliases — light surface (documents, offers, day UI) ---- */
+  --text-strong: var(--ink-900);
+  --text-body: #1C1C1C;
+  --text-muted: var(--ink-500);
+  --text-faint: var(--ink-400);
+  --text-invert: var(--paper-000);
+
+  --surface-page: var(--paper-100);
+  --surface-card: var(--paper-000);
+  --surface-sunken: var(--paper-200);
+  --border-hair: var(--paper-200);
+  --border-strong: var(--ink-900);
+
+  /* ---- Semantic aliases — dark surface (web, decks, the enigmatic stage) ---- */
+  --text-strong-on-dark: var(--paper-000);
+  --text-body-on-dark: #C9C7C1;
+  --text-muted-on-dark: #7E7E7A;
+  --surface-stage: var(--ink-900);
+  --surface-stage-raised: var(--ink-800);
+  --border-hair-on-dark: var(--ink-700);
+
+  /* ---- Accent / signal ---- */
+  --accent: var(--signal-yellow);
+  --accent-press: var(--signal-yellow-deep);
+  --focus-ring: var(--signal-yellow);
+
+  /* ---- Status (kept monochrome-adjacent; yellow doubles as the only warm signal) ---- */
+  --status-positive: #1F1F1F;  /* status communicated by weight, not color, on light */
+  --status-warning: var(--signal-yellow-deep);
+}
