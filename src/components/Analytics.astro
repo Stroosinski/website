@@ -12,7 +12,7 @@
  * kolejka zdarzeń (dataLayer), więc licznik pobrań prezentacji zbiera dane
  * od momentu włączenia Analytics, bez zmian w kodzie.
  */
-const GA_ID = import.meta.env.PUBLIC_GA_ID ?? '';
+import { GA_ID } from '@/config';
 ---
 
 <!-- Domyślna odmowa — musi być pierwsza. -->

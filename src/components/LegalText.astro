@@ -1,0 +1,158 @@
+---
+/**
+ * Oprawa typograficzna dokumentów prawnych.
+ * Dłuższy tekst czyta się inaczej niż strony marketingowe: węższa kolumna,
+ * większa interlinia, wyraźna hierarchia nagłówków. Kolory i krój z design
+ * systemu, żeby dokument nie wypadał z identyfikacji.
+ */
+interface Props {
+  eyebrow: string;
+  title: string;
+  updated: string;
+}
+const { eyebrow, title, updated } = Astro.props;
+---
+
+<article class="legal">
+  <header class="legal-head">
+    <p class="legal-eyebrow">{eyebrow}</p>
+    <h1 class="legal-title">{title}</h1>
+    <p class="legal-updated">{updated}</p>
+    <span aria-hidden="true" class="legal-rule"></span>
+  </header>
+
+  <div class="legal-body">
+    <slot />
+  </div>
+</article>
+
+<style is:global>
+  .legal {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 96px 40px 110px;
+  }
+  .legal-head {
+    margin-bottom: 56px;
+  }
+  .legal-eyebrow {
+    margin: 0 0 22px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--signal-yellow, #efd32b);
+  }
+  .legal-title {
+    margin: 0 0 18px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: clamp(34px, 5vw, 60px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .legal-updated {
+    margin: 0 0 24px;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #7e7e7a;
+  }
+  .legal-rule {
+    display: block;
+    width: 120px;
+    height: 2px;
+    background: var(--signal-yellow, #efd32b);
+  }
+
+  .legal-body {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #c9c7c1;
+  }
+  .legal-body h2 {
+    margin: 56px 0 18px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: clamp(19px, 2.2vw, 24px);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  .legal-body h3 {
+    margin: 32px 0 12px;
+    font-weight: 700;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #f4f2ec;
+  }
+  .legal-body p {
+    margin: 0 0 18px;
+  }
+  .legal-body ul,
+  .legal-body ol {
+    margin: 0 0 18px;
+    padding-left: 0;
+    list-style: none;
+  }
+  .legal-body li {
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: 10px;
+  }
+  .legal-body li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.8em;
+    width: 10px;
+    height: 1px;
+    background: var(--signal-yellow, #efd32b);
+  }
+  .legal-body a {
+    color: var(--signal-yellow, #efd32b);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(239, 211, 43, 0.35);
+  }
+  .legal-body a:hover {
+    border-bottom-color: var(--signal-yellow, #efd32b);
+  }
+  .legal-body strong {
+    color: #f4f2ec;
+    font-weight: 500;
+  }
+  /* tabela danych — czytelna także na wąskim ekranie */
+  .legal-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 24px;
+    font-size: 14.5px;
+  }
+  .legal-table th,
+  .legal-table td {
+    text-align: left;
+    vertical-align: top;
+    padding: 12px 16px 12px 0;
+    border-bottom: 1px solid #1f1f1f;
+  }
+  .legal-table th {
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #7e7e7a;
+    white-space: nowrap;
+  }
+  .legal-scroll {
+    overflow-x: auto;
+  }
+
+  @media (max-width: 860px) {
+    .legal {
+      padding: 64px 24px 72px;
+    }
+  }
+</style>

@@ -32,6 +32,7 @@ export const routes = {
   work: { pl: '/realizacje/', en: '/en/work/' },
   studio: { pl: '/mozliwosci/', en: '/en/studio/' },
   contact: { pl: '/kontakt/', en: '/en/contact/' },
+  privacy: { pl: '/polityka-prywatnosci/', en: '/en/privacy-policy/' },
 } as const;
 
 export type RouteKey = keyof typeof routes;

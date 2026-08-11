@@ -10,6 +10,17 @@ export const FORM_ENDPOINT =
   import.meta.env.PUBLIC_FORM_ENDPOINT || 'https://formspree.io/f/mjybynvv';
 
 /**
+ * Google Analytics 4.
+ * Identyfikator jest publiczny — widnieje w kodzie wysłanej strony — więc jak
+ * przy formularzu trzymamy go jako wartość domyślną. Uzależnienie wyłącznie od
+ * zmiennej środowiskowej groziłoby tym, że po wdrożeniu bez jej ustawienia
+ * pomiar po cichu przestałby działać.
+ *
+ * Analytics uruchamia się DOPIERO po zgodzie (Consent Mode v2).
+ */
+export const GA_ID = import.meta.env.PUBLIC_GA_ID || 'G-R9FQNH7L3Z';
+
+/**
  * Prezentacja wysyłana w odpowiedzi na formularz.
  * Podmiana na nowszą wersję = skopiowanie pliku pod tę samą nazwę,
  * bez ruszania kodu. Osoby, które dostały link wcześniej, pobiorą nową wersję.

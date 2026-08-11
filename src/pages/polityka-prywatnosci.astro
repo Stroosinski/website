@@ -1,0 +1,223 @@
+---
+/**
+ * Polityka prywatności (PL).
+ *
+ * Treść opisuje wyłącznie to, co serwis faktycznie robi — sprawdzone w kodzie:
+ * formularz kontaktowy (Formspree), pobranie prezentacji (bez zbierania danych),
+ * Google Analytics 4 po zgodzie, hosting Vercel, pamięć przeglądarki na wybór
+ * zgody i języka. Kategoria marketingowa jest opisana jako nieaktywna, bo
+ * Meta Pixel nie jest obecnie wdrożony.
+ *
+ * ADRES: tutaj świadomie podajemy adres REJESTROWY (Sopot), bo to dokument
+ * prawny i identyfikacja administratora danych. W stopce i w danych
+ * strukturalnych zostaje adres fizyczny (Rumia) — patrz ODSTEPSTWA.md.
+ */
+import Page from '@/layouts/Page.astro';
+import LegalText from '@/components/LegalText.astro';
+---
+
+<Page lang="pl" route="privacy">
+  <LegalText
+    eyebrow="Informacja prawna"
+    title="Polityka prywatności"
+    updated="Ostatnia aktualizacja: 11 sierpnia 2026"
+  >
+    <p>
+      Ta polityka wyjaśnia, jakie dane osobowe zbieramy za pośrednictwem strony
+      <strong>stolmar.co</strong>, w jakim celu je przetwarzamy i jakie prawa Ci przysługują.
+      Opisujemy w niej wyłącznie to, co strona faktycznie robi.
+    </p>
+
+    <h2>1. Kto jest administratorem danych</h2>
+    <p>
+      Administratorem Twoich danych osobowych jest <strong>STOLMAR Marian Czajkowski Sp. k.</strong>
+      z siedzibą przy ul. Chmielewskiego 10/1, 81-721 Sopot, NIP PL5851483828.
+    </p>
+    <p>
+      Zakład produkcyjny i biuro mieszczą się przy ul. Hodowlanej 7, 84-230 Rumia.
+    </p>
+    <p>
+      Kontakt w sprawach danych osobowych: <a href="mailto:info@stolmar.co">info@stolmar.co</a>,
+      tel. <a href="tel:+48505999275">+48 505 999 275</a>.
+    </p>
+    <p>
+      Nie wyznaczyliśmy inspektora ochrony danych — w sprawach dotyczących przetwarzania danych
+      prosimy o kontakt na powyższy adres.
+    </p>
+
+    <h2>2. Jakie dane zbieramy i po co</h2>
+
+    <h3>Formularz kontaktowy</h3>
+    <p>
+      Wysyłając zapytanie, przekazujesz nam: <strong>imię i nazwisko</strong> oraz
+      <strong>adres e-mail</strong> (pola wymagane), a opcjonalnie <strong>opis projektu</strong>
+      i <strong>załączone pliki</strong>. Zapisujemy też, z której wersji językowej wysłano zgłoszenie.
+    </p>
+    <p>
+      Dane wykorzystujemy wyłącznie po to, aby odpowiedzieć na zapytanie i przygotować wycenę.
+      Podstawą prawną jest <strong>art. 6 ust. 1 lit. b RODO</strong> (działania podejmowane na
+      Twoje żądanie przed zawarciem umowy), a w zakresie dalszej korespondencji handlowej
+      <strong>art. 6 ust. 1 lit. f RODO</strong> (nasz prawnie uzasadniony interes polegający na
+      obsłudze zapytań).
+    </p>
+    <p>
+      Podanie danych jest dobrowolne, ale bez adresu e-mail nie będziemy w stanie odpowiedzieć.
+    </p>
+
+    <h3>Pobranie prezentacji</h3>
+    <p>
+      Pobranie pliku PDF <strong>nie wymaga podania żadnych danych</strong> i nie wiąże się
+      z ich zbieraniem. Jeżeli wyraziłeś zgodę na statystyki, rejestrujemy wyłącznie anonimowe
+      zdarzenie „pobranie prezentacji", bez powiązania z osobą.
+    </p>
+
+    <h3>Statystyki odwiedzin</h3>
+    <p>
+      Jeżeli wyrazisz zgodę, korzystamy z <strong>Google Analytics 4</strong>, aby wiedzieć, które
+      treści są przydatne i jak działa strona. Podstawą prawną jest
+      <strong>art. 6 ust. 1 lit. a RODO</strong> (zgoda), którą możesz wycofać w każdej chwili.
+    </p>
+    <p>
+      Analytics uruchamia się <strong>dopiero po wyrażeniu zgody</strong>. Do tego czasu narzędzie
+      nie zapisuje w Twojej przeglądarce żadnych identyfikatorów. Adres IP jest skracany
+      (anonimizacja), a dane reklamowe są ograniczane.
+    </p>
+
+    <h3>Serwer</h3>
+    <p>
+      Strona działa w infrastrukturze dostawcy hostingu, który — jak każdy serwer — zapisuje
+      techniczne logi dostępu (adres IP, data zapytania, typ przeglądarki). Służą one
+      bezpieczeństwu i diagnostyce. Podstawą jest <strong>art. 6 ust. 1 lit. f RODO</strong>.
+    </p>
+
+    <h2>3. Pliki cookie i pamięć przeglądarki</h2>
+    <p>
+      Strona nie używa własnych plików cookie do śledzenia. Zapisujemy natomiast dwie informacje
+      w pamięci Twojej przeglądarki (localStorage), żeby uszanować Twoje decyzje:
+    </p>
+    <div class="legal-scroll">
+      <table class="legal-table">
+        <thead>
+          <tr><th>Nazwa</th><th>Do czego służy</th><th>Jak długo</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>stlm-consent</td>
+            <td>Zapamiętuje Twój wybór dotyczący zgód, żeby nie pytać przy każdej wizycie</td>
+            <td>Do czasu wyczyszczenia danych przeglądarki</td>
+          </tr>
+          <tr>
+            <td>stlm-lang</td>
+            <td>Zapamiętuje ręcznie wybraną wersję językową</td>
+            <td>Do czasu wyczyszczenia danych przeglądarki</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      Te dane pozostają w Twojej przeglądarce i nie są nam przesyłane. Bez nich strona nie mogłaby
+      zapamiętać, że nie chcesz statystyk — dlatego są niezbędne i nie wymagają zgody.
+    </p>
+    <p>
+      Po wyrażeniu zgody Google Analytics zapisuje własne pliki cookie, służące odróżnianiu wizyt.
+      Zgodę możesz zmienić w dowolnym momencie przez odsyłacz
+      <strong>„Ustawienia cookie"</strong> w stopce strony.
+    </p>
+    <p>
+      Kategoria <strong>marketingowa</strong> jest przewidziana w ustawieniach, ale
+      <strong>obecnie nie jest wykorzystywana</strong> — nie prowadzimy przez tę stronę pomiaru
+      kampanii reklamowych. Gdyby to się zmieniło, zaktualizujemy tę politykę, a narzędzia
+      uruchomią się wyłącznie po Twojej zgodzie.
+    </p>
+
+    <h2>4. Komu przekazujemy dane</h2>
+    <p>Korzystamy z zewnętrznych dostawców, którzy przetwarzają dane na nasze zlecenie:</p>
+    <div class="legal-scroll">
+      <table class="legal-table">
+        <thead>
+          <tr><th>Dostawca</th><th>Rola</th><th>Lokalizacja</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Formspree, Inc.</td>
+            <td>Przekazanie zgłoszeń z formularza na naszą skrzynkę</td>
+            <td>Stany Zjednoczone</td>
+          </tr>
+          <tr>
+            <td>Vercel, Inc.</td>
+            <td>Hosting strony</td>
+            <td>Stany Zjednoczone / UE</td>
+          </tr>
+          <tr>
+            <td>Google Ireland Limited</td>
+            <td>Statystyki odwiedzin (tylko po zgodzie)</td>
+            <td>Irlandia</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      Część dostawców ma siedzibę poza Europejskim Obszarem Gospodarczym. Przekazanie danych
+      odbywa się na podstawie <strong>standardowych klauzul umownych</strong> zatwierdzonych przez
+      Komisję Europejską lub programu Data Privacy Framework.
+    </p>
+    <p>
+      Danych nie sprzedajemy i nie udostępniamy w celach marketingowych podmiotom trzecim.
+    </p>
+
+    <h2>5. Jak długo przechowujemy dane</h2>
+    <ul>
+      <li>
+        <strong>Korespondencja z formularza</strong> — przez czas prowadzenia rozmów, a po ich
+        zakończeniu przez okres przedawnienia ewentualnych roszczeń, nie dłużej niż 3 lata.
+      </li>
+      <li>
+        <strong>Dokumentacja zrealizowanych zleceń</strong> — przez okres wymagany przepisami
+        podatkowymi i rachunkowymi (5 lat od końca roku podatkowego).
+      </li>
+      <li>
+        <strong>Dane statystyczne</strong> — zgodnie z ustawieniami Google Analytics, maksymalnie
+        14 miesięcy.
+      </li>
+      <li>
+        <strong>Logi serwera</strong> — krótkoterminowo, do celów bezpieczeństwa i diagnostyki.
+      </li>
+    </ul>
+
+    <h2>6. Twoje prawa</h2>
+    <p>W związku z przetwarzaniem danych masz prawo do:</p>
+    <ul>
+      <li>dostępu do swoich danych i otrzymania ich kopii,</li>
+      <li>sprostowania danych nieprawidłowych lub niekompletnych,</li>
+      <li>usunięcia danych („prawo do bycia zapomnianym"),</li>
+      <li>ograniczenia przetwarzania,</li>
+      <li>przenoszenia danych do innego administratora,</li>
+      <li>
+        wniesienia sprzeciwu wobec przetwarzania opartego na naszym prawnie uzasadnionym interesie,
+      </li>
+      <li>wycofania zgody w dowolnym momencie — bez wpływu na zgodność z prawem przetwarzania
+        dokonanego przed jej wycofaniem.</li>
+    </ul>
+    <p>
+      Aby skorzystać z tych praw, napisz na <a href="mailto:info@stolmar.co">info@stolmar.co</a>.
+      Odpowiadamy bez zbędnej zwłoki, najpóźniej w ciągu miesiąca.
+    </p>
+    <p>
+      Masz również prawo wnieść skargę do organu nadzorczego:
+      <strong>Prezes Urzędu Ochrony Danych Osobowych</strong>, ul. Stawki 2, 00-193 Warszawa.
+    </p>
+
+    <h2>7. Zautomatyzowane decyzje</h2>
+    <p>
+      Nie podejmujemy wobec Ciebie decyzji opartych wyłącznie na automatycznym przetwarzaniu
+      i nie stosujemy profilowania wywołującego skutki prawne.
+    </p>
+
+    <h2>8. Zmiany polityki</h2>
+    <p>
+      Jeżeli zmienimy sposób przetwarzania danych albo dodamy nowe narzędzia, zaktualizujemy ten
+      dokument i zmienimy datę na górze strony. W przypadku zmian istotnych poprosimy o zgodę
+      ponownie.
+    </p>
+  </LegalText>
+</Page>

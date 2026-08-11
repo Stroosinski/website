@@ -79,17 +79,13 @@ const navLink =
       <a href={pathFor('work', lang)} class="stlm-fnav" style={navLink}>{t('footer.work')}</a>
       <a href={pathFor('studio', lang)} class="stlm-fnav" style={navLink}>{t('footer.studio')}</a>
       <a href={pathFor('contact', lang)} class="stlm-fnav" style={navLink}>{t('footer.contact')}</a>
+      <!-- Plakietka TODO zdjęta 2026-08-11 — strona polityki prywatności istnieje. -->
       <a
-        href={lang === 'pl' ? '/polityka-prywatnosci/' : '/en/privacy-policy/'}
+        href={pathFor('privacy', lang)}
         class="stlm-fmuted"
-        style="display: inline-flex; align-items: center; gap: 8px; margin-top: 6px; font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #4A4A4A; text-decoration: none;"
+        style="margin-top: 6px; font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #4A4A4A; text-decoration: none;"
       >
-        <span>{t('footer.privacy')}</span>
-        <span
-          aria-hidden="true"
-          style="font-size: 9px; letter-spacing: 0.1em; color: #0A0A0A; background: #EFD32B; padding: 2px 5px; border-radius: 2px;"
-          >TODO</span
-        >
+        {t('footer.privacy')}
       </a>
       <button
         type="button"

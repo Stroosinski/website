@@ -54,4 +54,16 @@ export const meta: Record<RouteKey, Record<Locale, { title: string; description:
         'Send us your scope and we will come back with a tailored quote within two working days. STOLMAR, Hodowlana 7, Rumia, Poland. info@stolmar.co, +48 505 999 275.',
     },
   },
+  privacy: {
+    pl: {
+      title: 'Polityka prywatności | STOLMAR',
+      description:
+        'Jak przetwarzamy dane osobowe przekazane przez formularz kontaktowy, jakich narzędzi używamy i jakie prawa przysługują osobom, których dane dotyczą.',
+    },
+    en: {
+      title: 'Privacy policy | STOLMAR',
+      description:
+        'How we process personal data submitted through the contact form, which tools we use, and what rights data subjects have.',
+    },
+  },
 };

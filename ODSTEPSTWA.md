@@ -62,6 +62,13 @@ Bez tych zmian strona nie mogłaby być indeksowana — a to był główny powó
 
 ---
 
+## Adresy — świadome rozróżnienie
+
+| Gdzie | Adres | Dlaczego |
+|---|---|---|
+| Stopka, sekcja kontaktowa, dane strukturalne | Hodowlana 7, **Rumia** | adres fizyczny — biuro i produkcja. W wynikach lokalnych Google liczy się lokalizacja, którą można odwiedzić |
+| Polityka prywatności | Chmielewskiego 10/1, **Sopot** | adres rejestrowy — dokument prawny musi wskazywać administratora danych zgodnie z rejestrem. Rumia podana obok jako miejsce działalności |
+
 ## Do rozstrzygnięcia
 
 - **Prezentacja PDF jest tylko po angielsku**, a formularz jest także na polskiej
@@ -70,5 +77,8 @@ Bez tych zmian strona nie mogłaby być indeksowana — a to był główny powó
   To najcenniejsza treść dla Google — do decyzji, czy pokazać.
 - **Nagłówki rozdziałów Showcase są po angielsku także w wersji polskiej**
   (tak jest w danych oryginału).
-- **Polityka prywatności nie istnieje**, a jest wymagana prawnie przy zbieraniu
-  danych z formularzy. W stopce oznaczona plakietką TODO.
+- **Polityka prywatności wymaga sprawdzenia przez prawnika.** Treść opisuje
+  wiernie to, co serwis robi, ale nie jest opinią prawną.
+- **Kategoria marketingowa w banerze cookie jest nieużywana.** Oryginał ładował
+  Meta Pixel, ta wersja nie. W polityce opisane zgodnie z prawdą jako nieaktywne.
+  Do decyzji: dodać Pixel czy usunąć kategorię z banera.

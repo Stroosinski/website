@@ -21,7 +21,7 @@ interface Props {
 }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-const privacyHref = lang === 'pl' ? '/polityka-prywatnosci/' : '/en/privacy-policy/';
+const privacyHref = pathFor('privacy', lang);
 ---
 
 <div
