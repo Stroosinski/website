@@ -1,0 +1,8 @@
+# stolmar.co
+# Cała strona jest przeznaczona do indeksowania — nie ma stref prywatnych.
+
+User-agent: *
+Allow: /
+
+# Mapa strony generowana przy każdym budowaniu (obie wersje językowe).
+Sitemap: https://stolmar.co/sitemap-index.xml

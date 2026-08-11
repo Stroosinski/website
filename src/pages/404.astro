@@ -1,0 +1,70 @@
+---
+/**
+ * Strona błędu 404.
+ *
+ * Jedna wersja dla obu języków — użytkownik trafia tu z nieznanego adresu,
+ * więc nie wiemy, jakiego języka oczekuje. Tekst jest dwujęzyczny, krótki
+ * i prowadzi z powrotem do treści zamiast zostawiać w ślepym zaułku.
+ *
+ * Wyłączona z indeksowania (noindex) — strona błędu nie ma czego szukać
+ * w wynikach wyszukiwania.
+ */
+import Base from '@/layouts/Base.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import Button from '@/components/Button.astro';
+---
+
+<Base
+  title="Nie znaleziono strony · Page not found | STOLMAR"
+  description="Ten adres nie istnieje. Wróć na stronę główną."
+  lang="pl"
+  route="home"
+  noindex
+>
+  <div
+    class="site"
+    style="min-height: 100vh; background: #0A0A0A; color: #C9C7C1; font-family: 'Roboto', sans-serif; overflow-x: hidden; display: flex; flex-direction: column;"
+  >
+    <Header lang="pl" current="home" />
+
+    <main
+      style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 96px 40px 120px; position: relative; overflow: hidden;"
+    >
+      <img
+        src="/assets/logo-mark-white.png"
+        alt=""
+        aria-hidden="true"
+        style="position: absolute; left: -180px; bottom: -180px; width: 640px; opacity: 0.05; pointer-events: none;"
+      />
+
+      <div style="position: relative; z-index: 1; max-width: 620px; text-align: center;">
+        <p
+          style="margin: 0 0 26px; font-size: 11px; font-weight: 500; letter-spacing: 0.34em; text-transform: uppercase; color: var(--signal-yellow);"
+        >
+          Błąd 404
+        </p>
+        <h1
+          style="margin: 0 0 8px; font-weight: 900; text-transform: uppercase; color: #FFFFFF; font-size: clamp(40px, 7vw, 96px); line-height: 0.94; letter-spacing: -0.02em;"
+        >
+          Nie ma tu nic
+        </h1>
+        <p
+          style="margin: 0 0 6px; font-weight: 300; font-size: 18px; line-height: 1.7; color: #C9C7C1;"
+        >
+          Ten adres nie istnieje albo strona została przeniesiona.
+        </p>
+        <p style="margin: 0 0 40px; font-weight: 300; font-size: 15px; line-height: 1.7; color: #7E7E7A;">
+          This address does not exist or the page has moved.
+        </p>
+
+        <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+          <Button href="/" variant="accent" size="lg">Strona główna</Button>
+          <Button href="/en/" variant="secondary" size="lg" onDark>English version</Button>
+        </div>
+      </div>
+    </main>
+
+    <Footer lang="pl" />
+  </div>
+</Base>

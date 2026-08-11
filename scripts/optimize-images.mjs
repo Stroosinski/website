@@ -15,6 +15,8 @@ import path from 'node:path';
 import sharp from 'sharp';
 
 const ROOT = path.resolve('public/assets');
+/** `npm run images -- --force` przelicza warianty od nowa (po podmianie zdjęć). */
+const FORCE = process.argv.includes('--force');
 const VARIANTS = [
   { suffix: '.sm', width: 900, quality: 78 },
   { suffix: '.lg', width: 2000, quality: 82 },
@@ -52,8 +54,15 @@ for (const file of files) {
   for (const v of VARIANTS) {
     const target = path.join(dir, `${base}${v.suffix}.webp`);
 
-    // pomijamy, jeśli wariant jest aktualny
-    if (fs.existsSync(target) && fs.statSync(target).mtimeMs >= stat.mtimeMs) {
+    /*
+      Pomijamy, jeśli wariant już istnieje.
+      Celowo NIE porównujemy dat modyfikacji: git ich nie zachowuje, więc po
+      pobraniu repozytorium na serwerze budującym wszystkie pliki mają ten sam
+      czas i porównanie dawałoby losowy wynik — w efekcie każde wdrożenie
+      przeliczałoby od nowa kilkaset zdjęć.
+      Po podmianie zdjęcia na nowe: `npm run images -- --force`.
+    */
+    if (!FORCE && fs.existsSync(target)) {
       after += fs.statSync(target).size;
       skipped++;
       continue;
