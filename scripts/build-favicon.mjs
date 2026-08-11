@@ -4,28 +4,35 @@ import sharp from 'sharp';
 /**
  * Buduje ikonę karty przeglądarki.
  *
- * Problem: logo-mark.svg jest czysto białe na przezroczystym tle, więc na
- * jasnym pasku kart znikało. Wytyczne marki dopuszczają znak wyłącznie
- * w czerni, bieli lub żółci — więc dokładamy tło w kolorze marki (#0A0A0A)
- * i zostawiamy znak biały. Dzięki temu ikona jest widoczna niezależnie
- * od motywu przeglądarki.
+ * Wersja 2 (2026-08-11, na życzenie właściciela): tło białe, znak czarny,
+ * zaokrąglone rogi kwadratu — bardziej zgodne z konwencją ikon aplikacji
+ * (np. iOS) niż poprzednia wersja z ciemnym tłem.
+ *
+ * logo-mark.svg ma kolor wpisany na sztywno w każdym kształcie (fill="#ffffff"),
+ * więc nie wystarczy ustawić koloru na grupie nadrzędnej — trzeba podmienić
+ * fill w samej treści SVG.
  */
 
 const SRC = 'public/assets/logo-mark.svg';
 const raw = fs.readFileSync(SRC, 'utf8');
 
 // wyciągamy zawartość SVG (bez nagłówka i <svg>), żeby wstawić ją na tło
-const inner = raw
+let inner = raw
   .replace(/^[\s\S]*?<svg[^>]*>/, '')
   .replace(/<\/svg>\s*$/, '')
   .trim();
 
+// znak na czarno — zamiast białego na sztywno wpisanego w każdy kształt
+const INK = '#0A0A0A';
+inner = inner.replace(/fill="#ffffff"/gi, `fill="${INK}"`);
+
 // Znak zajmuje 222x221.78; dodajemy margines, żeby nie dotykał krawędzi.
 const PAD = 34;
 const BOX = 222 + PAD * 2;
+const RADIUS = Math.round(BOX * 0.22); // zaokrąglenie w stylu ikon aplikacji
 
 const withBg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${BOX} ${BOX}" width="${BOX}" height="${BOX}">
-  <rect width="${BOX}" height="${BOX}" fill="#0A0A0A"/>
+  <rect width="${BOX}" height="${BOX}" rx="${RADIUS}" ry="${RADIUS}" fill="#FFFFFF"/>
   <g transform="translate(${PAD}, ${PAD})">
 ${inner}
   </g>

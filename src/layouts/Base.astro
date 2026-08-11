@@ -102,6 +102,19 @@ const preloadFonts = ['/fonts/Roboto-Black.woff2', '/fonts/Roboto-Regular.woff2'
     background: #efd32b;
     color: #0a0a0a;
   }
+  /*
+    Zabezpieczenie ogólne (2026-08-11): atrybut `hidden` musi wygrywać zawsze,
+    niezależnie od tego, jaki `style="display: ..."` ktoś wpisze na tym samym
+    elemencie. Bez tej reguły element z inline `display: flex` i atrybutem
+    `hidden` jednocześnie jest WIDOCZNY, bo inline style ma wyższy priorytet
+    niż domyślna reguła przeglądarki dla `[hidden]`. Dokładnie to powodowało,
+    że komunikat "Otrzymano" w formularzu kontaktowym był widoczny od razu,
+    a sam formularz nie znikał po wysłaniu — oba miały inline `display: flex`.
+  */
+  [hidden] {
+    display: none !important;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
