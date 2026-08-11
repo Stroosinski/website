@@ -66,9 +66,16 @@ const preloadFonts = ['/fonts/Roboto-Black.woff2', '/fonts/Roboto-Regular.woff2'
     <meta property="og:locale" content={lang === 'pl' ? 'pl_PL' : 'en_US'} />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="/assets/logo-mark.png" />
+    <!--
+      Ikona karty: znak marki na czarnym tle (#0A0A0A). Samo logo-mark.svg jest
+      białe na przezroczystym, więc znikało na jasnym pasku kart. Generowane
+      przez scripts/build-favicon.mjs.
+    -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#0A0A0A" />
 
     <slot name="head" />
   </head>
