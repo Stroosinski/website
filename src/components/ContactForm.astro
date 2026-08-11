@@ -98,9 +98,14 @@ const fieldWrap = 'display: flex; flex-direction: column; gap: 4px;';
     <input id="stlm-email" type="email" name="email" required autocomplete="email" placeholder={f.emailPh} />
   </div>
 
+  <!--
+    ODSTĘPSTWO OD ORYGINAŁU (2026-08-11, prośba właściciela): pole Brief
+    dwukrotnie wyższe niż w projekcie (6 wierszy zamiast 3) — więcej miejsca
+    na opis zapytania od razu widoczny, bez przewijania w trakcie pisania.
+  -->
   <div style={fieldWrap}>
     <label for="stlm-brief" style={labelStyle}>{f.brief}</label>
-    <textarea id="stlm-brief" name="brief" rows="3" placeholder={f.briefPh}></textarea>
+    <textarea id="stlm-brief" name="brief" rows="6" placeholder={f.briefPh}></textarea>
   </div>
 
   <!--

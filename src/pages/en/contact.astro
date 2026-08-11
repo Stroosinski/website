@@ -22,7 +22,15 @@ const t = useTranslations('en');
       style="position: absolute; left: -160px; bottom: -160px; width: 640px; opacity: 0.06; pointer-events: none; z-index: 0;"
     />
 
-    <section style="padding: 96px 40px 80px; border-right: 1px solid #161616; position: relative; z-index: 1;">
+    <!--
+      ODSTĘPSTWO OD ORYGINAŁU (2026-08-11, prośba właściciela): lewa kolumna
+      wyglądała pusto — treść stała przyklejona do góry, zostawiając duży,
+      niewykorzystany obszar pod spodem. Wyśrodkowana pionowo i przesunięta
+      w prawo (padding-left 96px zamiast 40px), żeby lepiej wypełniała kolumnę.
+    -->
+    <section
+      style="padding: 96px 40px 80px 96px; border-right: 1px solid #161616; position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: center;"
+    >
       <div
         data-reveal
         style="font-size: 11px; font-weight: 500; letter-spacing: 0.34em; text-transform: uppercase; color: var(--signal-yellow); margin-bottom: 26px;"
@@ -55,7 +63,12 @@ const t = useTranslations('en');
       </div>
     </section>
 
-    <section style="padding: 96px 40px 80px; background: #161616; position: relative; z-index: 1;">
+    <!--
+      ODSTĘPSTWO OD ORYGINAŁU (2026-08-11, prośba właściciela): pola formularza
+      przesunięte lekko w dół (padding-top 132px zamiast 96px) dla lepszej
+      równowagi z wyśrodkowaną teraz lewą kolumną.
+    -->
+    <section style="padding: 132px 40px 80px; background: #161616; position: relative; z-index: 1;">
       <ContactForm lang="en" />
     </section>
   </div>
