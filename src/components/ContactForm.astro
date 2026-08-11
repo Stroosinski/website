@@ -40,16 +40,12 @@ const ui =
         error: 'Nie udało się wysłać. Spróbuj ponownie lub napisz na info@stolmar.co.',
         offline: 'Brak połączenia. Sprawdź internet i spróbuj ponownie.',
         subject: 'Zapytanie ze strony stolmar.co',
-        noFiles: 'Brak wybranych plików',
-        someFiles: (n: number) => `${n} plików wybranych`,
       }
     : {
         sending: 'Sending...',
         error: 'Could not send. Please try again or write to info@stolmar.co.',
         offline: 'No connection. Check your internet and try again.',
         subject: 'Enquiry from stolmar.co',
-        noFiles: 'No files selected',
-        someFiles: (n: number) => `${n} files selected`,
       };
 
 const labelStyle =
@@ -83,12 +79,9 @@ const fieldWrap = 'display: flex; flex-direction: column; gap: 4px;';
   data-reveal
   method="POST"
   action={action}
-  enctype="multipart/form-data"
   data-sending-label={ui.sending}
   data-error-label={ui.error}
   data-offline-label={ui.offline}
-  data-no-files={ui.noFiles}
-  data-some-files={ui.someFiles(0).replace('0 ', '')}
   style="display: flex; flex-direction: column; gap: 28px;"
 >
   <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="cf-gotcha" />
@@ -110,25 +103,15 @@ const fieldWrap = 'display: flex; flex-direction: column; gap: 4px;';
     <textarea id="stlm-brief" name="brief" rows="3" placeholder={f.briefPh}></textarea>
   </div>
 
-  <div style={fieldWrap}>
-    <label for="stlm-files" style={labelStyle}>{f.files}</label>
-    <label
-      for="stlm-files"
-      style="display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; box-sizing: border-box; border-bottom: 1px solid #3A3A3A; padding: 10px 0; cursor: pointer;"
-    >
-      <span
-        data-files-summary
-        style="font-size: 15px; color: #C9C7C1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
-        >{ui.noFiles}</span
-      >
-      <span
-        style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--signal-yellow); flex-shrink: 0;"
-        >{f.filesCta}</span
-      >
-    </label>
-    <input id="stlm-files" type="file" name="files" multiple style="display: none;" />
-    <span style="font-size: 11px; color: #7E7E7A; letter-spacing: 0.02em;">{f.filesHint}</span>
-  </div>
+  <!--
+    Pole załączników usunięte (2026-08-11, decyzja właściciela). Formspree
+    na darmowym planie odrzuca przesyłki z plikami błędem
+    "File Uploads Not Permitted" — klient wypełniał pole, dostawał niejasny
+    błąd i zgłoszenie się nie wysyłało. Zamiast pokazywać błąd, którego i tak
+    nie da się obejść bez płatnego planu, pole zniknęło. Materiały klient
+    wysyła bezpośrednio na info@stolmar.co (adres widoczny obok formularza).
+    Przywrócić razem z przejściem na Resend albo płatny plan Formspree.
+  -->
 
   <p data-form-error hidden role="alert" class="cf-err"></p>
 

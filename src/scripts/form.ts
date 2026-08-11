@@ -20,21 +20,6 @@ function init() {
   const endpoint = form.getAttribute('action') ?? '';
   if (!endpoint.startsWith('http')) return; // brak endpointu → zostawiamy zachowanie natywne
 
-  // Podsumowanie wybranych plików — jak w oryginale (filesSummary):
-  // jeden plik pokazuje nazwę, więcej pokazuje liczbę.
-  const fileInput = form.querySelector<HTMLInputElement>('input[type="file"]');
-  const fileSummary = form.querySelector<HTMLElement>('[data-files-summary]');
-  if (fileInput && fileSummary) {
-    const noFiles = form.dataset.noFiles ?? '';
-    const word = form.dataset.someFiles ?? '';
-    fileInput.addEventListener('change', () => {
-      const files = Array.from(fileInput.files ?? []);
-      if (!files.length) fileSummary.textContent = noFiles;
-      else if (files.length === 1) fileSummary.textContent = files[0].name;
-      else fileSummary.textContent = `${files.length} ${word} — ${files.map((f) => f.name).join(', ')}`;
-    });
-  }
-
   const sentBox = document.querySelector<HTMLElement>('[data-form-sent]');
   const errBox = document.querySelector<HTMLElement>('[data-form-error]');
   const submit = form.querySelector<HTMLButtonElement>('[type="submit"]');
