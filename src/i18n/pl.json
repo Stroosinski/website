@@ -49,7 +49,7 @@
   "cookie.always": "Zawsze aktywne",
   "cookie.analytics": "Analityczne",
   "cookie.analyticsDesc": "Google Analytics - anonimowe statystyki korzystania ze strony.",
-  "cookie.body": "Używamy plików cookie do analityki (Google Analytics) i marketingu (Meta Pixel). Ty decydujesz, na co się zgadzasz - pliki niezbędne są zawsze aktywne.",
+  "cookie.body": "Używamy plików cookie do anonimowych statystyk odwiedzin (Google Analytics), żeby wiedzieć, które treści są przydatne. Nie prowadzimy śledzenia reklamowego. Pliki niezbędne do działania strony są zawsze aktywne.",
   "cookie.marketing": "Marketingowe",
   "cookie.marketingDesc": "Meta Pixel - pomiar kampanii reklamowych i zasięgu.",
   "cookie.more": "Polityka prywatności",

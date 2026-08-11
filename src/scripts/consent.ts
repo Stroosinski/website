@@ -41,27 +41,34 @@ function read(): Consent | null {
   }
 }
 
-function apply(analytics: boolean, marketing: boolean) {
+/**
+ * Zgody reklamowe są odmawiane BEZWARUNKOWO.
+ * Serwis nie prowadzi pomiaru kampanii (decyzja właściciela 2026-08-11), więc
+ * nie pytamy o marketing i nie wolno go włączyć — także wtedy, gdy ktoś kliknie
+ * „Akceptuj wszystko". Akceptacja dotyczy wyłącznie statystyk odwiedzin.
+ * Gdy ruszą kampanie: przywrócić parametr `marketing` i przełącznik w banerze.
+ */
+function apply(analytics: boolean) {
   gtag('consent', 'update', {
     analytics_storage: analytics ? 'granted' : 'denied',
-    ad_storage: marketing ? 'granted' : 'denied',
-    ad_user_data: marketing ? 'granted' : 'denied',
-    ad_personalization: marketing ? 'granted' : 'denied',
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
   });
   window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({ event: 'stlm_consent', analytics, marketing });
+  window.dataLayer.push({ event: 'stlm_consent', analytics, marketing: false });
 }
 
-function save(analytics: boolean, marketing: boolean) {
+function save(analytics: boolean) {
   try {
     localStorage.setItem(
       KEY,
-      JSON.stringify({ v: VERSION, analytics, marketing, ts: Date.now() } satisfies Consent)
+      JSON.stringify({ v: VERSION, analytics, marketing: false, ts: Date.now() } satisfies Consent)
     );
   } catch {
     /* tryb prywatny — decyzja zadziała do końca sesji */
   }
-  apply(analytics, marketing);
+  apply(analytics);
 }
 
 function init() {
@@ -69,10 +76,9 @@ function init() {
   const compact = document.querySelector<HTMLElement>('[data-cookie-compact]');
   const panel = document.querySelector<HTMLElement>('[data-cookie-panel]');
   const swAnalytics = document.querySelector<HTMLInputElement>('[data-cookie-analytics]');
-  const swMarketing = document.querySelector<HTMLInputElement>('[data-cookie-marketing]');
 
   const saved = read();
-  if (saved) apply(saved.analytics, saved.marketing);
+  if (saved) apply(saved.analytics);
 
   if (!banner) return;
 
@@ -81,7 +87,6 @@ function init() {
     if (compact) compact.hidden = openPanel;
     if (panel) panel.hidden = !openPanel;
     if (saved && swAnalytics) swAnalytics.checked = saved.analytics;
-    if (saved && swMarketing) swMarketing.checked = saved.marketing;
   }
 
   function hide() {
@@ -93,18 +98,18 @@ function init() {
   document.querySelector('[data-cookie-settings]')?.addEventListener('click', () => show(true));
   document.querySelectorAll('[data-cookie-accept]').forEach((b) =>
     b.addEventListener('click', () => {
-      save(true, true);
+      save(true);
       hide();
     })
   );
   document.querySelectorAll('[data-cookie-reject]').forEach((b) =>
     b.addEventListener('click', () => {
-      save(false, false);
+      save(false);
       hide();
     })
   );
   document.querySelector('[data-cookie-save]')?.addEventListener('click', () => {
-    save(!!swAnalytics?.checked, !!swMarketing?.checked);
+    save(!!swAnalytics?.checked);
     hide();
   });
 

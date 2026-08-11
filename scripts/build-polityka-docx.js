@@ -121,7 +121,7 @@ const doc = new Document({
 
         p('Uwaga techniczna:', { bold: true, after: 80 }),
         p(
-          'Kategoria „marketingowa" w banerze zgód jest obecnie nieaktywna — serwis nie uruchamia Meta Pixela ani innych narzędzi reklamowych. W dokumencie opisano to zgodnie ze stanem faktycznym. Jeżeli firma zdecyduje się uruchomić pomiar kampanii, dokument będzie wymagał aktualizacji.'
+          'Serwis nie prowadzi żadnego śledzenia reklamowego — nie ma w nim Meta Pixela ani innych narzędzi pomiaru kampanii, a baner zgód nie zawiera kategorii marketingowej. Zgody reklamowe pozostają odmówione na stałe, także po kliknięciu „Akceptuj wszystko". Jeżeli firma zdecyduje się kiedyś uruchomić kampanie, dokument będzie wymagał aktualizacji.'
         ),
         p(
           'Dokument został przygotowany z pomocą narzędzia AI i nie stanowi opinii prawnej.',
@@ -169,7 +169,7 @@ const doc = new Document({
         p('', { after: 160 }),
         p('Te dane pozostają w Twojej przeglądarce i nie są nam przesyłane. Bez nich strona nie mogłaby zapamiętać, że nie chcesz statystyk — dlatego są niezbędne i nie wymagają zgody.'),
         p('Po wyrażeniu zgody Google Analytics zapisuje własne pliki cookie, służące odróżnianiu wizyt. Zgodę możesz zmienić w dowolnym momencie przez odsyłacz „Ustawienia cookie" w stopce strony.'),
-        p('Kategoria marketingowa jest przewidziana w ustawieniach, ale obecnie nie jest wykorzystywana — nie prowadzimy przez tę stronę pomiaru kampanii reklamowych. Gdyby to się zmieniło, zaktualizujemy tę politykę, a narzędzia uruchomią się wyłącznie po Twojej zgodzie.'),
+        p('Nie prowadzimy śledzenia reklamowego. Serwis nie korzysta z pikseli reklamowych ani narzędzi pomiaru kampanii — nie zbieramy danych na potrzeby remarketingu i nie budujemy grup odbiorców. Gdyby to się kiedyś zmieniło, zaktualizujemy tę politykę, a takie narzędzia uruchomią się wyłącznie po uzyskaniu odrębnej zgody.'),
 
         h2('4. Komu przekazujemy dane'),
         p('Korzystamy z zewnętrznych dostawców, którzy przetwarzają dane na nasze zlecenie:'),

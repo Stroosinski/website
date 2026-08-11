@@ -70,6 +70,13 @@ const privacyHref = pathFor('privacy', lang);
           <span class="stlm-cc-always">{t('cookie.always')}</span>
         </div>
 
+        <!--
+          Kategoria marketingowa usunięta 2026-08-11 (decyzja właściciela).
+          Serwis nie prowadzi pomiaru kampanii reklamowych, a proszenie o zgodę
+          na coś, czego się nie robi, jest wprowadzaniem w błąd. Zgody reklamowe
+          w Consent Mode pozostają na stałe odmówione (patrz consent.ts).
+          Gdy ruszą kampanie: przywrócić przełącznik i zaktualizować politykę.
+        -->
         <div class="stlm-cc-row">
           <div>
             <p class="stlm-cc-name">{t('cookie.analytics')}</p>
@@ -79,18 +86,6 @@ const privacyHref = pathFor('privacy', lang);
             <input type="checkbox" data-cookie-analytics />
             <span class="stlm-cc-track" aria-hidden="true"><span class="stlm-cc-knob"></span></span>
             <span class="stlm-cc-sr">{t('cookie.analytics')}</span>
-          </label>
-        </div>
-
-        <div class="stlm-cc-row">
-          <div>
-            <p class="stlm-cc-name">{t('cookie.marketing')}</p>
-            <p class="stlm-cc-desc">{t('cookie.marketingDesc')}</p>
-          </div>
-          <label class="stlm-cc-switch">
-            <input type="checkbox" data-cookie-marketing />
-            <span class="stlm-cc-track" aria-hidden="true"><span class="stlm-cc-knob"></span></span>
-            <span class="stlm-cc-sr">{t('cookie.marketing')}</span>
           </label>
         </div>
       </div>

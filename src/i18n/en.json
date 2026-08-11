@@ -49,7 +49,7 @@
   "cookie.always": "Always on",
   "cookie.analytics": "Analytics",
   "cookie.analyticsDesc": "Google Analytics - anonymous statistics on how the site is used.",
-  "cookie.body": "We use cookies for analytics (Google Analytics) and marketing (Meta Pixel). You decide what to allow - necessary cookies are always on.",
+  "cookie.body": "We use cookies for anonymous visit statistics (Google Analytics), so we know which content is useful. We run no advertising tracking. Cookies necessary for the site to work are always on.",
   "cookie.marketing": "Marketing",
   "cookie.marketingDesc": "Meta Pixel - measuring ad campaigns and reach.",
   "cookie.more": "Privacy policy",
