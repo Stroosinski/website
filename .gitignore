@@ -31,3 +31,6 @@ public/_orig/
 
 # zrodlowy PDF w katalogu glownym (kopia produkcyjna jest w public/files)
 STOLMAR Short overview.pdf
+
+# dokument Word generowany ze scripts/build-polityka-docx.js
+*.docx
