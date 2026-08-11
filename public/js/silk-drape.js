@@ -133,11 +133,17 @@
       requestAnimationFrame(this._resize);
       setTimeout(this._resize, 300);
 
+      // Odstępstwo od oryginału (2026-08-11, techniczne, bez wpływu na wygląd):
+      // pętla renderująca zatrzymuje się, gdy karta jest w tle (inna zakładka
+      // aktywna), zamiast liczyć klatki w nieskończoność. Oryginał renderował
+      // zawsze, nawet gdy nikt nie patrzył — marnowało to baterię i procesor
+      // bez żadnej korzyści, bo i tak nic nie było widoczne.
       var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       this._t0 = performance.now();
       var self = this;
       var frame = function (now) {
         if (!self._gl) return;
+        if (document.hidden) { self._raf = requestAnimationFrame(frame); return; }
         var speed = parseFloat(self.getAttribute('speed'));
         if (!isFinite(speed)) speed = 0.22;
         var inten = parseFloat(self.getAttribute('intensity'));

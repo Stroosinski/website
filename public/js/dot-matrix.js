@@ -157,10 +157,13 @@
       this._ro = new ResizeObserver(this._resize);
       this._ro.observe(this);
 
+      // Odstępstwo od oryginału (2026-08-11, techniczne, bez wpływu na wygląd):
+      // pauza w tle, jak w silk-drape.js — patrz komentarz tam.
       var last = 0, interval = 1000 / 30;
       var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       function frame(t) {
         self._raf = requestAnimationFrame(frame);
+        if (document.hidden) return;
         if (t - last < interval) return;
         last = t;
         gl.clearColor(0, 0, 0, 0);

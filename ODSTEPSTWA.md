@@ -56,6 +56,17 @@ Bez tych zmian strona nie mogłaby być indeksowana — a to był główny powó
   wejściu). Teraz ~7 KB na stronę główną, React tylko tam, gdzie jest potrzebny.
 - **Galeria**: dołożona obsługa klawiatury (strzałki, Escape, uwięzienie focusu)
   — w oryginale działała wyłącznie myszką.
+- **Wydajność przewijania**: nagłówek, menu mobilne i baner cookie (rozmyte tło,
+  `position: fixed`) dostały podpowiedź `will-change` + `translateZ(0)`, żeby
+  przeglądarka renderowała je na osobnej warstwie zamiast przeliczać rozmycie
+  na każdej klatce przewijania — częsta przyczyna szarpania przy `backdrop-filter`
+  na elementach przyklejonych do ekranu. Wygląd bez zmian.
+- **Shadery WebGL** (`silk-drape`, `dot-matrix`) wcześniej renderowały
+  bez przerwy, także gdy karta była w tle (inna zakładka aktywna) —
+  marnowały baterię i procesor bez potrzeby. Teraz pauzują się, gdy karta
+  nie jest widoczna, i wracają natychmiast po powrocie. Zmiana tylko
+  w `public/js/*.js` (wysyłane kopie); `_source/code/` zostaje nietknięte
+  jako materiał źródłowy.
 - **Formularze**: komunikat „wysłano" pojawia się wyłącznie po potwierdzeniu
   z serwera; błąd zostawia wpisane dane.
 - **Prezentacja**: pobiera się od razu w przeglądarce, niezależnie od poczty.

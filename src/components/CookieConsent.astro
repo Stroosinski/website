@@ -30,7 +30,7 @@ const privacyHref = pathFor('privacy', lang);
   aria-label={t('cookie.title')}
   aria-live="polite"
   hidden
-  style="position: fixed; left: 0; right: 0; bottom: 0; z-index: 80; background: rgba(10,10,10,0.95); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-top: 1px solid #222222; box-shadow: 0 -18px 40px rgba(0,0,0,0.5);"
+  style="position: fixed; left: 0; right: 0; bottom: 0; z-index: 80; background: rgba(10,10,10,0.95); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-top: 1px solid #222222; box-shadow: 0 -18px 40px rgba(0,0,0,0.5); will-change: backdrop-filter; transform: translateZ(0);"
 >
   <div style="max-width: 1360px; margin: 0 auto; padding: 22px 40px 24px;">
     <!-- widok kompaktowy -->
