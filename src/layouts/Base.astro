@@ -10,6 +10,7 @@ import '@/styles/original.css';
 // Świadome odstępstwa od oryginału, zamówione przez właściciela — trzymane
 // osobno, żeby original.css pozostał wiernym odwzorowaniem projektu.
 import '@/styles/overrides.css';
+import Analytics from '@/components/Analytics.astro';
 import { pathFor, type Locale, type RouteKey } from '@/i18n';
 
 export interface Props {
@@ -40,6 +41,9 @@ const preloadFonts = ['/fonts/Roboto-Black.woff2', '/fonts/Roboto-Regular.woff2'
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Musi być jak najwyżej: ustawia odmowę zgód zanim cokolwiek wystartuje. -->
+    <Analytics />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />

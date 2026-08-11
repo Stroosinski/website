@@ -1,0 +1,272 @@
+---
+/**
+ * Baner zgód na pliki cookie (RODO).
+ *
+ * Zasada: nic śledzącego nie uruchamia się przed zgodą. Analytics startuje
+ * w trybie „odmowa" (Consent Mode v2) i dostaje zgodę dopiero po kliknięciu.
+ * Pliki niezbędne — w praktyce tylko zapamiętanie wyboru języka i samej zgody —
+ * działają zawsze, bo bez nich strona nie potrafiłaby uszanować decyzji.
+ *
+ * Teksty pochodzą z oryginalnego projektu (klucze cookie.*), łącznie z opisami
+ * poszczególnych kategorii — właściciel ma je już zredagowane.
+ *
+ * Układ: kompaktowy pasek na dole, a po kliknięciu „Ustawienia" rozwija się
+ * panel z przełącznikami. Zgodnie z RODO odrzucenie musi być równie łatwe
+ * jak akceptacja, dlatego „Odrzuć" stoi obok „Akceptuj", a nie w ustawieniach.
+ */
+import { useTranslations, pathFor, type Locale } from '@/i18n';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const privacyHref = lang === 'pl' ? '/polityka-prywatnosci/' : '/en/privacy-policy/';
+---
+
+<div
+  data-cookie-banner
+  role="dialog"
+  aria-label={t('cookie.title')}
+  aria-live="polite"
+  hidden
+  style="position: fixed; left: 0; right: 0; bottom: 0; z-index: 80; background: rgba(10,10,10,0.95); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-top: 1px solid #222222; box-shadow: 0 -18px 40px rgba(0,0,0,0.5);"
+>
+  <div style="max-width: 1360px; margin: 0 auto; padding: 22px 40px 24px;">
+    <!-- widok kompaktowy -->
+    <div data-cookie-compact style="display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; flex-wrap: wrap;">
+      <div style="flex: 1 1 420px; min-width: 0;">
+        <p
+          style="margin: 0 0 8px; font-size: 12px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal-yellow);"
+        >
+          {t('cookie.title')}
+        </p>
+        <p style="margin: 0; font-size: 14px; font-weight: 300; line-height: 1.7; color: #C9C7C1; max-width: 70ch;">
+          {t('cookie.body')}
+          <a href={privacyHref} class="stlm-cc-link">{t('cookie.more')}</a>
+        </p>
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+        <button type="button" data-cookie-settings class="stlm-cc-btn is-ghost">{t('cookie.settings')}</button>
+        <button type="button" data-cookie-reject class="stlm-cc-btn is-secondary">{t('cookie.reject')}</button>
+        <button type="button" data-cookie-accept class="stlm-cc-btn is-accent">{t('cookie.accept')}</button>
+      </div>
+    </div>
+
+    <!-- panel ustawień -->
+    <div data-cookie-panel hidden style="padding-top: 8px;">
+      <p
+        style="margin: 0 0 18px; font-size: 12px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal-yellow);"
+      >
+        {t('cookie.settingsTitle')}
+      </p>
+
+      <div style="display: grid; gap: 1px; background: #222222; border: 1px solid #222222; margin-bottom: 20px;">
+        <div class="stlm-cc-row">
+          <div>
+            <p class="stlm-cc-name">{t('cookie.necessary')}</p>
+            <p class="stlm-cc-desc">{t('cookie.necessaryDesc')}</p>
+          </div>
+          <span class="stlm-cc-always">{t('cookie.always')}</span>
+        </div>
+
+        <div class="stlm-cc-row">
+          <div>
+            <p class="stlm-cc-name">{t('cookie.analytics')}</p>
+            <p class="stlm-cc-desc">{t('cookie.analyticsDesc')}</p>
+          </div>
+          <label class="stlm-cc-switch">
+            <input type="checkbox" data-cookie-analytics />
+            <span class="stlm-cc-track" aria-hidden="true"><span class="stlm-cc-knob"></span></span>
+            <span class="stlm-cc-sr">{t('cookie.analytics')}</span>
+          </label>
+        </div>
+
+        <div class="stlm-cc-row">
+          <div>
+            <p class="stlm-cc-name">{t('cookie.marketing')}</p>
+            <p class="stlm-cc-desc">{t('cookie.marketingDesc')}</p>
+          </div>
+          <label class="stlm-cc-switch">
+            <input type="checkbox" data-cookie-marketing />
+            <span class="stlm-cc-track" aria-hidden="true"><span class="stlm-cc-knob"></span></span>
+            <span class="stlm-cc-sr">{t('cookie.marketing')}</span>
+          </label>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap;">
+        <button type="button" data-cookie-reject class="stlm-cc-btn is-secondary">{t('cookie.reject')}</button>
+        <button type="button" data-cookie-save class="stlm-cc-btn is-accent">{t('cookie.save')}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  .stlm-cc-link {
+    color: var(--signal-yellow, #efd32b);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(239, 211, 43, 0.35);
+  }
+  .stlm-cc-link:hover {
+    border-bottom-color: var(--signal-yellow, #efd32b);
+  }
+
+  .stlm-cc-btn {
+    height: 40px;
+    padding: 0 18px;
+    font-family: var(--font-sans, 'Roboto', sans-serif);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1;
+    white-space: nowrap;
+    border-radius: var(--radius-sm, 2px);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition:
+      background 120ms cubic-bezier(0.16, 1, 0.3, 1),
+      color 120ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 120ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .stlm-cc-btn:active {
+    transform: translateY(1px);
+  }
+  .stlm-cc-btn:focus-visible {
+    outline: 2px solid #efd32b;
+    outline-offset: 2px;
+  }
+  .stlm-cc-btn.is-accent {
+    background: var(--signal-yellow, #efd32b);
+    color: #0a0a0a;
+  }
+  .stlm-cc-btn.is-accent:hover {
+    background: var(--signal-yellow-deep, #d9be18);
+  }
+  .stlm-cc-btn.is-secondary {
+    background: transparent;
+    color: #f4f2ec;
+    border-color: #3a3a3a;
+  }
+  .stlm-cc-btn.is-secondary:hover {
+    background: #f4f2ec;
+    color: #0a0a0a;
+    border-color: #f4f2ec;
+  }
+  .stlm-cc-btn.is-ghost {
+    background: transparent;
+    color: #7e7e7a;
+  }
+  .stlm-cc-btn.is-ghost:hover {
+    color: #f4f2ec;
+  }
+
+  .stlm-cc-row {
+    background: #0a0a0a;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .stlm-cc-name {
+    margin: 0 0 4px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: #f4f2ec;
+  }
+  .stlm-cc-desc {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: #7e7e7a;
+    max-width: 70ch;
+  }
+  .stlm-cc-always {
+    flex-shrink: 0;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #5a5a57;
+  }
+
+  /* przełącznik — kanciasty, w duchu systemu */
+  .stlm-cc-switch {
+    position: relative;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  .stlm-cc-switch input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  .stlm-cc-track {
+    display: block;
+    width: 44px;
+    height: 22px;
+    background: #1f1f1f;
+    border: 1px solid #3a3a3a;
+    border-radius: 2px;
+    transition:
+      background 200ms ease,
+      border-color 200ms ease;
+  }
+  .stlm-cc-knob {
+    display: block;
+    width: 16px;
+    height: 16px;
+    margin: 2px;
+    background: #5a5a57;
+    transition:
+      transform 200ms cubic-bezier(0.16, 1, 0.3, 1),
+      background 200ms ease;
+  }
+  .stlm-cc-switch input:checked + .stlm-cc-track {
+    background: rgba(239, 211, 43, 0.16);
+    border-color: var(--signal-yellow, #efd32b);
+  }
+  .stlm-cc-switch input:checked + .stlm-cc-track .stlm-cc-knob {
+    transform: translateX(22px);
+    background: var(--signal-yellow, #efd32b);
+  }
+  .stlm-cc-switch input:focus-visible + .stlm-cc-track {
+    outline: 2px solid #efd32b;
+    outline-offset: 2px;
+  }
+  .stlm-cc-sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 860px) {
+    [data-cookie-banner] > div {
+      padding: 18px 20px 20px !important;
+    }
+    [data-cookie-banner] .stlm-cc-btn {
+      flex: 1 1 auto;
+    }
+    .stlm-cc-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+  }
+</style>
+
+<script>
+  import '@/scripts/consent';
+</script>

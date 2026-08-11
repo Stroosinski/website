@@ -10,6 +10,7 @@ import Base from './Base.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import Schema from '@/components/Schema.astro';
+import CookieConsent from '@/components/CookieConsent.astro';
 import { meta } from '@/i18n/meta';
 import type { Locale, RouteKey } from '@/i18n';
 
@@ -34,4 +35,10 @@ const fullSchema = route === 'home' || route === 'contact';
     </main>
     <Footer lang={lang} />
   </div>
+  <CookieConsent lang={lang} />
 </Base>
+
+<script>
+  import '@/scripts/lang';
+  import '@/scripts/lang-toggle';
+</script>

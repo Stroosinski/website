@@ -1,0 +1,59 @@
+---
+/**
+ * Google Analytics 4 z Consent Mode v2.
+ *
+ * KOLEJNOŚĆ JEST WYMOGIEM PRAWNYM: pierwszy skrypt ustawia tryb zgody na
+ * „odmowa" i wykonuje się przed czymkolwiek innym w <head>. Dopiero potem
+ * ładuje się gtag. Efekt: przed zgodą Google nie zapisuje żadnych ciasteczek
+ * ani identyfikatorów, a strona i tak zbiera anonimowe, zbiorcze sygnały
+ * (tzw. modelowanie), więc statystyki nie są puste.
+ *
+ * Bez ustawionego PUBLIC_GA_ID nie ładujemy niczego — na razie działa tylko
+ * kolejka zdarzeń (dataLayer), więc licznik pobrań prezentacji zbiera dane
+ * od momentu włączenia Analytics, bez zmian w kodzie.
+ */
+const GA_ID = import.meta.env.PUBLIC_GA_ID ?? '';
+---
+
+<!-- Domyślna odmowa — musi być pierwsza. -->
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    window.dataLayer.push(arguments);
+  }
+  window.gtag = gtag;
+
+  // Odczytujemy wcześniejszą decyzję, żeby po powrocie na stronę nie cofać zgody.
+  var stlmConsent = { analytics: false, marketing: false };
+  try {
+    var raw = localStorage.getItem('stlm-consent');
+    if (raw) {
+      var parsed = JSON.parse(raw);
+      if (parsed && parsed.v === 1) stlmConsent = parsed;
+    }
+  } catch (e) {}
+
+  gtag('consent', 'default', {
+    analytics_storage: stlmConsent.analytics ? 'granted' : 'denied',
+    ad_storage: stlmConsent.marketing ? 'granted' : 'denied',
+    ad_user_data: stlmConsent.marketing ? 'granted' : 'denied',
+    ad_personalization: stlmConsent.marketing ? 'granted' : 'denied',
+    functionality_storage: 'granted',
+    security_storage: 'granted',
+    wait_for_update: 500,
+  });
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', true);
+</script>
+
+{
+  GA_ID && (
+    <>
+      <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
+      <script is:inline define:vars={{ GA_ID }}>
+        gtag('js', new Date());
+        gtag('config', GA_ID, { anonymize_ip: true });
+      </script>
+    </>
+  )
+}
