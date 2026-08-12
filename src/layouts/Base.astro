@@ -11,6 +11,7 @@ import '@/styles/original.css';
 // osobno, żeby original.css pozostał wiernym odwzorowaniem projektu.
 import '@/styles/overrides.css';
 import Analytics from '@/components/Analytics.astro';
+import SpeedInsights from '@vercel/speed-insights/astro';
 import { pathFor, type Locale, type RouteKey } from '@/i18n';
 
 export interface Props {
@@ -84,6 +85,12 @@ const preloadFonts = ['/fonts/Roboto-Black.woff2', '/fonts/Roboto-Regular.woff2'
     <slot name="head" />
   </head>
   <body>
+    <!--
+      Vercel Speed Insights — mierzy realną wydajność (Core Web Vitals) na
+      wersji produkcyjnej, wyłącznie na Vercelu. Nie wymaga zgody cookie:
+      nie zapisuje identyfikatorów w przeglądarce, dane są zbiorcze i anonimowe.
+    -->
+    <SpeedInsights />
     <slot />
   </body>
 </html>

@@ -24,12 +24,13 @@ const t = useTranslations('en');
 
     <!--
       ODSTĘPSTWO OD ORYGINAŁU (2026-08-11, prośba właściciela): lewa kolumna
-      wyglądała pusto — treść stała przyklejona do góry, zostawiając duży,
-      niewykorzystany obszar pod spodem. Wyśrodkowana pionowo i przesunięta
-      w prawo (padding-left 96px zamiast 40px), żeby lepiej wypełniała kolumnę.
+      przesunięta w prawo (padding-left 96px zamiast 40px), żeby nie stała
+      przyklejona do samej krawędzi. Pionowe wyśrodkowanie było testowane,
+      ale właściciel poprosił o powrót do góry — treść znów zaczyna się
+      od padding-top, tak jak w oryginale.
     -->
     <section
-      style="padding: 96px 40px 80px 96px; border-right: 1px solid #161616; position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: center;"
+      style="padding: 96px 40px 80px 96px; border-right: 1px solid #161616; position: relative; z-index: 1;"
     >
       <div
         data-reveal
@@ -65,10 +66,10 @@ const t = useTranslations('en');
 
     <!--
       ODSTĘPSTWO OD ORYGINAŁU (2026-08-11, prośba właściciela): pola formularza
-      przesunięte lekko w dół (padding-top 132px zamiast 96px) dla lepszej
-      równowagi z wyśrodkowaną teraz lewą kolumną.
+      przesunięte w dół (padding-top 96px → 132px → 180px, druga tura na
+      wyraźne życzenie „jeszcze przesuń").
     -->
-    <section style="padding: 132px 40px 80px; background: #161616; position: relative; z-index: 1;">
+    <section style="padding: 180px 40px 80px; background: #161616; position: relative; z-index: 1;">
       <ContactForm lang="en" />
     </section>
   </div>
