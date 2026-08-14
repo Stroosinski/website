@@ -215,31 +215,71 @@ przekierowanie językowe (tylko na `/`, tylko raz, z pominięciem robotów).
   podpięty w `src/layouts/Base.astro`. Działa tylko na Vercelu (nie lokalnie).
 - `.env.example` w katalogu głównym pokazuje wszystkie zmienne środowiskowe.
 
-## Otwarte sprawy (do zrobienia / decyzji właściciela)
+## PIERWSZE, od czego zacząć w nowej sesji
 
-1. **Domena `stolmar.co` jeszcze niepodpięta.** Właściciel czeka na kolegę od
-   serwera — instrukcja DNS jest w tej samej rozmowie/mailu co ten plik
-   (rekord A `@` → `76.76.21.21`, CNAME `www` → `cname.vercel-dns.com`, NIE
-   ruszać MX). Search Console czeka na to samo (świadomie odłożone —
-   weryfikacja na tymczasowym adresie `vercel.app` byłaby zmarnowanym krokiem,
-   bo Search Console traktuje każdą domenę jako osobną usługę).
-2. **Resend do maila z załącznikiem** (prezentacja PDF + docelowo może cały
+**Domena `stolmar.co` jest W TRAKCIE podpinania (stan na 2026-08-15, tuż przed
+końcem poprzedniej sesji) — sprawdź jej stan jako pierwszą rzecz.**
+
+Co już zrobione: właściciel ma dostęp do DNS przez panel **cyberFolks**
+(rejestrator, `ns1/ns2/ns3.cyberfolks.pl` — to serwery DNS, nie zmieniać ich
+na Vercelowe, żeby nie zerwać poczty Google Workspace, która wisi na innych
+rekordach w tej samej strefie). W Vercelu dodana domena `stolmar.co`
+(bez `www` — celowo, to i tak kanoniczny adres wszędzie w kodzie SEO).
+Vercel poprosił o rekord `A` `@` → `216.198.79.1` (**UWAGA: to nie jest
+uniwersalna, stała wartość Vercela — zawsze sprawdzić aktualną wartość w
+Vercel → Settings → Domains, bo raz już się zmieniła w trakcie tej sesji**).
+Rekord dodany. Po drodze wykryty i usunięty **stary, zbędny drugi rekord A**
+(`195.78.67.67` — pusty placeholder cyberFolks, sam przekierowywał na
+`https://stolmar.co/`, nie był żadną realną stroną) — bez tego Vercel
+pokazywał "Invalid Configuration", bo dwa rekordy A na tej samej nazwie to
+nieprawidłowa konfiguracja (przeglądarka losowo wybiera, na który trafi).
+
+**Jak sprawdzić aktualny stan (PowerShell, nie Bash — `dig` niedostępne w
+tym środowisku):**
+```powershell
+Resolve-DnsName -Name stolmar.co -Type A -Server ns1.cyberfolks.pl
+Resolve-DnsName -Name stolmar.co -Type A -Server ns2.cyberfolks.pl
+Resolve-DnsName -Name stolmar.co -Type A -Server 8.8.8.8
+```
+Sukces = wszędzie **tylko** `216.198.79.1`, nic więcej. Gdy to się potwierdzi,
+sprawdź czy `https://stolmar.co/` faktycznie serwuje stronę (Vercel wystawia
+certyfikat SSL automatycznie, ale dopiero po pełnej propagacji DNS —
+"Invalid Configuration" w Vercel → Domains samo zniknie, można przyspieszyć
+przyciskiem "Refresh" tam).
+
+**Gdy domena już działa, kolejność dalszych kroków (ustalona z właścicielem
+2026-08-15):**
+1. **Google Search Console** — właściciel ma już konto. Weryfikacja przez
+   rekord TXT w tym samym panelu cyberFolks. Zgłosić sitemap:
+   `stolmar.co/sitemap-index.xml` (generowana automatycznie przy buildzie).
+2. **FAQ + dane strukturalne `FAQPage`** — właściciel sam o to poprosił pod
+   kątem GEO (widoczność w odpowiedziach ChatGPT/Perplexity — krótkie Q&A są
+   łatwe do zacytowania przez modele językowe). **Wymaga treści od
+   właściciela** — pytań i odpowiedzi klientów, nie wymyślać ich samemu.
+   Wzorzec do naśladowania: `src/components/Schema.astro` (już ma
+   `Organization`/`LocalBusiness`, dołożyć blok `FAQPage` tą samą metodą).
+3. Reszta SEO na żywej domenie: Lighthouse, Google Rich Results Test dla
+   danych strukturalnych, sprawdzenie faktycznego zaindeksowania w GSC.
+
+## Otwarte sprawy (pozostałe, mniej pilne)
+
+1. **Resend do maila z załącznikiem** (prezentacja PDF + docelowo może cały
    formularz kontaktowy, żeby ominąć limit Formspree na załączniki). Wymaga:
    konta na resend.com, weryfikacji domeny (rekordy DNS — dobry moment żeby
    zrobić to razem z podpięciem domeny), klucza API (**sekret — nigdy do
    repo, tylko do zmiennych środowiskowych Vercela**).
-3. **Polityka prywatności wymaga akceptacji prawnika.** Wysłany dokument
+2. **Polityka prywatności wymaga akceptacji prawnika.** Wysłany dokument
    Word (`scripts/build-polityka-docx.js` generuje go na nowo z tą samą
    treścią co na stronie — uruchom ponownie po każdej zmianie treści, żeby
    wersje się nie rozjechały). Dokument ma na pierwszej stronie notę z
    konkretnymi punktami do zweryfikowania (okresy przechowywania danych,
    podstawy prawne, adres administratora, brak IOD, transfer danych do USA).
-4. **3 nowe teksty PL w Showcase czekają na akceptację właściciela**
+3. **3 nowe teksty PL w Showcase czekają na akceptację właściciela**
    (rozdzielone klucze `work.indexEyebrow`, `work.framesH1`,
    `work.materialsH1` — patrz punkt 2 w sekcji "Poprawki błędów" wyżej).
-5. **Prezentacja PDF jest tylko po angielsku**, a przycisk pobrania jest też
+4. **Prezentacja PDF jest tylko po angielsku**, a przycisk pobrania jest też
    na polskiej wersji strony — właściciel wie, nie podjął jeszcze decyzji.
-6. **Meta Pixel**: świadomie NIE dodany (brak planów kampanii reklamowych).
+5. **Meta Pixel**: świadomie NIE dodany (brak planów kampanii reklamowych).
    Gdyby się to zmieniło — dodanie to ~10 minut pracy, ale wymaga też
    przywrócenia kategorii marketingowej w banerze zgód i aktualizacji
    polityki prywatności (oba miejsca są oznaczone komentarzami w kodzie).
