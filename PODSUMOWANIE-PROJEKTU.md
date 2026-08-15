@@ -233,6 +233,56 @@ domenę od nowa, zawsze sprawdzić aktualną wartość w Vercel → Settings →
 Domains**). Po drodze wykryty i usunięty stary, zbędny drugi rekord A
 (`195.78.67.67` — pusty placeholder cyberFolks).
 
+### NIEZAŁATWIONE: `www.stolmar.co` wskazuje na STARY serwer cyberFolks
+
+**Stan na 2026-08-15.** Rekord `A` o nazwie `www` nadal pokazuje na
+`195.78.67.67` — to ten sam pusty placeholder cyberFolks (serwer LiteSpeed),
+który usuwaliśmy z głównej domeny. Przy `www` został przeoczony. Skutek:
+
+```
+www.stolmar.co → 301 (stary serwer) → https://stolmar.co/pl/ → 404
+```
+
+`/pl/` nie istnieje w tej wersji strony (polska wersja jest w katalogu
+głównym). **Łatka doraźna już wdrożona**: `vercel.json` ma sekcję
+`redirects` przekierowującą `/pl` i `/pl/` na `/`, więc ścieżka kończy się
+teraz na stronie głównej (200) zamiast na błędzie. Zweryfikowane pomiarem.
+
+**KROK 1 ZROBIONY (2026-08-15).** W Vercelu dodana domena `www.stolmar.co`
+jako **Redirect to `stolmar.co`, kod 308 (Permanent)**. Status: "Invalid
+Configuration" — i tak ma być, dopóki nie zmieni się DNS.
+
+> **UWAGA na pułapkę w oknie "Add Domains" Vercela:** po wpisaniu nazwy
+> pojawia się **domyślnie ZAZNACZONY** checkbox *"Redirect apex domains to
+> www (recommended)"*. To robi DOKŁADNIE ODWROTNOŚĆ tego, czego chcemy —
+> przekierowałby `stolmar.co` → `www.stolmar.co`, czyli uczynił `www`
+> adresem kanonicznym. Cała strona (canonical, sitemap, Schema.astro, GSC)
+> jest zbudowana wokół adresu BEZ `www`. **Ten checkbox trzeba odznaczyć.**
+> Domyślny typ przekierowania to też 307 (tymczasowe) — zmienić na **308
+> (trwałe)**, inaczej Google nie przeniesie mocy linków na adres główny.
+
+**KROK 2 DO ZROBIENIA — zmiana w cyberFolks (wymaga logowania właściciela):**
+- **usunąć** rekord `A` o nazwie `www` → `195.78.67.67`
+- **dodać** rekord podany przez Vercel:
+
+  | Typ | Nazwa | Wartość |
+  |---|---|---|
+  | `CNAME` | `www` | `27ea6802181be013.vercel-dns-017.com.` |
+
+  (odczytane z panelu Vercela 2026-08-15; gdyby trzeba było je potwierdzić:
+  Vercel → projekt `website` → Settings → Domains → przy `www.stolmar.co`
+  kliknąć "View DNS configuration")
+
+**NIE ruszać innych rekordów w tej strefie** — są tam MX i SPF obsługujące
+pocztę Google Workspace oraz TXT weryfikacyjny Search Console.
+
+**Pułapka wzorców w `vercel.json`:** przy `"trailingSlash": true` Vercel
+normalizuje adres PRZED dopasowaniem reguł, więc wzorzec `/pl` **nie łapie**
+żądania `/pl/` — trzeba jawnie wypisać wariant z ukośnikiem. Wzorce z
+parametrem (`/pl/:path+`) nadal nie łapią podstron typu `/pl/kontakt/` —
+świadomie odpuszczone, bo stary serwer był pustym placeholderem i takie
+adresy nigdy realnie nie istniały.
+
 **Kolejność dalszych kroków (ustalona z właścicielem 2026-08-15) — TERAZ
 JESTEŚMY TUTAJ:**
 1. **Google Search Console** — właściciel ma już konto, ALE weryfikacja
@@ -242,6 +292,22 @@ JESTEŚMY TUTAJ:**
    metoda: **Domain property** (rekord TXT, pokrywa wszystkie subdomeny/
    protokoły) zamiast metody meta-tag. Gdy zweryfikowane: zgłosić sitemap
    `stolmar.co/sitemap-index.xml` (generowana automatycznie przy buildzie).
+
+   **Stan 2026-08-15:** rekord TXT `google-site-verification=NnnW_2hfV4gF…`
+   jest już wpisany w cyberFolks i rozpropagowany (potwierdzone na ns1, ns2
+   i 8.8.8.8), obok nietkniętego SPF poczty. Pierwsza próba weryfikacji
+   **nie powiodła się** — Google miał w swojej pamięci podręcznej starszą
+   odpowiedź (samo SPF), ważną do 4h (TTL strefy 14400, negatywny cache
+   3600). **Nie dodawać drugiego rekordu ani nie kasować istniejącego** —
+   po prostu kliknąć `WERYFIKUJ` ponownie później.
+
+   Istnieje też **stara usługa `http://stolmar.co/`** (wariant nieszyfrowany).
+   Pokazuje 0 zindeksowanych stron i "brak robots.txt" — to normalne, bo
+   cała treść jest na `https://`, a `http://` tylko przekierowuje (308).
+   Zgłoszona tam mapa strony daje błąd "Nie udało się odczytać" z tego
+   samego powodu. **Po zweryfikowaniu usługi domenowej tę starą usunąć**,
+   żeby nie mylić się przy kolejnych wizytach. Sam `robots.txt` i mapa
+   strony na `https://` są sprawne — sprawdzone (200, 10 adresów, PL+EN).
 2. **FAQ + dane strukturalne `FAQPage`** — właściciel sam o to poprosił pod
    kątem GEO (widoczność w odpowiedziach ChatGPT/Perplexity — krótkie Q&A są
    łatwe do zacytowania przez modele językowe). **Wymaga treści od
