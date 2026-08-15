@@ -217,40 +217,30 @@ przekierowanie językowe (tylko na `/`, tylko raz, z pominięciem robotów).
 
 ## PIERWSZE, od czego zacząć w nowej sesji
 
-**Domena `stolmar.co` jest W TRAKCIE podpinania (stan na 2026-08-15, tuż przed
-końcem poprzedniej sesji) — sprawdź jej stan jako pierwszą rzecz.**
+**Domena `stolmar.co` JUŻ DZIAŁA (potwierdzone 2026-08-15): DNS w pełni
+rozpropagowany (tylko `216.198.79.1` na ns1/ns2 cyberFolks i na 8.8.8.8),
+`https://stolmar.co/` serwuje stronę poprawnie z ważnym certyfikatem SSL.
+Ten etap jest zamknięty — nie trzeba już sprawdzać propagacji DNS.**
 
-Co już zrobione: właściciel ma dostęp do DNS przez panel **cyberFolks**
-(rejestrator, `ns1/ns2/ns3.cyberfolks.pl` — to serwery DNS, nie zmieniać ich
-na Vercelowe, żeby nie zerwać poczty Google Workspace, która wisi na innych
-rekordach w tej samej strefie). W Vercelu dodana domena `stolmar.co`
-(bez `www` — celowo, to i tak kanoniczny adres wszędzie w kodzie SEO).
-Vercel poprosił o rekord `A` `@` → `216.198.79.1` (**UWAGA: to nie jest
-uniwersalna, stała wartość Vercela — zawsze sprawdzić aktualną wartość w
-Vercel → Settings → Domains, bo raz już się zmieniła w trakcie tej sesji**).
-Rekord dodany. Po drodze wykryty i usunięty **stary, zbędny drugi rekord A**
-(`195.78.67.67` — pusty placeholder cyberFolks, sam przekierowywał na
-`https://stolmar.co/`, nie był żadną realną stroną) — bez tego Vercel
-pokazywał "Invalid Configuration", bo dwa rekordy A na tej samej nazwie to
-nieprawidłowa konfiguracja (przeglądarka losowo wybiera, na który trafi).
+Historia (dla kontekstu): właściciel ma dostęp do DNS przez panel
+**cyberFolks** (rejestrator, `ns1/ns2/ns3.cyberfolks.pl` — to serwery DNS,
+nie zmieniać ich na Vercelowe, żeby nie zerwać poczty Google Workspace, która
+wisi na innych rekordach w tej samej strefie). W Vercelu dodana domena
+`stolmar.co` (bez `www` — celowo, to i tak kanoniczny adres wszędzie w
+kodzie SEO). Rekord `A` `@` → `216.198.79.1` dodany (**UWAGA: to nie jest
+uniwersalna, stała wartość Vercela — jeśli kiedyś trzeba będzie dodawać
+domenę od nowa, zawsze sprawdzić aktualną wartość w Vercel → Settings →
+Domains**). Po drodze wykryty i usunięty stary, zbędny drugi rekord A
+(`195.78.67.67` — pusty placeholder cyberFolks).
 
-**Jak sprawdzić aktualny stan (PowerShell, nie Bash — `dig` niedostępne w
-tym środowisku):**
-```powershell
-Resolve-DnsName -Name stolmar.co -Type A -Server ns1.cyberfolks.pl
-Resolve-DnsName -Name stolmar.co -Type A -Server ns2.cyberfolks.pl
-Resolve-DnsName -Name stolmar.co -Type A -Server 8.8.8.8
-```
-Sukces = wszędzie **tylko** `216.198.79.1`, nic więcej. Gdy to się potwierdzi,
-sprawdź czy `https://stolmar.co/` faktycznie serwuje stronę (Vercel wystawia
-certyfikat SSL automatycznie, ale dopiero po pełnej propagacji DNS —
-"Invalid Configuration" w Vercel → Domains samo zniknie, można przyspieszyć
-przyciskiem "Refresh" tam).
-
-**Gdy domena już działa, kolejność dalszych kroków (ustalona z właścicielem
-2026-08-15):**
-1. **Google Search Console** — właściciel ma już konto. Weryfikacja przez
-   rekord TXT w tym samym panelu cyberFolks. Zgłosić sitemap:
+**Kolejność dalszych kroków (ustalona z właścicielem 2026-08-15) — TERAZ
+JESTEŚMY TUTAJ:**
+1. **Google Search Console** — właściciel ma już konto, ALE weryfikacja
+   własności i wpisanie rekordu TXT to akcja, którą musi wykonać sam
+   właściciel (login do jego konta Google + panel cyberFolks — Claude Code
+   nie ma do nich dostępu). Poprowadź go krok po kroku po polsku. Zalecana
+   metoda: **Domain property** (rekord TXT, pokrywa wszystkie subdomeny/
+   protokoły) zamiast metody meta-tag. Gdy zweryfikowane: zgłosić sitemap
    `stolmar.co/sitemap-index.xml` (generowana automatycznie przy buildzie).
 2. **FAQ + dane strukturalne `FAQPage`** — właściciel sam o to poprosił pod
    kątem GEO (widoczność w odpowiedziach ChatGPT/Perplexity — krótkie Q&A są
