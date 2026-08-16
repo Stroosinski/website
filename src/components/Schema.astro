@@ -57,11 +57,23 @@ const localBusiness = {
   '@type': 'LocalBusiness',
   '@id': `${site}/#localbusiness`,
   name: 'STOLMAR',
-  image: `${site}/assets/logo-full.png`,
+  // Kadr 1200x630, nie samo logo — Google oczekuje tu obrazu o proporcjach
+  // zbliżonych do poziomych i przycina nietypowe formaty.
+  image: `${site}/assets/og-image.png`,
   url: site,
   telephone: '+48505999275',
   email: 'info@stolmar.co',
   address: organization.address,
+  // Godziny pracy pracowni (potwierdzone przez właściciela 2026-08-16).
+  // Google pokazuje je w wynikach lokalnych i w wizytówce firmy.
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '09:00',
+      closes: '17:00',
+    },
+  ],
   areaServed: [
     { '@type': 'Country', name: 'Poland' },
     { '@type': 'Country', name: 'Germany' },

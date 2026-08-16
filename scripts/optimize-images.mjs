@@ -22,8 +22,18 @@ const VARIANTS = [
   { suffix: '.lg', width: 2000, quality: 82 },
 ];
 
+/**
+ * Pliki interfejsu (logo, miniatura udostępniania) NIE są zdjęciami treści —
+ * muszą trafić na serwer w oryginalnej postaci. Bez tego wyjątku powstałby im
+ * wariant `.lg.webp`, a `prune-dist.mjs` skasowałby wtedy oryginał (kasuje
+ * dokładnie te pliki, które mają wariant) i odwołania w kodzie prowadziłyby
+ * donikąd. `og-image.png` musi zostać PNG-iem, bo serwisy społecznościowe
+ * najpewniej obsługują ten format.
+ */
+const isUiAsset = (f) => /logo-/.test(f) || /og-image/.test(f);
+
 const isSource = (f) =>
-  /\.(webp|jpe?g|png)$/i.test(f) && !/\.(sm|lg)\.webp$/i.test(f) && !/logo-/.test(f);
+  /\.(webp|jpe?g|png)$/i.test(f) && !/\.(sm|lg)\.webp$/i.test(f) && !isUiAsset(f);
 
 function walk(dir) {
   const out = [];

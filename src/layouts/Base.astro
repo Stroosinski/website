@@ -24,7 +24,10 @@ export interface Props {
   noindex?: boolean;
 }
 
-const { title, description, lang, route, ogImage = '/assets/logo-full.png', noindex = false } =
+// Miniatura udostępniania: gotowy kadr 1200x630 (scripts/build-og-image.mjs),
+// nie samo logo — logo ma proporcje 2,43:1 i serwisy społecznościowe przycinały
+// je po bokach albo doklejały własne tło.
+const { title, description, lang, route, ogImage = '/assets/og-image.png', noindex = false } =
   Astro.props;
 
 const site = Astro.site ?? new URL('https://stolmar.co');

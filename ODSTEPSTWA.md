@@ -35,6 +35,8 @@ Bez tych zmian strona nie mogłaby być indeksowana — a to był główny powó
 | Wersje językowe | jeden adres, podmiana tekstów w JS | dwie realne wersje z `hreflang` | polska treść była dla Google niewidoczna |
 | Nawigacja | przyciski JS | zwykłe linki | robot musi móc przejść między stronami |
 | Opisy obrazów | 17 z 23 miało pusty `alt` | opisy w PL i EN | niewidoczne w Google Images i dla czytników ekranu |
+| Miniatura udostępniania (Open Graph) | brak — serwisy brały samo `logo-full.png` (1334×550) | osobny kadr `og-image.png` 1200×630, generowany przez `scripts/build-og-image.mjs` | proporcje logo (2,43:1) nie mieszczą się w oczekiwanych 1,91:1 — Facebook i LinkedIn przycinały je po bokach albo doklejały własne tło. **Właściciel świadomie wybrał logotyp zamiast zdjęcia realizacji** (decyzja 2026-08-16), mimo że zdjęcie zwykle klika się lepiej |
+| Godziny pracy w danych strukturalnych | brak | `openingHoursSpecification`, pon.–pt. 09:00–17:00 | Google pokazuje je w wynikach lokalnych; godziny potwierdzone przez właściciela 2026-08-16 (dni robocze przyjęte domyślnie — **do potwierdzenia, czy pracownia pracuje w soboty**) |
 
 ---
 
