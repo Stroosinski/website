@@ -64,7 +64,19 @@ const localBusiness = {
   telephone: '+48505999275',
   email: 'info@stolmar.co',
   address: organization.address,
-  // Godziny pracy pracowni (potwierdzone przez właściciela 2026-08-16).
+  /**
+   * Współrzędne pracowni (Hodowlana 7, Rumia). Pobrane z bazy adresowej
+   * OpenStreetMap 2026-08-16 — trafienie dokładne, z numerem budynku.
+   * NIE wpisywać „na oko": Google używa tego punktu w wynikach lokalnych
+   * i w mapach, więc błąd wysyła klientów pod zły adres.
+   */
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 54.574036,
+    longitude: 18.379523,
+  },
+  // Godziny pracy pracowni — poniedziałek–piątek, bez sobót
+  // (potwierdzone przez właściciela 2026-08-16).
   // Google pokazuje je w wynikach lokalnych i w wizytówce firmy.
   openingHoursSpecification: [
     {
