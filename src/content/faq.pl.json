@@ -1,0 +1,124 @@
+{
+  "_comment": "Treść FAQ (PL). Pytania dostarczone przez właściciela — oparte na tym, o co realnie pytają klienci, nie wymyślone. Każda odpowiedź trafia też do danych strukturalnych FAQPage (Schema.astro), więc musi być samodzielna i zrozumiała bez kontekstu strony: modele językowe i Google cytują ją w oderwaniu od reszty. Nie skracać do haseł.",
+  "sections": [
+    {
+      "heading": "O firmie",
+      "items": [
+        {
+          "q": "Czym zajmuje się STOLMAR?",
+          "a": "STOLMAR to dom produkcyjny visual merchandising działający od ponad 30 lat. Projektujemy, produkujemy i montujemy witryny sklepowe, kampanie POS, stoiska wystawiennicze, pop-up store'y, meble na wymiar i scenografie eventowe. Cały proces — od koncepcji przez prototyp i produkcję po montaż — prowadzimy pod jednym dachem, we własnym zakładzie w Rumi koło Trójmiasta."
+        },
+        {
+          "q": "Jakie usługi oferuje STOLMAR?",
+          "a": "Działamy w trzech obszarach. POS Campaigns & Visual Merchandising: witryny sklepowe i sezonowe kampanie instore. Retail Spaces & Exhibitions: pop-upy, stoiska targowe, ekspozycje muzealne, meble na wymiar. Scenography & Events: scenografia eventowa i filmowa, rekwizyty, tymczasowe przestrzenie marki. Każdy projekt prowadzimy kompleksowo — projekt, prototyp, produkcja, montaż."
+        },
+        {
+          "q": "Gdzie znajduje się zakład produkcyjny STOLMAR?",
+          "a": "Nasz zakład mieści się w Rumi koło Trójmiasta, w północnej Polsce. Projektowanie, prototypowanie, produkcja i wykończenie odbywają się w tym samym miejscu — bez rozproszonych podwykonawców. Stamtąd prowadzimy logistykę montaży w Polsce i całej Europie."
+        },
+        {
+          "q": "Dla jakich marek pracował STOLMAR?",
+          "a": "Współpracujemy m.in. z grupą LPP — realizowaliśmy kampanie witrynowe i instore dla marek Reserved, Cropp, Medicine, Mohito i Esotiq. Wykonaliśmy scenografię dla CROPP, wystawę dla Muzeum Miasta Gdyni oraz scenografię European Jamboree 2020. Pracowaliśmy również, przy współpracy z agencjami, dla znanych marek luksusowych — znaczna część tych realizacji objęta jest umowami poufności, dlatego nie wymieniamy ich z nazwy."
+        }
+      ]
+    },
+    {
+      "heading": "Możliwości produkcyjne",
+      "items": [
+        {
+          "q": "Jakie technologie produkcyjne ma STOLMAR na miejscu?",
+          "a": "Cała produkcja odbywa się in-house: frezowanie CNC, stolarka, obróbka metalu i tworzyw, cięcie laserowe, bezpyłowa lakiernia, druk wielkoformatowy HP Latex oraz farma 14 drukarek 3D w technologiach FDM i SLA. Łączymy je z rzemiosłem: papier mâché, techniki tekstylne, tapicerka, mech stabilizowany, filc, skóra."
+        },
+        {
+          "q": "Czy STOLMAR obsługuje kampanie w setkach sklepów jednocześnie?",
+          "a": "Tak — to nasza specjalność. Wdrażamy sezonowe kampanie POS równolegle w dziesiątkach i setkach butików, utrzymując identyczną jakość każdego egzemplarza. Produkcja seryjna, kontrola jakości i logistyka rolloutu odbywają się w jednym zakładzie, co pozwala dotrzymać sztywnych okien czasowych sezonów mody."
+        },
+        {
+          "q": "Czy STOLMAR realizuje projekty poza Polską?",
+          "a": "Tak. Montujemy w całej Europie — m.in. w Berlinie, Düsseldorfie, Hamburgu, Frankfurcie, Monachium, Wiedniu, Pradze, Paryżu i Londynie. Prowadzimy kampanie wielomiastowe: jedna produkcja, skoordynowana logistyka i równoczesny montaż w wielu lokalizacjach, w wyznaczonym oknie sezonu retail."
+        },
+        {
+          "q": "Czy STOLMAR wysyła produkty za granicę?",
+          "a": "Tak. Od wielu lat dostarczamy realizacje na rynki europejskie, a także poza Europę — logistyka międzynarodowa jest stałym elementem naszej pracy, nie wyjątkiem. Organizujemy pakowanie, transport, dokumentację i harmonogram dostaw pod okno montażowe klienta, także przy wysyłkach do wielu lokalizacji jednocześnie."
+        }
+      ]
+    },
+    {
+      "heading": "Zakres",
+      "items": [
+        {
+          "q": "Czego STOLMAR nie robi?",
+          "a": "Nie realizujemy zleceń polegających wyłącznie na oklejaniu szyb folią — samo oklejenie witryny nie jest ekspozycją i takich zapytań nie obsługujemy. Nie prowadzimy też magazynowania ani przechowywania ekspozycji między sezonami. Skupiamy się na projektowaniu i budowie fizycznych konstrukcji ekspozycyjnych."
+        },
+        {
+          "q": "Czy STOLMAR zajmuje się drukiem i oklejaniem witryn?",
+          "a": "Tak, ale jako element większej realizacji. Dysponujemy własną poligrafią — druk wielkoformatowy HP Latex, plotowane napisy i grafiki na szyby — i stosujemy je jako część projektu ekspozycji. Nie przyjmujemy zleceń, w których oklejenie szyby folią jest jedyną składową pracy."
+        },
+        {
+          "q": "Czy STOLMAR przechowuje ekspozycje między sezonami?",
+          "a": "Nie. Nie oferujemy magazynowania ani przechowywania zrealizowanych ekspozycji po zakończeniu kampanii. Elementy przekazujemy klientowi po montażu lub demontażu. Jeśli projekt ma być używany wielokrotnie, uwzględniamy to na etapie konstrukcji — projektujemy pod wielokrotny montaż i transport."
+        }
+      ]
+    },
+    {
+      "heading": "Proces i współpraca",
+      "items": [
+        {
+          "q": "Jak wygląda proces współpracy ze STOLMAR?",
+          "a": "Zaczynamy od briefu i koncepcji, następnie budujemy prototyp we własnym model shopie, ustalamy materiały i metody produkcji, produkujemy serię i montujemy w lokalizacjach docelowych. Jeden zespół i jeden zakład na każdym etapie — bez podwykonawców rozproszonych po różnych firmach i bez utraty kontroli nad jakością."
+        },
+        {
+          "q": "Czy STOLMAR realizuje projekty na podstawie gotowej koncepcji klienta?",
+          "a": "Tak, i jest to częsty scenariusz. Klient lub agencja przychodzi z gotową koncepcją albo wizualizacją, a my przekładamy ją na język techniczny: dobieramy materiały, konstrukcję i technologię, przygotowujemy dokumentację wykonawczą i budujemy realny obiekt. Projektujemy też od zera, gdy klient przychodzi z samym briefem."
+        },
+        {
+          "q": "Kto wykonuje montaż ekspozycji w Europie?",
+          "a": "Mniejsze montaże w Europie prowadzimy własnymi ekipami — te same osoby, które znają konstrukcję z hali produkcyjnej. Przy dużych, wielolokalizacyjnych projektach pracujemy z zaufanymi podwykonawcami lokalnymi, pod naszą koordynacją i według naszej dokumentacji montażowej."
+        },
+        {
+          "q": "Z kim współpracuje STOLMAR?",
+          "a": "Z agencjami marketingowymi, kreatywnymi i eventowymi, z instytucjami kultury oraz bezpośrednio z markami. Agencje i operatorzy przestrzeni handlowych zlecają nam produkcję i montaż w imieniu swoich klientów, w tym marek premium, których nazw nie ujawniamy. Muzea i instytucje kultury zamawiają ekspozycje wystawiennicze. Skala zleceń sięga od pojedynczej instalacji po kampanię w setkach lokalizacji."
+        }
+      ]
+    },
+    {
+      "heading": "Terminy",
+      "items": [
+        {
+          "q": "Ile trwa realizacja witryny sklepowej?",
+          "a": "Pojedynczy projekt witrynowy realizujemy zwykle w 1–4 tygodnie, licząc od akceptacji koncepcji. Na termin wpływa złożoność konstrukcji, technologia wykończenia i dostępność materiałów. Przy prostych realizacjach powtarzalnych możliwe są terminy krótsze — ustalamy je indywidualnie na etapie wyceny."
+        },
+        {
+          "q": "Ile trwa realizacja kampanii dla sieci sklepów?",
+          "a": "Serie kampanijne realizujemy zwykle w 4–12 tygodni. Zakres tego przedziału zależy od liczby lokalizacji, stopnia skomplikowania konstrukcji i liczby wariantów. Termin obejmuje prototyp, akceptację, produkcję seryjną, logistykę i montaż. Planowanie kampanii sezonowej warto rozpocząć z wyprzedzeniem odpowiadającym górnej granicy tego zakresu."
+        }
+      ]
+    },
+    {
+      "heading": "Poufność",
+      "items": [
+        {
+          "q": "Czy STOLMAR pracuje pod NDA?",
+          "a": "Tak. Dyskrecja jest częścią naszej oferty, nie ograniczeniem. Znaczną część pracy dla marek premium realizujemy w ramach umów o poufności — nie publikujemy wtedy nazw klientów ani zdjęć finalnych realizacji. Klientom wymagającym pełnej poufności udostępniamy portfolio przygotowane bezpiecznie pod NDA."
+        },
+        {
+          "q": "Dlaczego STOLMAR nie pokazuje części realizacji?",
+          "a": "Bo tak się umawiamy. Marki luksusowe i agencje pracujące w ich imieniu wymagają, by wykonawca nie komunikował współpracy — i traktujemy to jako warunek zaufania, nie przeszkodę. Publicznie pokazujemy realizacje jawne; resztę omawiamy na spotkaniu, w zakresie dopuszczonym umową."
+        }
+      ]
+    },
+    {
+      "heading": "Materiały i wycena",
+      "items": [
+        {
+          "q": "Czy STOLMAR stosuje materiały przyjazne środowisku?",
+          "a": "Tak. Posiadamy certyfikat FSC i doświadczenie w projektowaniu rozwiązań bez PVC. Doradzamy dobór materiałów pod wymagania środowiskowe klienta — od drewna z certyfikowanych źródeł po druk eco-solventowy HP Latex odporny na UV. Konstrukcje projektujemy tak, by nadawały się do wielokrotnego montażu."
+        },
+        {
+          "q": "Jak zamówić wycenę w STOLMAR?",
+          "a": "Napisz na info@stolmar.co i opisz projekt w trzech punktach: typ realizacji, liczba lokalizacji, oczekiwany termin. Odpowiadamy pytaniami doprecyzowującymi albo wstępną wyceną. Jeśli masz gotową koncepcję lub wizualizację — dołącz ją, skróci to etap ustaleń technicznych."
+        }
+      ]
+    }
+  ]
+}

@@ -17,14 +17,16 @@ import type { Locale, RouteKey } from '@/i18n';
 interface Props {
   lang: Locale;
   route: RouteKey;
+  /** pary pytanie–odpowiedź do bloku FAQPage; przekazuje wyłącznie strona FAQ */
+  faq?: { q: string; a: string }[];
 }
-const { lang, route } = Astro.props;
+const { lang, route, faq } = Astro.props;
 const { title, description } = meta[route][lang];
 const fullSchema = route === 'home' || route === 'contact';
 ---
 
 <Base title={title} description={description} lang={lang} route={route}>
-  <Schema slot="head" lang={lang} full={fullSchema} />
+  <Schema slot="head" lang={lang} full={fullSchema} faq={faq} />
   <div
     class="site"
     style="min-height: 100vh; background: #0A0A0A; color: #C9C7C1; font-family: 'Roboto', sans-serif; overflow-x: hidden;"

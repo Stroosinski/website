@@ -1,0 +1,17 @@
+---
+/**
+ * Frequently asked questions (EN).
+ * Mirror of `/faq/` — see the Polish page for the reasoning behind keeping
+ * the visible copy and the FAQPage structured data fed from the same JSON.
+ */
+import Page from '@/layouts/Page.astro';
+import Faq from '@/components/Faq.astro';
+import faqContent from '@/content/faq.en.json';
+
+const { sections } = faqContent;
+const pairs = sections.flatMap((s) => s.items);
+---
+
+<Page lang="en" route="faq" faq={pairs}>
+  <Faq lang="en" sections={sections} />
+</Page>

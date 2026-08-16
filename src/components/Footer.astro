@@ -79,6 +79,10 @@ const navLink =
       <a href={pathFor('work', lang)} class="stlm-fnav" style={navLink}>{t('footer.work')}</a>
       <a href={pathFor('studio', lang)} class="stlm-fnav" style={navLink}>{t('footer.studio')}</a>
       <a href={pathFor('contact', lang)} class="stlm-fnav" style={navLink}>{t('footer.contact')}</a>
+      <!-- FAQ świadomie w stopce, nie w menu głównym: nagłówek jest przeniesiony
+           1:1 z oryginału i dołożenie tam pozycji zmieniłoby układ. Stopka jest
+           na każdej stronie, więc Google i tak dotrze do FAQ z całego serwisu. -->
+      <a href={pathFor('faq', lang)} class="stlm-fnav" style={navLink}>{t('footer.faq')}</a>
       <!-- Plakietka TODO zdjęta 2026-08-11 — strona polityki prywatności istnieje. -->
       <a
         href={pathFor('privacy', lang)}

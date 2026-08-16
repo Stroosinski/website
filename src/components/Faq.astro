@@ -1,0 +1,185 @@
+---
+/**
+ * Strona pytań i odpowiedzi.
+ *
+ * DLACZEGO NIE HARMONIJKA (rozwijane odpowiedzi):
+ * odpowiedzi są tu głównym towarem — mają być widoczne od razu, zaznaczalne
+ * i możliwe do znalezienia przez Ctrl+F. Ukrycie ich za kliknięciem obniża
+ * też wartość dla modeli językowych i Google, które cytują gotowe pary Q&A.
+ * Ten sam tekst trafia do FAQPage w danych strukturalnych — treść widoczna
+ * i treść w danych MUSZĄ być identyczne, inaczej Google traktuje to jako
+ * ukrywanie treści.
+ *
+ * Typografia i kolory świadomie zapożyczone z LegalText.astro — to również
+ * strona „do czytania", a nie kadr marketingowy, więc trzyma tę samą,
+ * węższą kolumnę i hierarchię nagłówków.
+ */
+import { useTranslations, pathFor, type Locale } from '@/i18n';
+
+interface Props {
+  lang: Locale;
+  sections: { heading: string; items: { q: string; a: string }[] }[];
+}
+const { lang, sections } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<article class="faq">
+  <header class="faq-head" data-reveal>
+    <p class="faq-eyebrow">{t('faq.eyebrow')}</p>
+    <h1 class="faq-title">{t('faq.title')}</h1>
+    <p class="faq-lead">{t('faq.lead')}</p>
+    <span aria-hidden="true" class="faq-rule"></span>
+  </header>
+
+  {
+    sections.map((section) => (
+      <section class="faq-section" data-reveal>
+        <h2 class="faq-section-title">{section.heading}</h2>
+        <dl class="faq-list">
+          {section.items.map((item) => (
+            <div class="faq-item" data-hgroup>
+              <dt class="faq-q">{item.q}</dt>
+              <dd class="faq-a">{item.a}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+    ))
+  }
+
+  <aside class="faq-cta" data-reveal>
+    <p class="faq-cta-text">{t('faq.ctaText')}</p>
+    <a class="faq-cta-link" href={pathFor('contact', lang)}>
+      {t('faq.ctaLink')}
+      <span aria-hidden="true">&nbsp;&rarr;</span>
+    </a>
+  </aside>
+</article>
+
+<style is:global>
+  .faq {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 96px 40px 110px;
+  }
+
+  .faq-head {
+    margin-bottom: 64px;
+  }
+  .faq-eyebrow {
+    margin: 0 0 22px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--signal-yellow, #efd32b);
+  }
+  .faq-title {
+    margin: 0 0 20px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: clamp(34px, 5vw, 60px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .faq-lead {
+    margin: 0 0 26px;
+    max-width: 620px;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.75;
+    color: #9b9994;
+  }
+  .faq-rule {
+    display: block;
+    width: 120px;
+    height: 2px;
+    background: var(--signal-yellow, #efd32b);
+  }
+
+  .faq-section {
+    margin-bottom: 64px;
+  }
+  .faq-section-title {
+    margin: 0 0 8px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #7e7e7a;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #1f1f1f;
+  }
+
+  .faq-list {
+    margin: 0;
+  }
+  .faq-item {
+    padding: 30px 0;
+    border-bottom: 1px solid #161616;
+  }
+  .faq-q {
+    margin: 0 0 12px;
+    font-weight: 700;
+    font-size: clamp(17px, 2vw, 20px);
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    color: #f4f2ec;
+    transition: color 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  /* Podświetlenie pytania przy najechaniu — to samo zachowanie,
+     którego używa reszta serwisu (data-hgroup w design systemie). */
+  .faq-item:hover .faq-q {
+    color: var(--signal-yellow, #efd32b);
+  }
+  .faq-a {
+    margin: 0;
+    font-weight: 300;
+    font-size: 15.5px;
+    line-height: 1.8;
+    color: #c9c7c1;
+  }
+
+  .faq-cta {
+    margin-top: 72px;
+    padding: 36px 0 0;
+    border-top: 2px solid var(--signal-yellow, #efd32b);
+  }
+  .faq-cta-text {
+    margin: 0 0 14px;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #9b9994;
+  }
+  .faq-cta-link {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--signal-yellow, #efd32b);
+    text-decoration: none;
+    transition: color 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .faq-cta-link:hover {
+    color: #fff;
+  }
+
+  @media (max-width: 860px) {
+    .faq {
+      padding: 64px 24px 72px;
+    }
+    .faq-head {
+      margin-bottom: 48px;
+    }
+    .faq-section {
+      margin-bottom: 48px;
+    }
+    .faq-item {
+      padding: 24px 0;
+    }
+  }
+</style>

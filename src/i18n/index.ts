@@ -32,6 +32,7 @@ export const routes = {
   work: { pl: '/realizacje/', en: '/en/work/' },
   studio: { pl: '/mozliwosci/', en: '/en/studio/' },
   contact: { pl: '/kontakt/', en: '/en/contact/' },
+  faq: { pl: '/faq/', en: '/en/faq/' },
   privacy: { pl: '/polityka-prywatnosci/', en: '/en/privacy-policy/' },
 } as const;
 

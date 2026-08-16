@@ -1,0 +1,25 @@
+---
+/**
+ * Pytania i odpowiedzi (PL).
+ *
+ * Treść pochodzi z `src/content/faq.pl.json` — dostarczona przez właściciela,
+ * oparta na realnych pytaniach klientów. Te same pary Q&A trafiają do bloku
+ * FAQPage w danych strukturalnych (przez `faq` w layoucie), więc edytując
+ * odpowiedź w JSON-ie zmieniamy jednocześnie to, co widzi użytkownik i to,
+ * co cytuje Google oraz asystenci AI. Nie rozjeżdżać tych dwóch źródeł.
+ *
+ * Przy zmianie liczby lub kolejności pytań pamiętaj o `faq.en.json` —
+ * obie wersje językowe mają odpowiadać sobie pytanie w pytanie.
+ */
+import Page from '@/layouts/Page.astro';
+import Faq from '@/components/Faq.astro';
+import faqContent from '@/content/faq.pl.json';
+
+const { sections } = faqContent;
+// Spłaszczenie na potrzeby danych strukturalnych — FAQPage nie zna sekcji.
+const pairs = sections.flatMap((s) => s.items);
+---
+
+<Page lang="pl" route="faq" faq={pairs}>
+  <Faq lang="pl" sections={sections} />
+</Page>

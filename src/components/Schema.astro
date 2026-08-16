@@ -11,9 +11,15 @@ interface Props {
   lang: Locale;
   /** dołącz pełny profil firmy (strona główna i kontakt) */
   full?: boolean;
+  /**
+   * Pytania i odpowiedzi do bloku FAQPage (tylko strona FAQ).
+   * To jest warstwa pod GEO: modele językowe cytują gotowe pary Q&A,
+   * a Google potrafi pokazać je jako rozwijane odpowiedzi w wynikach.
+   */
+  faq?: { q: string; a: string }[];
 }
 
-const { lang, full = false } = Astro.props;
+const { lang, full = false, faq } = Astro.props;
 const site = (Astro.site ?? new URL('https://stolmar.co')).origin;
 
 const description =
@@ -113,7 +119,33 @@ const website = {
   inLanguage: lang === 'pl' ? 'pl-PL' : 'en-US',
 };
 
-const blocks = full ? [organization, localBusiness, website] : [website];
+/**
+ * FAQPage — jeden blok obejmujący WSZYSTKIE pytania ze strony.
+ * Google wymaga, żeby każda odpowiedź tu obecna była też widoczna dla
+ * użytkownika na stronie (inaczej traktuje to jako ukrytą treść), dlatego
+ * bierzemy dokładnie te same teksty co render, bez skracania.
+ */
+const faqPage =
+  faq && faq.length
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        '@id': `${site}${lang === 'pl' ? '/faq/' : '/en/faq/'}#faq`,
+        inLanguage: lang === 'pl' ? 'pl-PL' : 'en-US',
+        publisher: { '@id': `${site}/#organization` },
+        mainEntity: faq.map((item) => ({
+          '@type': 'Question',
+          name: item.q,
+          acceptedAnswer: { '@type': 'Answer', text: item.a },
+        })),
+      }
+    : null;
+
+const blocks = [
+  ...(full ? [organization, localBusiness] : []),
+  website,
+  ...(faqPage ? [faqPage] : []),
+];
 ---
 
 {

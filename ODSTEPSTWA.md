@@ -38,6 +38,7 @@ Bez tych zmian strona nie mogłaby być indeksowana — a to był główny powó
 | Miniatura udostępniania (Open Graph) | brak — serwisy brały samo `logo-full.png` (1334×550) | osobny kadr `og-image.png` 1200×630, generowany przez `scripts/build-og-image.mjs` | proporcje logo (2,43:1) nie mieszczą się w oczekiwanych 1,91:1 — Facebook i LinkedIn przycinały je po bokach albo doklejały własne tło. **Właściciel świadomie wybrał logotyp zamiast zdjęcia realizacji** (decyzja 2026-08-16), mimo że zdjęcie zwykle klika się lepiej |
 | Godziny pracy w danych strukturalnych | brak | `openingHoursSpecification`, pon.–pt. 09:00–17:00 | Google pokazuje je w wynikach lokalnych; godziny i brak sobót potwierdzone przez właściciela 2026-08-16 |
 | Współrzędne firmy | brak | `geo` w `LocalBusiness`: 54.574036, 18.379523 | punkt na mapie w wynikach lokalnych. Pobrane z bazy OpenStreetMap (trafienie dokładne z numerem budynku), nie szacowane — błąd wysyłałby klientów pod zły adres |
+| Strona FAQ (`/faq/`, `/en/faq/`) | brak | nowa podstrona, 21 pytań w 7 sekcjach + dane strukturalne `FAQPage` | **zamówiona przez właściciela** pod GEO — krótkie pary pytanie–odpowiedź są łatwe do zacytowania przez ChatGPT i Perplexity, a Google potrafi pokazać je jako rozwijane odpowiedzi. Treść dostarczona przez właściciela (realne pytania klientów), nie wymyślona. Link **w stopce, nie w menu głównym** — nagłówek jest 1:1 z oryginałem i dołożenie tam pozycji zmieniłoby układ |
 
 ---
 
