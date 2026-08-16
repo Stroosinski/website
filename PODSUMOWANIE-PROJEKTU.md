@@ -233,20 +233,43 @@ domenę od nowa, zawsze sprawdzić aktualną wartość w Vercel → Settings →
 Domains**). Po drodze wykryty i usunięty stary, zbędny drugi rekord A
 (`195.78.67.67` — pusty placeholder cyberFolks).
 
-### NIEZAŁATWIONE: `www.stolmar.co` wskazuje na STARY serwer cyberFolks
+### ZAŁATWIONE (2026-08-15): `www.stolmar.co` działa przez Vercel
 
-**Stan na 2026-08-15.** Rekord `A` o nazwie `www` nadal pokazuje na
-`195.78.67.67` — to ten sam pusty placeholder cyberFolks (serwer LiteSpeed),
-który usuwaliśmy z głównej domeny. Przy `www` został przeoczony. Skutek:
+**Stan końcowy — zweryfikowany pomiarem:**
 
-```
-www.stolmar.co → 301 (stary serwer) → https://stolmar.co/pl/ → 404
-```
+| Adres | Wynik |
+|---|---|
+| `http://stolmar.co/` | 308 → 200 ✅ |
+| `https://stolmar.co/` | 200 ✅ |
+| `http://www.stolmar.co/` | 308 → 308 → 200 ✅ |
+| `https://www.stolmar.co/` | 308 → 200 (`Server: Vercel`) ✅ |
 
-`/pl/` nie istnieje w tej wersji strony (polska wersja jest w katalogu
-głównym). **Łatka doraźna już wdrożona**: `vercel.json` ma sekcję
-`redirects` przekierowującą `/pl` i `/pl/` na `/`, więc ścieżka kończy się
-teraz na stronie głównej (200) zamiast na błędzie. Zweryfikowane pomiarem.
+Poczta (`MX` → `SMTP.GOOGLE.COM`) i TXT weryfikacyjny GSC nietknięte.
+
+**Jak było zepsute:** rekord `A` o nazwie `www` pokazywał na `195.78.67.67`
+— ten sam pusty placeholder cyberFolks (LiteSpeed), który usuwaliśmy
+z głównej domeny; przy `www` został przeoczony. Stary serwer przekierowywał
+na `https://stolmar.co/pl/`, a `/pl/` nie istnieje w tej wersji strony
+(polska wersja jest w katalogu głównym) → 404.
+
+**Zabezpieczenie zostaje na stałe:** `vercel.json` ma sekcję `redirects`
+kierującą `/pl` i `/pl/` na `/`, na wypadek starych zapisanych linków.
+
+> **Pułapka cyberFolks, która kosztowała sporo zamieszania:** ich trzy
+> serwery DNS (`ns1`, `ns2`, `ns3`) **nie synchronizują się natychmiast**.
+> Przez dłuższą chwilę `ns2` miał już nową zawartość, a `ns1` i `ns3` starą
+> — co wyglądało dokładnie tak, jakby zmiana się nie zapisała. **Sposób na
+> rozstrzygnięcie: porównać numer wersji strefy (SOA serial) na każdym
+> serwerze**, zamiast zgadywać:
+> ```powershell
+> foreach ($ns in @("ns1.cyberfolks.pl","ns2.cyberfolks.pl","ns3.cyberfolks.pl")) {
+>   $s = Resolve-DnsName -Name stolmar.co -Type SOA -Server $ns | Where-Object { $_.Type -eq "SOA" }
+>   Write-Output "$ns -> $($s.SerialNumber)"
+> }
+> ```
+> Różne numery = zmiana zapisana, ale jeszcze nierozesłana; trzeba po prostu
+> poczekać (interwał odświeżania strefy to 14400 s, czyli 4 h). Identyczne
+> numery + stara zawartość = zmiana faktycznie się nie zapisała.
 
 **KROK 1 ZROBIONY (2026-08-15).** W Vercelu dodana domena `www.stolmar.co`
 jako **Redirect to `stolmar.co`, kod 308 (Permanent)**. Status: "Invalid
