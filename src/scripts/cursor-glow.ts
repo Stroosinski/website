@@ -1,6 +1,6 @@
 /**
  * Poświata podążająca za kursorem ([data-cursor-glow] w sekcji archiwum).
- * Delikatny żółty rozbłysk, widoczny tylko przy realnym kursorze — na dotyku
+ * Delikatny żółty rozbłysk, widoczny tylko przy realnym kursorze - na dotyku
  * i przy prefers-reduced-motion pozostaje wyłączony. Reguła mobilna w
  * original.css i tak chowa go poniżej 860 px.
  */

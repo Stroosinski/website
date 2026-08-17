@@ -8,14 +8,14 @@
  * ani identyfikatorów, a strona i tak zbiera anonimowe, zbiorcze sygnały
  * (tzw. modelowanie), więc statystyki nie są puste.
  *
- * Bez ustawionego PUBLIC_GA_ID nie ładujemy niczego — na razie działa tylko
+ * Bez ustawionego PUBLIC_GA_ID nie ładujemy niczego - na razie działa tylko
  * kolejka zdarzeń (dataLayer), więc licznik pobrań prezentacji zbiera dane
  * od momentu włączenia Analytics, bez zmian w kodzie.
  */
 import { GA_ID } from '@/config';
 ---
 
-<!-- Domyślna odmowa — musi być pierwsza. -->
+<!-- Domyślna odmowa - musi być pierwsza. -->
 <script is:inline>
   window.dataLayer = window.dataLayer || [];
   function gtag() {

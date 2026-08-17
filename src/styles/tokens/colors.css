@@ -1,6 +1,6 @@
-/* STOLMAR — Color.
+/* STOLMAR - Color.
    The brand is monochrome: ink black + paper white, with a single signal yellow (#EFD32B).
-   The refreshed identity leans dark and enigmatic — black is the default stage, white the
+   The refreshed identity leans dark and enigmatic - black is the default stage, white the
    document surface, yellow used sparingly as a marker (rules, focus, active state, accents).
    Never introduce a second hue; restraint is the brand. */
 
@@ -17,11 +17,11 @@
   --paper-100: #F4F2EC;  /* off-white, warm paper surface */
   --paper-000: #FFFFFF;  /* pure white */
 
-  --signal-yellow: #EFD32B;     /* the STOLMAR yellow — sampled from brand artwork */
+  --signal-yellow: #EFD32B;     /* the STOLMAR yellow - sampled from brand artwork */
   --signal-yellow-deep: #D8BD10; /* pressed / hover-darken of yellow */
   --signal-yellow-soft: #5A510E; /* yellow at low light, for dark-mode washes */
 
-  /* ---- Semantic aliases — light surface (documents, offers, day UI) ---- */
+  /* ---- Semantic aliases - light surface (documents, offers, day UI) ---- */
   --text-strong: var(--ink-900);
   --text-body: #1C1C1C;
   --text-muted: var(--ink-500);
@@ -34,7 +34,7 @@
   --border-hair: var(--paper-200);
   --border-strong: var(--ink-900);
 
-  /* ---- Semantic aliases — dark surface (web, decks, the enigmatic stage) ---- */
+  /* ---- Semantic aliases - dark surface (web, decks, the enigmatic stage) ---- */
   --text-strong-on-dark: var(--paper-000);
   --text-body-on-dark: #C9C7C1;
   --text-muted-on-dark: #7E7E7A;

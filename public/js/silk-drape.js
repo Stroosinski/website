@@ -1,4 +1,4 @@
-// <silk-drape> — STOLMAR premium hero backdrop.
+// <silk-drape> - STOLMAR premium hero backdrop.
 // Slow satin folds of light over near-black; cursor warps and lights the drape.
 // Attributes: intensity (0..1, default 0.75), speed (default 0.22)
 (function () {
@@ -39,7 +39,7 @@
     '  float lens=exp(-md*md*281.0);',
     '  p-=lv*lens*1.134;',
     '  md=distance(p,mp);',
-    // domain warp — the cloth folds, cursor drags the weave
+    // domain warp - the cloth folds, cursor drags the weave
     '  vec2 q=vec2(fbm(p*1.05+vec2(0.0,t*0.13)),fbm(p*1.05+vec2(3.2,-t*0.10)));',
     '  vec2 warp=p+0.85*q;',
     '  float fold=fbm(warp*1.35-vec2(t*0.05,t*0.08));',
@@ -51,13 +51,13 @@
     // a second, tighter sheen for the highlight edge of each fold
     '  float edge=pow(0.5+0.5*sin(fold*14.0+t*0.22),9.0);',
     '  lum+=0.16*edge*body;',
-    // cursor light — gathers on the cloth, brightest where folds catch it
+    // cursor light - gathers on the cloth, brightest where folds catch it
     '  float glow=smoothstep(0.55,0.0,md);',
     '  lum+=glow*(0.10+0.30*sheen+0.14*body);',
     '  lum*=u_intensity;',
     '  float vgFloor=mix(0.70,0.42,step(1.0,u_resolution.x/max(u_resolution.y,1.0)));',
     '  lum*=mix(vgFloor,1.0,smoothstep(1.30,0.28,distance(uv,vec2(0.5))));',
-    // signal yellow only in the hottest sheen, and under the cursor — very sparing
+    // signal yellow only in the hottest sheen, and under the cursor - very sparing
     '  vec3 col=vec3(max(lum,0.0));',
     '  float warmth=smoothstep(0.46,0.95,sheen*body+glow*0.45);',
     '  col=mix(col,col*vec3(1.06,0.99,0.72),warmth*0.55);',
@@ -136,7 +136,7 @@
       // Odstępstwo od oryginału (2026-08-11, techniczne, bez wpływu na wygląd):
       // pętla renderująca zatrzymuje się, gdy karta jest w tle (inna zakładka
       // aktywna), zamiast liczyć klatki w nieskończoność. Oryginał renderował
-      // zawsze, nawet gdy nikt nie patrzył — marnowało to baterię i procesor
+      // zawsze, nawet gdy nikt nie patrzył - marnowało to baterię i procesor
       // bez żadnej korzyści, bo i tak nic nie było widoczne.
       var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       this._t0 = performance.now();
@@ -155,7 +155,7 @@
           self._target = [canvas.width * (0.5 + 0.30 * Math.sin(ta * 0.16)), canvas.height * (0.42 + 0.22 * Math.sin(ta * 0.11 + 1.7))];
           if (self._mouse[0] < -9000) self._mouse = self._target.slice();
         }
-        // easing of the cursor light — premium lag, no snap
+        // easing of the cursor light - premium lag, no snap
         self._mouse[0] += (self._target[0] - self._mouse[0]) * 0.18;
         self._mouse[1] += (self._target[1] - self._mouse[1]) * 0.18;
         var t = reduce ? 6.0 : ((now - self._t0) / 1000) * speed;

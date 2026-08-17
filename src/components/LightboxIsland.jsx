@@ -4,7 +4,7 @@
  * panel na całe okno, żółty przycisk zamknięcia w prawym górnym rogu,
  * tytuł i lokalizacja w lewym dolnym rogu.
  *
- * Otwiera się zdarzeniem `stlm:lightbox-open` wysyłanym po kliknięciu kafla —
+ * Otwiera się zdarzeniem `stlm:lightbox-open` wysyłanym po kliknięciu kafla -
  * dzięki temu kafle pozostają zwykłym HTML-em widocznym dla wyszukiwarek,
  * a React montuje się tylko na potrzeby samej galerii.
  */

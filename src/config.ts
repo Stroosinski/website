@@ -1,7 +1,7 @@
 /**
  * Ustawienia serwisu.
  *
- * FORM_ENDPOINT jest publiczny — i tak widnieje w kodzie wysłanej strony —
+ * FORM_ENDPOINT jest publiczny - i tak widnieje w kodzie wysłanej strony -
  * dlatego trzymamy go jako wartość domyślną, a nie wyłącznie w zmiennej
  * środowiskowej. Gdyby zależał tylko od zmiennej, brak jej ustawienia na
  * Vercelu cicho zepsułby wysyłkę zgłoszeń. Zmienną można nadpisać przy testach.
@@ -11,7 +11,7 @@ export const FORM_ENDPOINT =
 
 /**
  * Google Analytics 4.
- * Identyfikator jest publiczny — widnieje w kodzie wysłanej strony — więc jak
+ * Identyfikator jest publiczny - widnieje w kodzie wysłanej strony - więc jak
  * przy formularzu trzymamy go jako wartość domyślną. Uzależnienie wyłącznie od
  * zmiennej środowiskowej groziłoby tym, że po wdrożeniu bez jej ustawienia
  * pomiar po cichu przestałby działać.

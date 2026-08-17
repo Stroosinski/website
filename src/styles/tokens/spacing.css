@@ -1,4 +1,4 @@
-/* STOLMAR — Spacing, structure & motion.
+/* STOLMAR - Spacing, structure & motion.
    STOLMAR builds physical structures: the system favors hard edges, exact rules, and a strict
    grid. Corners are essentially square (workshop-precise), borders are crisp hairlines or solid
    1px black, and elevation is conveyed by line and contrast rather than soft shadows. */
@@ -22,7 +22,7 @@
   --gutter: var(--space-5);
   --grid-columns: 12; /* @kind other */
 
-  /* ---- Radii — near-square. The brand is machined, not rounded. ---- */
+  /* ---- Radii - near-square. The brand is machined, not rounded. ---- */
   --radius-none: 0;
   --radius-xs: 1px;
   --radius-sm: 2px;     /* default for controls */
@@ -37,13 +37,13 @@
   --rule-strong: 2px solid var(--border-strong);
   --rule-accent: 2px solid var(--accent);
 
-  /* ---- Elevation — restrained. Mostly flat; shadow only for true overlays. ---- */
+  /* ---- Elevation - restrained. Mostly flat; shadow only for true overlays. ---- */
   --shadow-none: none;
   --shadow-card: 0 1px 0 0 var(--border-hair);          /* a seam, not a float */
   --shadow-raised: 0 2px 14px -6px rgba(10, 10, 10, 0.22);
   --shadow-overlay: 0 24px 60px -24px rgba(10, 10, 10, 0.5);
 
-  /* ---- Motion — precise and quick, no bounce. Movement is mechanical. ---- */
+  /* ---- Motion - precise and quick, no bounce. Movement is mechanical. ---- */
   --ease-standard: cubic-bezier(0.2, 0, 0, 1); /* @kind other */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1); /* @kind other */
   --ease-in: cubic-bezier(0.5, 0, 0.75, 0); /* @kind other */

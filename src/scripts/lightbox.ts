@@ -1,6 +1,6 @@
 /**
  * Kafle galerii: klik lub Enter wysyła zdarzenie, na które reaguje wyspa React
- * z karuzelą. Dzięki temu same kafle zostają zwykłym HTML-em — wyszukiwarki
+ * z karuzelą. Dzięki temu same kafle zostają zwykłym HTML-em - wyszukiwarki
  * widzą zdjęcia i opisy niezależnie od tego, czy galeria się kiedykolwiek otworzy.
  */
 

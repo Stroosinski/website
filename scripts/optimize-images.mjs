@@ -4,8 +4,8 @@
  * Powód: pliki z public/ Astro kopiuje bez obróbki, więc oryginały o szerokości
  * nawet 6000 px trafiały do przeglądarki także wtedy, gdy kafelek ma 300 px.
  * Skrypt tworzy dwa warianty obok oryginału:
- *   *.sm.webp  — do siatki kadrów (maks. 900 px)
- *   *.lg.webp  — do galerii pełnoekranowej (maks. 2000 px)
+ *   *.sm.webp  - do siatki kadrów (maks. 900 px)
+ *   *.lg.webp  - do galerii pełnoekranowej (maks. 2000 px)
  * Oryginały zostają nietknięte jako materiał źródłowy.
  *
  * Uruchamianie: npm run images
@@ -23,7 +23,7 @@ const VARIANTS = [
 ];
 
 /**
- * Pliki interfejsu (logo, miniatura udostępniania) NIE są zdjęciami treści —
+ * Pliki interfejsu (logo, miniatura udostępniania) NIE są zdjęciami treści -
  * muszą trafić na serwer w oryginalnej postaci. Bez tego wyjątku powstałby im
  * wariant `.lg.webp`, a `prune-dist.mjs` skasowałby wtedy oryginał (kasuje
  * dokładnie te pliki, które mają wariant) i odwołania w kodzie prowadziłyby
@@ -68,7 +68,7 @@ for (const file of files) {
       Pomijamy, jeśli wariant już istnieje.
       Celowo NIE porównujemy dat modyfikacji: git ich nie zachowuje, więc po
       pobraniu repozytorium na serwerze budującym wszystkie pliki mają ten sam
-      czas i porównanie dawałoby losowy wynik — w efekcie każde wdrożenie
+      czas i porównanie dawałoby losowy wynik - w efekcie każde wdrożenie
       przeliczałoby od nowa kilkaset zdjęć.
       Po podmianie zdjęcia na nowe: `npm run images -- --force`.
     */
@@ -78,7 +78,7 @@ for (const file of files) {
       continue;
     }
 
-    // nie powiększamy — jeśli oryginał jest mniejszy, kopiujemy w tej samej skali
+    // nie powiększamy - jeśli oryginał jest mniejszy, kopiujemy w tej samej skali
     const width = Math.min(v.width, meta.width ?? v.width);
 
     await sharp(file)

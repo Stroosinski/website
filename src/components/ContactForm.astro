@@ -1,13 +1,13 @@
 ---
 /**
- * Formularz kontaktowy — oryginał, linie 707-732.
+ * Formularz kontaktowy - oryginał, linie 707-732.
  *
  * Pola 1:1 z design systemu (components/forms/Input.jsx, wariant on-dark):
  * etykieta 11 px / 0.14em / wersaliki / kolor przygaszony, pole bez ramki
  * z dolną kreską #3A3A3A, 15 px, przy aktywności kreska i etykieta na żółto.
- * Trzy pola: imię, e-mail, brief — plus załączniki i przycisk pełnej szerokości.
+ * Trzy pola: imię, e-mail, brief - plus załączniki i przycisk pełnej szerokości.
  *
- * Wcześniejsza wersja miała kafelki wyboru tematu i pole „Firma" — nie ma ich
+ * Wcześniejsza wersja miała kafelki wyboru tematu i pole „Firma" - nie ma ich
  * w oryginale, zostały usunięte.
  *
  * Wysyłka: komunikat sukcesu WYŁĄCZNIE po potwierdzeniu z serwera. W oryginale
@@ -100,7 +100,7 @@ const fieldWrap = 'display: flex; flex-direction: column; gap: 4px;';
 
   <!--
     ODSTĘPSTWO OD ORYGINAŁU (2026-08-11, prośba właściciela): pole Brief
-    dwukrotnie wyższe niż w projekcie (6 wierszy zamiast 3) — więcej miejsca
+    dwukrotnie wyższe niż w projekcie (6 wierszy zamiast 3) - więcej miejsca
     na opis zapytania od razu widoczny, bez przewijania w trakcie pisania.
   -->
   <div style={fieldWrap}>
@@ -111,7 +111,7 @@ const fieldWrap = 'display: flex; flex-direction: column; gap: 4px;';
   <!--
     Pole załączników usunięte (2026-08-11, decyzja właściciela). Formspree
     na darmowym planie odrzuca przesyłki z plikami błędem
-    "File Uploads Not Permitted" — klient wypełniał pole, dostawał niejasny
+    "File Uploads Not Permitted" - klient wypełniał pole, dostawał niejasny
     błąd i zgłoszenie się nie wysyłało. Zamiast pokazywać błąd, którego i tak
     nie da się obejść bez płatnego planu, pole zniknęło. Materiały klient
     wysyła bezpośrednio na info@stolmar.co (adres widoczny obok formularza).
@@ -153,7 +153,7 @@ const fieldWrap = 'display: flex; flex-direction: column; gap: 4px;';
   .stlm-cform textarea:focus {
     border-bottom-color: var(--signal-yellow, #efd32b);
   }
-  /* etykieta rozjaśnia się na żółto przy aktywnym polu — jak w design systemie */
+  /* etykieta rozjaśnia się na żółto przy aktywnym polu - jak w design systemie */
   .stlm-cform > div:focus-within > label:first-child {
     color: var(--signal-yellow, #efd32b) !important;
   }
@@ -187,7 +187,7 @@ const fieldWrap = 'display: flex; flex-direction: column; gap: 4px;';
     cursor: not-allowed;
   }
 
-  /* pułapka na roboty — niewidoczna, ale nie display:none */
+  /* pułapka na roboty - niewidoczna, ale nie display:none */
   .cf-gotcha {
     position: absolute !important;
     left: -9999px !important;

@@ -1,24 +1,24 @@
 {
-  "_comment": "FAQ content (EN). Mirrors faq.pl.json question-for-question — the two files MUST stay in sync (same sections, same order, same count), because the page pairs them for hreflang and both feed the FAQPage structured data. Answers must read standalone: Google and language models quote them without the surrounding page.",
+  "_comment": "FAQ content (EN). Mirrors faq.pl.json question-for-question - the two files MUST stay in sync (same sections, same order, same count), because the page pairs them for hreflang and both feed the FAQPage structured data. Answers must read standalone: Google and language models quote them without the surrounding page.",
   "sections": [
     {
       "heading": "About the company",
       "items": [
         {
           "q": "What does STOLMAR do?",
-          "a": "STOLMAR is a visual merchandising production house with over 30 years of experience. We design, produce, and install window displays, POS campaigns, exhibition stands, pop-up stores, custom furniture, and event scenography. The entire process — concept, prototype, production, installation — runs under one roof at our own facility in northern Poland."
+          "a": "STOLMAR is a visual merchandising production house with over 30 years of experience. We design, produce, and install window displays, POS campaigns, exhibition stands, pop-up stores, custom furniture, and event scenography. The entire process - concept, prototype, production, installation - runs under one roof at our own facility in northern Poland."
         },
         {
           "q": "What services does STOLMAR offer?",
-          "a": "We work across three disciplines. POS Campaigns & Visual Merchandising: window displays and seasonal in-store campaigns. Retail Spaces & Exhibitions: pop-ups, trade fair stands, museum exhibitions, custom furniture. Scenography & Events: event and film scenography, props, temporary brand spaces. Every project runs end-to-end — design, prototype, production, installation."
+          "a": "We work across three disciplines. POS Campaigns & Visual Merchandising: window displays and seasonal in-store campaigns. Retail Spaces & Exhibitions: pop-ups, trade fair stands, museum exhibitions, custom furniture. Scenography & Events: event and film scenography, props, temporary brand spaces. Every project runs end-to-end - design, prototype, production, installation."
         },
         {
           "q": "Where is STOLMAR's production facility?",
-          "a": "Our facility is in Rumia, near Gdańsk in northern Poland. Design, prototyping, production, and finishing all happen in the same place — no scattered subcontractors. From there we manage installation logistics across Poland and Europe."
+          "a": "Our facility is in Rumia, near Gdańsk in northern Poland. Design, prototyping, production, and finishing all happen in the same place - no scattered subcontractors. From there we manage installation logistics across Poland and Europe."
         },
         {
           "q": "Which brands has STOLMAR worked with?",
-          "a": "We work with LPP Group, delivering window and in-store campaigns for Reserved, Cropp, Medicine, Mohito, and Esotiq. We built scenography for CROPP, an exhibition for the Gdynia City Museum, and the European Jamboree 2020 stage design. We have also worked for well-known luxury brands through agency partners — a significant share of that work is covered by confidentiality agreements, which is why we do not name them."
+          "a": "We work with LPP Group, delivering window and in-store campaigns for Reserved, Cropp, Medicine, Mohito, and Esotiq. We built scenography for CROPP, an exhibition for the Gdynia City Museum, and the European Jamboree 2020 stage design. We have also worked for well-known luxury brands through agency partners - a significant share of that work is covered by confidentiality agreements, which is why we do not name them."
         }
       ]
     },
@@ -31,15 +31,15 @@
         },
         {
           "q": "Can STOLMAR roll out campaigns to hundreds of stores at once?",
-          "a": "Yes — this is our specialty. We deploy seasonal POS campaigns simultaneously across dozens to hundreds of stores while keeping every unit identical. Serial production, quality control, and rollout logistics all happen in one facility, which lets us meet the fixed timing windows of fashion seasons."
+          "a": "Yes - this is our specialty. We deploy seasonal POS campaigns simultaneously across dozens to hundreds of stores while keeping every unit identical. Serial production, quality control, and rollout logistics all happen in one facility, which lets us meet the fixed timing windows of fashion seasons."
         },
         {
           "q": "Does STOLMAR deliver projects outside Poland?",
-          "a": "Yes. We install across Europe — including Berlin, Düsseldorf, Hamburg, Frankfurt, Munich, Vienna, Prague, Paris, and London. We run multi-city campaigns: one production run, coordinated logistics, and simultaneous installation across multiple locations within a defined retail season window."
+          "a": "Yes. We install across Europe - including Berlin, Düsseldorf, Hamburg, Frankfurt, Munich, Vienna, Prague, Paris, and London. We run multi-city campaigns: one production run, coordinated logistics, and simultaneous installation across multiple locations within a defined retail season window."
         },
         {
           "q": "Does STOLMAR ship products abroad?",
-          "a": "Yes. We have been delivering builds to European markets — and beyond Europe — for many years. International logistics is a standing part of our work, not an exception. We handle packing, freight, documentation, and delivery scheduling against the client's installation window, including shipments to multiple locations at once."
+          "a": "Yes. We have been delivering builds to European markets - and beyond Europe - for many years. International logistics is a standing part of our work, not an exception. We handle packing, freight, documentation, and delivery scheduling against the client's installation window, including shipments to multiple locations at once."
         }
       ]
     },
@@ -48,15 +48,15 @@
       "items": [
         {
           "q": "What does STOLMAR not do?",
-          "a": "We don't take on jobs that consist solely of applying vinyl film to glass — window wrapping alone is not a display, and we don't handle those enquiries. We also don't provide warehousing or storage of displays between seasons. Our focus is designing and building physical display structures."
+          "a": "We don't take on jobs that consist solely of applying vinyl film to glass - window wrapping alone is not a display, and we don't handle those enquiries. We also don't provide warehousing or storage of displays between seasons. Our focus is designing and building physical display structures."
         },
         {
           "q": "Does STOLMAR handle printing and window graphics?",
-          "a": "Yes, but as part of a larger build. We run our own print operation — HP Latex large-format printing, plotted lettering and graphics for glass — and use it as one component of a display project. We don't accept commissions where vinyl application to a window is the only deliverable."
+          "a": "Yes, but as part of a larger build. We run our own print operation - HP Latex large-format printing, plotted lettering and graphics for glass - and use it as one component of a display project. We don't accept commissions where vinyl application to a window is the only deliverable."
         },
         {
           "q": "Does STOLMAR store displays between seasons?",
-          "a": "No. We don't offer warehousing or storage of completed displays after a campaign ends. Elements are handed over to the client after installation or dismantling. If a build is meant to be reused, we account for that at the construction stage — designing for repeated assembly and transport."
+          "a": "No. We don't offer warehousing or storage of completed displays after a campaign ends. Elements are handed over to the client after installation or dismantling. If a build is meant to be reused, we account for that at the construction stage - designing for repeated assembly and transport."
         }
       ]
     },
@@ -65,7 +65,7 @@
       "items": [
         {
           "q": "What does working with STOLMAR look like?",
-          "a": "We start with a brief and concept, build a prototype in our own model shop, define materials and production methods, then manufacture the series and install at target locations. One team and one facility at every stage — no subcontractors scattered across companies, no loss of quality control."
+          "a": "We start with a brief and concept, build a prototype in our own model shop, define materials and production methods, then manufacture the series and install at target locations. One team and one facility at every stage - no subcontractors scattered across companies, no loss of quality control."
         },
         {
           "q": "Can STOLMAR build from a client's existing concept?",
@@ -73,7 +73,7 @@
         },
         {
           "q": "Who carries out installations across Europe?",
-          "a": "Smaller European installations are handled by our own crews — the same people who know the structure from the production floor. For large, multi-location projects we work with trusted local subcontractors, under our coordination and following our installation documentation."
+          "a": "Smaller European installations are handled by our own crews - the same people who know the structure from the production floor. For large, multi-location projects we work with trusted local subcontractors, under our coordination and following our installation documentation."
         },
         {
           "q": "Who does STOLMAR work with?",
@@ -86,7 +86,7 @@
       "items": [
         {
           "q": "How long does a window display take to produce?",
-          "a": "A single window display project typically takes 1–4 weeks from concept approval. Timing depends on structural complexity, finishing technology, and material availability. Simple, repeatable builds can move faster — we confirm the schedule individually at the quotation stage."
+          "a": "A single window display project typically takes 1–4 weeks from concept approval. Timing depends on structural complexity, finishing technology, and material availability. Simple, repeatable builds can move faster - we confirm the schedule individually at the quotation stage."
         },
         {
           "q": "How long does a retail chain campaign take?",
@@ -99,7 +99,7 @@
       "items": [
         {
           "q": "Does STOLMAR work under NDA?",
-          "a": "Yes. Discretion is part of our offer, not a limitation. A significant share of our premium brand work is delivered under confidentiality agreements — we publish neither client names nor photographs of the finished builds. Clients requiring full confidentiality receive an NDA-safe portfolio from us."
+          "a": "Yes. Discretion is part of our offer, not a limitation. A significant share of our premium brand work is delivered under confidentiality agreements - we publish neither client names nor photographs of the finished builds. Clients requiring full confidentiality receive an NDA-safe portfolio from us."
         },
         {
           "q": "Why doesn't STOLMAR show some of its work?",
@@ -112,11 +112,11 @@
       "items": [
         {
           "q": "Does STOLMAR use sustainable materials?",
-          "a": "Yes. We hold FSC certification and have experience designing PVC-free solutions. We advise on material choices against a client's environmental requirements — from certified-source timber to UV-resistant eco-solvent HP Latex printing. We design structures so they can be assembled and reused more than once."
+          "a": "Yes. We hold FSC certification and have experience designing PVC-free solutions. We advise on material choices against a client's environmental requirements - from certified-source timber to UV-resistant eco-solvent HP Latex printing. We design structures so they can be assembled and reused more than once."
         },
         {
           "q": "How do I request a quote from STOLMAR?",
-          "a": "Email info@stolmar.co with the project in three points: type of build, number of locations, target deadline. We reply with clarifying questions or an initial estimate. If you already have a concept or visualisation, attach it — it shortens the technical scoping stage."
+          "a": "Email info@stolmar.co with the project in three points: type of build, number of locations, target deadline. We reply with clarifying questions or an initial estimate. If you already have a concept or visualisation, attach it - it shortens the technical scoping stage."
         }
       ]
     }

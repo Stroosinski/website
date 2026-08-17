@@ -1,11 +1,11 @@
 ---
 /**
- * Rozdziały Showcase — oryginał, linie 439-489.
+ * Rozdziały Showcase - oryginał, linie 439-489.
  *
  * Każdy rozdział otwiera kadr filmowy (data-cine) z paralaksą, wjeżdżającym
- * podpisem i rozsuwaną żółtą kreską — to jest "the reveal". Pod nim siatka
+ * podpisem i rozsuwaną żółtą kreską - to jest "the reveal". Pod nim siatka
  * kadrów z realizacji, każdy za zasłoną (odsłania się przy najechaniu)
- * i klikalny — otwiera galerię.
+ * i klikalny - otwiera galerię.
  *
  * showCopy pochodzi z ustawienia showcaseCopy = "Minimal - photos lead",
  * czyli domyślnie FAŁSZ: opisy, specyfikacje i podpisy kadrów są ukryte,
@@ -17,7 +17,7 @@ import en from '@/content/showcase.en.json';
 
 interface Props {
   lang: Locale;
-  /** odpowiednik showCopy z oryginału — domyślnie wyłączone */
+  /** odpowiednik showCopy z oryginału - domyślnie wyłączone */
   showCopy?: boolean;
 }
 const { lang, showCopy = false } = Astro.props;
@@ -33,7 +33,7 @@ const src = (p: string) => (p.startsWith('/') ? p : `/${p.replace(/\\/g, '/')}`)
 
 /**
  * Warianty rozmiarowe generowane przez scripts/optimize-images.mjs.
- * Oryginały mają nawet 6000 px szerokości — w siatce kadrów (~300 px)
+ * Oryginały mają nawet 6000 px szerokości - w siatce kadrów (~300 px)
  * oznaczało to 20x więcej pikseli, niż potrzeba. `.sm` to 900 px,
  * `.lg` to 2000 px do widoku pełnoekranowego.
  */
@@ -42,7 +42,7 @@ const variant = (p: string, size: 'sm' | 'lg') =>
 ---
 
 {/* Bez JavaScriptu blokada intro nigdy by nie zeszła i pierwsze zdjęcie
-    zostałoby niewidoczne — przywracamy je wtedy od razu. */}
+    zostałoby niewidoczne - przywracamy je wtedy od razu. */}
 <noscript>
   <style>
     [data-cine-img][data-intro-lock] {
@@ -65,7 +65,7 @@ const variant = (p: string, size: 'sm' | 'lg') =>
           {/*
             Pierwszy rozdział startuje NIEWIDOCZNY już w kodzie (opacity 0
             + data-intro-lock). Bez tego przeglądarka zdążyła narysować zdjęcie
-            przy 0.22, zanim skrypt je ukrył — na ułamek sekundy błyskało
+            przy 0.22, zanim skrypt je ukrył - na ułamek sekundy błyskało
             i znikało przed animacją intro. Blokadę zdejmuje wr.ts po tekście.
             Pozostałe rozdziały są niżej, więc sterują się samym przewijaniem.
           */}
@@ -74,7 +74,7 @@ const variant = (p: string, size: 'sm' | 'lg') =>
             data-intro-lock={ci === 0 ? '1' : undefined}
             decoding="async"
             src={variant(ch.hero, 'lg')}
-            alt={`${ch.t} — STOLMAR`}
+            alt={`${ch.t} - STOLMAR`}
             style={`position: absolute; left: 0; top: -16%; width: 100%; height: 132%; object-fit: cover; opacity: ${ci === 0 ? '0' : '0.22'}; filter: grayscale(1) brightness(0.72); will-change: transform, opacity;`}
           />
           <div
@@ -170,7 +170,7 @@ const variant = (p: string, size: 'sm' | 'lg') =>
                 src={variant(fr.img, 'sm')}
                 width="900"
                 height="675"
-                alt={`${fr.title}, ${fr.loc} — realizacja STOLMAR`}
+                alt={`${fr.title}, ${fr.loc} - realizacja STOLMAR`}
                 style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.45; filter: grayscale(1) brightness(0.95); transform: scale(1.06); transition: opacity 0.72s cubic-bezier(0.16,1,0.3,1), filter 0.72s cubic-bezier(0.16,1,0.3,1), transform 0.72s cubic-bezier(0.16,1,0.3,1);"
               />
             </div>

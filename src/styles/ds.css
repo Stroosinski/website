@@ -1,4 +1,4 @@
-/* STOLMAR Design System — global entry point.
+/* STOLMAR Design System - global entry point.
    Consumers link this one file. It is a manifest of @imports only; never add rules here. */
 
 @import "./tokens/fonts.css";

@@ -4,7 +4,7 @@
  * 360x360 px jest ustawiana tak, by jej środek trafiał pod kursor, stąd -180.
  * Zjechanie kursorem odsuwa maskę poza ekran, więc kolor znika.
  *
- * Na urządzeniach dotykowych i przy prefers-reduced-motion nie ruszamy nic —
+ * Na urządzeniach dotykowych i przy prefers-reduced-motion nie ruszamy nic -
  * original.css i tak zdejmuje maskę poniżej 860 px, dzięki czemu słowo jest
  * tam po prostu widoczne.
  */

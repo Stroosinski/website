@@ -1,4 +1,4 @@
-// <ash-drift> — STOLMAR monochrome hero backdrop, sibling of <grain-bloom>.
+// <ash-drift> - STOLMAR monochrome hero backdrop, sibling of <grain-bloom>.
 // Curling smoke-like masses on near-black; the cursor parts the ash and it glows through.
 // Attributes: intensity (0..1, default 0.75), speed (default 0.3)
 (function () {
@@ -46,13 +46,13 @@
     '  float lum=0.05+0.24*veil+0.26*fil*veil;',
     // slow soft breathing of overall density
     '  lum*=0.88+0.12*sin(t*0.4+ash*2.0);',
-    // cursor reveal — the ash glows where it was parted
+    // cursor reveal - the ash glows where it was parted
     '  float glow=smoothstep(0.50,0.0,md);',
     '  lum+=glow*(0.14+0.26*veil+0.20*fil);',
     '  lum*=u_intensity;',
     '  lum*=mix(0.46,1.0,smoothstep(1.28,0.26,distance(uv,vec2(0.5))));',
     '  vec3 col=vec3(max(lum,0.0));',
-    // signal yellow, sparing — only the hottest filaments under the cursor
+    // signal yellow, sparing - only the hottest filaments under the cursor
     '  float warm=smoothstep(0.55,1.0,fil*veil+glow*0.5);',
     '  col=mix(col,col*vec3(1.07,1.0,0.70),warm*0.5);',
     '  float gr=hash(floor(gl_FragCoord.xy)+floor(vec2(t*22.0)));',

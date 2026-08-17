@@ -1,12 +1,12 @@
 /**
- * Obsługa zgód na pliki cookie — Google Consent Mode v2.
+ * Obsługa zgód na pliki cookie - Google Consent Mode v2.
  *
  * Kolejność ma znaczenie prawne: tryb zgody ustawiany jest na „odmowa"
  * ZANIM cokolwiek innego wystartuje (robi to skrypt w <head>), a tutaj
  * jedynie aktualizujemy stan po decyzji użytkownika. Dzięki temu żaden
  * pomiar nie trafia do Google przed zgodą.
  *
- * Wybór zapisujemy w localStorage, nie w ciasteczku — to dane techniczne
+ * Wybór zapisujemy w localStorage, nie w ciasteczku - to dane techniczne
  * przeglądarki, nie wysyłamy ich na serwer, więc nie tworzymy kolejnego
  * ciasteczka wymagającego opisu.
  */
@@ -44,7 +44,7 @@ function read(): Consent | null {
 /**
  * Zgody reklamowe są odmawiane BEZWARUNKOWO.
  * Serwis nie prowadzi pomiaru kampanii (decyzja właściciela 2026-08-11), więc
- * nie pytamy o marketing i nie wolno go włączyć — także wtedy, gdy ktoś kliknie
+ * nie pytamy o marketing i nie wolno go włączyć - także wtedy, gdy ktoś kliknie
  * „Akceptuj wszystko". Akceptacja dotyczy wyłącznie statystyk odwiedzin.
  * Gdy ruszą kampanie: przywrócić parametr `marketing` i przełącznik w banerze.
  */
@@ -66,7 +66,7 @@ function save(analytics: boolean) {
       JSON.stringify({ v: VERSION, analytics, marketing: false, ts: Date.now() } satisfies Consent)
     );
   } catch {
-    /* tryb prywatny — decyzja zadziała do końca sesji */
+    /* tryb prywatny - decyzja zadziała do końca sesji */
   }
   apply(analytics);
 }

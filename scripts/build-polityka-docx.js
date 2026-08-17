@@ -73,7 +73,7 @@ const table = (widths, rows) =>
 
 const doc = new Document({
   creator: 'STOLMAR',
-  title: 'Polityka prywatności stolmar.co — do akceptacji',
+  title: 'Polityka prywatności stolmar.co - do akceptacji',
   description: 'Projekt polityki prywatności serwisu stolmar.co przekazany do weryfikacji prawnej',
   numbering: {
     config: [
@@ -110,18 +110,18 @@ const doc = new Document({
 
         h1('Nota dla osoby weryfikującej'),
         p(
-          'Poniższy dokument jest projektem polityki prywatności przygotowanym na podstawie faktycznego działania serwisu stolmar.co. Każdy opisany element został sprawdzony w kodzie strony — dokument nie zawiera zapisów „na wszelki wypadek" dotyczących narzędzi, których serwis nie używa.'
+          'Poniższy dokument jest projektem polityki prywatności przygotowanym na podstawie faktycznego działania serwisu stolmar.co. Każdy opisany element został sprawdzony w kodzie strony - dokument nie zawiera zapisów „na wszelki wypadek" dotyczących narzędzi, których serwis nie używa.'
         ),
         p('Prosimy o zweryfikowanie w szczególności następujących punktów:', { bold: true }),
-        bullet('Okresy przechowywania danych (rozdział 5) — oszacowane na podstawie typowych przepisów, wymagają potwierdzenia z rzeczywistą praktyką firmy.'),
-        bullet('Podstawy prawne przetwarzania danych z formularza kontaktowego (rozdział 2) — wskazano art. 6 ust. 1 lit. b oraz lit. f RODO.'),
-        bullet('Adres administratora — podano adres rejestrowy w Sopocie, natomiast na stronie w stopce i danych kontaktowych widnieje adres zakładu w Rumi. Prosimy o potwierdzenie, że takie rozróżnienie jest prawidłowe.'),
-        bullet('Brak inspektora ochrony danych — zapisano, że nie został wyznaczony. Prosimy o potwierdzenie, że firma nie ma takiego obowiązku.'),
-        bullet('Przekazywanie danych poza EOG (rozdział 4) — dostawcy Formspree i Vercel mają siedziby w USA.'),
+        bullet('Okresy przechowywania danych (rozdział 5) - oszacowane na podstawie typowych przepisów, wymagają potwierdzenia z rzeczywistą praktyką firmy.'),
+        bullet('Podstawy prawne przetwarzania danych z formularza kontaktowego (rozdział 2) - wskazano art. 6 ust. 1 lit. b oraz lit. f RODO.'),
+        bullet('Adres administratora - podano adres rejestrowy w Sopocie, natomiast na stronie w stopce i danych kontaktowych widnieje adres zakładu w Rumi. Prosimy o potwierdzenie, że takie rozróżnienie jest prawidłowe.'),
+        bullet('Brak inspektora ochrony danych - zapisano, że nie został wyznaczony. Prosimy o potwierdzenie, że firma nie ma takiego obowiązku.'),
+        bullet('Przekazywanie danych poza EOG (rozdział 4) - dostawcy Formspree i Vercel mają siedziby w USA.'),
 
         p('Uwaga techniczna:', { bold: true, after: 80 }),
         p(
-          'Serwis nie prowadzi żadnego śledzenia reklamowego — nie ma w nim Meta Pixela ani innych narzędzi pomiaru kampanii, a baner zgód nie zawiera kategorii marketingowej. Zgody reklamowe pozostają odmówione na stałe, także po kliknięciu „Akceptuj wszystko". Jeżeli firma zdecyduje się kiedyś uruchomić kampanie, dokument będzie wymagał aktualizacji.'
+          'Serwis nie prowadzi żadnego śledzenia reklamowego - nie ma w nim Meta Pixela ani innych narzędzi pomiaru kampanii, a baner zgód nie zawiera kategorii marketingowej. Zgody reklamowe pozostają odmówione na stałe, także po kliknięciu „Akceptuj wszystko". Jeżeli firma zdecyduje się kiedyś uruchomić kampanie, dokument będzie wymagał aktualizacji.'
         ),
         p(
           'Dokument został przygotowany z pomocą narzędzia AI i nie stanowi opinii prawnej.',
@@ -141,7 +141,7 @@ const doc = new Document({
         p('Administratorem Twoich danych osobowych jest STOLMAR Marian Czajkowski Sp. k. z siedzibą przy ul. Chmielewskiego 10/1, 81-721 Sopot, NIP PL5851483828.'),
         p('Zakład produkcyjny i biuro mieszczą się przy ul. Hodowlanej 7, 84-230 Rumia.'),
         p('Kontakt w sprawach danych osobowych: info@stolmar.co, tel. +48 505 999 275.'),
-        p('Nie wyznaczyliśmy inspektora ochrony danych — w sprawach dotyczących przetwarzania danych prosimy o kontakt na powyższy adres.'),
+        p('Nie wyznaczyliśmy inspektora ochrony danych - w sprawach dotyczących przetwarzania danych prosimy o kontakt na powyższy adres.'),
 
         h2('2. Jakie dane zbieramy i po co'),
         p('Formularz kontaktowy', { bold: true, after: 80 }),
@@ -157,7 +157,7 @@ const doc = new Document({
         p('Analytics uruchamia się dopiero po wyrażeniu zgody. Do tego czasu narzędzie nie zapisuje w Twojej przeglądarce żadnych identyfikatorów. Adres IP jest skracany (anonimizacja), a dane reklamowe są ograniczane.'),
 
         p('Serwer', { bold: true, after: 80 }),
-        p('Strona działa w infrastrukturze dostawcy hostingu, który — jak każdy serwer — zapisuje techniczne logi dostępu (adres IP, data zapytania, typ przeglądarki). Służą one bezpieczeństwu i diagnostyce. Podstawą jest art. 6 ust. 1 lit. f RODO.'),
+        p('Strona działa w infrastrukturze dostawcy hostingu, który - jak każdy serwer - zapisuje techniczne logi dostępu (adres IP, data zapytania, typ przeglądarki). Służą one bezpieczeństwu i diagnostyce. Podstawą jest art. 6 ust. 1 lit. f RODO.'),
 
         h2('3. Pliki cookie i pamięć przeglądarki'),
         p('Strona nie używa własnych plików cookie do śledzenia. Zapisujemy natomiast dwie informacje w pamięci Twojej przeglądarki (localStorage), żeby uszanować Twoje decyzje:'),
@@ -167,9 +167,9 @@ const doc = new Document({
           ['stlm-lang', 'Zapamiętuje ręcznie wybraną wersję językową', 'Do czasu wyczyszczenia danych przeglądarki'],
         ]),
         p('', { after: 160 }),
-        p('Te dane pozostają w Twojej przeglądarce i nie są nam przesyłane. Bez nich strona nie mogłaby zapamiętać, że nie chcesz statystyk — dlatego są niezbędne i nie wymagają zgody.'),
+        p('Te dane pozostają w Twojej przeglądarce i nie są nam przesyłane. Bez nich strona nie mogłaby zapamiętać, że nie chcesz statystyk - dlatego są niezbędne i nie wymagają zgody.'),
         p('Po wyrażeniu zgody Google Analytics zapisuje własne pliki cookie, służące odróżnianiu wizyt. Zgodę możesz zmienić w dowolnym momencie przez odsyłacz „Ustawienia cookie" w stopce strony.'),
-        p('Nie prowadzimy śledzenia reklamowego. Serwis nie korzysta z pikseli reklamowych ani narzędzi pomiaru kampanii — nie zbieramy danych na potrzeby remarketingu i nie budujemy grup odbiorców. Gdyby to się kiedyś zmieniło, zaktualizujemy tę politykę, a takie narzędzia uruchomią się wyłącznie po uzyskaniu odrębnej zgody.'),
+        p('Nie prowadzimy śledzenia reklamowego. Serwis nie korzysta z pikseli reklamowych ani narzędzi pomiaru kampanii - nie zbieramy danych na potrzeby remarketingu i nie budujemy grup odbiorców. Gdyby to się kiedyś zmieniło, zaktualizujemy tę politykę, a takie narzędzia uruchomią się wyłącznie po uzyskaniu odrębnej zgody.'),
 
         h2('4. Komu przekazujemy dane'),
         p('Korzystamy z zewnętrznych dostawców, którzy przetwarzają dane na nasze zlecenie:'),
@@ -184,10 +184,10 @@ const doc = new Document({
         p('Danych nie sprzedajemy i nie udostępniamy w celach marketingowych podmiotom trzecim.'),
 
         h2('5. Jak długo przechowujemy dane'),
-        bullet('Korespondencja z formularza — przez czas prowadzenia rozmów, a po ich zakończeniu przez okres przedawnienia ewentualnych roszczeń, nie dłużej niż 3 lata.'),
-        bullet('Dokumentacja zrealizowanych zleceń — przez okres wymagany przepisami podatkowymi i rachunkowymi (5 lat od końca roku podatkowego).'),
-        bullet('Dane statystyczne — zgodnie z ustawieniami Google Analytics, maksymalnie 14 miesięcy.'),
-        bullet('Logi serwera — krótkoterminowo, do celów bezpieczeństwa i diagnostyki.'),
+        bullet('Korespondencja z formularza - przez czas prowadzenia rozmów, a po ich zakończeniu przez okres przedawnienia ewentualnych roszczeń, nie dłużej niż 3 lata.'),
+        bullet('Dokumentacja zrealizowanych zleceń - przez okres wymagany przepisami podatkowymi i rachunkowymi (5 lat od końca roku podatkowego).'),
+        bullet('Dane statystyczne - zgodnie z ustawieniami Google Analytics, maksymalnie 14 miesięcy.'),
+        bullet('Logi serwera - krótkoterminowo, do celów bezpieczeństwa i diagnostyki.'),
 
         h2('6. Twoje prawa'),
         p('W związku z przetwarzaniem danych masz prawo do:'),
@@ -197,7 +197,7 @@ const doc = new Document({
         bullet('ograniczenia przetwarzania,'),
         bullet('przenoszenia danych do innego administratora,'),
         bullet('wniesienia sprzeciwu wobec przetwarzania opartego na naszym prawnie uzasadnionym interesie,'),
-        bullet('wycofania zgody w dowolnym momencie — bez wpływu na zgodność z prawem przetwarzania dokonanego przed jej wycofaniem.'),
+        bullet('wycofania zgody w dowolnym momencie - bez wpływu na zgodność z prawem przetwarzania dokonanego przed jej wycofaniem.'),
         p('Aby skorzystać z tych praw, napisz na info@stolmar.co. Odpowiadamy bez zbędnej zwłoki, najpóźniej w ciągu miesiąca.'),
         p('Masz również prawo wnieść skargę do organu nadzorczego: Prezes Urzędu Ochrony Danych Osobowych, ul. Stawki 2, 00-193 Warszawa.'),
 
@@ -217,5 +217,5 @@ const doc = new Document({
 Packer.toBuffer(doc).then((buf) => {
   const out = process.argv[2] || 'Polityka prywatnosci STOLMAR.docx';
   fs.writeFileSync(out, buf);
-  console.log('zapisano:', out, '—', (buf.length / 1024).toFixed(1), 'KB');
+  console.log('zapisano:', out, '-', (buf.length / 1024).toFixed(1), 'KB');
 });

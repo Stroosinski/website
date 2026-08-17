@@ -1,12 +1,12 @@
 ---
 /**
  * Stopka przeniesiona 1:1 z oryginału (linie 736-772).
- * Przyciski social używają tej samej klasy .stlm-soc co przełącznik języka —
+ * Przyciski social używają tej samej klasy .stlm-soc co przełącznik języka -
  * 44x44 px, radius 7px, żółte wypełnienie wjeżdżające od dołu przy najechaniu.
  * Style .stlm-soc są w original.css, więc nie definiujemy ich ponownie.
  *
  * Uwaga: link do polityki prywatności ma świadomie zachowaną plakietkę TODO
- * z oryginału — strona jeszcze nie istnieje, a jest wymagana przy zbieraniu
+ * z oryginału - strona jeszcze nie istnieje, a jest wymagana przy zbieraniu
  * danych z formularza (RODO). Zdejmiemy ją, gdy podstrona powstanie.
  */
 import { useTranslations, pathFor, type Locale } from '@/i18n';
@@ -83,7 +83,7 @@ const navLink =
            1:1 z oryginału i dołożenie tam pozycji zmieniłoby układ. Stopka jest
            na każdej stronie, więc Google i tak dotrze do FAQ z całego serwisu. -->
       <a href={pathFor('faq', lang)} class="stlm-fnav" style={navLink}>{t('footer.faq')}</a>
-      <!-- Plakietka TODO zdjęta 2026-08-11 — strona polityki prywatności istnieje. -->
+      <!-- Plakietka TODO zdjęta 2026-08-11 - strona polityki prywatności istnieje. -->
       <a
         href={pathFor('privacy', lang)}
         class="stlm-fmuted"
@@ -106,7 +106,7 @@ const navLink =
         >&copy; 2026 STOLMAR Marian Czajkowski Sp. k.</span
       >
       <!-- Adres fizyczny (biuro i produkcja). Adres rejestrowy do dokumentów to
-           Chmielewskiego 10/1, 81-721 Sopot — celowo NIE podajemy go na stronie:
+           Chmielewskiego 10/1, 81-721 Sopot - celowo NIE podajemy go na stronie:
            w wynikach lokalnych Google liczy się lokalizacja, którą można odwiedzić,
            a dwa różne adresy w serwisie osłabiają dopasowanie do wizytówki firmy. -->
       <span style="font-size: 12px; color: #3A3A3A;"

@@ -1,5 +1,5 @@
 /**
- * "Zasłona" — sygnaturowa interakcja marki STOLMAR.
+ * "Zasłona" - sygnaturowa interakcja marki STOLMAR.
  * Odtworzona 1:1 z oryginału (metoda _hg, linie ~1660).
  *
  * Najechanie na grupę [data-hgroup] przełącza jednocześnie:
@@ -11,7 +11,7 @@
  *  - numery [data-h-num]: kolor na żółć sygnałową,
  *  - ramkę grupy z data-hborder: na żółć z przezroczystością 55%.
  *
- * Na ekranach dotykowych (brak hovera) wszystko startuje odsłonięte —
+ * Na ekranach dotykowych (brak hovera) wszystko startuje odsłonięte -
  * tak jak w oryginale, żeby treść nie została ukryta.
  */
 

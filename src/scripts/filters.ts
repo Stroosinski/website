@@ -1,6 +1,6 @@
 /**
  * Filtrowanie realizacji po rodzaju prac.
- * Karty są w HTML od razu — filtr jedynie je chowa, więc wyszukiwarki
+ * Karty są w HTML od razu - filtr jedynie je chowa, więc wyszukiwarki
  * i czytniki ekranu widzą komplet niezależnie od wyboru.
  */
 

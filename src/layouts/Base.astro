@@ -1,13 +1,13 @@
 ---
 /**
- * Bazowy layout — jeden <head> dla całej strony.
+ * Bazowy layout - jeden <head> dla całej strony.
  * Tu żyje cała warstwa SEO/GEO: meta, canonical, hreflang, Open Graph, JSON-LD.
  */
 import '@/styles/ds.css';
-// Globalne style przeniesione 1:1 z projektu Claude Design — w tym cały układ
+// Globalne style przeniesione 1:1 z projektu Claude Design - w tym cały układ
 // mobilny (punkty łamania 860/900/700 px) i obsługa prefers-reduced-motion.
 import '@/styles/original.css';
-// Świadome odstępstwa od oryginału, zamówione przez właściciela — trzymane
+// Świadome odstępstwa od oryginału, zamówione przez właściciela - trzymane
 // osobno, żeby original.css pozostał wiernym odwzorowaniem projektu.
 import '@/styles/overrides.css';
 import Analytics from '@/components/Analytics.astro';
@@ -18,14 +18,14 @@ export interface Props {
   title: string;
   description: string;
   lang: Locale;
-  /** która to strona — steruje canonical i hreflang */
+  /** która to strona - steruje canonical i hreflang */
   route: RouteKey;
   ogImage?: string;
   noindex?: boolean;
 }
 
 // Miniatura udostępniania: gotowy kadr 1200x630 (scripts/build-og-image.mjs),
-// nie samo logo — logo ma proporcje 2,43:1 i serwisy społecznościowe przycinały
+// nie samo logo - logo ma proporcje 2,43:1 i serwisy społecznościowe przycinały
 // je po bokach albo doklejały własne tło.
 const { title, description, lang, route, ogImage = '/assets/og-image.png', noindex = false } =
   Astro.props;
@@ -36,7 +36,7 @@ const plHref = new URL(pathFor(route, 'pl'), site).href;
 const enHref = new URL(pathFor(route, 'en'), site).href;
 const ogImageUrl = new URL(ogImage, site).href;
 
-// Fonty ładowane z wyprzedzeniem — te dwie wagi niosą pierwszy widok.
+// Fonty ładowane z wyprzedzeniem - te dwie wagi niosą pierwszy widok.
 const preloadFonts = ['/fonts/Roboto-Black.woff2', '/fonts/Roboto-Regular.woff2'];
 ---
 
@@ -89,7 +89,7 @@ const preloadFonts = ['/fonts/Roboto-Black.woff2', '/fonts/Roboto-Regular.woff2'
   </head>
   <body>
     <!--
-      Vercel Speed Insights — mierzy realną wydajność (Core Web Vitals) na
+      Vercel Speed Insights - mierzy realną wydajność (Core Web Vitals) na
       wersji produkcyjnej, wyłącznie na Vercelu. Nie wymaga zgody cookie:
       nie zapisuje identyfikatorów w przeglądarce, dane są zbiorcze i anonimowe.
     -->
@@ -119,7 +119,7 @@ const preloadFonts = ['/fonts/Roboto-Black.woff2', '/fonts/Roboto-Regular.woff2'
     `hidden` jednocześnie jest WIDOCZNY, bo inline style ma wyższy priorytet
     niż domyślna reguła przeglądarki dla `[hidden]`. Dokładnie to powodowało,
     że komunikat "Otrzymano" w formularzu kontaktowym był widoczny od razu,
-    a sam formularz nie znikał po wysłaniu — oba miały inline `display: flex`.
+    a sam formularz nie znikał po wysłaniu - oba miały inline `display: flex`.
   */
   [hidden] {
     display: none !important;

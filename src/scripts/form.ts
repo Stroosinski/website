@@ -71,7 +71,7 @@ function init() {
           data?.error;
         if (detail) message = `${message} (${detail})`;
       } catch {
-        /* odpowiedź bez JSON-a — zostaje komunikat ogólny */
+        /* odpowiedź bez JSON-a - zostaje komunikat ogólny */
       }
       setStatus('error', message);
     } catch {

@@ -1,5 +1,5 @@
 /**
- * Karuzela 3D sekcji produkcyjnej — przeniesiona 1:1 z ProdCoverflow.jsx.
+ * Karuzela 3D sekcji produkcyjnej - przeniesiona 1:1 z ProdCoverflow.jsx.
  * Jedyne zmiany: React z importu zamiast globalnej zmiennej, eksport domyślny
  * (Astro montuje to jako wyspę), etykiety przycisków z zewnątrz dla obu języków
  * oraz warianty rozmiarowe zdjęć (.sm/.lg) zamiast oryginałów.

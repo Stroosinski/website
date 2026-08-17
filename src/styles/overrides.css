@@ -1,7 +1,7 @@
 /* ============================================================
    ŚWIADOME ODSTĘPSTWA OD ORYGINAŁU
 
-   Tu trafiają wyłącznie zmiany zamówione przez właściciela — celowo osobno
+   Tu trafiają wyłącznie zmiany zamówione przez właściciela - celowo osobno
    od src/styles/original.css, który jest wiernym przeniesieniem projektu
    i ma pozostać nietknięty. Dzięki temu zawsze wiadomo, co jest oryginałem,
    a co decyzją podjętą później.
@@ -9,7 +9,7 @@
    Każdą zmianę opisujemy: co, dlaczego i kiedy.
    ============================================================ */
 
-/* 2026-08-10 — na prośbę właściciela: w wersji mobilnej przycisk "Pracownia"
+/* 2026-08-10 - na prośbę właściciela: w wersji mobilnej przycisk "Pracownia"
    ma stać pod przyciskiem "Zobacz realizacje", a nie obok niego.
    W oryginale oba stały w jednym rzędzie także na wąskich ekranach. */
 @media (max-width: 860px) {
@@ -24,7 +24,7 @@
   [data-hero-actions] > a {
     width: 100%;
     /* Przycisk design systemu liczy szerokość jako content-box, więc samo
-       width:100% dokładałoby jeszcze padding 2x28px i ramkę — przycisk
+       width:100% dokładałoby jeszcze padding 2x28px i ramkę - przycisk
        wystawałby o 58 px poza ekran i był ucinany. */
     box-sizing: border-box;
   }

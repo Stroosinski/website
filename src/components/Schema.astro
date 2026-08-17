@@ -2,7 +2,7 @@
 /**
  * Dane strukturalne JSON-LD.
  * Dzięki nim Google i asystenci AI wiedzą, czym firma się zajmuje, gdzie jest
- * i jak się skontaktować — to warstwa, na której opiera się GEO i lokalne SEO.
+ * i jak się skontaktować - to warstwa, na której opiera się GEO i lokalne SEO.
  * Dane firmowe za wytycznymi marki STOLMAR.
  */
 import type { Locale } from '@/i18n';
@@ -57,13 +57,13 @@ const organization = {
   ],
 };
 
-// LocalBusiness — pod wyszukiwania lokalne ("producent witryn sklepowych Trójmiasto")
+// LocalBusiness - pod wyszukiwania lokalne ("producent witryn sklepowych Trójmiasto")
 const localBusiness = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
   '@id': `${site}/#localbusiness`,
   name: 'STOLMAR',
-  // Kadr 1200x630, nie samo logo — Google oczekuje tu obrazu o proporcjach
+  // Kadr 1200x630, nie samo logo - Google oczekuje tu obrazu o proporcjach
   // zbliżonych do poziomych i przycina nietypowe formaty.
   image: `${site}/assets/og-image.png`,
   url: site,
@@ -72,7 +72,7 @@ const localBusiness = {
   address: organization.address,
   /**
    * Współrzędne pracowni (Hodowlana 7, Rumia). Pobrane z bazy adresowej
-   * OpenStreetMap 2026-08-16 — trafienie dokładne, z numerem budynku.
+   * OpenStreetMap 2026-08-16 - trafienie dokładne, z numerem budynku.
    * NIE wpisywać „na oko": Google używa tego punktu w wynikach lokalnych
    * i w mapach, więc błąd wysyła klientów pod zły adres.
    */
@@ -81,7 +81,7 @@ const localBusiness = {
     latitude: 54.574036,
     longitude: 18.379523,
   },
-  // Godziny pracy pracowni — poniedziałek–piątek, bez sobót
+  // Godziny pracy pracowni - poniedziałek–piątek, bez sobót
   // (potwierdzone przez właściciela 2026-08-16).
   // Google pokazuje je w wynikach lokalnych i w wizytówce firmy.
   openingHoursSpecification: [
@@ -120,7 +120,7 @@ const website = {
 };
 
 /**
- * FAQPage — jeden blok obejmujący WSZYSTKIE pytania ze strony.
+ * FAQPage - jeden blok obejmujący WSZYSTKIE pytania ze strony.
  * Google wymaga, żeby każda odpowiedź tu obecna była też widoczna dla
  * użytkownika na stronie (inaczej traktuje to jako ukrytą treść), dlatego
  * bierzemy dokładnie te same teksty co render, bez skracania.

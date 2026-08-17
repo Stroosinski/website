@@ -1,5 +1,5 @@
 /**
- * Animacje wejścia — odtworzone 1:1 z oryginału (metoda _reveals, linie 1663-1676).
+ * Animacje wejścia - odtworzone 1:1 z oryginału (metoda _reveals, linie 1663-1676).
  *
  * Zasady z oryginału, zachowane co do wartości:
  * - przy prefers-reduced-motion nic się nie animuje,
@@ -32,7 +32,7 @@ function init() {
     if (reduced) return;
 
     const r = el.getBoundingClientRect();
-    // element już widoczny — zostawiamy bez animacji (tak jak oryginał)
+    // element już widoczny - zostawiamy bez animacji (tak jak oryginał)
     if (r.top < window.innerHeight * 0.75 && r.bottom > 0) return;
 
     el.style.opacity = '0';

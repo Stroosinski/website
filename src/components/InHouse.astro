@@ -1,6 +1,6 @@
 ---
 /**
- * "W jednej pracowni" — osiem możliwości produkcyjnych.
+ * "W jednej pracowni" - osiem możliwości produkcyjnych.
  *
  * ODSTĘPSTWO OD ORYGINAŁU: w projekcie dane tych pozycji były przygotowane,
  * ale sekcji nie wyświetlano. Właściciel poprosił, by została, i o przebudowę
@@ -10,12 +10,12 @@
  * fielded pairs" i treści ułożonej „jak rysunek warsztatowy", więc lista
  * z cienkimi liniami i wyraźną numeracją jest bliższa marce niż pudełka.
  *
- * Interakcja NIE jest wymyślona od nowa — korzysta z zachowań zdefiniowanych
+ * Interakcja NIE jest wymyślona od nowa - korzysta z zachowań zdefiniowanych
  * w design systemie (metoda _hg): [data-h-num] zmienia numer na żółty,
  * [data-h-txt] rozjaśnia tytuł i przesuwa go o 14 px. Dotąd nic ich nie używało.
- * Do tego żółty znacznik rozsuwany od lewej — powracający motyw marki.
+ * Do tego żółty znacznik rozsuwany od lewej - powracający motyw marki.
  *
- * Opisy są zawsze w kodzie (nie chowamy ich pod hover), tylko przygaszone —
+ * Opisy są zawsze w kodzie (nie chowamy ich pod hover), tylko przygaszone -
  * inaczej byłyby niewidoczne dla wyszukiwarek i czytników ekranu.
  */
 import { useTranslations, type Locale } from '@/i18n';
@@ -92,7 +92,7 @@ const note = lang === 'pl' ? 'Wszystko pod jednym dachem' : 'Everything under on
     line-height: 0.98;
     letter-spacing: -0.02em;
   }
-  /* krótki żółty znacznik — powracający motyw marki */
+  /* krótki żółty znacznik - powracający motyw marki */
   .ih-rule {
     display: block;
     width: 120px;
@@ -182,7 +182,7 @@ const note = lang === 'pl' ? 'Wszystko pod jednym dachem' : 'Everything under on
       grid-column: 2;
     }
     .ih-t {
-      /* na dotyku nie ma hovera — przesunięcie tylko rozjeżdżałoby układ */
+      /* na dotyku nie ma hovera - przesunięcie tylko rozjeżdżałoby układ */
       transform: none !important;
     }
   }

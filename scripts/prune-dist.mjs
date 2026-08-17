@@ -1,6 +1,6 @@
 /**
  * Usuwa z gotowego wyniku (dist/) zdjęcia źródłowe, które nie są wysyłane
- * do przeglądarki — zostają tylko lżejsze warianty.
+ * do przeglądarki - zostają tylko lżejsze warianty.
  *
  * REGUŁA BEZPIECZEŃSTWA: kasujemy wyłącznie plik, dla którego istnieje
  * odpowiadający wariant `.lg.webp`. Wariantów nie ruszamy NIGDY.
@@ -9,7 +9,7 @@
  * karuzela produkcyjna buduje ścieżki dynamicznie
  * (`/assets/imgc/prod/prod-${numer}.lg.webp`), więc wyszukiwanie odwołań
  * w gotowych plikach ich NIE ZNAJDUJE. Czyszczenie na podstawie takiego skanu
- * skasowałoby 39 zdjęć i po cichu zepsuło galerię — sprawdzone.
+ * skasowałoby 39 zdjęć i po cichu zepsuło galerię - sprawdzone.
  *
  * Oryginały zostają w repozytorium jako materiał źródłowy; znikają wyłącznie
  * z tego, co ląduje na serwerze.
@@ -19,7 +19,7 @@ import path from 'node:path';
 
 const DIST = path.resolve('dist/assets');
 if (!fs.existsSync(DIST)) {
-  console.log('brak dist/assets — pomijam');
+  console.log('brak dist/assets - pomijam');
   process.exit(0);
 }
 
@@ -51,7 +51,7 @@ function walk(dir) {
       fs.unlinkSync(p);
       removed++;
     } else {
-      // brak wariantu = plik jest używany bezpośrednio (np. logo) — zostaje
+      // brak wariantu = plik jest używany bezpośrednio (np. logo) - zostaje
       kept++;
     }
   }

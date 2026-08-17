@@ -1,5 +1,5 @@
 /**
- * Sekwencja intro strony Showcase — odtworzona 1:1 z oryginału (linie 1541-1588).
+ * Sekwencja intro strony Showcase - odtworzona 1:1 z oryginału (linie 1541-1588).
  *
  * Kolejność zdarzeń ma znaczenie i jest częścią koncepcji "the reveal":
  *  1. sekcja wchodzi w widok (próg 0.35) → klasa is-visible odpala animacje
@@ -7,7 +7,7 @@
  *     lead pojawia się z opóźnieniem 1 s,
  *  2. eyebrow "rozszyfrowuje się" z losowych znaków, po 2 litery co 35 ms,
  *  3. pierwsze zdjęcie rozdziału jest ZABLOKOWANE na niewidocznym (introLock)
- *     i wchodzi dopiero po 1650 ms, czyli po tekście — żeby nie wyprzedzało
+ *     i wchodzi dopiero po 1650 ms, czyli po tekście - żeby nie wyprzedzało
  *     napisu. Blokada puszczana jest 950 ms później, oddając zdjęcie
  *     zwykłemu sterowaniu przewijaniem (cine.ts respektuje introLock).
  *
@@ -44,7 +44,7 @@ function scramble(el: HTMLElement) {
  * Zdejmuje blokadę z pierwszego rozdziału.
  *
  * Blokada jest nałożona już w kodzie strony (opacity 0 + data-intro-lock),
- * a nie dokładana skryptem — inaczej przeglądarka zdążyłaby narysować zdjęcie
+ * a nie dokładana skryptem - inaczej przeglądarka zdążyłaby narysować zdjęcie
  * przy 0.22, zanim skrypt je ukryje, i widać było mignięcie.
  * Tutaj tylko puszczamy je we właściwym momencie: po tekście intro.
  */

@@ -1,5 +1,5 @@
 /**
- * "The reveal" — filmowe odsłanianie rozdziałów Showcase.
+ * "The reveal" - filmowe odsłanianie rozdziałów Showcase.
  * Odtworzone 1:1 z oryginału (metoda _cine, linie 1832-1853).
  *
  * Postęp q liczony jest z pozycji sekcji względem okna i steruje trzema rzeczami:
@@ -9,7 +9,7 @@
  *  - żółta kreska: rozsuwanie od lewej (scaleX 0 → 1).
  *
  * Przy prefers-reduced-motion znikają przesunięcia, ale przejścia
- * przezroczystości zostają — treść nadal się odsłania, tylko bez ruchu.
+ * przezroczystości zostają - treść nadal się odsłania, tylko bez ruchu.
  */
 
 function run() {

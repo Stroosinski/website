@@ -1,5 +1,5 @@
 /**
- * Przycisk powrotu na górę — zachowanie z oryginału (linie 833, 1780+, scrollTop).
+ * Przycisk powrotu na górę - zachowanie z oryginału (linie 833, 1780+, scrollTop).
  * Pojawia się po przewinięciu, przewija płynnie do góry.
  */
 

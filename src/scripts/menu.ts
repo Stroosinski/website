@@ -1,5 +1,5 @@
 /**
- * Menu mobilne — zachowanie przeniesione z oryginału (metoda _chrome()).
+ * Menu mobilne - zachowanie przeniesione z oryginału (metoda _chrome()).
  * Otwarcie przełącza [data-mmenu] między display:none a flex i zamienia
  * ikonę hamburgera na krzyżyk. Widoczność samego przycisku steruje CSS
  * (.stlm-burger pokazuje się poniżej 860 px).

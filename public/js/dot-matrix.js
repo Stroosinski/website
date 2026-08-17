@@ -1,4 +1,4 @@
-// <dot-matrix> — animated glyph-matrix backdrop (port of the Originkit Dot Matrix, single-pass WebGL1).
+// <dot-matrix> - animated glyph-matrix backdrop (port of the Originkit Dot Matrix, single-pass WebGL1).
 // Attributes: frequency (UI 1-10), speed (UI), cellsize (UI 1-100), gamma (UI 1-20), bias (UI), chars, opacity
 (function () {
   if (customElements.get('dot-matrix')) return;
@@ -158,7 +158,7 @@
       this._ro.observe(this);
 
       // Odstępstwo od oryginału (2026-08-11, techniczne, bez wpływu na wygląd):
-      // pauza w tle, jak w silk-drape.js — patrz komentarz tam.
+      // pauza w tle, jak w silk-drape.js - patrz komentarz tam.
       var last = 0, interval = 1000 / 30;
       var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       function frame(t) {

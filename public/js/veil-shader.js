@@ -1,4 +1,4 @@
-// <veil-shader> — STOLMAR "veil" WebGL backdrop.
+// <veil-shader> - STOLMAR "veil" WebGL backdrop.
 // Dark drifting smoke + a faint yellow horizon + a mouse-following glimpse.
 // Attributes: intensity (0..1, default 0.7)
 (function () {

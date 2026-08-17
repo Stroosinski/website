@@ -1,4 +1,4 @@
-// <grain-bloom> — STOLMAR monochrome grain-bloom backdrop.
+// <grain-bloom> - STOLMAR monochrome grain-bloom backdrop.
 // Slow drifting blurred light masses, hard film grain, near-black stage.
 // Attributes: intensity (0..1, default 0.75), speed (default 0.35)
 (function () {
@@ -42,7 +42,7 @@
     // vertical banding inside the masses, drifting slowly upward
     '  float band=0.5+0.5*sin((uv.y*46.0)+mass*5.0-t*0.55);',
     '  lum+=0.085*band*bloom;',
-    // mouse glimpse — light gathers under the cursor
+    // mouse glimpse - light gathers under the cursor
     '  vec2 ms=u_mouse/max(u_resolution,vec2(1.0));',
     '  float d=distance(uv*asp,vec2(ms.x,1.0-ms.y)*asp);',
     '  lum+=(0.22+0.18*bloom)*smoothstep(0.42,0.0,d);',

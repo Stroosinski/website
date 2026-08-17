@@ -1,7 +1,7 @@
 ---
 /**
  * Siatka realizacji z filtrowaniem po rodzaju prac.
- * Wszystkie karty są w HTML od razu — filtr tylko je ukrywa, więc wyszukiwarki
+ * Wszystkie karty są w HTML od razu - filtr tylko je ukrywa, więc wyszukiwarki
  * widzą komplet, niezależnie od wybranej zakładki.
  */
 import { useTranslations, type Locale } from '@/i18n';
@@ -26,8 +26,8 @@ const toSrc = (p: string) => (p.startsWith('/') ? p : `/${p}`);
 const filterKeys = Object.keys(filters);
 const altFor = (p: Project) =>
   lang === 'pl'
-    ? `${p.title} — realizacja STOLMAR, ${p.eyebrow}`
-    : `${p.title} — STOLMAR project, ${p.eyebrow}`;
+    ? `${p.title} - realizacja STOLMAR, ${p.eyebrow}`
+    : `${p.title} - STOLMAR project, ${p.eyebrow}`;
 ---
 
 <section class="pg">

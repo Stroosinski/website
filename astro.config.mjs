@@ -9,7 +9,7 @@ const SITE = 'https://stolmar.co';
 // https://astro.build/config
 export default defineConfig({
   site: SITE,
-  // Statyczny build (SSG) — pełny HTML dla SEO/GEO, zero zbędnego JS.
+  // Statyczny build (SSG) - pełny HTML dla SEO/GEO, zero zbędnego JS.
   output: 'static',
   integrations: [
     react(),
@@ -21,7 +21,7 @@ export default defineConfig({
     }),
   ],
   build: {
-    // Nazwane pliki CSS/JS zamiast hashy-śmieci — łatwiej debugować.
+    // Nazwane pliki CSS/JS zamiast hashy-śmieci - łatwiej debugować.
     assets: '_astro',
   },
 });

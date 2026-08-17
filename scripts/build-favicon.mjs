@@ -5,11 +5,11 @@ import sharp from 'sharp';
  * Buduje ikonę karty przeglądarki.
  *
  * Wersja 2 (2026-08-11, na życzenie właściciela): tło białe, znak czarny,
- * zaokrąglone rogi kwadratu — bardziej zgodne z konwencją ikon aplikacji
+ * zaokrąglone rogi kwadratu - bardziej zgodne z konwencją ikon aplikacji
  * (np. iOS) niż poprzednia wersja z ciemnym tłem.
  *
  * logo-mark.svg ma kolor wpisany na sztywno w każdym kształcie (fill="#ffffff"),
- * więc nie wystarczy ustawić koloru na grupie nadrzędnej — trzeba podmienić
+ * więc nie wystarczy ustawić koloru na grupie nadrzędnej - trzeba podmienić
  * fill w samej treści SVG.
  */
 
@@ -22,7 +22,7 @@ let inner = raw
   .replace(/<\/svg>\s*$/, '')
   .trim();
 
-// znak na czarno — zamiast białego na sztywno wpisanego w każdy kształt
+// znak na czarno - zamiast białego na sztywno wpisanego w każdy kształt
 const INK = '#0A0A0A';
 inner = inner.replace(/fill="#ffffff"/gi, `fill="${INK}"`);
 
@@ -52,7 +52,7 @@ const sizes = [
 for (const s of sizes) {
   await sharp(buf, { density: 384 }).resize(s.size, s.size).png().toFile(s.file);
   const kb = (fs.statSync(s.file).size / 1024).toFixed(1);
-  console.log(`${s.file} — ${s.size}x${s.size}, ${kb} KB`);
+  console.log(`${s.file} - ${s.size}x${s.size}, ${kb} KB`);
 }
 
 // favicon.ico: 32x32 (starsze przeglądarki i czytniki kanałów)

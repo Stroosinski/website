@@ -1,5 +1,5 @@
 /**
- * Karuzela 3D galerii — przeniesiona 1:1 z oryginalnego Coverflow.jsx.
+ * Karuzela 3D galerii - przeniesiona 1:1 z oryginalnego Coverflow.jsx.
  * Jedyne zmiany: React pobierany importem zamiast z window, komponent
  * eksportowany domyślnie (Astro montuje go jako wyspę), oraz przekazywane
  * z zewnątrz etykiety przycisków, żeby działały w obu językach.
