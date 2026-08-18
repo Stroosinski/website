@@ -21,6 +21,7 @@ inaczej, a nie jest wymienione poniżej, to błąd do zgłoszenia.
 | Pole załączników w formularzu kontaktowym | pole „Załączniki" z możliwością dodania plików | **usunięte.** Formspree na darmowym planie odrzuca przesyłki z plikami błędem „File Uploads Not Permitted" - klient dostawał niejasny błąd, a zgłoszenie się nie wysyłało. Materiały klient wysyła bezpośrednio na info@stolmar.co. Wraca razem z przejściem na Resend albo płatny plan Formspree | 2026-08-11 |
 | Ikona karty przeglądarki | tło czarne (#0A0A0A), znak biały | tło białe z zaokrąglonymi rogami, znak czarny - konwencja w stylu ikon aplikacji | 2026-08-11 |
 | Prezentacja do pobrania | formularz z adresem e-mail (który i tak nic nie wysyłał) | **tymczasowo** sam przycisk pobierania, bez podawania adresu. Docelowo wróci formularz wysyłający prezentację automatycznie w załączniku (usługa Resend). Układ sekcji bez zmian, więc powrót to podmiana prawej kolumny | 2026-08-10 |
+| Język prezentacji | jeden plik po angielsku na obu wersjach językowych | **osobny plik dla każdego języka**: `/files/STOLMAR-prezentacja.pdf` (PL) na `/mozliwosci/`, `/files/STOLMAR-capabilities.pdf` (EN) na `/en/studio/`. Wybór przez `DECK_FILES` w `src/config.ts`. Nazwy plików celowo w języku odbiorcy - to pod nimi plik zapisze się na dysku klienta. Stary adres `/files/STOLMAR-overview.pdf` przekierowany w `vercel.json` na wersję angielską (301), żeby wcześniej rozesłane linki nie prowadziły do błędu 404 | 2026-08-18 |
 | Sekcja z technologiami na stronie Możliwości („W jednej pracowni", 8 pozycji: projektowanie, rozwój techniczny, drewno/metal/tworzywa, druk lateksowy HP, druk 3D, lakiernia, rękodzieło, montaże) | **nie była wyświetlana** - dane były przygotowane w projekcie, ale sekcję wycięto z układu | sekcja przywrócona i zostaje; układ przebudowany na prośbę właściciela z siatki ośmiu kafelków na **indeks warsztatowy** - numerowaną listę z cienkimi liniami, bliższą wytycznym marki („terse fielded pairs", treść „jak rysunek warsztatowy") | 2026-08-10 |
 
 ---
@@ -89,8 +90,8 @@ Bez tych zmian strona nie mogłaby być indeksowana - a to był główny powód 
 
 ## Do rozstrzygnięcia
 
-- **Prezentacja PDF jest tylko po angielsku**, a formularz jest także na polskiej
-  wersji strony.
+- ~~**Prezentacja PDF jest tylko po angielsku**~~ - rozstrzygnięte 2026-08-18:
+  każdy język ma teraz własny plik (patrz tabela zmian zamówionych wyżej).
 - **Opisy w Showcase są ukryte** (ustawienie „Minimal – photos lead" z oryginału).
   To najcenniejsza treść dla Google - do decyzji, czy pokazać.
 - **Nagłówki rozdziałów Showcase są po angielsku także w wersji polskiej**

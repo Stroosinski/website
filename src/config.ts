@@ -21,11 +21,21 @@ export const FORM_ENDPOINT =
 export const GA_ID = import.meta.env.PUBLIC_GA_ID || 'G-R9FQNH7L3Z';
 
 /**
- * Prezentacja wysyłana w odpowiedzi na formularz.
- * Podmiana na nowszą wersję = skopiowanie pliku pod tę samą nazwę,
- * bez ruszania kodu. Osoby, które dostały link wcześniej, pobiorą nową wersję.
+ * Prezentacja do pobrania - OSOBNY PLIK DLA KAŻDEGO JĘZYKA.
+ * Polska wersja strony podaje polską prezentację, angielska - angielską
+ * (decyzja właściciela 2026-08-18; wcześniej obie wersje serwowały ten sam
+ * plik po angielsku).
+ *
+ * Nazwy plików są widoczne dla użytkownika - to pod nimi prezentacja zapisze
+ * się na dysku - więc celowo są w języku odbiorcy, a nie techniczne.
+ *
+ * Podmiana na nowszą wersję = skopiowanie pliku pod tę samą nazwę, bez
+ * ruszania kodu. Osoby, które dostały link wcześniej, pobiorą nową wersję.
  */
-export const DECK_FILE = '/files/STOLMAR-overview.pdf';
+export const DECK_FILES = {
+  pl: '/files/STOLMAR-prezentacja.pdf',
+  en: '/files/STOLMAR-capabilities.pdf',
+} as const;
 
 export const CONTACT = {
   email: 'info@stolmar.co',

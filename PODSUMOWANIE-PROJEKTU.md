@@ -356,8 +356,12 @@ JESTEŚMY TUTAJ:**
 3. **3 nowe teksty PL w Showcase czekają na akceptację właściciela**
    (rozdzielone klucze `work.indexEyebrow`, `work.framesH1`,
    `work.materialsH1` - patrz punkt 2 w sekcji "Poprawki błędów" wyżej).
-4. **Prezentacja PDF jest tylko po angielsku**, a przycisk pobrania jest też
-   na polskiej wersji strony - właściciel wie, nie podjął jeszcze decyzji.
+4. ~~**Prezentacja PDF jest tylko po angielsku**~~ - **ZAŁATWIONE 2026-08-18.**
+   Właściciel dostarczył obie wersje. Każdy język ma teraz własny plik:
+   `/files/STOLMAR-prezentacja.pdf` (PL) i `/files/STOLMAR-capabilities.pdf`
+   (EN), wybierane przez `DECK_FILES` w `src/config.ts`. Stary adres
+   `/files/STOLMAR-overview.pdf` przekierowany w `vercel.json` na wersję
+   angielską, żeby wcześniej rozesłane linki nie prowadziły do błędu.
 5. **Meta Pixel**: świadomie NIE dodany (brak planów kampanii reklamowych).
    Gdyby się to zmieniło - dodanie to ~10 minut pracy, ale wymaga też
    przywrócenia kategorii marketingowej w banerze zgód i aktualizacji

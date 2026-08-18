@@ -21,6 +21,11 @@
       "source": "/pl/:path+",
       "destination": "/:path+",
       "permanent": true
+    },
+    {
+      "source": "/files/STOLMAR-overview.pdf",
+      "destination": "/files/STOLMAR-capabilities.pdf",
+      "permanent": true
     }
   ],
 
