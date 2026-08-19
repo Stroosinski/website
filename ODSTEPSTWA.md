@@ -52,6 +52,7 @@ Bez tych zmian strona nie mogłaby być indeksowana - a to był główny powód 
 | Trzy nagłówki w Showcase | dwa różne teksty EN dzieliły jedno tłumaczenie PL, więc polska wersja pokazywała identyczne tytuły w różnych sekcjach. Rozdzielone (`work.eyebrow`/`work.indexEyebrow`, `work.h1`/`work.framesH1`, `work.ctaH1`/`work.materialsH1`) - **nowe teksty PL do akceptacji** |
 | Tytuł projektu nr 3 | w polskiej wersji nieprzetłumaczone „Retail Furniture" → „Meble sklepowe" |
 | Znaki `&` w wersji angielskiej | wyświetlało się `&amp;` (podwójne kodowanie przy imporcie) |
+| Galeria wyrzucała na górę strony | zamknięcie karuzeli w Realizacjach przenosiło użytkownika na początek strony. Przyczyna: `body.stlm-lb-on` ustawia `position: fixed` (blokada przewijania tła), co zeruje pozycję. Oryginał ma tę samą regułę i **nigdzie nie zapamiętuje pozycji** - sprawdzone w `_source/orig`. Efekt był dotkliwy: po obejrzeniu jednej realizacji trzeba było od nowa przewijać do miejsca, w którym się skończyło. Naprawione w `LightboxIsland.jsx` - pozycja jest zapamiętywana przed blokadą (`top: -Ypx`, więc kadr nie drga też podczas 0,32 s rozjaśniania nakładki) i przywracana po zamknięciu. Zweryfikowane dla wszystkich trzech sposobów zamknięcia: przycisk ✕, klawisz Escape, kliknięcie w tło |
 
 ---
 

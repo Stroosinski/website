@@ -27,19 +27,42 @@ export default function LightboxIsland({
 
   const close = React.useCallback(() => setState(null), []);
 
+  /**
+   * Blokada przewijania tła Z ZACHOWANIEM POZYCJI.
+   *
+   * Reguła `body.stlm-lb-on` ustawia `position: fixed` (przeniesiona 1:1
+   * z oryginału). To wyjmuje stronę z normalnego układu, więc przeglądarka
+   * traktuje ją jak przewiniętą na sam początek. Efekt: po zamknięciu
+   * galerii użytkownik lądował na górze strony i musiał od nowa szukać
+   * miejsca, w którym przeglądał realizacje. Ten sam błąd ma oryginał.
+   *
+   * Naprawa: przed zablokowaniem zapamiętujemy pozycję i przesuwamy `body`
+   * w górę o dokładnie tę samą wartość (`top: -Ypx`). Dzięki temu kadr nie
+   * drgnie ANI przy otwieraniu - a to widać, bo nakładka rozjaśnia się
+   * przez 0,32 s i tło jest przez ten czas jeszcze widoczne - ani przy
+   * zamykaniu, gdzie przywracamy zapamiętaną pozycję.
+   */
   React.useEffect(() => {
     if (!state) {
       document.body.classList.remove('stlm-lb-on');
       return;
     }
+
+    const y = window.scrollY;
+    document.body.style.top = `-${y}px`;
     document.body.classList.add('stlm-lb-on');
+
     const onKey = (e) => {
       if (e.key === 'Escape') close();
     };
     window.addEventListener('keydown', onKey);
+
     return () => {
       window.removeEventListener('keydown', onKey);
       document.body.classList.remove('stlm-lb-on');
+      document.body.style.top = '';
+      // Musi być po zdjęciu `position: fixed`, inaczej nie ma czego przewijać.
+      window.scrollTo(0, y);
     };
   }, [state, close]);
 
